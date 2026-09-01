@@ -25,6 +25,8 @@ const Notices = lazy(() => import('./pages/public/Notices'));
 const Gallery = lazy(() => import('./pages/public/Gallery'));
 const Results = lazy(() => import('./pages/public/Results'));
 const Contact = lazy(() => import('./pages/public/Contact'));
+const TypingTest = lazy(() => import('./pages/public/TypingTest'));
+const MouseAccuracyGame = lazy(() => import('./pages/public/MouseAccuracyGame'));
 const VerifyCertificate = lazy(() => import('./pages/public/VerifyCertificate'));
 
 // Admin
@@ -89,6 +91,8 @@ function App() {
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/results" element={<Results />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/TypingTest" element={<TypingTest />} />
+            <Route path="/MouseAccuracyGame" element={<MouseAccuracyGame />} />
             <Route path="/verify-certificate" element={<VerifyCertificate />} />
           </Route>
 
