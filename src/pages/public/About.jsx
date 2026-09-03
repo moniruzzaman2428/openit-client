@@ -32,6 +32,7 @@ import {
 } from 'react-icons/fa';
 import SEO from '../../components/seo/SEO';
 import StructuredData, { organizationSchema, breadcrumbSchema } from '../../components/seo/StructuredData';
+import LeadershipSection from '../../components/aboutpagesComponent/LeadershipSection';
 
 const About = () => {
   const ref = useRef(null);
@@ -658,6 +659,7 @@ const About = () => {
         </div>
 
       </section>
+<LeadershipSection></LeadershipSection>
 
       {/* Statistics Section */}
       <section className="py-12 bg-white shadow-sm relative z-10">
@@ -682,6 +684,7 @@ const About = () => {
           </div>
         </div>
       </section>
+
 
       {/* About Content & Values */}
       <section className="py-16 bg-white">
