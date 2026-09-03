@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
 import Swal from 'sweetalert2';
-import { 
-  FaPhone, 
-  FaEnvelope, 
-  FaMapMarkerAlt, 
-  FaFacebook, 
+import {
+  FaPhone,
+  FaEnvelope,
+  FaMapMarkerAlt,
+  FaFacebook,
   FaYoutube,
   FaClock,
   FaPaperPlane,
@@ -48,27 +48,27 @@ const Contact = () => {
 
   // Real info from the banner
   const contactInfo = [
-    { 
-      icon: FaMapMarkerAlt, 
-      title: 'ঠিকানা', 
+    {
+      icon: FaMapMarkerAlt,
+      title: 'ঠিকানা',
       value: 'উপজেলা রোড, শান্তিবাগ (NRBC ব্যাংক সংলগ্ন), কেন্দুয়া, নেত্রকোনা।',
       color: 'from-red-500 to-orange-500'
     },
-    { 
-      icon: FaPhone, 
-      title: 'ফোন নম্বর', 
+    {
+      icon: FaPhone,
+      title: 'ফোন নম্বর',
       value: '+880 1716-160869\n+880 1707-530810',
       color: 'from-blue-500 to-cyan-500'
     },
-    { 
-      icon: FaEnvelope, 
-      title: 'ইমেইল', 
+    {
+      icon: FaEnvelope,
+      title: 'ইমেইল',
       value: 'openitinstitute@gmail.com',
       color: 'from-purple-500 to-pink-500'
     },
-    { 
-      icon: FaClock, 
-      title: 'অফিস সময়', 
+    {
+      icon: FaClock,
+      title: 'অফিস সময়',
       value: 'শনি - বৃহস্পতি: সকাল ৯টা - রাত ৮টা\nশুক্রবার: বন্ধ',
       color: 'from-green-500 to-emerald-500'
     }
@@ -76,24 +76,24 @@ const Contact = () => {
 
   return (
     <div className="overflow-hidden bg-gray-50">
-      <SEO 
-        title="Contact Us | Open IT Institute" 
-        description="Contact OPEN IT INSTITUTE — Phone, email and address. Get in touch for course inquiries and admission information in Kendua, Netrokona." 
-        path="/contact" 
+      <SEO
+        title="যোগাযোগ"
+        description="ওপেন আইটি ইনস্টিটিউট, উপজেলা রোড, শান্তিবাগ, কেন্দুয়া, নেত্রকোনায় যোগাযোগ করুন।"
+        path="/contact"
       />
       <StructuredData data={[organizationSchema(), contactPageSchema(), breadcrumbSchema([{ name: "Home", url: "/" }, { name: "Contact", url: "/contact" }])]} />
 
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-[#0f3460] via-[#1a5276] to-[#0d1117] text-white py-20 overflow-hidden">
-        <motion.div 
-          animate={{ x: [0, 100, 0], y: [0, -50, 0] }} 
-          transition={{ duration: 15, repeat: Infinity }} 
-          className="absolute top-0 left-0 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl" 
+        <motion.div
+          animate={{ x: [0, 100, 0], y: [0, -50, 0] }}
+          transition={{ duration: 15, repeat: Infinity }}
+          className="absolute top-0 left-0 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl"
         />
-        <motion.div 
-          animate={{ x: [0, -100, 0], y: [0, 50, 0] }} 
-          transition={{ duration: 20, repeat: Infinity }} 
-          className="absolute bottom-0 right-0 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl" 
+        <motion.div
+          animate={{ x: [0, -100, 0], y: [0, 50, 0] }}
+          transition={{ duration: 20, repeat: Infinity }}
+          className="absolute bottom-0 right-0 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl"
         />
 
         <div className="max-w-7xl mx-auto px-4 text-center relative z-10">
@@ -119,7 +119,7 @@ const Contact = () => {
 
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           {/* Contact Info Cards */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {contactInfo.map((item, index) => (
@@ -142,7 +142,7 @@ const Contact = () => {
           </div>
 
           <div className="grid lg:grid-cols-5 gap-8 items-start">
-            
+
             {/* Left Side - Form */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -161,7 +161,7 @@ const Contact = () => {
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1.5">আপনার নাম *</label>
-                    <input 
+                    <input
                       {...register('name', { required: 'নামটি অবশ্যই দিতে হবে' })}
                       className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-600/30 focus:border-blue-600 transition bg-gray-50 focus:bg-white"
                       placeholder="আপনার নাম লিখুন"
@@ -170,7 +170,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1.5">ফোন নম্বর *</label>
-                    <input 
+                    <input
                       {...register('phone', { required: 'ফোন নম্বরটি অবশ্যই দিতে হবে' })}
                       className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-600/30 focus:border-blue-600 transition bg-gray-50 focus:bg-white"
                       placeholder="01XXXXXXXXX"
@@ -181,8 +181,8 @@ const Contact = () => {
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1.5">ইমেইল *</label>
-                  <input 
-                    type="email" 
+                  <input
+                    type="email"
                     {...register('email', { required: 'ইমেইলটি অবশ্যই দিতে হবে' })}
                     className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-600/30 focus:border-blue-600 transition bg-gray-50 focus:bg-white"
                     placeholder="example@gmail.com"
@@ -192,8 +192,8 @@ const Contact = () => {
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1.5">আপনার বার্তা *</label>
-                  <textarea 
-                    {...register('message', { required: 'বার্তাটি অবশ্যই দিতে হবে' })} 
+                  <textarea
+                    {...register('message', { required: 'বার্তাটি অবশ্যই দিতে হবে' })}
                     rows={5}
                     className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-600/30 focus:border-blue-600 transition bg-gray-50 focus:bg-white resize-none"
                     placeholder="আপনার প্রশ্ন বা বার্তা লিখুন..."
@@ -201,10 +201,10 @@ const Contact = () => {
                   {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message.message}</p>}
                 </div>
 
-                <motion.button 
+                <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  type="submit" 
+                  type="submit"
                   disabled={isSubmitting}
                   className="w-full flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-bold rounded-xl transition shadow-lg disabled:opacity-60"
                 >
@@ -253,21 +253,21 @@ const Contact = () => {
               <div className="bg-gradient-to-br from-[#0f3460] to-[#1a5276] rounded-2xl p-6 text-white shadow-lg">
                 <h3 className="text-lg font-bold mb-4">সোশ্যাল মিডিয়ায় যুক্ত হোন</h3>
                 <p className="text-sm text-blue-100 mb-6">নিয়মিত আপডেট এবং ফ্রি ওয়ার্কশপের খবর পেতে আমাদের ফলো করুন।</p>
-                
+
                 <div className="flex gap-4 mb-6">
-                  <motion.a 
+                  <motion.a
                     whileHover={{ y: -5, scale: 1.1 }}
-                    href="https://facebook.com/openitinstitute" 
-                    target="_blank" 
+                    href="https://facebook.com/openitinstitute"
+                    target="_blank"
                     rel="noreferrer"
                     className="w-12 h-12 rounded-xl bg-blue-600 flex items-center justify-center text-white hover:bg-blue-700 transition-colors shadow-lg"
                   >
                     <FaFacebook className="text-xl" />
                   </motion.a>
-                  <motion.a 
+                  <motion.a
                     whileHover={{ y: -5, scale: 1.1 }}
-                    href="https://youtube.com/@openitinstitute" 
-                    target="_blank" 
+                    href="https://youtube.com/@openitinstitute"
+                    target="_blank"
                     rel="noreferrer"
                     className="w-12 h-12 rounded-xl bg-red-600 flex items-center justify-center text-white hover:bg-red-700 transition-colors shadow-lg"
                   >

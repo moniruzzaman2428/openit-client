@@ -1,11 +1,11 @@
 import { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  FaLaptopCode, 
-  FaClock, 
-  FaTag, 
-  FaArrowRight, 
+import {
+  FaLaptopCode,
+  FaClock,
+  FaTag,
+  FaArrowRight,
   FaSpinner,
   FaSearch,
   FaFilter,
@@ -56,9 +56,9 @@ const Courses = () => {
 
   // Filter and sort courses
   const filtered = useMemo(() => {
-    let result = courses.filter(c => 
-      (c.title?.toLowerCase().includes(search.toLowerCase()) ||
-       c.description?.toLowerCase().includes(search.toLowerCase()))
+    let result = courses.filter(c =>
+    (c.title?.toLowerCase().includes(search.toLowerCase()) ||
+      c.description?.toLowerCase().includes(search.toLowerCase()))
     );
 
     if (selectedCategory !== 'all') {
@@ -70,7 +70,7 @@ const Courses = () => {
     }
 
     // Sort
-    switch(sortBy) {
+    switch (sortBy) {
       case 'price-low':
         result = result.sort((a, b) => (a.fee || 0) - (b.fee || 0));
         break;
@@ -100,10 +100,10 @@ const Courses = () => {
 
   return (
     <div className="overflow-hidden">
-      <SEO 
-        title="Courses | Open IT Institute" 
-        description="Browse professional IT courses at Open IT Institute — Web Development, Graphic Design, Digital Marketing, Hardware & Networking, Freelancing and more." 
-        path="/courses" 
+      <SEO
+        title="কম্পিউটার কোর্স"
+        description="ওপেন আইটি ইনস্টিটিউটে Web Development, Graphic Design, Digital Marketing, Freelancing এবং বিভিন্ন কম্পিউটার কোর্সে ভর্তি চলছে।"
+        path="/courses"
       />
       <StructuredData data={[courseListSchema(courses), breadcrumbSchema([{ name: "Home", url: "/" }, { name: "Courses", url: "/courses" }])]} />
 
@@ -114,7 +114,7 @@ const Courses = () => {
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent rounded-full blur-3xl" />
         </div>
         <div className="absolute inset-0 bg-grid-white/[0.02] bg-[length:60px_60px]" />
-        
+
         <div className="max-w-7xl mx-auto px-4 text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -256,7 +256,7 @@ const Courses = () => {
                     const discounted = course.discount
                       ? Math.round(course.fee - (course.fee * course.discount) / 100)
                       : course.fee;
-                    
+
                     const levelColors = {
                       beginner: 'bg-green-100 text-green-700',
                       intermediate: 'bg-yellow-100 text-yellow-700',
@@ -276,8 +276,8 @@ const Courses = () => {
                         {/* Course Image/Banner */}
                         <div className="relative h-48 bg-gradient-to-br from-primary to-secondary overflow-hidden">
                           {course.image ? (
-                            <img 
-                              src={course.image} 
+                            <img
+                              src={course.image}
                               alt={course.title}
                               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                             />
@@ -286,10 +286,10 @@ const Courses = () => {
                               <FaLaptopCode className="text-6xl text-white/30" />
                             </div>
                           )}
-                          
+
                           {/* Overlay */}
                           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                          
+
                           {/* Badges */}
                           <div className="absolute top-4 left-4 flex flex-wrap gap-2">
                             {course.discount > 0 && (
@@ -304,7 +304,7 @@ const Courses = () => {
                               </span>
                             )}
                           </div>
-                          
+
                           <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
                             <span className={`px-2.5 py-1 rounded-lg text-xs font-semibold ${levelColors[course.level] || 'bg-gray-100 text-gray-700'}`}>
                               {course.level || 'All Levels'}
@@ -389,7 +389,7 @@ const Courses = () => {
                   </div>
                   <h3 className="text-xl font-bold text-gray-700 mb-2">No Courses Found</h3>
                   <p className="text-gray-400 max-w-md mx-auto">
-                    {hasActiveFilters 
+                    {hasActiveFilters
                       ? 'Try adjusting your search or filter criteria to find what you\'re looking for.'
                       : 'No courses available at the moment. Please check back later.'}
                   </p>

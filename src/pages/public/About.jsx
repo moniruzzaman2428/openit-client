@@ -114,8 +114,8 @@ const About = () => {
   return (
     <div className="overflow-hidden bg-gray-50">
       <SEO
-        title="About Us | Open IT Institute"
-        description="Learn about Open IT Institute — Bangladesh's premier computer training center offering practical IT education with BTEB certification in Netrokona."
+        title="আমাদের সম্পর্কে"
+        description="ওপেন আইটি ইনস্টিটিউট সম্পর্কে জানুন। কেন্দুয়া, নেত্রকোনায় আধুনিক IT ও কম্পিউটার প্রশিক্ষণের জন্য আমাদের কোর্সসমূহ দেখুন।"
         path="/about"
       />
       <StructuredData data={[organizationSchema(), breadcrumbSchema([{ name: "Home", url: "/" }, { name: "About", url: "/about" }])]} />
@@ -659,7 +659,7 @@ const About = () => {
         </div>
 
       </section>
-<LeadershipSection></LeadershipSection>
+      <LeadershipSection></LeadershipSection>
 
       {/* Statistics Section */}
       <section className="py-12 bg-white shadow-sm relative z-10">
