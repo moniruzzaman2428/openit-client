@@ -7,20 +7,29 @@ import {
   FaUserGraduate, 
   FaChevronDown,
   FaKeyboard,
-  FaMousePointer
+  FaMousePointer,
+  FaHome,
+  FaInfoCircle,
+  FaBookOpen,
+  FaUserPlus,
+  FaBell,
+  FaImages,
+  FaChartBar,
+  FaEnvelope,
+  FaRocket
 } from 'react-icons/fa';
 import { useAuth } from '../../context/AuthContext';
 import logo from '../../assets/images/logo.png'; 
 
 const navLinks = [
-  { name: 'Home', path: '/' },
-  { name: 'About', path: '/about' },
-  { name: 'Courses', path: '/courses' },
-  { name: 'Admission', path: '/admission' },
-  { name: 'Notice', path: '/notices' },
-  { name: 'Gallery', path: '/gallery' },
-  { name: 'Results', path: '/results' },
-  { name: 'Contact', path: '/contact' }
+  { name: 'Home', path: '/', icon: FaHome },
+  { name: 'About', path: '/about', icon: FaInfoCircle },
+  { name: 'Courses', path: '/courses', icon: FaBookOpen },
+  { name: 'Admission', path: '/admission', icon: FaUserPlus },
+  { name: 'Notice', path: '/notices', icon: FaBell },
+  { name: 'Gallery', path: '/gallery', icon: FaImages },
+  { name: 'Results', path: '/results', icon: FaChartBar },
+  { name: 'Contact', path: '/contact', icon: FaEnvelope }
 ];
 
 const accuracyLinks = [
@@ -57,46 +66,83 @@ const Navbar = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-white/95 backdrop-blur-md shadow-md' : 'bg-white/80 backdrop-blur-sm'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled 
+          ? 'bg-white/95 backdrop-blur-xl shadow-lg shadow-gray-200/50' 
+          : 'bg-white/80 backdrop-blur-sm'
       }`}
     >
+      {/* Animated Gradient Line */}
+      <motion.div 
+        className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent"
+        initial={{ scaleX: 0 }}
+        animate={{ scaleX: scrolled ? 1 : 0 }}
+        transition={{ duration: 0.5 }}
+      />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-18">
+        <div className="flex items-center justify-between h-14 lg:h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5 group">
-            <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white shadow-lg shadow-primary/30 group-hover:scale-105 transition">
-              <img 
-                src={logo} 
-                alt="Open IT Institute" 
-                className="w-8 h-8 object-contain"
-                onError={(e) => {
-                  e.target.style.display = 'none';
-                  e.target.parentElement.innerHTML = '<FaUserGraduate className="text-lg" />';
-                }}
+            <motion.div 
+              className="relative"
+              whileHover={{ scale: 1.05, rotate: -3 }}
+              transition={{ type: 'spring', stiffness: 300 }}
+            >
+              <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center border border-white/10 backdrop-blur-sm shadow-lg shadow-cyan-500/20">
+                <img 
+                  src={logo} 
+                  alt="Open IT Institute" 
+                  className="w-6 h-6 object-contain"
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                    e.target.parentElement.innerHTML = '<FaUserGraduate className="text-base text-cyan-500" />';
+                  }}
+                />
+              </div>
+              <motion.div
+                className="absolute -inset-1 rounded-lg bg-gradient-to-r from-cyan-500/20 to-blue-500/20 blur-xl"
+                animate={{ opacity: [0.3, 0.6, 0.3] }}
+                transition={{ duration: 3, repeat: Infinity }}
               />
-            </div>
+            </motion.div>
+            
             <div className="hidden sm:block">
-              <span className="font-bold text-primary text-lg leading-tight block">OPEN IT</span>
-              <span className="text-[10px] text-gray-500 font-medium tracking-wider uppercase">Institute</span>
+              <span className="font-black text-gray-800 text-sm leading-tight block">
+                OPEN IT
+              </span>
+              <span className="text-[9px] text-cyan-500 font-medium tracking-[0.2em] uppercase">
+                Institute
+              </span>
             </div>
           </Link>
 
           {/* Desktop Menu */}
-          <nav className="hidden lg:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center gap-0.5">
             {navLinks.map((link) => (
               <NavLink
                 key={link.path}
                 to={link.path}
                 className={({ isActive }) =>
-                  `px-3.5 py-2 rounded-lg text-sm font-medium transition ${
+                  `relative px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-300 ${
                     isActive
-                      ? 'text-primary bg-primary/10'
-                      : 'text-gray-600 hover:text-primary hover:bg-primary/5'
+                      ? 'text-cyan-600 bg-cyan-50/80'
+                      : 'text-gray-600 hover:text-cyan-600 hover:bg-cyan-50/50'
                   }`
                 }
               >
-                {link.name}
+                {({ isActive }) => (
+                  <>
+                    <span className="relative z-10">{link.name}</span>
+                    {isActive && (
+                      <motion.div
+                        layoutId="activeTab"
+                        className="absolute inset-0 rounded-lg bg-gradient-to-r from-cyan-50 to-blue-50"
+                        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                      />
+                    )}
+                  </>
+                )}
               </NavLink>
             ))}
 
@@ -106,18 +152,19 @@ const Navbar = () => {
                 onClick={() => setIsAccuracyOpen(!isAccuracyOpen)}
                 onMouseEnter={() => setIsAccuracyOpen(true)}
                 onMouseLeave={() => setIsAccuracyOpen(false)}
-                className={`px-3.5 py-2 rounded-lg text-sm font-medium transition flex items-center gap-1.5 ${
+                className={`relative px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-300 flex items-center gap-1 ${
                   isAccuracyActive
-                    ? 'text-primary bg-primary/10'
-                    : 'text-gray-600 hover:text-primary hover:bg-primary/5'
+                    ? 'text-cyan-600 bg-cyan-50/80'
+                    : 'text-gray-600 hover:text-cyan-600 hover:bg-cyan-50/50'
                 }`}
               >
-                Accuracy
-                <FaChevronDown 
-                  className={`text-xs transition-transform duration-200 ${
-                    isAccuracyOpen ? 'rotate-180' : ''
-                  }`} 
-                />
+                <span className="relative z-10">Accuracy</span>
+                <motion.div
+                  animate={{ rotate: isAccuracyOpen ? 180 : 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <FaChevronDown className="text-[10px]" />
+                </motion.div>
               </button>
 
               {/* Dropdown Menu */}
@@ -127,10 +174,10 @@ const Navbar = () => {
                     initial={{ opacity: 0, y: -10, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                    transition={{ duration: 0.15 }}
+                    transition={{ duration: 0.2 }}
                     onMouseEnter={() => setIsAccuracyOpen(true)}
                     onMouseLeave={() => setIsAccuracyOpen(false)}
-                    className="absolute top-full left-0 mt-1 bg-white rounded-xl shadow-xl border border-gray-100 py-1 min-w-[200px] z-50"
+                    className="absolute top-full left-0 mt-1.5 bg-white rounded-xl shadow-2xl shadow-gray-200/50 border border-gray-100/80 py-1.5 min-w-[200px] z-50 backdrop-blur-sm"
                   >
                     {accuracyLinks.map((link) => {
                       const Icon = link.icon;
@@ -139,14 +186,18 @@ const Navbar = () => {
                         <Link
                           key={link.path}
                           to={link.path}
-                          className={`flex items-center gap-3 px-4 py-2.5 text-sm transition ${
+                          className={`flex items-center gap-2.5 px-4 py-2 text-xs transition-all duration-200 ${
                             isActive
-                              ? 'text-primary bg-primary/10'
-                              : 'text-gray-600 hover:bg-gray-50'
+                              ? 'text-cyan-600 bg-cyan-50/80'
+                              : 'text-gray-600 hover:bg-gray-50/80'
                           }`}
                         >
-                          <Icon className="text-lg" />
-                          {link.name}
+                          <div className={`w-7 h-7 rounded-lg flex items-center justify-center ${
+                            isActive ? 'bg-cyan-100 text-cyan-600' : 'bg-gray-100 text-gray-500'
+                          }`}>
+                            <Icon className="text-sm" />
+                          </div>
+                          <span className="font-medium">{link.name}</span>
                         </Link>
                       );
                     })}
@@ -157,38 +208,51 @@ const Navbar = () => {
           </nav>
 
           {/* Right Side */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             {isAuthenticated ? (
-              <Link
-                to={getDashboardLink()}
-                className="hidden sm:inline-flex px-4 py-2 text-sm font-semibold text-primary border border-primary/30 rounded-xl hover:bg-primary hover:text-white transition"
+              <motion.div
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
               >
-                Dashboard
-              </Link>
+                <Link
+                  to={getDashboardLink()}
+                  className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold text-white bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 transition-all"
+                >
+                  <FaRocket className="text-xs" />
+                  Dashboard
+                </Link>
+              </motion.div>
             ) : (
               <>
                 <Link
                   to="/login"
-                  className="hidden sm:inline-flex px-4 py-2 text-sm font-medium text-gray-600 hover:text-primary transition"
+                  className="hidden sm:inline-flex px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-cyan-600 transition-colors"
                 >
                   Login
                 </Link>
-                <Link
-                  to="/admission"
-                  className="inline-flex px-4 py-2 text-sm font-semibold bg-primary text-white rounded-xl hover:bg-primary/90 shadow-lg shadow-primary/25 transition"
+                <motion.div
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
                 >
-                  ভর্তি করুন
-                </Link>
+                  <Link
+                    to="/admission"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold text-white bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 transition-all"
+                  >
+                    <FaUserPlus className="text-xs" />
+                    ভর্তি হোন
+                  </Link>
+                </motion.div>
               </>
             )}
 
             {/* Mobile Toggle */}
-            <button
+            <motion.button
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition"
+              className="lg:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-all"
+              whileTap={{ scale: 0.95 }}
             >
-              {isOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
-            </button>
+              {isOpen ? <FaTimes size={18} /> : <FaBars size={18} />}
+            </motion.button>
           </div>
         </div>
       </div>
@@ -200,28 +264,33 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-white border-t border-gray-100 overflow-hidden"
+            transition={{ duration: 0.3 }}
+            className="lg:hidden bg-white/95 backdrop-blur-xl border-t border-gray-100/80 overflow-hidden"
           >
-            <nav className="px-4 py-4 space-y-1">
-              {navLinks.map((link) => (
-                <NavLink
-                  key={link.path}
-                  to={link.path}
-                  className={({ isActive }) =>
-                    `block px-4 py-3 rounded-xl text-sm font-medium transition ${
-                      isActive
-                        ? 'text-primary bg-primary/10'
-                        : 'text-gray-600 hover:bg-gray-50'
-                    }`
-                  }
-                >
-                  {link.name}
-                </NavLink>
-              ))}
+            <nav className="px-4 py-3 space-y-0.5">
+              {navLinks.map((link) => {
+                const Icon = link.icon;
+                return (
+                  <NavLink
+                    key={link.path}
+                    to={link.path}
+                    className={({ isActive }) =>
+                      `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${
+                        isActive
+                          ? 'text-cyan-600 bg-cyan-50/80'
+                          : 'text-gray-600 hover:bg-gray-50'
+                      }`
+                    }
+                  >
+                    <Icon className="text-base" />
+                    {link.name}
+                  </NavLink>
+                );
+              })}
 
               {/* Mobile Accuracy Section */}
-              <div className="mt-1">
-                <div className="px-4 py-2 text-xs font-semibold text-gray-400 uppercase tracking-wider">
+              <div className="mt-2 pt-2 border-t border-gray-100">
+                <div className="px-3 py-1.5 text-[10px] font-semibold text-gray-400 uppercase tracking-wider">
                   Accuracy Tests
                 </div>
                 {accuracyLinks.map((link) => {
@@ -232,25 +301,29 @@ const Navbar = () => {
                       key={link.path}
                       to={link.path}
                       className={({ isActive }) =>
-                        `flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition ${
+                        `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${
                           isActive
-                            ? 'text-primary bg-primary/10'
+                            ? 'text-cyan-600 bg-cyan-50/80'
                             : 'text-gray-600 hover:bg-gray-50'
                         }`
                       }
                     >
-                      <Icon className="text-lg" />
+                      <div className={`w-7 h-7 rounded-lg flex items-center justify-center ${
+                        isActive ? 'bg-cyan-100' : 'bg-gray-100'
+                      }`}>
+                        <Icon className="text-sm" />
+                      </div>
                       {link.name}
                     </NavLink>
                   );
                 })}
               </div>
 
-              <div className="pt-3 border-t border-gray-100 space-y-2">
+              <div className="pt-2 border-t border-gray-100 space-y-1">
                 {!isAuthenticated && (
                   <Link
                     to="/login"
-                    className="block px-4 py-3 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-50"
+                    className="block px-3 py-2.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50"
                   >
                     Login
                   </Link>
@@ -258,8 +331,9 @@ const Navbar = () => {
                 {isAuthenticated && (
                   <Link
                     to={getDashboardLink()}
-                    className="block px-4 py-3 rounded-xl text-sm font-medium text-primary bg-primary/10"
+                    className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-white bg-gradient-to-r from-cyan-500 to-blue-600"
                   >
+                    <FaRocket className="text-sm" />
                     Dashboard
                   </Link>
                 )}

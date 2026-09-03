@@ -2,7 +2,8 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import {
   FaTachometerAlt, FaUser, FaBook, FaLayerGroup, FaCalendarAlt,
   FaClipboardCheck, FaFileAlt, FaTrophy, FaMoneyBillWave,
-  FaBullhorn, FaCertificate, FaKey, FaSignOutAlt, FaTimes
+  FaBullhorn, FaCertificate, FaKey, FaSignOutAlt, FaTimes,
+  FaHome
 } from 'react-icons/fa';
 import { useAuth } from '../../context/AuthContext';
 
@@ -25,6 +26,10 @@ const Sidebar = ({ isOpen, onClose }) => {
   const { logout, user } = useAuth();
   const navigate = useNavigate();
 
+  const gotohomepage = async () => {
+
+    navigate('/');
+  };
   const handleLogout = async () => {
     await logout();
     navigate('/login');
@@ -82,6 +87,13 @@ const Sidebar = ({ isOpen, onClose }) => {
         </nav>
 
         <div className="absolute bottom-0 left-0 right-0 p-3 border-t border-white/10">
+         <button
+            onClick={gotohomepage}
+            className="flex items-center gap-3 w-full px-3 py-2.5 rounded-xl text-sm font-medium text-gray-400 hover:bg-danger/20 hover:text-danger transition"
+          >
+            <FaHome />
+            go to homepage
+          </button>
           <button
             onClick={handleLogout}
             className="flex items-center gap-3 w-full px-3 py-2.5 rounded-xl text-sm font-medium text-gray-400 hover:bg-danger/20 hover:text-danger transition"

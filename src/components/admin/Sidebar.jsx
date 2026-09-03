@@ -3,7 +3,8 @@ import {
   FaTachometerAlt, FaUserGraduate, FaChalkboardTeacher, FaBook,
   FaLayerGroup, FaUserPlus, FaClipboardCheck, FaFileAlt, FaTrophy,
   FaMoneyBillWave, FaReceipt, FaCertificate, FaBullhorn, FaImages,
-  FaQuoteLeft, FaCog, FaUser, FaSignOutAlt, FaTimes
+  FaQuoteLeft, FaCog, FaUser, FaSignOutAlt, FaTimes,
+  FaHome
 } from 'react-icons/fa';
 import { useAuth } from '../../context/AuthContext';
 
@@ -31,6 +32,10 @@ const Sidebar = ({ isOpen, onClose }) => {
   const { logout, user } = useAuth();
   const navigate = useNavigate();
 
+  const gotohomepage = async () => {
+    
+    navigate('/');
+  };
   const handleLogout = async () => {
     await logout();
     navigate('/login');
@@ -97,6 +102,14 @@ const Sidebar = ({ isOpen, onClose }) => {
 
         {/* Logout */}
         <div className="absolute bottom-0 left-0 right-0 p-3 border-t border-white/10">
+        
+          <button
+            onClick={gotohomepage}
+            className="flex items-center gap-3 w-full px-3 py-2.5 rounded-xl text-sm font-medium text-gray-400 hover:bg-danger/20 hover:text-danger transition"
+          >
+            <FaHome />
+            Go to homepage
+          </button>
           <button
             onClick={handleLogout}
             className="flex items-center gap-3 w-full px-3 py-2.5 rounded-xl text-sm font-medium text-gray-400 hover:bg-danger/20 hover:text-danger transition"

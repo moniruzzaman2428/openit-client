@@ -1,473 +1,785 @@
-import { Link } from 'react-router-dom';
-import { motion, useMotionValue, useTransform, useSpring, useScroll } from 'framer-motion';
-import { useEffect, useRef } from 'react';
+import { Link } from "react-router-dom";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+} from "framer-motion";
+import { useEffect, useState } from "react";
+
 import {
   FaArrowRight,
   FaCheckCircle,
   FaLaptopCode,
   FaUserGraduate,
-  FaClock,
   FaAward,
   FaPlayCircle,
-  FaCode,
-  FaReact,
-  FaPython,
-  FaDatabase,
-  FaCloud,
   FaRocket,
-  FaShieldAlt,
   FaStar,
   FaUsers,
   FaChartLine,
   FaBookOpen,
-  FaCrown
-} from 'react-icons/fa';
-import { SiJavascript, SiTypescript, SiNextdotjs } from 'react-icons/si';
-import logo from '../../assets/images/logo.png'; // আপনার লোগো পাথ দিন
+  FaCrown,
+  FaShieldAlt,
+  FaCertificate,
+} from "react-icons/fa";
+
+import {
+  SiReact,
+  SiJavascript,
+  SiTypescript,
+  SiNextdotjs,
+  SiMongodb,
+  SiNodedotjs,
+} from "react-icons/si";
+
+import logo from "../../assets/images/logo.png";
 
 const HeroSection = () => {
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"]
-  });
+  /* =====================================================
+     MOUSE 3D EFFECT
+  ====================================================== */
 
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
 
-  // 3D Tilt Effect for cards
-  const x = useMotionValue(0);
-  const yRotation = useMotionValue(0);
-  const rotateX = useSpring(yRotation, { stiffness: 200, damping: 20 });
-  const rotateY = useSpring(x, { stiffness: 200, damping: 20 });
+  const rotateX = useSpring(
+    useTransform(mouseY, [-0.5, 0.5], [6, -6]),
+    {
+      stiffness: 180,
+      damping: 22,
+    }
+  );
+
+  const rotateY = useSpring(
+    useTransform(mouseX, [-0.5, 0.5], [-6, 6]),
+    {
+      stiffness: 180,
+      damping: 22,
+    }
+  );
 
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    const rotateXValue = (e.clientY - centerY) / 20;
-    const rotateYValue = (e.clientX - centerX) / 20;
-    yRotation.set(-rotateXValue);
-    x.set(rotateYValue);
+
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+    mouseX.set(x);
+    mouseY.set(y);
   };
 
   const handleMouseLeave = () => {
-    yRotation.set(0);
-    x.set(0);
+    mouseX.set(0);
+    mouseY.set(0);
   };
 
-  const stats = [
-    { number: '2500+', label: 'Students Trained', icon: FaUsers, color: 'from-blue-500 to-cyan-400' },
-    { number: '95%', label: 'Success Rate', icon: FaChartLine, color: 'from-green-500 to-emerald-400' },
-    { number: '30+', label: 'Expert Instructors', icon: FaCrown, color: 'from-yellow-500 to-orange-400' },
-    { number: '15+', label: 'Career Courses', icon: FaBookOpen, color: 'from-purple-500 to-pink-400' }
+  /* =====================================================
+     TYPING ANIMATION
+  ====================================================== */
+
+  const typingTexts = [
+    "Open IT Institute",
+    "ডিজিটাল দক্ষতার নতুন দিগন্ত",
+    "ক্যারিয়ার গড়ার স্মার্ট প্ল্যাটফর্ম",
   ];
 
-  const floatingIcons = [
-    { icon: FaReact, color: '#61DAFB', delay: 0 },
-    { icon: SiJavascript, color: '#F7DF1E', delay: 0.5 },
-    { icon: FaPython, color: '#3776AB', delay: 1 },
-    { icon: FaDatabase, color: '#4479A1', delay: 1.5 },
-    { icon: SiTypescript, color: '#3178C6', delay: 2 },
-    { icon: SiNextdotjs, color: '#000000', delay: 2.5 },
-    { icon: FaCloud, color: '#00B4D8', delay: 3 },
-    { icon: FaCode, color: '#FF6B6B', delay: 3.5 }
+  const [textIndex, setTextIndex] = useState(0);
+  const [displayText, setDisplayText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const currentText = typingTexts[textIndex];
+
+    const speed = isDeleting ? 45 : 85;
+
+    const timer = setTimeout(() => {
+      if (!isDeleting) {
+        setDisplayText(
+          currentText.substring(0, displayText.length + 1)
+        );
+
+        if (displayText.length + 1 === currentText.length) {
+          setTimeout(() => setIsDeleting(true), 1500);
+        }
+      } else {
+        setDisplayText(
+          currentText.substring(0, displayText.length - 1)
+        );
+
+        if (displayText.length === 0) {
+          setIsDeleting(false);
+          setTextIndex(
+            (prev) => (prev + 1) % typingTexts.length
+          );
+        }
+      }
+    }, speed);
+
+    return () => clearTimeout(timer);
+  }, [displayText, isDeleting, textIndex]);
+
+  /* =====================================================
+     STATS
+  ====================================================== */
+
+  const stats = [
+    {
+      number: "২৫০০+",
+      label: "শিক্ষার্থী",
+      icon: FaUsers,
+    },
+    {
+      number: "৯৫%",
+      label: "সাফল্যের হার",
+      icon: FaChartLine,
+    },
+    {
+      number: "৩০+",
+      label: "ইনস্ট্রাক্টর",
+      icon: FaCrown,
+    },
+    {
+      number: "১৫+",
+      label: "কোর্স",
+      icon: FaBookOpen,
+    },
+  ];
+
+  /* =====================================================
+     FEATURES
+  ====================================================== */
+
+  const features = [
+    "প্রফেশনাল ও হাতে-কলমে প্রশিক্ষণ",
+    "ক্যারিয়ার ফোকাসড কোর্স",
+    "কোর্স শেষে লাইফটাইম সাপোর্ট",
+  ];
+
+  /* =====================================================
+     TECHNOLOGIES
+  ====================================================== */
+
+  const technologies = [
+    {
+      icon: SiReact,
+      name: "React",
+      color: "text-cyan-400",
+      position: "top-[5%] left-[4%]",
+    },
+    {
+      icon: SiJavascript,
+      name: "JavaScript",
+      color: "text-yellow-300",
+      position: "top-[6%] right-[4%]",
+    },
+    {
+      icon: SiTypescript,
+      name: "TypeScript",
+      color: "text-blue-400",
+      position: "bottom-[10%] left-[3%]",
+    },
+    {
+      icon: SiNextdotjs,
+      name: "Next.js",
+      color: "text-white",
+      position: "bottom-[9%] right-[3%]",
+    },
+    {
+      icon: SiMongodb,
+      name: "MongoDB",
+      color: "text-green-400",
+      position: "top-[42%] -left-[6%]",
+    },
+    {
+      icon: SiNodedotjs,
+      name: "Node.js",
+      color: "text-green-500",
+      position: "top-[42%] -right-[6%]",
+    },
   ];
 
   return (
-    <section 
-      ref={containerRef}
-      className="relative isolate min-h-screen overflow-hidden bg-gradient-to-br from-[#0a1a2f] via-[#071d34] to-[#0b253f] text-white"
-    >
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 -z-10">
-        {/* Gradient Orbs */}
-        <motion.div
-          animate={{
-            x: [0, 100, 0, -100, 0],
-            y: [0, -50, 0, 50, 0],
-            scale: [1, 1.2, 1, 0.8, 1]
-          }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -top-40 -left-40 h-[600px] w-[600px] rounded-full bg-secondary/30 blur-3xl"
-        />
-        <motion.div
-          animate={{
-            x: [0, -80, 0, 80, 0],
-            y: [0, 60, 0, -60, 0],
-            scale: [1, 0.8, 1, 1.2, 1]
-          }}
-          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -bottom-40 -right-40 h-[700px] w-[700px] rounded-full bg-accent/20 blur-3xl"
-        />
-        <motion.div
-          animate={{
-            x: [0, 50, 0, -50, 0],
-            y: [0, -30, 0, 30, 0],
-          }}
-          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[500px] w-[500px] rounded-full bg-primary/15 blur-3xl"
-        />
+    <section className="relative isolate h-auto min-h-[600px] overflow-hidden bg-[#06111f] text-white lg:min-h-[650px]">
 
-        {/* Grid Pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: `
-              linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px)
-            `,
-            backgroundSize: '60px 60px',
-          }}
-        />
+      {/* =====================================================
+          BACKGROUND
+      ====================================================== */}
 
-        {/* Floating Tech Icons */}
-        {floatingIcons.map((item, index) => (
-          <motion.div
-            key={index}
-            className="absolute hidden lg:block"
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{
-              opacity: [0.1, 0.3, 0.1],
-              scale: [1, 1.2, 1],
-              y: [0, -30, 0]
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              delay: item.delay,
-              ease: "easeInOut"
-            }}
-            style={{
-              left: `${10 + Math.random() * 80}%`,
-              top: `${10 + Math.random() * 80}%`,
-              color: item.color,
-              fontSize: `${20 + Math.random() * 20}px`
-            }}
-          >
-            <item.icon className="opacity-20" />
-          </motion.div>
-        ))}
-      </div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_20%,rgba(0,190,255,0.15),transparent_30%),radial-gradient(circle_at_90%_20%,rgba(79,70,229,0.13),transparent_30%),radial-gradient(circle_at_50%_100%,rgba(0,212,255,0.08),transparent_35%)]" />
 
-      {/* Main Content */}
-      <div className="mx-auto grid min-h-[calc(100vh-80px)] max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8 lg:py-20">
-        {/* Left Content */}
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative z-10 order-2 lg:order-1"
-        >
-          {/* Logo Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-8 flex items-center gap-3"
-          >
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-accent/20 to-secondary/20 backdrop-blur-sm">
-              <img src={logo} alt="Open IT Institute" className="h-10 w-10 object-contain" />
-            </div>
-            <div>
-              <span className="text-sm font-bold text-white/90">OPEN IT</span>
-              <span className="block text-[10px] font-medium text-white/40 tracking-widest">INSTITUTE</span>
-            </div>
-          </motion.div>
+      {/* Grid */}
+      <div
+        className="absolute inset-0 opacity-[0.035]"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)",
+          backgroundSize: "42px 42px",
+        }}
+      />
 
-          {/* Status Badge */}
-          <motion.span
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.15 }}
-            className="mb-6 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white/90 backdrop-blur-xl shadow-lg"
-          >
-            <span className="relative flex h-3 w-3">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
-              <span className="relative inline-flex h-3 w-3 rounded-full bg-accent" />
-            </span>
-            ভর্তি চলছে — নতুন ব্যাচ শুরু হচ্ছে
-            <span className="hidden sm:inline-block text-white/40">|</span>
-            <span className="hidden sm:inline-block text-white/60">
-              সীমিত আসন
-            </span>
-          </motion.span>
+      {/* Left Glow */}
+      <motion.div
+        animate={{
+          scale: [1, 1.15, 1],
+          opacity: [0.15, 0.25, 0.15],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute -left-40 top-20 h-80 w-80 rounded-full bg-cyan-500/20 blur-[110px]"
+      />
 
-          {/* Main Heading */}
-          <motion.h1 
-            className="max-w-3xl text-4xl font-black leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            ডিজিটাল দক্ষতায়
-            <motion.span 
-              className="mt-2 block bg-gradient-to-r from-white via-cyan-100 to-accent bg-clip-text text-transparent"
-              animate={{ 
-                backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
-              }}
-              transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-              style={{ backgroundSize: '200% 200%' }}
-            >
-              গড়ে উঠুক আপনার ভবিষ্যৎ
-            </motion.span>
-          </motion.h1>
+      {/* Right Glow */}
+      <motion.div
+        animate={{
+          scale: [1.15, 1, 1.15],
+          opacity: [0.1, 0.22, 0.1],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute -right-40 bottom-0 h-96 w-96 rounded-full bg-blue-600/20 blur-[120px]"
+      />
 
-          {/* Description */}
-          <motion.p 
-            className="mt-6 max-w-2xl text-base leading-relaxed text-white/70 sm:text-lg md:text-xl"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            আধুনিক প্রযুক্তি, প্র্যাকটিক্যাল ক্লাস এবং ক্যারিয়ার ফোকাসড
-            প্রশিক্ষণের মাধ্যমে নিজের দক্ষতাকে পরবর্তী স্তরে নিয়ে যান{' '}
-            <span className="font-semibold text-white">Open IT Institute</span>
-            -এর সাথে।
-          </motion.p>
+      {/* =====================================================
+          MAIN CONTAINER
+      ====================================================== */}
 
-          {/* Features List */}
-          <motion.div 
-            className="mt-8 flex flex-wrap gap-x-8 gap-y-3 text-sm text-white/75 sm:text-base"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-          >
-            {[
-              { icon: FaCheckCircle, label: 'Practical Training' },
-              { icon: FaAward, label: 'Career Support' },
-              { icon: FaUserGraduate, label: 'Expert Mentors' },
-              { icon: FaClock, label: 'Flexible Schedule' },
-            ].map(({ icon: Icon, label }) => (
-              <motion.span 
-                key={label} 
-                className="inline-flex items-center gap-2.5"
-                whileHover={{ scale: 1.05, color: '#ffffff' }}
-                transition={{ type: 'spring', stiffness: 300 }}
-              >
-                <Icon className="text-accent text-sm" />
-                {label}
-              </motion.span>
-            ))}
-          </motion.div>
+      <div className="relative z-10 mx-auto flex min-h-[600px] max-w-7xl items-center px-4 py-10 sm:px-6 lg:min-h-[650px] lg:px-8 lg:py-12">
 
-          {/* CTA Buttons */}
-          <motion.div 
-            className="mt-10 flex flex-wrap items-center gap-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-          >
+        <div className="grid w-full items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-8">
+
+          {/* =================================================
+              LEFT CONTENT
+          ================================================== */}
+
+          <div className="max-w-2xl">
+
+            {/* Status */}
             <motion.div
-              whileHover={{ y: -5, scale: 1.03 }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ type: 'spring', stiffness: 300 }}
+              initial={{
+                opacity: 0,
+                y: 15,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.5,
+              }}
+              className="mb-4 inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-xs font-medium text-cyan-300 backdrop-blur-md sm:text-sm"
+            >
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400 opacity-70" />
+
+                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-cyan-400" />
+              </span>
+
+              ভর্তি চলছে — সীমিত আসন
+            </motion.div>
+
+            {/* Heading */}
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 20,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.6,
+                delay: 0.1,
+              }}
+            >
+              <p className="mb-2 text-base font-medium text-slate-400">
+                স্বাগতম
+              </p>
+
+              <h1 className="min-h-[90px] text-4xl font-black leading-[1.12] tracking-tight sm:text-5xl lg:min-h-[105px] lg:text-6xl">
+                <span className="bg-gradient-to-r from-white via-cyan-100 to-cyan-400 bg-clip-text text-transparent">
+                  {displayText}
+                </span>
+
+                <span className="ml-1 animate-pulse text-cyan-400">
+                  |
+                </span>
+              </h1>
+            </motion.div>
+
+            {/* Description */}
+            <motion.p
+              initial={{
+                opacity: 0,
+                y: 20,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.6,
+                delay: 0.2,
+              }}
+              className="mt-3 max-w-xl text-sm leading-7 text-slate-300 sm:text-base"
+            >
+              আধুনিক প্রযুক্তি ও বাস্তবভিত্তিক প্রশিক্ষণের মাধ্যমে
+              নিজেকে দক্ষ করে তুলুন। আপনার শেখার পথকে রূপ দিন
+              একটি সফল ক্যারিয়ারে।
+            </motion.p>
+
+            {/* Features */}
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 20,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.6,
+                delay: 0.3,
+              }}
+              className="mt-5 flex flex-wrap gap-x-5 gap-y-2"
+            >
+              {features.map((feature, index) => (
+                <div
+                  key={index}
+                  className="flex items-center gap-2 text-xs text-slate-200 sm:text-sm"
+                >
+                  <FaCheckCircle className="shrink-0 text-cyan-400" />
+
+                  <span>{feature}</span>
+                </div>
+              ))}
+            </motion.div>
+
+            {/* Buttons */}
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 20,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.6,
+                delay: 0.4,
+              }}
+              className="mt-6 flex flex-col gap-3 sm:flex-row"
             >
               <Link
                 to="/admission"
-                className="group relative inline-flex items-center gap-3 overflow-hidden rounded-2xl bg-gradient-to-r from-accent to-secondary px-8 py-4 font-extrabold text-dark shadow-[0_20px_50px_rgba(0,0,0,.25)] transition-all hover:shadow-[0_25px_60px_rgba(0,0,0,.35)] hover:brightness-105"
+                className="group inline-flex items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-3.5 text-sm font-bold shadow-[0_12px_35px_rgba(6,182,212,0.25)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(6,182,212,0.35)]"
               >
-                <span className="relative z-10 flex items-center gap-3">
-                  ভর্তি হোন এখনই
-                  <FaArrowRight className="transition-transform group-hover:translate-x-1" />
-                </span>
-                <motion.span 
-                  className="absolute inset-0 bg-gradient-to-r from-secondary to-accent opacity-0 transition-opacity group-hover:opacity-100"
-                  initial={false}
-                />
-              </Link>
-            </motion.div>
+                ভর্তি হতে চাই
 
-            <motion.div
-              whileHover={{ y: -3 }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ type: 'spring', stiffness: 300 }}
-            >
+                <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
+
               <Link
                 to="/courses"
-                className="inline-flex items-center gap-3 rounded-2xl border border-white/15 bg-white/5 px-8 py-4 font-bold text-white backdrop-blur-xl transition-all hover:bg-white/10 hover:border-white/25 shadow-lg"
+                className="group inline-flex items-center justify-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-6 py-3.5 text-sm font-bold backdrop-blur-md transition duration-300 hover:-translate-y-1 hover:border-cyan-400/30 hover:bg-white/[0.08]"
               >
-                <FaPlayCircle className="text-accent animate-pulse" />
-                কোর্স দেখুন
+                <FaPlayCircle className="text-cyan-400" />
+
+                কোর্সগুলো দেখুন
               </Link>
             </motion.div>
-          </motion.div>
 
-          {/* Trust Indicators */}
-          <motion.div 
-            className="mt-10 flex items-center gap-8 border-t border-white/5 pt-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-          >
-            <div className="flex -space-x-3">
-              {[1, 2, 3, 4, 5].map((i) => (
-                <motion.div
-                  key={i}
-                  className="h-10 w-10 rounded-full border-2 border-[#071d34] bg-gradient-to-br from-white/20 to-white/5"
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.8 + i * 0.1 }}
-                  whileHover={{ scale: 1.1, borderColor: '#F59E0B' }}
-                />
-              ))}
-            </div>
-            <div>
-              <motion.p 
-                className="text-sm font-semibold text-white"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1 }}
-              >
-                ২৫০০+ শিক্ষার্থী
-              </motion.p>
-              <p className="text-xs text-white/50">আমাদের সাথে যুক্ত</p>
-            </div>
-            <motion.div 
-              className="flex items-center gap-1"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.1 }}
-            >
-              {[1, 2, 3, 4, 5].map((i) => (
-                <FaStar key={i} className="text-yellow-400 text-sm" />
-              ))}
-              <span className="ml-2 text-sm text-white/50">4.9/5</span>
-            </motion.div>
-          </motion.div>
-        </motion.div>
-
-        {/* Right Visual */}
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="relative order-1 hidden min-h-[600px] lg:block"
-          onMouseMove={handleMouseMove}
-          onMouseLeave={handleMouseLeave}
-          style={{ perspective: 1000 }}
-        >
-          <motion.div
-            style={{ rotateX, rotateY }}
-            transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-            className="relative h-full w-full"
-          >
-            {/* Main Image Card */}
+            {/* Stats */}
             <motion.div
-              animate={{ y: [0, -15, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute left-4 top-5 w-[450px] rounded-3xl border border-white/10 bg-gradient-to-br from-white/10 to-white/5 p-8 shadow-2xl backdrop-blur-2xl"
+              initial={{
+                opacity: 0,
+                y: 20,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.7,
+                delay: 0.5,
+              }}
+              className="mt-7 grid grid-cols-2 gap-2.5 sm:grid-cols-4"
             >
-              {/* Header with Logo */}
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <div className="rounded-lg bg-gradient-to-br from-accent/20 to-secondary/20 p-1.5">
-                    <img src={logo} alt="Open IT" className="h-6 w-6 object-contain" />
-                  </div>
-                  <span className="text-xs font-bold text-white/80">OPEN IT</span>
-                </div>
-                <span className="rounded-full bg-accent/20 px-3 py-1 text-[10px] font-bold text-accent backdrop-blur-sm">
-                  Career Learning
-                </span>
-              </div>
+              {stats.map((stat, index) => {
+                const Icon = stat.icon;
 
-              {/* Hero Image */}
-              <div className="mt-6 relative h-64 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-transparent">
-                <img 
-                  src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800" 
-                  alt="Students learning" 
-                  className="h-full w-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#071d34]/80 to-transparent" />
-                
-                {/* Play Button Overlay */}
-                <motion.div 
-                  className="absolute inset-0 flex items-center justify-center"
-                  whileHover={{ scale: 1.1 }}
-                >
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-accent/90 shadow-2xl cursor-pointer">
-                    <FaPlayCircle className="text-3xl text-white" />
-                  </div>
-                </motion.div>
-              </div>
-
-              {/* Stats Grid */}
-              <div className="mt-6 grid grid-cols-2 gap-4">
-                {stats.slice(0, 4).map((stat, index) => (
-                  <motion.div
+                return (
+                  <div
                     key={index}
-                    className="group relative overflow-hidden rounded-xl bg-white/5 p-4 backdrop-blur-sm border border-white/5 hover:border-white/20 transition-all cursor-pointer"
-                    whileHover={{ y: -4, scale: 1.02 }}
-                    transition={{ type: 'spring', stiffness: 300 }}
+                    className="rounded-xl border border-white/[0.07] bg-white/[0.035] p-3 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-cyan-400/20"
                   >
-                    <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-10 transition-opacity`} />
-                    <stat.icon className="text-accent text-lg mb-2" />
-                    <p className="text-xl font-black text-white">{stat.number}</p>
-                    <p className="mt-1 text-[10px] text-white/50">{stat.label}</p>
+                    <Icon className="mb-1.5 text-sm text-cyan-400" />
+
+                    <div className="text-lg font-black sm:text-xl">
+                      {stat.number}
+                    </div>
+
+                    <div className="mt-0.5 text-[10px] text-slate-500 sm:text-xs">
+                      {stat.label}
+                    </div>
+                  </div>
+                );
+              })}
+            </motion.div>
+          </div>
+
+          {/* =================================================
+              RIGHT SIDE
+          ================================================== */}
+
+          <motion.div
+            initial={{
+              opacity: 0,
+              x: 40,
+              scale: 0.96,
+            }}
+            animate={{
+              opacity: 1,
+              x: 0,
+              scale: 1,
+            }}
+            transition={{
+              duration: 0.8,
+              delay: 0.2,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+            className="relative mx-auto w-full max-w-[520px]"
+          >
+
+            {/* Technology Icons */}
+            <div className="pointer-events-none absolute inset-0 z-20 hidden sm:block">
+
+              {technologies.map((tech, index) => {
+                const Icon = tech.icon;
+
+                return (
+                  <motion.div
+                    key={tech.name}
+                    animate={{
+                      y: [0, -8, 0],
+                      rotate: [0, 3, 0],
+                    }}
+                    transition={{
+                      duration: 4 + index * 0.4,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: index * 0.2,
+                    }}
+                    className={`absolute ${tech.position} flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-slate-900/85 shadow-xl backdrop-blur-xl`}
+                  >
+                    <Icon
+                      className={`text-lg ${tech.color}`}
+                    />
                   </motion.div>
-                ))}
+                );
+              })}
+            </div>
+
+            {/* 3D Dashboard */}
+            <motion.div
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+              style={{
+                rotateX,
+                rotateY,
+                transformPerspective: 1200,
+              }}
+              className="relative rounded-[1.8rem] border border-white/10 bg-white/[0.055] p-2.5 shadow-[0_25px_80px_rgba(0,0,0,0.4)] backdrop-blur-2xl sm:p-4"
+            >
+
+              {/* Dashboard */}
+              <div className="relative overflow-hidden rounded-[1.4rem] border border-white/10 bg-[#081827]">
+
+                {/* Browser Bar */}
+                <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
+
+                  <div className="flex items-center gap-1.5">
+                    <span className="h-2 w-2 rounded-full bg-red-400" />
+                    <span className="h-2 w-2 rounded-full bg-yellow-400" />
+                    <span className="h-2 w-2 rounded-full bg-green-400" />
+                  </div>
+
+                  <div className="flex items-center gap-1.5 text-[9px] text-slate-500">
+                    <FaShieldAlt className="text-green-400" />
+
+                    Secure Learning Platform
+                  </div>
+                </div>
+
+                {/* Dashboard Body */}
+                <div className="px-4 pb-4 pt-4 sm:px-5">
+
+                  {/* Header */}
+                  <div className="mb-3 flex items-center justify-between">
+
+                    <div>
+                      <p className="text-[9px] uppercase tracking-[0.2em] text-cyan-400">
+                        Open IT Institute
+                      </p>
+
+                      <h3 className="mt-1 text-lg font-bold sm:text-xl">
+                        Learn. Build. Grow.
+                      </h3>
+                    </div>
+
+                    <div className="rounded-xl border border-yellow-400/20 bg-yellow-400/10 p-2.5">
+                      <FaAward className="text-lg text-yellow-300" />
+                    </div>
+                  </div>
+
+                  {/* Logo Section */}
+                  <div className="relative flex h-[190px] items-center justify-center overflow-hidden rounded-2xl border border-cyan-400/10 bg-gradient-to-br from-[#0b2136] via-[#071827] to-[#06111f] sm:h-[215px]">
+
+                    {/* Ring */}
+                    <motion.div
+                      animate={{
+                        rotate: 360,
+                      }}
+                      transition={{
+                        duration: 28,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
+                      className="absolute h-44 w-44 rounded-full border border-cyan-400/10 sm:h-52 sm:w-52"
+                    />
+
+                    <motion.div
+                      animate={{
+                        rotate: -360,
+                      }}
+                      transition={{
+                        duration: 20,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
+                      className="absolute h-32 w-32 rounded-full border border-blue-500/10 sm:h-40 sm:w-40"
+                    />
+
+                    {/* Glow */}
+                    <div className="absolute h-36 w-36 rounded-full bg-cyan-400/10 blur-[55px]" />
+
+                    {/* Logo */}
+                    <motion.div
+                      animate={{
+                        y: [0, -6, 0],
+                        scale: [1, 1.02, 1],
+                      }}
+                      transition={{
+                        duration: 4,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                      className="relative z-10 flex h-28 w-28 items-center justify-center rounded-[1.5rem] border border-white/10 bg-white/[0.07] p-5 shadow-[0_0_50px_rgba(34,211,238,0.12)] backdrop-blur-xl sm:h-32 sm:w-32"
+                    >
+                      <img
+                        src={logo}
+                        alt="Open IT Institute"
+                        className="h-full w-full object-contain"
+                      />
+                    </motion.div>
+
+                    {/* Rating */}
+                    <motion.div
+                      animate={{
+                        y: [0, -4, 0],
+                      }}
+                      transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                      className="absolute left-3 top-3 rounded-xl border border-white/10 bg-slate-950/75 px-2.5 py-2 shadow-xl backdrop-blur-xl"
+                    >
+                      <div className="flex items-center gap-1.5">
+
+                        <FaStar className="text-xs text-yellow-400" />
+
+                        <div>
+                          <p className="text-xs font-bold">
+                            4.9/5
+                          </p>
+
+                          <p className="text-[8px] text-slate-500">
+                            Student Rating
+                          </p>
+                        </div>
+                      </div>
+                    </motion.div>
+
+                    {/* Success */}
+                    <motion.div
+                      animate={{
+                        y: [0, 4, 0],
+                      }}
+                      transition={{
+                        duration: 3.5,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                      className="absolute bottom-3 right-3 rounded-xl border border-white/10 bg-slate-950/75 px-2.5 py-2 shadow-xl backdrop-blur-xl"
+                    >
+                      <div className="flex items-center gap-1.5">
+
+                        <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-green-400/10">
+                          <FaChartLine className="text-xs text-green-400" />
+                        </div>
+
+                        <div>
+                          <p className="text-xs font-bold">
+                            95%
+                          </p>
+
+                          <p className="text-[8px] text-slate-500">
+                            Success Rate
+                          </p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </div>
+
+                  {/* Cards */}
+                  <div className="mt-3 grid grid-cols-2 gap-2.5">
+
+                    {/* Students */}
+                    <div className="rounded-xl border border-white/10 bg-white/[0.035] p-3">
+
+                      <div className="flex items-center gap-2.5">
+
+                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-cyan-400/10">
+                          <FaUserGraduate className="text-sm text-cyan-400" />
+                        </div>
+
+                        <div>
+                          <p className="text-sm font-black">
+                            2500+
+                          </p>
+
+                          <p className="text-[9px] text-slate-500">
+                            Active Students
+                          </p>
+                        </div>
+
+                      </div>
+                    </div>
+
+                    {/* Courses */}
+                    <div className="rounded-xl border border-white/10 bg-white/[0.035] p-3">
+
+                      <div className="flex items-center gap-2.5">
+
+                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-purple-400/10">
+                          <FaLaptopCode className="text-sm text-purple-400" />
+                        </div>
+
+                        <div>
+                          <p className="text-sm font-black">
+                            15+
+                          </p>
+
+                          <p className="text-[9px] text-slate-500">
+                            Professional Courses
+                          </p>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Progress */}
+                  <div className="mt-2.5 rounded-xl border border-white/10 bg-white/[0.035] p-3">
+
+                    <div className="mb-2 flex items-center justify-between">
+
+                      <div className="flex items-center gap-1.5">
+                        <FaRocket className="text-xs text-cyan-400" />
+
+                        <span className="text-[10px] font-semibold">
+                          Career Growth
+                        </span>
+                      </div>
+
+                      <span className="text-[10px] text-cyan-400">
+                        95%
+                      </span>
+                    </div>
+
+                    <div className="h-1.5 overflow-hidden rounded-full bg-white/5">
+
+                      <motion.div
+                        initial={{
+                          width: 0,
+                        }}
+                        animate={{
+                          width: "95%",
+                        }}
+                        transition={{
+                          duration: 1.5,
+                          delay: 0.8,
+                          ease: "easeOut",
+                        }}
+                        className="h-full rounded-full bg-gradient-to-r from-cyan-400 to-blue-500"
+                      />
+
+                    </div>
+                  </div>
+                </div>
               </div>
             </motion.div>
 
-            {/* Floating Badges */}
+            {/* Bottom Badge */}
             <motion.div
-              animate={{ 
-                y: [0, 12, 0],
-                rotate: [0, 3, 0]
+              initial={{
+                opacity: 0,
+                scale: 0.8,
               }}
-              transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute bottom-16 -right-8 w-60 rounded-2xl border border-white/10 bg-white/10 p-5 backdrop-blur-2xl shadow-2xl"
+              animate={{
+                opacity: 1,
+                scale: 1,
+              }}
+              transition={{
+                duration: 0.6,
+                delay: 0.9,
+              }}
+              className="absolute -bottom-4 left-1/2 z-30 -translate-x-1/2"
             >
-              <div className="flex items-center gap-3">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent/20 text-accent">
-                  <FaLaptopCode className="text-2xl" />
+              <div className="flex items-center gap-2.5 whitespace-nowrap rounded-xl border border-yellow-400/20 bg-slate-950/90 px-4 py-2.5 shadow-2xl backdrop-blur-xl">
+
+                <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-yellow-400/10">
+                  <FaCertificate className="text-sm text-yellow-300" />
                 </div>
+
                 <div>
-                  <p className="font-bold text-white text-sm">প্র্যাকটিক্যাল প্রজেক্ট</p>
-                  <p className="text-[10px] text-white/50">বাস্তব প্রজেক্ট তৈরি করে শিখুন</p>
-                </div>
-              </div>
-            </motion.div>
+                  <p className="text-[9px] font-bold text-yellow-300">
+                    PROFESSIONAL TRAINING
+                  </p>
 
-            <motion.div
-              animate={{ 
-                y: [0, -10, 0],
-                rotate: [0, -2, 0]
-              }}
-              transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute top-32 -left-6 w-52 rounded-2xl border border-white/10 bg-gradient-to-br from-white/10 to-white/5 p-4 backdrop-blur-2xl shadow-2xl"
-            >
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-500/20 text-green-400">
-                  <FaCheckCircle className="text-lg" />
+                  <p className="text-[8px] text-slate-500">
+                    Learn From Industry Experts
+                  </p>
                 </div>
-                <div>
-                  <p className="text-sm font-bold text-white">৯৫%</p>
-                  <p className="text-[10px] text-white/40">সন্তুষ্টি হার</p>
-                </div>
-              </div>
-            </motion.div>
 
-            {/* Premium Badge */}
-            <motion.div
-              animate={{ 
-                scale: [1, 1.05, 1],
-                rotate: [0, 5, 0]
-              }}
-              transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute -top-4 right-10 rounded-full bg-gradient-to-r from-yellow-500 to-orange-400 px-4 py-2 shadow-lg"
-            >
-              <div className="flex items-center gap-2">
-                <FaRocket className="text-white" />
-                <span className="text-xs font-bold text-white">Premium Course</span>
               </div>
             </motion.div>
           </motion.div>
-        </motion.div>
+        </div>
       </div>
 
-      {/* Bottom Gradient Overlay */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#071d34] to-transparent pointer-events-none" />
+      {/* Bottom Fade */}
+      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#06111f] to-transparent" />
     </section>
   );
 };
