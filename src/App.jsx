@@ -13,6 +13,7 @@ import StudentLayout from './layouts/StudentLayout';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 import Unauthorized from './pages/Unauthorized';
+import Loading from './components/Loading/Loading';
 
 // ========== LAZY LOADED PAGES (code splitting) ==========
 // Public
@@ -70,9 +71,7 @@ const StudentChangePassword = lazy(() => import('./dashboard/student/ChangePassw
 
 // Loading fallback
 const PageLoader = () => (
-  <div className="flex items-center justify-center min-h-[50vh]">
-    <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin" />
-  </div>
+<Loading></Loading>
 );
 
 function App() {
