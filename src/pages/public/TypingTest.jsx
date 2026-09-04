@@ -1,5 +1,5 @@
 // ============================================================
-// FILE: TypingTest.jsx
+// FILE: TypingTest.jsx (Mobile Responsive Fixed)
 // ============================================================
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -46,7 +46,18 @@ const TypingTest = () => {
   const [feedback, setFeedback] = useState('');
   const [isPaused, setIsPaused] = useState(false);
 
-  const LINES_PER_VIEW = 2;
+  const LINES_PER_VIEW = 2; // সবসময় ২ লাইন দেখাবে
+
+  // মোবাইল ও ডেস্কটপের জন্য আলাদা চর হিসাব
+  const getCharsPerLine = () => {
+    if (typeof window !== 'undefined') {
+      if (window.innerWidth < 640) return 35; // মোবাইলে ৩৫ অক্ষর
+      if (window.innerWidth < 1024) return 50; // ট্যাবলেটে ৫০ অক্ষর
+    }
+    return 70; // ডেস্কটপে ৭০ অক্ষর
+  };
+
+  const [charsPerLine, setCharsPerLine] = useState(getCharsPerLine());
   const [textLines, setTextLines] = useState([]);
   const [visibleStartLine, setVisibleStartLine] = useState(0);
 
@@ -57,20 +68,31 @@ const TypingTest = () => {
   const comboRef = useRef(0);
 
   // ============================================================
+  // WINDOW RESIZE HANDLER
+  // ============================================================
+  useEffect(() => {
+    const handleResize = () => {
+      setCharsPerLine(getCharsPerLine());
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // ============================================================
   // NORMALIZE TEXT
   // ============================================================
   const normalizeText = useCallback((text) => text.replace(/\s+/g, ' ').trim(), []);
 
   // ============================================================
-  // SPLIT TEXT INTO LINES
+  // SPLIT TEXT INTO LINES (Dynamic charsPerLine)
   // ============================================================
-  const splitTextIntoLines = useCallback((text, charsPerLine = 60) => {
+  const splitTextIntoLines = useCallback((text, charsPerLineValue) => {
     const words = text.split(/\s+/);
     const lines = [];
     let currentLine = '';
 
     words.forEach((word) => {
-      if (currentLine.length === 0 || currentLine.length + word.length + 1 <= charsPerLine) {
+      if (currentLine.length === 0 || currentLine.length + word.length + 1 <= charsPerLineValue) {
         currentLine += currentLine.length > 0 ? ` ${word}` : word;
       } else {
         lines.push(currentLine);
@@ -106,7 +128,7 @@ const TypingTest = () => {
     const newText = getRandomText();
     currentTextRef.current = newText;
     setCurrentText(newText);
-    setTextLines(splitTextIntoLines(newText));
+    setTextLines(splitTextIntoLines(newText, charsPerLine));
     setVisibleStartLine(0);
     setUserInput('');
     userInputRef.current = '';
@@ -130,10 +152,10 @@ const TypingTest = () => {
     setTimeout(() => {
       inputRef.current?.focus();
     }, 100);
-  }, [getRandomText, selectedTime, splitTextIntoLines]);
+  }, [getRandomText, selectedTime, splitTextIntoLines, charsPerLine]);
 
   // ============================================================
-  // INITIALIZE
+  // INITIALIZE (Resize হলে reset)
   // ============================================================
   useEffect(() => {
     resetTest();
@@ -280,7 +302,7 @@ const TypingTest = () => {
       }
     }
 
-    // SHOW NEXT TWO LINES
+    // SHOW NEXT TWO LINES (মোবাইলে লাইন ফিক্স)
     let currentCharIndex = value.length;
     let accumulated = 0;
     let activeLine = 0;
@@ -385,22 +407,23 @@ const TypingTest = () => {
       const lineStart = globalStart + visibleLines
         .slice(0, lineIndex)
         .reduce((acc, l) => acc + l.length + 1, 0);
+
       return (
-        <div key={`${visibleStartLine}-${lineIndex}`} className="min-h-[42px] md:min-h-[48px]">
+        <div key={`${visibleStartLine}-${lineIndex}`} className="min-h-[42px] md:min-h-[48px] leading-relaxed">
           {line.split('').map((char, index) => {
             const globalIndex = lineStart + index;
             let className = "transition-all duration-150";
 
             if (globalIndex < userInput.length) {
               if (userInput[globalIndex] === char) {
-                className += " text-green-400";
+                className += " text-emerald-400";
               } else {
-                className += " text-red-500 bg-red-500/20 rounded px-[1px]";
+                className += " text-rose-500 bg-rose-500/20 rounded px-[1px]";
               }
             } else if (globalIndex === userInput.length && testStarted && !completed) {
-              className += " text-blue-400 bg-blue-500/20 border-b-2 border-blue-400 animate-pulse";
+              className += " text-cyan-400 bg-cyan-500/20 border-b-2 border-cyan-400 animate-pulse";
             } else {
-              className += " text-gray-500";
+              className += " text-slate-500";
             }
 
             return (
@@ -418,36 +441,36 @@ const TypingTest = () => {
   // JSX
   // ============================================================
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 p-4 md:p-8">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 p-4 md:p-8">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl overflow-hidden border border-white/20"
+          className="bg-white/90 backdrop-blur-xl rounded-3xl shadow-2xl overflow-hidden border border-white/20"
         >
-          {/* HEADER */}
-          <div className="relative bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 p-6 md:p-8 overflow-hidden">
-            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0djItSDI0di0yaDEyek0zNiAyNHYySDI0di0yaDEyeiIvPjwvZz48L2c+PC9zdmc+')] opacity-20" />
+          {/* HEADER - Open IT Brand Color */}
+          <div className="relative bg-gradient-to-r from-[#061a2f] via-[#0F4C81] to-[#0a3a63] p-6 md:p-8 overflow-hidden">
+            <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, #fff 1px, transparent 0)', backgroundSize: '40px 40px' }}></div>
             
             <div className="relative flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div className="flex items-center gap-4">
-                <div className="p-3 bg-white/20 backdrop-blur rounded-2xl">
-                  <FaKeyboard className="text-2xl text-white" />
+                <div className="p-3 bg-cyan-400/20 backdrop-blur rounded-2xl border border-cyan-300/20">
+                  <FaKeyboard className="text-2xl text-cyan-300" />
                 </div>
                 <div>
                   <h1 className="text-2xl md:text-3xl font-bold text-white tracking-tight">
                     TypeFlow
                   </h1>
-                  <p className="text-white/70 text-sm">
+                  <p className="text-cyan-200/70 text-sm">
                     Master your typing skills
                   </p>
                 </div>
               </div>
 
               <div className="flex items-center gap-3">
-                <div className="bg-white/20 backdrop-blur rounded-2xl px-5 py-3 text-center">
-                  <div className="text-xs text-white/50 font-medium">TIME</div>
-                  <div className={`text-2xl font-mono font-bold text-white ${timeRemaining <= 10 ? 'animate-pulse text-red-300' : ''}`}>
+                <div className="bg-white/10 backdrop-blur rounded-2xl px-5 py-3 text-center border border-white/10">
+                  <div className="text-xs text-cyan-200/50 font-medium">TIME</div>
+                  <div className={`text-2xl font-mono font-bold text-white ${timeRemaining <= 10 ? 'animate-pulse text-rose-300' : ''}`}>
                     {formatTime(timeRemaining)}
                   </div>
                 </div>
@@ -457,7 +480,7 @@ const TypingTest = () => {
                   disabled={!testStarted || completed}
                   className={`p-3 rounded-2xl backdrop-blur transition ${
                     isPaused ? 'bg-yellow-500/30 hover:bg-yellow-500/40' : 'bg-white/10 hover:bg-white/20'
-                  } disabled:opacity-50 disabled:cursor-not-allowed`}
+                  } disabled:opacity-50 disabled:cursor-not-allowed border border-white/10`}
                   title={isPaused ? "Resume" : "Pause"}
                 >
                   {isPaused ? <FaPlay className="text-white" /> : <FaPause className="text-white" />}
@@ -465,7 +488,7 @@ const TypingTest = () => {
 
                 <button
                   onClick={resetTest}
-                  className="p-3 rounded-2xl bg-white/10 hover:bg-white/20 backdrop-blur transition"
+                  className="p-3 rounded-2xl bg-white/10 hover:bg-white/20 backdrop-blur transition border border-white/10"
                   title="New Test"
                 >
                   <FaRedo className="text-white" />
@@ -478,15 +501,15 @@ const TypingTest = () => {
           <div className="p-4 md:p-5 border-b border-gray-100 bg-gray-50/50">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div className="flex items-center gap-2 flex-wrap">
-                <FaLanguage className="text-indigo-500" />
+                <FaLanguage className="text-[#0F4C81]" />
                 <span className="text-sm font-semibold text-gray-600">Language:</span>
                 <button
                   disabled={testStarted}
                   onClick={() => setLanguage('english')}
                   className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${
                     language === 'english'
-                      ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-200'
-                      : 'bg-white border border-gray-200 text-gray-600 hover:border-indigo-300'
+                      ? 'bg-[#0F4C81] text-white shadow-lg shadow-blue-200'
+                      : 'bg-white border border-gray-200 text-gray-600 hover:border-blue-300'
                   }`}
                 >
                   <FaGlobe className="inline mr-1" /> English
@@ -496,8 +519,8 @@ const TypingTest = () => {
                   onClick={() => setLanguage('bengali')}
                   className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${
                     language === 'bengali'
-                      ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-200'
-                      : 'bg-white border border-gray-200 text-gray-600 hover:border-indigo-300'
+                      ? 'bg-[#0F4C81] text-white shadow-lg shadow-blue-200'
+                      : 'bg-white border border-gray-200 text-gray-600 hover:border-blue-300'
                   }`}
                 >
                   বাংলা
@@ -505,7 +528,7 @@ const TypingTest = () => {
               </div>
 
               <div className="flex items-center gap-2 flex-wrap">
-                <FaClock className="text-indigo-500" />
+                <FaClock className="text-[#0F4C81]" />
                 <span className="text-sm font-semibold text-gray-600">Duration:</span>
                 {[1, 2, 3, 4, 5].map(minute => (
                   <button
@@ -514,8 +537,8 @@ const TypingTest = () => {
                     onClick={() => setSelectedTime(minute)}
                     className={`px-3 py-2 rounded-xl text-xs font-bold transition-all ${
                       selectedTime === minute
-                        ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-200'
-                        : 'bg-white border border-gray-200 text-gray-600 hover:border-indigo-300'
+                        ? 'bg-[#0F4C81] text-white shadow-lg shadow-blue-200'
+                        : 'bg-white border border-gray-200 text-gray-600 hover:border-blue-300'
                     }`}
                   >
                     {minute}m
@@ -526,7 +549,7 @@ const TypingTest = () => {
               {!testStarted && !completed && (
                 <button
                   onClick={startTest}
-                  className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl font-bold hover:scale-105 transition-transform shadow-lg shadow-indigo-200"
+                  className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#0F4C81] to-cyan-600 text-white rounded-xl font-bold hover:scale-105 transition-transform shadow-lg shadow-blue-200"
                 >
                   <FaPlay /> Start Test
                 </button>
@@ -538,7 +561,7 @@ const TypingTest = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 p-4 bg-gray-50/30">
             <div className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
               <div className="text-xs text-gray-400 font-medium">SPEED</div>
-              <div className="text-2xl font-bold text-indigo-600">
+              <div className="text-2xl font-bold text-[#0F4C81]">
                 {wpm} <span className="text-xs font-normal text-gray-400">WPM</span>
               </div>
             </div>
@@ -569,7 +592,7 @@ const TypingTest = () => {
             </div>
             <div className="h-2.5 bg-gray-100 rounded-full overflow-hidden">
               <motion.div
-                className="h-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full"
+                className="h-full bg-gradient-to-r from-[#0F4C81] via-cyan-500 to-cyan-400 rounded-full"
                 animate={{ width: `${progress}%` }}
                 transition={{ duration: 0.2 }}
               />
@@ -585,7 +608,7 @@ const TypingTest = () => {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  className="text-sm font-bold text-indigo-600"
+                  className="text-sm font-bold text-[#0F4C81]"
                 >
                   {feedback}
                 </motion.div>
@@ -595,34 +618,34 @@ const TypingTest = () => {
 
           {/* TWO-LINE TYPING DISPLAY */}
           <div className="px-4 md:px-6">
-            <div className="relative bg-gray-900 rounded-3xl p-5 md:p-8 shadow-inner overflow-hidden">
+            <div className="relative bg-[#061a2f] rounded-3xl p-5 md:p-8 shadow-inner overflow-hidden">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
                   <span className="w-2.5 h-2.5 rounded-full bg-red-400" />
                   <span className="w-2.5 h-2.5 rounded-full bg-yellow-400" />
                   <span className="w-2.5 h-2.5 rounded-full bg-green-400" />
-                  <span className="ml-2 text-xs text-gray-500 font-mono">Typing Area</span>
+                  <span className="ml-2 text-xs text-slate-500 font-mono">Typing Area</span>
                 </div>
-                <div className="text-xs text-gray-500 font-mono">
+                <div className="text-xs text-slate-500 font-mono">
                   {visibleStartLine + 1}–{Math.min(visibleStartLine + 2, textLines.length)} / {textLines.length} lines
                 </div>
               </div>
 
               <div
-                className={`font-mono text-base md:text-xl leading-[2.6rem] tracking-wide ${
+                className={`font-mono text-sm md:text-xl leading-[2.2rem] md:leading-[2.6rem] tracking-wide ${
                   language === 'bengali' ? 'font-bengali' : ''
                 }`}
-                style={{ minHeight: '5.2rem', maxHeight: '5.2rem', overflow: 'hidden' }}
+                style={{ minHeight: '4.4rem', maxHeight: '4.4rem', overflow: 'hidden' }}
               >
                 {renderTypingText()}
               </div>
 
               <div className="mt-4 pt-3 border-t border-white/10 flex justify-between items-center">
-                <div className="text-xs text-gray-500 flex items-center gap-2">
-                  <FaBullseye className="text-indigo-400" />
+                <div className="text-xs text-slate-500 flex items-center gap-2">
+                  <FaBullseye className="text-cyan-400" />
                   Type the highlighted character
                 </div>
-                <div className="text-xs text-gray-500 font-mono">
+                <div className="text-xs text-slate-500 font-mono">
                   {charCount} chars
                 </div>
               </div>
@@ -644,7 +667,7 @@ const TypingTest = () => {
               className={`w-full resize-none px-5 py-4 rounded-2xl border-2 outline-none transition-all font-mono text-base md:text-lg ${
                 completed
                   ? 'bg-emerald-50 border-emerald-200 text-gray-700'
-                  : 'bg-white border-gray-200 focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100 hover:border-indigo-300'
+                  : 'bg-white border-gray-200 focus:border-[#0F4C81] focus:ring-4 focus:ring-blue-100 hover:border-blue-300'
               } ${isPaused ? 'opacity-75' : ''}`}
             />
 
@@ -652,7 +675,7 @@ const TypingTest = () => {
               <div className="text-center mt-4">
                 <button
                   onClick={startTest}
-                  className="inline-flex items-center gap-2 px-7 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl font-bold hover:scale-105 transition-transform shadow-lg shadow-indigo-200"
+                  className="inline-flex items-center gap-2 px-7 py-3 bg-gradient-to-r from-[#0F4C81] to-cyan-600 text-white rounded-xl font-bold hover:scale-105 transition-transform shadow-lg shadow-blue-200"
                 >
                   <FaPlay /> Start Typing
                 </button>
@@ -666,7 +689,7 @@ const TypingTest = () => {
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="p-4 md:p-6 border-t bg-gradient-to-br from-indigo-50/50 via-white to-purple-50/50"
+                className="p-4 md:p-6 border-t bg-gradient-to-br from-blue-50/50 via-white to-cyan-50/50"
               >
                 <div className="text-center mb-6">
                   <motion.div
@@ -683,9 +706,9 @@ const TypingTest = () => {
 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 text-center">
-                    <FaRocket className="mx-auto text-indigo-500 text-xl mb-2" />
+                    <FaRocket className="mx-auto text-[#0F4C81] text-xl mb-2" />
                     <div className="text-xs text-gray-400 font-medium">NET SPEED</div>
-                    <div className="text-3xl font-bold text-indigo-600">{wpm}</div>
+                    <div className="text-3xl font-bold text-[#0F4C81]">{wpm}</div>
                     <div className="text-xs text-gray-400">WPM</div>
                   </div>
                   <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 text-center">
@@ -738,7 +761,7 @@ const TypingTest = () => {
                 <div className="text-center mt-6">
                   <button
                     onClick={resetTest}
-                    className="inline-flex items-center gap-2 px-7 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl font-bold hover:scale-105 transition-transform shadow-lg shadow-indigo-200"
+                    className="inline-flex items-center gap-2 px-7 py-3 bg-gradient-to-r from-[#0F4C81] to-cyan-600 text-white rounded-xl font-bold hover:scale-105 transition-transform shadow-lg shadow-blue-200"
                   >
                     <FaRedo /> Try Again
                   </button>
@@ -751,8 +774,8 @@ const TypingTest = () => {
           {history.length > 0 && (
             <div className="p-4 md:p-6 border-t border-gray-100 bg-gray-50/30">
               <details className="group">
-                <summary className="cursor-pointer font-bold text-gray-600 flex items-center gap-2 hover:text-indigo-600 transition-colors">
-                  <FaChartLine className="text-indigo-500" />
+                <summary className="cursor-pointer font-bold text-gray-600 flex items-center gap-2 hover:text-[#0F4C81] transition-colors">
+                  <FaChartLine className="text-[#0F4C81]" />
                   Test History ({history.length})
                   <span className="text-xs text-gray-400 group-open:rotate-180 transition-transform">▼</span>
                 </summary>
@@ -760,7 +783,7 @@ const TypingTest = () => {
                   {history.slice().reverse().map((result, index) => (
                     <div
                       key={index}
-                      className="flex flex-wrap items-center justify-between gap-3 bg-white rounded-xl p-3 text-sm shadow-sm border border-gray-100 hover:border-indigo-200 transition-colors"
+                      className="flex flex-wrap items-center justify-between gap-3 bg-white rounded-xl p-3 text-sm shadow-sm border border-gray-100 hover:border-blue-200 transition-colors"
                     >
                       <span className="text-gray-400 font-mono text-xs">
                         {new Date(result.date).toLocaleDateString()} {new Date(result.date).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}
@@ -768,7 +791,7 @@ const TypingTest = () => {
                       <span className="font-bold text-gray-600">
                         {result.language === 'english' ? '🇬🇧 EN' : '🇧🇩 BN'}
                       </span>
-                      <span className="font-bold text-indigo-600">{result.wpm} WPM</span>
+                      <span className="font-bold text-[#0F4C81]">{result.wpm} WPM</span>
                       <span className="font-bold text-emerald-500">{result.accuracy}%</span>
                       <span className="text-rose-500 text-sm">{result.errors} errors</span>
                     </div>

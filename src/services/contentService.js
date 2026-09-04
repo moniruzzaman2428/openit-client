@@ -19,14 +19,22 @@ export const deleteNotice = async (id) => {
 };
 
 // Gallery
+// Gallery
 export const getGallery = async (params = {}) => {
   const { data } = await api.get('/gallery', { params });
   return data;
 };
-export const createGalleryItem = async (itemData) => {
-  const { data } = await api.post('/gallery', itemData);
+
+export const createGalleryItem = async (formData) => {
+  const { data } = await api.post('/gallery', formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  });
+
   return data;
 };
+
 export const deleteGalleryItem = async (id) => {
   const { data } = await api.delete(`/gallery/${id}`);
   return data;

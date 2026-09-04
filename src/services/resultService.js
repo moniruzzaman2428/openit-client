@@ -5,6 +5,12 @@ export const getResults = async (params = {}) => {
   return data;
 };
 
+// নতুন: নির্দিষ্ট স্টুডেন্ট আইডি দিয়ে রেজাল্ট খোঁজা (Backend এ এন্ডপয়েন্ট থাকলে)
+export const getResultByStudentId = async (studentId) => {
+  const { data } = await api.get(`/results/student/${studentId}`);
+  return data;
+};
+
 export const createResult = async (resultData) => {
   const { data } = await api.post('/results', resultData);
   return data;

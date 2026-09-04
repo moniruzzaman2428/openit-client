@@ -200,8 +200,8 @@ const Footer = () => {
             </h4>
             <ul className="space-y-3.5 text-sm">
               {[
-                { icon: FaMapMarkerAlt, text: 'Dhaka, Bangladesh' },
-                { icon: FaPhone, text: '+880 1700-000000' },
+                { icon: FaMapMarkerAlt, text: 'Kendua, Netrokona, Mymenshing' },
+                { icon: FaPhone, text: '+880 1618-160869' },
                 { icon: FaEnvelope, text: 'info@openitinstitute.com' },
               ].map((item, index) => (
                 <motion.li 

@@ -16,7 +16,8 @@ import {
   FaBolt,
   FaTimes,
   FaExpand,
-  FaCompress
+  FaCompress,
+  FaInfoCircle
 } from 'react-icons/fa';
 
 const MouseAccuracyGame = () => {
@@ -397,43 +398,43 @@ const MouseAccuracyGame = () => {
     <motion.div
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
-      className="flex flex-col items-center justify-center p-8 md:p-12 min-h-[580px]"
+      className="flex flex-col items-center justify-center p-8 md:p-12 min-h-[580px] bg-gradient-to-br from-[#061a2f] to-[#0F4C81]"
     >
       <div className="text-center max-w-lg">
-        <div className="inline-flex p-5 rounded-2xl bg-slate-900 mb-6 shadow-lg">
-          <FaMousePointer className="text-4xl text-white" />
+        <div className="inline-flex p-5 rounded-2xl bg-cyan-400/20 border border-cyan-300/20 mb-6 shadow-lg">
+          <FaMousePointer className="text-4xl text-cyan-300" />
         </div>
 
-        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-3 tracking-tight">
+        <h2 className="text-3xl md:text-4xl font-bold text-white mb-3 tracking-tight">
           Mouse Accuracy Trainer
         </h2>
 
-        <p className="text-slate-500 leading-relaxed mb-8 text-[15px]">
+        <p className="text-cyan-100/70 leading-relaxed mb-8 text-[15px]">
           Train precision, reaction speed and hand-eye coordination.
           Click the targets before they disappear.
         </p>
 
         <div className="flex flex-wrap justify-center gap-2 mb-8">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 text-slate-700 text-xs font-medium">
-            <FaBullseye className="text-slate-500" /> Precision
+          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 text-cyan-100 text-xs font-medium border border-white/10">
+            <FaBullseye className="text-cyan-300" /> Precision
           </span>
-          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 text-slate-700 text-xs font-medium">
-            <FaBolt className="text-slate-500" /> Speed
+          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 text-cyan-100 text-xs font-medium border border-white/10">
+            <FaBolt className="text-cyan-300" /> Speed
           </span>
-          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 text-slate-700 text-xs font-medium">
-            <FaFire className="text-slate-500" /> Combo
+          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 text-cyan-100 text-xs font-medium border border-white/10">
+            <FaFire className="text-cyan-300" /> Combo
           </span>
         </div>
 
-        <div className="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 mb-8">
+        <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 mb-8">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <div className="p-2.5 rounded-xl bg-slate-100">
-                <FaClock className="text-slate-600" />
+              <div className="p-2.5 rounded-xl bg-[#0F4C81]/10">
+                <FaClock className="text-[#0F4C81]" />
               </div>
               <div className="text-left">
-                <div className="text-sm font-semibold text-slate-800">Session Duration</div>
-                <div className="text-xs text-slate-400">Select challenge length</div>
+                <div className="text-sm font-semibold text-gray-800">Session Duration</div>
+                <div className="text-xs text-gray-400">Select challenge length</div>
               </div>
             </div>
 
@@ -445,8 +446,8 @@ const MouseAccuracyGame = () => {
                   className={`
                     px-4 py-2 rounded-xl text-sm font-semibold transition-all
                     ${selectedTime === time
-                      ? 'bg-slate-900 text-white shadow-md'
-                      : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}
+                      ? 'bg-[#0F4C81] text-white shadow-md shadow-blue-200'
+                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}
                   `}
                 >
                   {time}s
@@ -460,7 +461,7 @@ const MouseAccuracyGame = () => {
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           onClick={startGame}
-          className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-xl bg-slate-900 text-white font-semibold text-base shadow-lg hover:bg-slate-800 transition-colors"
+          className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-xl bg-gradient-to-r from-[#0F4C81] to-cyan-600 text-white font-semibold text-base shadow-lg shadow-cyan-500/20 hover:shadow-cyan-400/30 transition-colors"
         >
           <FaPlay className="text-sm" />
           Start Training
@@ -473,41 +474,41 @@ const MouseAccuracyGame = () => {
   // HUD
   // ============================================================
   const renderHUD = () => (
-    <div className="grid grid-cols-2 md:grid-cols-6 gap-2 p-3 bg-white/95 backdrop-blur border-b border-slate-200">
-      <div className="bg-slate-50 rounded-xl p-2.5 text-center">
-        <div className="text-[10px] text-slate-400 font-semibold tracking-wide">SCORE</div>
-        <div className="text-lg font-bold text-slate-900">{score}</div>
+    <div className="grid grid-cols-2 md:grid-cols-6 gap-2 p-3 bg-white/95 backdrop-blur border-b border-gray-200">
+      <div className="bg-gray-50 rounded-xl p-2.5 text-center">
+        <div className="text-[10px] text-gray-400 font-semibold tracking-wide">SCORE</div>
+        <div className="text-lg font-bold text-[#0F4C81]">{score}</div>
       </div>
 
-      <div className="bg-slate-50 rounded-xl p-2.5 text-center">
-        <div className="text-[10px] text-slate-400 font-semibold tracking-wide">TIME</div>
-        <div className={`text-lg font-bold font-mono ${timeRemaining <= 5 ? 'text-rose-600' : 'text-slate-800'}`}>
+      <div className="bg-gray-50 rounded-xl p-2.5 text-center">
+        <div className="text-[10px] text-gray-400 font-semibold tracking-wide">TIME</div>
+        <div className={`text-lg font-bold font-mono ${timeRemaining <= 5 ? 'text-rose-600' : 'text-gray-800'}`}>
           {formatTime(timeRemaining)}
         </div>
       </div>
 
-      <div className="bg-slate-50 rounded-xl p-2.5 text-center">
-        <div className="text-[10px] text-slate-400 font-semibold tracking-wide">ACCURACY</div>
+      <div className="bg-gray-50 rounded-xl p-2.5 text-center">
+        <div className="text-[10px] text-gray-400 font-semibold tracking-wide">ACCURACY</div>
         <div className="text-lg font-bold text-emerald-600">
           {totalShots > 0 ? Math.round((hits / totalShots) * 100) : 0}%
         </div>
       </div>
 
-      <div className="bg-slate-50 rounded-xl p-2.5 text-center">
-        <div className="text-[10px] text-slate-400 font-semibold tracking-wide">COMBO</div>
+      <div className="bg-gray-50 rounded-xl p-2.5 text-center">
+        <div className="text-[10px] text-gray-400 font-semibold tracking-wide">COMBO</div>
         <motion.div key={combo} initial={{ scale: 1.2 }} animate={{ scale: 1 }} className="text-lg font-bold text-orange-500">
           {combo}
         </motion.div>
       </div>
 
-      <div className="bg-slate-50 rounded-xl p-2.5 text-center">
-        <div className="text-[10px] text-slate-400 font-semibold tracking-wide">HITS</div>
+      <div className="bg-gray-50 rounded-xl p-2.5 text-center">
+        <div className="text-[10px] text-gray-400 font-semibold tracking-wide">HITS</div>
         <div className="text-lg font-bold text-emerald-600">{hits}</div>
       </div>
 
       <button
         onClick={toggleStats}
-        className="bg-slate-900 hover:bg-slate-800 text-white rounded-xl p-2 flex flex-col items-center justify-center transition-colors"
+        className="bg-[#0F4C81] hover:bg-[#0a3a63] text-white rounded-xl p-2 flex flex-col items-center justify-center transition-colors"
       >
         {showStats ? <FaCompress /> : <FaExpand />}
         <span className="text-[9px] font-semibold mt-1">{showStats ? 'GAME' : 'STATS'}</span>
@@ -522,7 +523,7 @@ const MouseAccuracyGame = () => {
     <div className="flex flex-col min-h-[680px]">
       {renderHUD()}
 
-      <div className="h-11 flex items-center justify-center bg-slate-50 relative overflow-hidden">
+      <div className="h-11 flex items-center justify-center bg-gray-50 relative overflow-hidden">
         <AnimatePresence mode="wait">
           {feedback && (
             <motion.div
@@ -530,7 +531,7 @@ const MouseAccuracyGame = () => {
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
-              className="text-sm font-semibold text-slate-700"
+              className="text-sm font-semibold text-[#0F4C81]"
             >
               {feedback}
             </motion.div>
@@ -541,7 +542,7 @@ const MouseAccuracyGame = () => {
       <div
         ref={gameAreaRef}
         onClick={handleAreaClick}
-        className="relative flex-1 min-h-[520px] md:min-h-[600px] bg-slate-950 m-3 rounded-2xl overflow-hidden cursor-crosshair"
+        className="relative flex-1 min-h-[520px] md:min-h-[600px] bg-[#061a2f] m-3 rounded-2xl overflow-hidden cursor-crosshair"
       >
         <div
           className="absolute inset-0 opacity-[0.07] pointer-events-none"
@@ -571,7 +572,7 @@ const MouseAccuracyGame = () => {
           </div>
         )}
 
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-black/40 text-white/40 text-xs pointer-events-none">
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-cyan-400/10 text-cyan-200/60 text-xs pointer-events-none border border-cyan-400/10">
           Click targets before they fade
         </div>
       </div>
@@ -596,57 +597,57 @@ const MouseAccuracyGame = () => {
           <div className="inline-flex p-4 rounded-full bg-amber-50 mb-4">
             <FaMedal className="text-4xl text-amber-500" />
           </div>
-          <h2 className="text-3xl font-bold text-slate-900">Session Complete</h2>
-          <p className="text-slate-500 mt-1.5 text-sm">Performance summary</p>
+          <h2 className="text-3xl font-bold text-gray-900">Session Complete</h2>
+          <p className="text-gray-500 mt-1.5 text-sm">Performance summary</p>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
           {[
-            { icon: FaBullseye, label: 'SCORE', value: score, color: 'text-slate-900' },
+            { icon: FaBullseye, label: 'SCORE', value: score, color: 'text-[#0F4C81]' },
             { icon: FaBullseye, label: 'ACCURACY', value: `${accuracy}%`, color: 'text-emerald-600' },
             { icon: FaFire, label: 'MAX COMBO', value: maxCombo, color: 'text-orange-500' },
             { icon: FaTachometerAlt, label: 'AVG REACTION', value: `${avgReaction}ms`, color: 'text-violet-600' }
           ].map((stat, i) => (
-            <div key={i} className="bg-slate-50 rounded-2xl p-4 text-center border border-slate-100">
+            <div key={i} className="bg-gray-50 rounded-2xl p-4 text-center border border-gray-100">
               <stat.icon className={`mx-auto text-xl mb-1.5 ${stat.color}`} />
-              <div className="text-[10px] text-slate-400 font-semibold tracking-wide">{stat.label}</div>
+              <div className="text-[10px] text-gray-400 font-semibold tracking-wide">{stat.label}</div>
               <div className={`text-2xl font-bold ${stat.color}`}>{stat.value}</div>
             </div>
           ))}
         </div>
 
-        <div className="bg-slate-50 rounded-2xl p-5 border border-slate-100 mb-6">
+        <div className="bg-gray-50 rounded-2xl p-5 border border-gray-100 mb-6">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-4">
               <div className={`p-4 rounded-xl ${performance.bg}`}>
                 <PerformanceIcon className={`text-2xl ${performance.color}`} />
               </div>
               <div>
-                <div className="text-[10px] text-slate-400 font-semibold tracking-wide">PERFORMANCE</div>
+                <div className="text-[10px] text-gray-400 font-semibold tracking-wide">PERFORMANCE</div>
                 <div className={`text-xl font-bold ${performance.color}`}>{performance.title}</div>
-                <div className="text-sm text-slate-500">{performance.subtitle}</div>
+                <div className="text-sm text-gray-500">{performance.subtitle}</div>
               </div>
             </div>
 
             <div className="flex gap-8 text-center">
               <div>
-                <div className="text-[10px] text-slate-400 font-semibold">HITS</div>
+                <div className="text-[10px] text-gray-400 font-semibold">HITS</div>
                 <div className="text-xl font-bold text-emerald-600">{hits}</div>
               </div>
               <div>
-                <div className="text-[10px] text-slate-400 font-semibold">MISSES</div>
+                <div className="text-[10px] text-gray-400 font-semibold">MISSES</div>
                 <div className="text-xl font-bold text-rose-500">{misses}</div>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="bg-slate-50 rounded-2xl p-5 border border-slate-100 mb-8">
+        <div className="bg-gray-50 rounded-2xl p-5 border border-gray-100 mb-8">
           <div className="flex justify-between mb-2">
-            <span className="text-sm font-medium text-slate-600">Accuracy</span>
+            <span className="text-sm font-medium text-gray-600">Accuracy</span>
             <span className="text-sm font-bold text-emerald-600">{accuracy}%</span>
           </div>
-          <div className="h-2.5 bg-slate-200 rounded-full overflow-hidden">
+          <div className="h-2.5 bg-gray-200 rounded-full overflow-hidden">
             <motion.div
               initial={{ width: 0 }}
               animate={{ width: `${accuracy}%` }}
@@ -659,7 +660,7 @@ const MouseAccuracyGame = () => {
         <div className="flex justify-center">
           <button
             onClick={resetGame}
-            className="inline-flex items-center gap-2 px-7 py-3 rounded-xl bg-slate-900 text-white font-semibold shadow-md hover:bg-slate-800 transition-colors"
+            className="inline-flex items-center gap-2 px-7 py-3 rounded-xl bg-gradient-to-r from-[#0F4C81] to-cyan-600 text-white font-semibold shadow-md hover:shadow-lg transition-colors"
           >
             <FaRedo className="text-sm" />
             Train Again
@@ -676,28 +677,28 @@ const MouseAccuracyGame = () => {
     if (gameHistory.length === 0) return null;
 
     return (
-      <div className="p-4 md:p-5 border-t border-slate-100 bg-slate-50/80">
+      <div className="p-4 md:p-5 border-t border-gray-100 bg-gray-50/80">
         <details className="group">
-          <summary className="cursor-pointer font-semibold text-slate-600 flex items-center gap-2 hover:text-slate-900 text-sm">
-            <FaChartLine className="text-slate-500" />
+          <summary className="cursor-pointer font-semibold text-[#0F4C81] flex items-center gap-2 hover:text-[#0a3a63] text-sm">
+            <FaChartLine className="text-[#0F4C81]" />
             Training History ({gameHistory.length})
-            <span className="ml-auto text-xs text-slate-400">▼</span>
+            <span className="ml-auto text-xs text-gray-400">▼</span>
           </summary>
 
           <div className="mt-3 space-y-1.5 max-h-64 overflow-y-auto">
             {gameHistory.map((result, index) => (
               <div
                 key={index}
-                className="grid grid-cols-2 md:grid-cols-6 gap-2 items-center bg-white rounded-xl p-2.5 border border-slate-100 text-sm"
+                className="grid grid-cols-2 md:grid-cols-6 gap-2 items-center bg-white rounded-xl p-2.5 border border-gray-100 text-sm"
               >
-                <span className="text-xs text-slate-400">
+                <span className="text-xs text-gray-400">
                   {new Date(result.date).toLocaleDateString()}
                 </span>
-                <span className="font-semibold text-slate-800">{result.score} pts</span>
+                <span className="font-semibold text-gray-800">{result.score} pts</span>
                 <span className="font-semibold text-emerald-600">{result.accuracy}%</span>
                 <span className="text-orange-500 font-medium">{result.maxCombo} combo</span>
-                <span className="text-slate-500">{result.avgReaction}ms</span>
-                <span className="text-slate-400">{result.duration}s</span>
+                <span className="text-gray-500">{result.avgReaction}ms</span>
+                <span className="text-gray-400">{result.duration}s</span>
               </div>
             ))}
           </div>
@@ -713,23 +714,23 @@ const MouseAccuracyGame = () => {
     <div className={`
       min-h-screen transition-all duration-300
       ${isFullscreen
-        ? 'fixed inset-0 z-[9999] bg-slate-950 p-0 overflow-auto'
-        : 'bg-slate-100 p-3 md:p-6'}
+        ? 'fixed inset-0 z-[9999] bg-[#061a2f] p-0 overflow-auto'
+        : 'bg-gray-100 p-3 md:p-6'}
     `}>
       <div className={`mx-auto ${isFullscreen ? 'w-full min-h-screen' : 'max-w-5xl'}`}>
         <div className={`
           bg-white overflow-hidden shadow-xl
-          ${isFullscreen ? 'min-h-screen rounded-none' : 'rounded-2xl border border-slate-200'}
+          ${isFullscreen ? 'min-h-screen rounded-none' : 'rounded-2xl border border-gray-200'}
         `}>
           {!isFullscreen && (
-            <div className="bg-slate-900 px-5 py-4 flex items-center justify-between">
+            <div className="bg-gradient-to-r from-[#061a2f] to-[#0F4C81] px-5 py-4 flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-white/10 rounded-lg">
+                <div className="p-2 bg-white/10 rounded-lg border border-white/10">
                   <FaMousePointer className="text-white text-lg" />
                 </div>
                 <div>
                   <h1 className="text-lg font-bold text-white tracking-tight">Aim Trainer</h1>
-                  <p className="text-white/50 text-xs">Mouse accuracy & reaction training</p>
+                  <p className="text-cyan-100/50 text-xs">Mouse accuracy & reaction training</p>
                 </div>
               </div>
 
@@ -746,9 +747,9 @@ const MouseAccuracyGame = () => {
           )}
 
           {isFullscreen && gameState === 'playing' && (
-            <div className="flex items-center justify-between px-4 py-2.5 bg-slate-950 border-b border-white/10">
+            <div className="flex items-center justify-between px-4 py-2.5 bg-[#061a2f] border-b border-white/10">
               <div className="flex items-center gap-2 text-white text-sm font-semibold">
-                <FaMousePointer className="text-slate-400" />
+                <FaMousePointer className="text-cyan-300" />
                 AIM TRAINER
               </div>
               <button
@@ -769,8 +770,8 @@ const MouseAccuracyGame = () => {
           {!isFullscreen && renderHistory()}
 
           {!isFullscreen && (
-            <div className="px-4 py-3 bg-slate-50 border-t border-slate-100 text-center">
-              <p className="text-xs text-slate-400">
+            <div className="px-4 py-3 bg-gray-50 border-t border-gray-100 text-center">
+              <p className="text-xs text-gray-400">
                 Click targets · Build combos · Improve reaction time
               </p>
             </div>

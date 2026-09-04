@@ -730,8 +730,22 @@ const About = () => {
                   <span className="text-sm text-gray-600">উপজেলা রোড, শান্তিবাগ (NRBC ব্যাংক সংলগ্ন), কেন্দুয়া, নেত্রকোনা।</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <FaPhone className="text-blue-600 flex-shrink-0" />
-                  <span className="text-sm text-gray-600">+880 1716-160869</span>
+                  <a
+                    href="tel:+8801616160869"
+                    className="flex items-center gap-3 hover:text-blue-600 transition-colors duration-200 group"
+                  >
+                    <FaPhone className="text-blue-600 flex-shrink-0 group-hover:scale-110 transition-transform duration-200" />
+                    <span className="text-sm text-gray-600 group-hover:text-blue-600">+880 1616-160869</span>
+                  </a>
+                </div>
+                <div className="flex items-center gap-3">
+                  <a
+                    href="tel:+8801707530810"
+                    className="flex items-center gap-3 hover:text-blue-600 transition-colors duration-200 group"
+                  >
+                    <FaPhone className="text-blue-600 flex-shrink-0 group-hover:scale-110 transition-transform duration-200" />
+                    <span className="text-sm text-gray-600 group-hover:text-blue-600">+880 1707-530810</span>
+                  </a>
                 </div>
                 <div className="flex items-center gap-3">
                   <FaGlobe className="text-blue-600 flex-shrink-0" />
