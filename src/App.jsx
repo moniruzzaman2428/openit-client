@@ -15,12 +15,14 @@ import Register from './pages/auth/Register';
 import Unauthorized from './pages/Unauthorized';
 import Loading from './components/Loading/Loading';
 
+
 // ========== LAZY LOADED PAGES (code splitting) ==========
 // Public
 const Home = lazy(() => import('./pages/public/Home'));
 const About = lazy(() => import('./pages/public/About'));
 const Courses = lazy(() => import('./pages/public/Courses'));
 const CourseDetails = lazy(() => import('./pages/public/CourseDetails'));
+const NoticesDetails = lazy(() => import('./pages/public/NoticesDetails'));
 const Admission = lazy(() => import('./pages/public/Admission'));
 const Notices = lazy(() => import('./pages/public/Notices'));
 const Gallery = lazy(() => import('./pages/public/Gallery'));
@@ -85,6 +87,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/courses" element={<Courses />} />
             <Route path="/courses/:slug" element={<CourseDetails />} />
+            <Route path="/notices/:slug" element={<NoticesDetails />} />
             <Route path="/admission" element={<Admission />} />
             <Route path="/notices" element={<Notices />} />
             <Route path="/gallery" element={<Gallery />} />

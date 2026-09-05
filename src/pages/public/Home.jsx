@@ -1,8 +1,12 @@
+
 import CareerProcessSection from '../../components/HomePagesComponents/CareerProcessSection';
 import CoursesSection from '../../components/HomePagesComponents/CoursesSection';
 import CTASection from '../../components/HomePagesComponents/CTASection';
+import GalleryHero from '../../components/HomePagesComponents/GalleryHero';
 import HeroSection from '../../components/HomePagesComponents/HeroSection';
+import MessageNoticeSection from '../../components/HomePagesComponents/MessageNoticeSection';
 import StatsSection from '../../components/HomePagesComponents/StatsSection';
+import TestimonialsSection from '../../components/HomePagesComponents/TestimonialsSection';
 import WhyChooseSection from '../../components/HomePagesComponents/WhyChooseSection';
 import SEO from '../../components/seo/SEO';
 import StructuredData, {
@@ -31,8 +35,12 @@ const Home = () => {
 
       {/* Other Sections with Container */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* <AboutSection> </AboutSection> */}
+        <MessageNoticeSection></MessageNoticeSection>
         <WhyChooseSection />
         <CoursesSection />
+        <GalleryHero></GalleryHero>
+        <TestimonialsSection></TestimonialsSection>
         <CareerProcessSection />
       </div>
 

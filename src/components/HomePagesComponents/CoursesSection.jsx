@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   FaArrowRight,
@@ -15,9 +15,7 @@ import {
 } from 'react-icons/fa';
 import { courses as fallbackCourses } from '../data/homeData';
 import { getCourses } from '../../services/courseService';
-
 import SectionTitle from './SectionTitle';
-
 import {
   cardItem,
   sectionViewport,
@@ -48,10 +46,6 @@ const fallbackImages = {
   'ai-digital-skills':
     'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=700&fit=crop&q=85',
 };
-
-// ============================================================
-// GENERIC FALLBACK IMAGE
-// ============================================================
 
 const genericCourseImage =
   'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&h=700&fit=crop&q=85';
@@ -139,13 +133,10 @@ const getPricing = (course) => {
 // ============================================================
 
 const CoursesSection = () => {
+  const navigate = useNavigate();
   const [mongoCourses, setMongoCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [usingFallback, setUsingFallback] = useState(false);
-  
-  // লোডিং স্টেট এবং নেভিগেশন
-  const [isLoadingCourseId, setIsLoadingCourseId] = useState(null);
-  const navigate = useNavigate();
 
   // ============================================================
   // LOAD COURSES FROM MONGODB
@@ -203,23 +194,6 @@ const CoursesSection = () => {
   }, []);
 
   // ============================================================
-  // HANDLE CLICK (Loading + Navigate)
-  // ============================================================
-
-  const handleCourseClick = (e, slug) => {
-    e.preventDefault();
-    
-    // বাটনে ক্লিক করলে লোডিং শুরু হবে
-    setIsLoadingCourseId(slug);
-
-    // 1.2 সেকেন্ড পর ডিটেইল পেজে যাবে
-    setTimeout(() => {
-      navigate(`/courses/${slug}`);
-      setIsLoadingCourseId(null); // (নেভিগেশনের পর কম্পোনেন্ট আনমাউন্ট হয়ে যাবে)
-    }, 1200);
-  };
-
-  // ============================================================
   // PRIMARY = MONGODB
   // FALLBACK = homeData.js
   // ============================================================
@@ -235,15 +209,20 @@ const CoursesSection = () => {
   }, [mongoCourses]);
 
   // ============================================================
+  // HANDLE NAVIGATION
+  // ============================================================
+
+  const handleCourseClick = (slug) => {
+    navigate(`/courses/${slug}`);
+  };
+
+  // ============================================================
   // RENDER
   // ============================================================
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50/30 py-16 sm:py-20 lg:py-24">
-      {/* ======================================================
-          BACKGROUND
-      ====================================================== */}
-
+    <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50/30 py-12 sm:py-12 lg:py-16">
+      {/* Background */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -left-32 -top-32 h-96 w-96 rounded-full bg-blue-100/40 blur-3xl" />
         <div className="absolute -bottom-40 -right-40 h-[450px] w-[450px] rounded-full bg-purple-100/30 blur-3xl" />
@@ -257,21 +236,15 @@ const CoursesSection = () => {
         />
       </div>
 
-      {/* ======================================================
-          CONTAINER
-      ====================================================== */}
-
+      {/* Container */}
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* ====================================================
-            SECTION HEADER
-        ==================================================== */}
-
+        {/* Section Header */}
         <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <SectionTitle
             align="left"
             badge="🎓 Popular Courses"
             title="ক্যারিয়ারের জন্য সঠিক স্কিল বেছে নিন"
-            description="বর্তমান চাকরি ও ফ্রিল্যান্স মার্কেটের প্রয়োজন অনুযায়ী সাজানো আমাদের জনপ্রিয় কোর্সগুলো দেখুন।"
+            description="বর্তমান চাকরি ও ফ্রিল্যান্স মার্কেটের প্রয়োজন অনুযায়ী সাজানো আমাদের জনপ্রিয় কোর্সগুলো দেখুন।"
             light={false}
           />
 
@@ -292,10 +265,7 @@ const CoursesSection = () => {
           </motion.div>
         </div>
 
-        {/* ====================================================
-            LOADING
-        ==================================================== */}
-
+        {/* Loading */}
         {loading && (
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {[1, 2, 3, 4, 5, 6].map((item) => (
@@ -304,10 +274,7 @@ const CoursesSection = () => {
           </div>
         )}
 
-        {/* ====================================================
-            COURSES
-        ==================================================== */}
-
+        {/* Courses */}
         {!loading && displayCourses.length > 0 && (
           <motion.div
             variants={staggerContainer}
@@ -320,7 +287,6 @@ const CoursesSection = () => {
               const pricing = getPricing(course);
               const category = getCategory(course);
               const imageUrl = getCourseImage(course);
-              
               const slug =
                 course?.slug ||
                 course?.title
@@ -345,8 +311,6 @@ const CoursesSection = () => {
                 categoryStyles[category] ||
                 'bg-blue-600/90';
 
-              const isThisCourseLoading = isLoadingCourseId === slug;
-
               return (
                 <motion.article
                   key={course?._id || course?.slug || index}
@@ -356,10 +320,7 @@ const CoursesSection = () => {
                   }}
                   className="group overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-lg shadow-slate-200/50 transition-all duration-500 hover:border-blue-100 hover:shadow-2xl hover:shadow-blue-100/60"
                 >
-                  {/* ==================================================
-                      IMAGE
-                  ================================================== */}
-
+                  {/* Image */}
                   <div className="relative h-52 overflow-hidden bg-slate-900">
                     <img
                       src={imageUrl}
@@ -373,10 +334,7 @@ const CoursesSection = () => {
                       }}
                     />
 
-                    {/* Image Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-black/5" />
-
-                    {/* Top Shine */}
                     <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-black/30 to-transparent" />
 
                     {/* Category */}
@@ -413,10 +371,7 @@ const CoursesSection = () => {
                     )}
                   </div>
 
-                  {/* ==================================================
-                      CONTENT
-                  ================================================== */}
-
+                  {/* Content */}
                   <div className="p-5 sm:p-6">
                     {/* Title */}
                     <h3 className="line-clamp-2 min-h-[56px] text-lg font-extrabold leading-7 text-slate-800 transition-colors duration-300 group-hover:text-blue-600">
@@ -471,13 +426,11 @@ const CoursesSection = () => {
                         <p className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-slate-400">
                           Course Fee
                         </p>
-
                         <div className="flex items-center gap-2">
                           <span className="text-2xl font-black text-blue-600">
                             ৳
                             {pricing.discountedPrice.toLocaleString()}
                           </span>
-
                           {pricing.discount > 0 && (
                             <span className="text-xs text-slate-400 line-through">
                               ৳{pricing.fee.toLocaleString()}
@@ -486,25 +439,12 @@ const CoursesSection = () => {
                         </div>
                       </div>
 
-                      {/* Loading Button */}
                       <button
-                        onClick={(e) => handleCourseClick(e, slug)}
-                        disabled={isLoadingCourseId !== null}
-                        className={`group/btn inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 px-4 py-2.5 text-xs font-bold text-white shadow-lg shadow-blue-500/20 transition-all duration-300 hover:scale-105 hover:shadow-blue-500/40 ${
-                          isLoadingCourseId !== null ? 'opacity-70 cursor-not-allowed' : ''
-                        }`}
+                        onClick={() => handleCourseClick(slug)}
+                        className="group/btn inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 px-4 py-2.5 text-xs font-bold text-white shadow-lg shadow-blue-500/20 transition-all duration-300 hover:scale-105 hover:shadow-blue-500/40"
                       >
-                        {isThisCourseLoading ? (
-                          <>
-                            <FaSpinner className="animate-spin text-sm" />
-                            Loading...
-                          </>
-                        ) : (
-                          <>
-                            Details
-                            <FaArrowRight className="transition-transform duration-300 group-hover/btn:translate-x-1" />
-                          </>
-                        )}
+                        Details
+                        <FaArrowRight className="transition-transform duration-300 group-hover/btn:translate-x-1" />
                       </button>
                     </div>
 
@@ -523,10 +463,7 @@ const CoursesSection = () => {
           </motion.div>
         )}
 
-        {/* ====================================================
-            FALLBACK NOTICE
-        ==================================================== */}
-
+        {/* Fallback Notice */}
         {!loading &&
           usingFallback &&
           displayCourses.length > 0 && (
@@ -537,10 +474,7 @@ const CoursesSection = () => {
             </div>
           )}
 
-        {/* ====================================================
-            EMPTY STATE
-        ==================================================== */}
-
+        {/* Empty State */}
         {!loading && displayCourses.length === 0 && (
           <div className="mt-12 rounded-3xl border border-slate-200 bg-white p-10 text-center shadow-sm">
             <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-50 text-blue-500">
@@ -555,15 +489,23 @@ const CoursesSection = () => {
           </div>
         )}
 
-        {/* ====================================================
-            BOTTOM CTA
-        ==================================================== */}
-
+        {/* Bottom CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6 }}
+          initial={{
+            opacity: 0,
+            y: 20,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+            amount: 0.2,
+          }}
+          transition={{
+            duration: 0.6,
+          }}
           className="mt-12 flex flex-col items-center justify-between gap-5 rounded-3xl border border-blue-100 bg-gradient-to-r from-blue-50 via-white to-cyan-50 p-6 sm:flex-row sm:p-7"
         >
           <div>
@@ -600,10 +542,7 @@ const CoursesSection = () => {
 const CourseSkeleton = () => {
   return (
     <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-      {/* Image */}
       <div className="h-52 animate-pulse bg-slate-200" />
-
-      {/* Content */}
       <div className="space-y-4 p-6">
         <div className="h-5 w-4/5 animate-pulse rounded-lg bg-slate-200" />
         <div className="h-3 w-2/3 animate-pulse rounded bg-slate-100" />

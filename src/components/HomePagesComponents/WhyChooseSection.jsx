@@ -107,7 +107,7 @@ const WhyChooseSection = () => {
   };
 
   return (
-    <section className="relative py-20 lg:py-28 bg-gradient-to-br from-slate-50 via-white to-blue-50 overflow-hidden">
+    <section className="relative py-5 lg:py-8 bg-gradient-to-br from-slate-50 via-white to-blue-50 overflow-hidden">
       
       {/* Background Decorative Elements */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-blue-200/30 rounded-full blur-3xl pointer-events-none"></div>
