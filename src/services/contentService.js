@@ -19,26 +19,73 @@ export const deleteNotice = async (id) => {
 };
 
 // Gallery
-// Gallery
-export const getGallery = async (params = {}) => {
-  const { data } = await api.get('/gallery', { params });
-  return data;
-};
+// // Gallery
+// export const getGallery = async (params = {}) => {
+//   const { data } = await api.get('/gallery', { params });
+//   return data;
+// };
 
-export const createGalleryItem = async (formData) => {
-  const { data } = await api.post('/gallery', formData, {
-    headers: {
-      'Content-Type': 'multipart/form-data'
-    }
+// export const createGalleryItem = async (formData) => {
+//   const { data } = await api.post('/gallery', formData);
+//   return data;
+// };
+
+// export const deleteGalleryItem = async (id) => {
+//   const { data } = await api.delete(`/gallery/${id}`);
+//   return data;
+// };
+
+// ================================
+// Gallery
+// ================================
+
+// ================================
+// Gallery
+// ================================
+
+export const getGallery = async (params = {}) => {
+  const { data } = await api.get('/gallery', {
+    params
   });
 
   return data;
 };
 
-export const deleteGalleryItem = async (id) => {
-  const { data } = await api.delete(`/gallery/${id}`);
+
+export const createGalleryItem = async (formData) => {
+
+  console.log('===== FORMDATA DEBUG =====');
+
+  for (const pair of formData.entries()) {
+    console.log(pair[0], pair[1]);
+  }
+
+  console.log('==========================');
+
+  const { data } = await api.post(
+    '/gallery',
+    formData,
+    {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    }
+  );
+
   return data;
 };
+
+
+export const deleteGalleryItem = async (id) => {
+
+  const { data } = await api.delete(
+    `/gallery/${id}`
+  );
+
+  return data;
+};
+
+
 
 // Testimonials
 export const getTestimonials = async (params = {}) => {
