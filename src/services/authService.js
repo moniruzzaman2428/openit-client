@@ -37,3 +37,8 @@ export const changePassword = async (currentPassword, newPassword) => {
   });
   return data;
 };
+
+export const updateMe = async (userData) => {
+  const { data } = await api.patch('/auth/me', userData);
+  return data;
+};

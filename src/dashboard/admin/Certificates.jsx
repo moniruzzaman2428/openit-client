@@ -1,8 +1,16 @@
-import { useState, useEffect } from 'react';
-import { FaPlus, FaSpinner, FaTimes, FaBan, FaCertificate } from 'react-icons/fa';
+import { useEffect, useState } from 'react';
+import { FaBan, FaEdit, FaPlus, FaSpinner, FaTimes, FaTrash } from 'react-icons/fa';
 import Swal from 'sweetalert2';
-import { getCertificates, createCertificate, revokeCertificate } from '../../services/certificateService';
+import {
+  createCertificate,
+  deleteCertificate,
+  getCertificates,
+  revokeCertificate,
+  updateCertificate,
+} from '../../services/certificateService';
 import api from '../../services/api';
+
+const emptyForm = { student: '', course: '', completionDate: '', duration: '', status: 'valid' };
 
 const Certificates = () => {
   const [certificates, setCertificates] = useState([]);
@@ -10,21 +18,21 @@ const Certificates = () => {
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [saving, setSaving] = useState(false);
-  const [form, setForm] = useState({
-    student: '', course: '', completionDate: '', duration: ''
-  });
+  const [editing, setEditing] = useState(null);
+  const [form, setForm] = useState(emptyForm);
 
   const fetchData = async () => {
     setLoading(true);
     try {
       const [certRes, studentRes] = await Promise.all([
         getCertificates(),
-        api.get('/students').catch(() => ({ data: { data: { students: [] } } }))
+        api.get('/students', { params: { limit: 500, sort: 'name' } }).catch(() => ({ data: { data: { students: [] } } })),
       ]);
-      setCertificates(certRes.data.certificates || []);
+      setCertificates(certRes.data?.certificates || []);
       setStudents(studentRes.data?.data?.students || studentRes.data?.students || []);
     } catch (err) {
       console.error(err);
+      Swal.fire({ icon: 'error', title: 'Failed', text: err.response?.data?.message || 'Could not load certificates.' });
     } finally {
       setLoading(false);
     }
@@ -32,35 +40,73 @@ const Certificates = () => {
 
   useEffect(() => { fetchData(); }, []);
 
+  const openCreate = () => {
+    setEditing(null);
+    setForm(emptyForm);
+    setShowModal(true);
+  };
+
+  const openEdit = (certificate) => {
+    setEditing(certificate);
+    setForm({
+      student: certificate.student?._id || certificate.student || '',
+      course: certificate.course?._id || certificate.course || '',
+      completionDate: certificate.completionDate ? new Date(certificate.completionDate).toISOString().slice(0, 10) : '',
+      duration: certificate.duration || certificate.course?.duration || '',
+      status: certificate.status || 'valid',
+    });
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    if (saving) return;
+    setShowModal(false);
+    setEditing(null);
+    setForm(emptyForm);
+  };
+
   const handleStudentChange = (studentId) => {
     const student = students.find((s) => s._id === studentId);
-    setForm({
-      ...form,
+    setForm((current) => ({
+      ...current,
       student: studentId,
       course: student?.course?._id || student?.course || '',
-      duration: student?.course?.duration || ''
-    });
+      duration: student?.course?.duration || '',
+    }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSaving(true);
     try {
-      const res = await createCertificate(form);
-      Swal.fire({
-        icon: 'success',
-        title: 'Certificate Issued!',
-        html: `
-          <p><strong>Certificate ID:</strong> ${res.data.certificate.certificateId}</p>
-          <p class="mt-1 text-sm">Verification Code: ${res.data.certificate.verificationCode}</p>
-        `,
-        confirmButtonColor: '#0F4C81'
-      });
-      setShowModal(false);
-      setForm({ student: '', course: '', completionDate: '', duration: '' });
-      fetchData();
+      if (editing) {
+        await updateCertificate(editing._id, {
+          completionDate: form.completionDate,
+          duration: form.duration,
+          status: form.status,
+        });
+        Swal.fire({ icon: 'success', title: 'Certificate Updated', timer: 1400, showConfirmButton: false });
+      } else {
+        const res = await createCertificate({
+          student: form.student,
+          course: form.course,
+          completionDate: form.completionDate,
+          duration: form.duration,
+        });
+        Swal.fire({
+          icon: 'success',
+          title: 'Certificate Issued!',
+          html: `
+            <p><strong>Certificate ID:</strong> ${res.data.certificate.certificateId}</p>
+            <p class="mt-1 text-sm">Verification Code: ${res.data.certificate.verificationCode}</p>
+          `,
+          confirmButtonColor: '#0F4C81',
+        });
+      }
+      closeModal();
+      await fetchData();
     } catch (err) {
-      Swal.fire({ icon: 'error', title: 'Failed', text: err.response?.data?.message || 'Could not issue certificate' });
+      Swal.fire({ icon: 'error', title: 'Failed', text: err.response?.data?.message || 'Could not save certificate.' });
     } finally {
       setSaving(false);
     }
@@ -69,20 +115,40 @@ const Certificates = () => {
   const handleRevoke = async (id, certId) => {
     const result = await Swal.fire({
       title: 'Revoke Certificate?',
-      text: `Revoke ${certId}? This cannot be easily undone.`,
+      text: `Revoke ${certId}?`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#EF4444',
-      confirmButtonText: 'Revoke'
+      confirmButtonText: 'Revoke',
     });
     if (!result.isConfirmed) return;
 
     try {
       await revokeCertificate(id);
-      Swal.fire({ icon: 'success', title: 'Revoked', timer: 1500, showConfirmButton: false });
-      fetchData();
+      Swal.fire({ icon: 'success', title: 'Revoked', timer: 1300, showConfirmButton: false });
+      await fetchData();
     } catch (err) {
-      Swal.fire({ icon: 'error', title: 'Failed', text: err.response?.data?.message || 'Could not revoke' });
+      Swal.fire({ icon: 'error', title: 'Failed', text: err.response?.data?.message || 'Could not revoke certificate.' });
+    }
+  };
+
+  const handleDelete = async (certificate) => {
+    const result = await Swal.fire({
+      title: 'Delete certificate?',
+      text: `${certificate.certificateId} will be permanently deleted.`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#EF4444',
+      confirmButtonText: 'Delete',
+    });
+    if (!result.isConfirmed) return;
+
+    try {
+      await deleteCertificate(certificate._id);
+      Swal.fire({ icon: 'success', title: 'Deleted', timer: 1300, showConfirmButton: false });
+      await fetchData();
+    } catch (err) {
+      Swal.fire({ icon: 'error', title: 'Failed', text: err.response?.data?.message || 'Could not delete certificate.' });
     }
   };
 
@@ -91,11 +157,9 @@ const Certificates = () => {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h1 className="text-2xl font-bold text-dark">Certificates</h1>
-          <p className="text-gray-500 text-sm">Issue and manage student certificates</p>
+          <p className="text-gray-500 text-sm">Issue, update, revoke and delete database certificates</p>
         </div>
-        <button onClick={() => setShowModal(true)} className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary text-white rounded-xl text-sm font-semibold hover:bg-primary/90 shadow-lg shadow-primary/25 transition">
-          <FaPlus /> Issue Certificate
-        </button>
+        <button onClick={openCreate} className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary text-white rounded-xl text-sm font-semibold hover:bg-primary/90 shadow-lg shadow-primary/25 transition"><FaPlus /> Issue Certificate</button>
       </div>
 
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
@@ -119,22 +183,16 @@ const Certificates = () => {
                   <tr key={c._id} className="hover:bg-gray-50/50">
                     <td className="px-5 py-3.5 font-mono text-xs text-primary font-semibold">{c.certificateId}</td>
                     <td className="px-5 py-3.5">
-                      <p className="font-medium text-dark">{c.student?.name}</p>
-                      <p className="text-xs text-gray-400">{c.student?.studentId}</p>
+                      <p className="font-medium text-dark">{c.student?.name || '-'}</p>
+                      <p className="text-xs text-gray-400">{c.student?.studentId || '-'}</p>
                     </td>
-                    <td className="px-5 py-3.5 text-gray-500 hidden md:table-cell">{c.course?.title}</td>
-                    <td className="px-5 py-3.5 text-gray-500">{new Date(c.completionDate).toLocaleDateString()}</td>
-                    <td className="px-5 py-3.5">
-                      <span className={`text-xs font-semibold px-2.5 py-1 rounded-lg capitalize ${
-                        c.status === 'valid' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
-                      }`}>{c.status}</span>
-                    </td>
-                    <td className="px-5 py-3.5 text-right">
-                      {c.status === 'valid' && (
-                        <button onClick={() => handleRevoke(c._id, c.certificateId)} className="p-2 rounded-lg text-gray-400 hover:text-danger hover:bg-danger/10 transition" title="Revoke">
-                          <FaBan className="text-sm" />
-                        </button>
-                      )}
+                    <td className="px-5 py-3.5 text-gray-500 hidden md:table-cell">{c.course?.title || '-'}</td>
+                    <td className="px-5 py-3.5 text-gray-500">{c.completionDate ? new Date(c.completionDate).toLocaleDateString() : '-'}</td>
+                    <td className="px-5 py-3.5"><span className={`text-xs font-semibold px-2.5 py-1 rounded-lg capitalize ${c.status === 'valid' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>{c.status}</span></td>
+                    <td className="px-5 py-3.5 text-right whitespace-nowrap">
+                      <button onClick={() => openEdit(c)} className="p-2 rounded-lg text-gray-400 hover:text-amber-600 hover:bg-amber-50 transition" title="Edit"><FaEdit className="text-sm" /></button>
+                      {c.status === 'valid' && <button onClick={() => handleRevoke(c._id, c.certificateId)} className="p-2 rounded-lg text-gray-400 hover:text-orange-600 hover:bg-orange-50 transition" title="Revoke"><FaBan className="text-sm" /></button>}
+                      <button onClick={() => handleDelete(c)} className="p-2 rounded-lg text-gray-400 hover:text-red-600 hover:bg-red-50 transition" title="Delete"><FaTrash className="text-sm" /></button>
                     </td>
                   </tr>
                 ))}
@@ -142,44 +200,44 @@ const Certificates = () => {
             </table>
           </div>
         )}
-        {!loading && certificates.length === 0 && (
-          <div className="text-center py-12 text-gray-400">No certificates issued yet.</div>
-        )}
+        {!loading && certificates.length === 0 && <div className="text-center py-12 text-gray-400">No certificates issued yet.</div>}
       </div>
 
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
           <div className="bg-white rounded-2xl w-full max-w-md shadow-xl">
             <div className="flex items-center justify-between p-5 border-b border-gray-100">
-              <h2 className="text-lg font-bold text-dark">Issue Certificate</h2>
-              <button onClick={() => setShowModal(false)} className="p-2 rounded-lg text-gray-400 hover:bg-gray-100"><FaTimes /></button>
+              <h2 className="text-lg font-bold text-dark">{editing ? 'Update Certificate' : 'Issue Certificate'}</h2>
+              <button onClick={closeModal} className="p-2 rounded-lg text-gray-400 hover:bg-gray-100"><FaTimes /></button>
             </div>
             <form onSubmit={handleSubmit} className="p-5 space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Student *</label>
-                <select required value={form.student} onChange={(e) => handleStudentChange(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/30">
+                <select required disabled={Boolean(editing)} value={form.student} onChange={(e) => handleStudentChange(e.target.value)} className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/30 disabled:bg-gray-100">
                   <option value="">Select student</option>
-                  {students.map((s) => (
-                    <option key={s._id} value={s._id}>{s.name} ({s.studentId}) — {s.course?.title}</option>
-                  ))}
+                  {students.map((s) => <option key={s._id} value={s._id}>{s.name} ({s.studentId}) — {s.course?.title || 'No course'}</option>)}
                 </select>
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Completion Date *</label>
-                <input required type="date" value={form.completionDate} onChange={(e) => setForm({ ...form, completionDate: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/30" />
+                <input required type="date" value={form.completionDate} onChange={(e) => setForm({ ...form, completionDate: e.target.value })} className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/30" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Duration</label>
-                <input value={form.duration} onChange={(e) => setForm({ ...form, duration: e.target.value })} placeholder="e.g. 6 Months"
-                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/30" />
+                <input value={form.duration} onChange={(e) => setForm({ ...form, duration: e.target.value })} placeholder="e.g. 6 Months" className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/30" />
               </div>
+              {editing && (
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                  <select value={form.status} onChange={(e) => setForm({ ...form, status: e.target.value })} className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/30">
+                    <option value="valid">Valid</option>
+                    <option value="revoked">Revoked</option>
+                  </select>
+                </div>
+              )}
               <div className="flex justify-end gap-3 pt-2">
-                <button type="button" onClick={() => setShowModal(false)} className="px-5 py-2.5 rounded-xl border border-gray-200 text-sm font-medium">Cancel</button>
-                <button type="submit" disabled={saving} className="px-5 py-2.5 rounded-xl bg-primary text-white text-sm font-semibold disabled:opacity-60">
-                  {saving ? 'Issuing...' : 'Issue Certificate'}
-                </button>
+                <button type="button" onClick={closeModal} className="px-5 py-2.5 rounded-xl border border-gray-200 text-sm font-medium">Cancel</button>
+                <button type="submit" disabled={saving} className="px-5 py-2.5 rounded-xl bg-primary text-white text-sm font-semibold disabled:opacity-60">{saving ? 'Saving...' : editing ? 'Update Certificate' : 'Issue Certificate'}</button>
               </div>
             </form>
           </div>

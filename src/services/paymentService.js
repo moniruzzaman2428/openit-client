@@ -20,3 +20,13 @@ export const getPaymentSummary = async (studentId) => {
   const { data } = await api.get(url);
   return data;
 };
+
+export const updatePayment = async (id, paymentData) => {
+  const { data } = await api.patch(`/payments/${id}`, paymentData);
+  return data;
+};
+
+export const deletePayment = async (id) => {
+  const { data } = await api.delete(`/payments/${id}`);
+  return data;
+};

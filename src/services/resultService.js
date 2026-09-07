@@ -25,3 +25,7 @@ export const publishExamResults = async (examId) => {
   const { data } = await api.post(`/results/publish/${examId}`);
   return data;
 };
+export const deleteResult = async (id) => {
+  const { data } = await api.delete(`/results/${id}`);
+  return data;
+};

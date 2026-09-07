@@ -20,7 +20,7 @@ const Admissions = () => {
   const fetchAdmissions = async () => {
     setLoading(true);
     try {
-      const params = {};
+      const params = { limit: 500 };
       if (statusFilter !== 'all') params.status = statusFilter;
       if (search) params.search = search;
 

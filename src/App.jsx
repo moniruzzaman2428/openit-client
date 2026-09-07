@@ -44,7 +44,11 @@ const AdminCertificates = lazy(() => import('./dashboard/admin/Certificates'));
 const AdminNotices = lazy(() => import('./dashboard/admin/Notices'));
 const AdminGallery = lazy(() => import('./dashboard/admin/Gallery'));
 const AdminTestimonials = lazy(() => import('./dashboard/admin/Testimonials'));
-const AdminPlaceholder = lazy(() => import('./dashboard/admin/Placeholder'));
+const AdminAttendance = lazy(() => import('./dashboard/admin/Attendance'));
+const AdminExams = lazy(() => import('./dashboard/admin/Exams'));
+const AdminResults = lazy(() => import('./dashboard/admin/Results'));
+const AdminSettings = lazy(() => import('./dashboard/admin/Settings'));
+const AdminProfile = lazy(() => import('./dashboard/admin/Profile'));
 
 // Teacher
 const TeacherDashboard = lazy(() => import('./dashboard/teacher/Dashboard'));
@@ -55,7 +59,9 @@ const TeacherAttendance = lazy(() => import('./dashboard/teacher/Attendance'));
 const TeacherRoutine = lazy(() => import('./dashboard/teacher/Routine'));
 const TeacherExams = lazy(() => import('./dashboard/teacher/Exams'));
 const TeacherResults = lazy(() => import('./dashboard/teacher/Results'));
-const TeacherPlaceholder = lazy(() => import('./dashboard/teacher/Placeholder'));
+const TeacherNotices = lazy(() => import('./dashboard/teacher/Notices'));
+const TeacherProfile = lazy(() => import('./dashboard/teacher/Profile'));
+const TeacherChangePassword = lazy(() => import('./dashboard/teacher/ChangePassword'));
 
 // Student
 const StudentDashboard = lazy(() => import('./dashboard/student/Dashboard'));
@@ -112,17 +118,17 @@ function App() {
             <Route path="courses" element={<AdminCourses />} />
             <Route path="batches" element={<AdminBatches />} />
             <Route path="admissions" element={<AdminAdmissions />} />
-            <Route path="attendance" element={<AdminPlaceholder title="Attendance Management" />} />
-            <Route path="exams" element={<AdminPlaceholder title="Exam Management" />} />
-            <Route path="results" element={<AdminPlaceholder title="Result Management" />} />
+            <Route path="attendance" element={<AdminAttendance />} />
+            <Route path="exams" element={<AdminExams />} />
+            <Route path="results" element={<AdminResults />} />
             <Route path="payments" element={<AdminPayments />} />
             <Route path="receipts" element={<AdminPayments />} />
             <Route path="certificates" element={<AdminCertificates />} />
             <Route path="notices" element={<AdminNotices />} />
             <Route path="gallery" element={<AdminGallery />} />
             <Route path="testimonials" element={<AdminTestimonials />} />
-            <Route path="settings" element={<AdminPlaceholder title="Website Settings" />} />
-            <Route path="profile" element={<AdminPlaceholder title="Admin Profile" />} />
+            <Route path="settings" element={<AdminSettings />} />
+            <Route path="profile" element={<AdminProfile />} />
           </Route>
 
           {/* Teacher */}
@@ -136,9 +142,9 @@ function App() {
             <Route path="attendance" element={<TeacherAttendance />} />
             <Route path="exams" element={<TeacherExams />} />
             <Route path="results" element={<TeacherResults />} />
-            <Route path="notices" element={<TeacherPlaceholder title="Notices" />} />
-            <Route path="profile" element={<TeacherPlaceholder title="Teacher Profile" />} />
-            <Route path="change-password" element={<TeacherPlaceholder title="Change Password" />} />
+            <Route path="notices" element={<TeacherNotices />} />
+            <Route path="profile" element={<TeacherProfile />} />
+            <Route path="change-password" element={<TeacherChangePassword />} />
           </Route>
 
           {/* Student */}

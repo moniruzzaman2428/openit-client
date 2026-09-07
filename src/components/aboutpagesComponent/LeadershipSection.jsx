@@ -36,8 +36,8 @@ import {
   SiNodedotjs,
 } from "react-icons/si";
 
-import nuruzzamanImage from "../../assets/images/nur.JPG";
-import tonoyImage from "../../assets/images/DSC03830.JPG";
+import nuruzzamanImage from "../../assets/images/nur.jpg";
+import tonoyImage from "../../assets/images/DSC03830.jpg";
 
 const LeadershipSection = () => {
   const [selectedLeader, setSelectedLeader] = useState(null);

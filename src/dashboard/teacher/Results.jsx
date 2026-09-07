@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { FaPlus, FaSpinner, FaTimes, FaEye } from 'react-icons/fa';
+import { FaPlus, FaSpinner, FaTimes, FaEye, FaEdit, FaTrash } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import { getExams } from '../../services/examService';
-import { getResults, createResult, publishExamResults } from '../../services/resultService';
+import { createResult, deleteResult, getResults, publishExamResults, updateResult } from '../../services/resultService';
 import { getBatchStudents } from '../../services/attendanceService';
 
 const Results = () => {
@@ -102,6 +102,50 @@ const Results = () => {
     }
   };
 
+  const handleEditResult = async (result) => {
+    const totalMarks = result.exam?.totalMarks || 100;
+    const response = await Swal.fire({
+      title: `Update marks — ${result.student?.name || 'Student'}`,
+      input: 'number',
+      inputValue: result.marks,
+      inputAttributes: { min: 0, max: totalMarks, step: 1 },
+      showCancelButton: true,
+      confirmButtonText: 'Update',
+      confirmButtonColor: '#00AEEF',
+      inputValidator: (value) => {
+        if (value === '' || Number(value) < 0 || Number(value) > totalMarks) return `Marks must be between 0 and ${totalMarks}`;
+        return undefined;
+      },
+    });
+    if (!response.isConfirmed) return;
+    try {
+      await updateResult(result._id, { marks: Number(response.value) });
+      Swal.fire({ icon: 'success', title: 'Updated', timer: 1200, showConfirmButton: false });
+      fetchData();
+    } catch (err) {
+      Swal.fire({ icon: 'error', title: 'Failed', text: err.response?.data?.message || 'Could not update result.' });
+    }
+  };
+
+  const handleDeleteResult = async (result) => {
+    const response = await Swal.fire({
+      title: 'Delete result?',
+      text: `${result.student?.name || 'This student'} result will be permanently removed.`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#EF4444',
+      confirmButtonText: 'Delete',
+    });
+    if (!response.isConfirmed) return;
+    try {
+      await deleteResult(result._id);
+      Swal.fire({ icon: 'success', title: 'Deleted', timer: 1200, showConfirmButton: false });
+      fetchData();
+    } catch (err) {
+      Swal.fire({ icon: 'error', title: 'Failed', text: err.response?.data?.message || 'Could not delete result.' });
+    }
+  };
+
   const handlePublish = async (examId, title) => {
     const result = await Swal.fire({
       title: 'Publish Results?',
@@ -150,6 +194,7 @@ const Results = () => {
                   <th className="px-5 py-3.5 font-medium">Grade</th>
                   <th className="px-5 py-3.5 font-medium">Status</th>
                   <th className="px-5 py-3.5 font-medium">Published</th>
+                  <th className="px-5 py-3.5 font-medium text-right">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-50">
@@ -168,6 +213,10 @@ const Results = () => {
                       <span className={`text-xs font-semibold px-2.5 py-1 rounded-lg ${
                         r.isPublished ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'
                       }`}>{r.isPublished ? 'Yes' : 'No'}</span>
+                    </td>
+                    <td className="px-5 py-3.5 text-right whitespace-nowrap">
+                      <button onClick={() => handleEditResult(r)} className="p-2 rounded-lg text-gray-400 hover:text-amber-600 hover:bg-amber-50" title="Edit marks"><FaEdit /></button>
+                      <button onClick={() => handleDeleteResult(r)} className="p-2 rounded-lg text-gray-400 hover:text-red-600 hover:bg-red-50" title="Delete result"><FaTrash /></button>
                     </td>
                   </tr>
                 ))}

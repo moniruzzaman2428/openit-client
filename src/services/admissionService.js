@@ -16,8 +16,13 @@ export const getAdmission = async (id) => {
 };
 
 export const updateAdmission = async (id, updateData) => {
-  const { data } = await api.patch(`/admissions/${id}`, updateData);
-  return data;
+  try {
+    const { data } = await api.patch(`/admissions/${id}`, updateData);
+    return data;
+  } catch (error) {
+    console.error('Update admission error:', error.response?.data);
+    throw error;
+  }
 };
 
 export const deleteAdmission = async (id) => {

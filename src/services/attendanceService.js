@@ -20,3 +20,8 @@ export const getBatchStudents = async (batchId, date) => {
   const { data } = await api.get(`/attendance/batch/${batchId}/students`, { params });
   return data;
 };
+
+export const deleteAttendance = async (id) => {
+  const { data } = await api.delete(`/attendance/${id}`);
+  return data;
+};

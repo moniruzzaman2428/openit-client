@@ -7,6 +7,7 @@ import {
 import {
   FaPlus,
   FaTrash,
+  FaEdit,
   FaSpinner,
   FaTimes,
   FaUpload,
@@ -23,6 +24,7 @@ import Swal from 'sweetalert2';
 import {
   getGallery,
   createGalleryItem,
+  updateGalleryItem,
   deleteGalleryItem
 } from '../../services/contentService';
 
@@ -37,6 +39,7 @@ const Gallery = () => {
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [editingItem, setEditingItem] = useState(null);
   const [preview, setPreview] = useState(null);
 
   const fileInputRef = useRef(null);
@@ -233,9 +236,21 @@ const Gallery = () => {
   // ==========================================
 
   const openModal = () => {
-
+    setEditingItem(null);
+    setForm({ title: '', image: null, category: 'classroom' });
+    setPreview(null);
     setShowModal(true);
+  };
 
+  const openEditModal = (item) => {
+    setEditingItem(item);
+    setForm({
+      title: item?.title || '',
+      image: null,
+      category: item?.category || 'classroom'
+    });
+    setPreview(item?.image || null);
+    setShowModal(true);
   };
 
 
@@ -250,6 +265,7 @@ const Gallery = () => {
     }
 
     setShowModal(false);
+    setEditingItem(null);
     setPreview(null);
 
 
@@ -289,7 +305,7 @@ const Gallery = () => {
     }
 
 
-    if (!form.image) {
+    if (!editingItem && !form.image) {
 
       Swal.fire({
         icon: 'warning',
@@ -319,27 +335,20 @@ const Gallery = () => {
         form.category
       );
 
-      formData.append(
-        'image',
-        form.image,
-        form.image.name
-      );
+      if (form.image) {
+        formData.append('image', form.image, form.image.name);
+      }
 
-
-      const response =
+      if (editingItem) {
+        await updateGalleryItem(editingItem._id, formData);
+      } else {
         await createGalleryItem(formData);
-
-
-      console.log(
-        'Upload Response:',
-        response
-      );
-
+      }
 
       await Swal.fire({
         icon: 'success',
         title: 'Success',
-        text: 'Gallery image uploaded successfully!'
+        text: editingItem ? 'Gallery item updated successfully!' : 'Gallery image uploaded successfully!'
       });
 
 
@@ -1119,6 +1128,15 @@ const Gallery = () => {
                     )}
 
 
+                    <button
+                      type="button"
+                      onClick={() => openEditModal(item)}
+                      className="absolute top-3 right-14 w-9 h-9 flex items-center justify-center rounded-xl bg-amber-500 text-white opacity-0 group-hover:opacity-100 transition hover:bg-amber-600 shadow-lg"
+                      title="Edit Image"
+                    >
+                      <FaEdit className="text-sm" />
+                    </button>
+
                     {/* DELETE */}
 
                     <button
@@ -1231,11 +1249,11 @@ const Gallery = () => {
               <div>
 
                 <h2 className="text-lg font-bold text-dark">
-                  Add Gallery Image
+                  {editingItem ? 'Edit Gallery Image' : 'Add Gallery Image'}
                 </h2>
 
                 <p className="text-xs text-gray-400 mt-1">
-                  Upload a new image to your gallery
+                  {editingItem ? 'Update title, category or replace the image' : 'Upload a new image to your gallery'}
                 </p>
 
               </div>
@@ -1293,7 +1311,7 @@ const Gallery = () => {
               <div>
 
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Upload Image *
+                  {editingItem ? 'Replace Image (optional)' : 'Upload Image *'}
                 </label>
 
 
@@ -1349,7 +1367,7 @@ const Gallery = () => {
 
                     <div className="absolute bottom-0 left-0 right-0 px-4 py-2 bg-black/50 text-white text-xs">
 
-                      Image Preview
+                      {editingItem && !form.image ? 'Current Image' : 'Image Preview'}
 
                     </div>
 
@@ -1434,8 +1452,8 @@ const Gallery = () => {
 
 
                   {saving
-                    ? 'Uploading...'
-                    : 'Upload Image'
+                    ? 'Saving...'
+                    : editingItem ? 'Update Gallery' : 'Upload Image'
                   }
 
                 </button>

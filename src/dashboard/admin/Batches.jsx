@@ -31,15 +31,15 @@ const Batches = () => {
     setLoading(true);
     try {
       const [batchRes, courseRes] = await Promise.all([
-        getBatches({ limit: 50 }),
-        getCourses({ limit: 50 })
+        getBatches({ limit: 500 }),
+        getCourses({ limit: 500 })
       ]);
       setBatches(batchRes.data.batches || []);
       setCourses(courseRes.data.courses || []);
 
       // Try to fetch teachers
       try {
-        const teacherRes = await api.get('/teachers');
+        const teacherRes = await api.get('/teachers', { params: { limit: 500 } });
         setTeachers(teacherRes.data?.data?.teachers || teacherRes.data?.teachers || []);
       } catch {
         setTeachers([]);
