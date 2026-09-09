@@ -10,6 +10,10 @@ export const getAdmissions = async (params = {}) => {
   return data;
 };
 
+export const getAdmissionBatches = (courseId) => {
+  return api.get(`/admissions/batches/${courseId}`);
+};
+
 export const getAdmission = async (id) => {
   const { data } = await api.get(`/admissions/${id}`);
   return data;
