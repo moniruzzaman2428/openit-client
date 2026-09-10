@@ -1,22 +1,27 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
-import { AdminRoute, TeacherRoute, StudentRoute, PublicOnlyRoute } from './routes/ProtectedRoute';
+import {
+  AdminRoute,
+  TeacherRoute,
+  StudentRoute,
+  PublicOnlyRoute,
+  LoginRequiredRoute, // ✅ NEW
+} from './routes/ProtectedRoute';
 
-// Layouts (keep eager — small and always needed for structure)
+// Layouts
 import PublicLayout from './layouts/PublicLayout';
 import AdminLayout from './layouts/AdminLayout';
 import TeacherLayout from './layouts/TeacherLayout';
 import StudentLayout from './layouts/StudentLayout';
 
-// Auth pages (small, keep eager for fast login)
+// Auth pages
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 import Unauthorized from './pages/Unauthorized';
 import Loading from './components/Loading/Loading';
 
-
-// ========== LAZY LOADED PAGES (code splitting) ==========
+// ========== LAZY LOADED PAGES ==========
 // Public
 const Home = lazy(() => import('./pages/public/Home'));
 const About = lazy(() => import('./pages/public/About'));
@@ -31,6 +36,9 @@ const Contact = lazy(() => import('./pages/public/Contact'));
 const TypingTest = lazy(() => import('./pages/public/TypingTest'));
 const MouseAccuracyGame = lazy(() => import('./pages/public/MouseAccuracyGame'));
 const VerifyCertificate = lazy(() => import('./pages/public/VerifyCertificate'));
+
+// ✅ NEW: Student Info (PublicLayout এ দেখাবে, কিন্তু লগইন লাগবে)
+const StudentInfo = lazy(() => import('./pages/public/StudentInfo'));
 
 // Admin
 const AdminDashboard = lazy(() => import('./dashboard/admin/Dashboard'));
@@ -77,17 +85,16 @@ const StudentNotices = lazy(() => import('./dashboard/student/Notices'));
 const StudentCertificate = lazy(() => import('./dashboard/student/Certificate'));
 const StudentChangePassword = lazy(() => import('./dashboard/student/ChangePassword'));
 
-// Loading fallback
-const PageLoader = () => (
-<Loading></Loading>
-);
+const PageLoader = () => <Loading />;
 
 function App() {
   return (
     <AuthProvider>
       <Suspense fallback={<PageLoader />}>
         <Routes>
-          {/* Public */}
+          {/* ============================================================
+              PUBLIC LAYOUT (with header/footer)
+          ============================================================ */}
           <Route element={<PublicLayout />}>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
@@ -102,6 +109,17 @@ function App() {
             <Route path="/TypingTest" element={<TypingTest />} />
             <Route path="/MouseAccuracyGame" element={<MouseAccuracyGame />} />
             <Route path="/verify-certificate" element={<VerifyCertificate />} />
+
+            {/* ✅ NEW: Student Info — PublicLayout এ দেখাবে,
+                কিন্তু লগইন ছাড়া কেউ access করতে পারবে না */}
+            <Route
+              path="/student-info"
+              element={
+                <LoginRequiredRoute>
+                  <StudentInfo />
+                </LoginRequiredRoute>
+              }
+            />
           </Route>
 
           {/* Auth */}

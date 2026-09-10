@@ -19,7 +19,7 @@ const Home = () => {
     <>
       <StructuredData data={[organizationSchema(), websiteSchema()]} />
       <SEO
-        title="ওপেন আইটি ইনস্টিটিউট"
+        title="Open IT Institute"
         description="ওপেন আইটি ইনস্টিটিউট (Open IT Institute) কেন্দুয়া, নেত্রকোনার একটি আধুনিক কম্পিউটার প্রশিক্ষণ প্রতিষ্ঠান। Web Development, Graphic Design, Digital Marketing ও Freelancing কোর্সে প্রশিক্ষণ দেওয়া হয়।"
         path="/"
       />

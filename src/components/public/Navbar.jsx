@@ -29,6 +29,7 @@ const navLinks = [
   { name: 'Notice', path: '/notices', icon: FaBell },
   { name: 'Gallery', path: '/gallery', icon: FaImages },
   { name: 'Results', path: '/results', icon: FaChartBar },
+  { name: 'Studnet Info', path: '/student-info', icon: FaChartBar },
   { name: 'Contact', path: '/contact', icon: FaEnvelope }
 ];
 

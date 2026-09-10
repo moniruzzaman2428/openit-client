@@ -1,5 +1,18 @@
-import { useEffect, useState } from 'react';
-import { FaEdit, FaPlus, FaReceipt, FaSearch, FaSpinner, FaTimes, FaTrash } from 'react-icons/fa';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import {
+  FaEdit,
+  FaPlus,
+  FaReceipt,
+  FaSearch,
+  FaSpinner,
+  FaTimes,
+  FaTrash,
+  FaUserGraduate,
+  FaChevronDown,
+  FaCheck,
+  FaPhone,
+  FaIdCard,
+} from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import {
   createPayment,
@@ -20,6 +33,164 @@ const emptyForm = {
   remarks: '',
 };
 
+// ============================================================
+// SEARCHABLE STUDENT SELECT COMPONENT
+// ============================================================
+
+const StudentSelect = ({ students, value, onChange, disabled }) => {
+  const [open, setOpen] = useState(false);
+  const [query, setQuery] = useState('');
+  const wrapperRef = useRef(null);
+  const inputRef = useRef(null);
+
+  const selected = useMemo(
+    () => students.find((s) => s._id === value) || null,
+    [students, value]
+  );
+
+  // close on outside click
+  useEffect(() => {
+    const handleClick = (e) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, []);
+
+  // reset query when opening
+  useEffect(() => {
+    if (open) {
+      setQuery('');
+      setTimeout(() => inputRef.current?.focus(), 50);
+    }
+  }, [open]);
+
+  const filtered = useMemo(() => {
+    if (!query.trim()) return students;
+    const needle = query.trim().toLowerCase();
+    return students.filter((s) => {
+      const name = (s.name || '').toLowerCase();
+      const studentId = (s.studentId || '').toLowerCase();
+      const phone = (s.phone || s.mobile || s.contactNumber || '').toString().toLowerCase();
+      return (
+        name.includes(needle) ||
+        studentId.includes(needle) ||
+        phone.includes(needle)
+      );
+    });
+  }, [students, query]);
+
+  const handleSelect = (student) => {
+    onChange(student._id);
+    setOpen(false);
+  };
+
+  return (
+    <div ref={wrapperRef} className="relative">
+      {/* TRIGGER */}
+      <button
+        type="button"
+        disabled={disabled}
+        onClick={() => !disabled && setOpen((o) => !o)}
+        className={`w-full flex items-center justify-between gap-2 px-4 py-2.5 rounded-xl border text-left text-sm transition
+          ${disabled ? 'bg-gray-100 cursor-not-allowed border-gray-200' : 'border-gray-200 hover:border-primary/50 focus:outline-none focus:ring-2 focus:ring-primary/30'}
+          ${open ? 'ring-2 ring-primary/30 border-primary/50' : ''}
+        `}
+      >
+        {selected ? (
+          <div className="flex items-center gap-2 min-w-0">
+            <div className="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+              <FaUserGraduate className="text-primary text-xs" />
+            </div>
+            <div className="min-w-0">
+              <p className="font-medium text-dark truncate">{selected.name}</p>
+              <p className="text-[10px] text-gray-400 truncate">
+                {selected.studentId || 'N/A'}
+                {selected.phone ? ` · ${selected.phone}` : ''}
+              </p>
+            </div>
+          </div>
+        ) : (
+          <span className="text-gray-400">Search student by name, ID or phone...</span>
+        )}
+        <FaChevronDown
+          className={`text-gray-400 text-xs shrink-0 transition-transform ${open ? 'rotate-180' : ''}`}
+        />
+      </button>
+
+      {/* DROPDOWN */}
+      {open && (
+        <div className="absolute z-50 mt-2 w-full bg-white border border-gray-200 rounded-xl shadow-2xl overflow-hidden">
+          {/* SEARCH INPUT */}
+          <div className="p-2 border-b border-gray-100 sticky top-0 bg-white">
+            <div className="relative">
+              <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs" />
+              <input
+                ref={inputRef}
+                type="text"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Type name, student ID or phone..."
+                className="w-full pl-8 pr-3 py-2 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+              />
+            </div>
+          </div>
+
+          {/* RESULTS */}
+          <div className="max-h-64 overflow-y-auto">
+            {filtered.length === 0 ? (
+              <div className="px-4 py-6 text-center text-sm text-gray-400">
+                <FaSearch className="mx-auto mb-2 text-gray-300" />
+                No matching student found
+              </div>
+            ) : (
+              filtered.map((s) => {
+                const isActive = s._id === value;
+                return (
+                  <button
+                    key={s._id}
+                    type="button"
+                    onClick={() => handleSelect(s)}
+                    className={`w-full flex items-center gap-3 px-3 py-2.5 text-left transition border-b border-gray-50 last:border-0
+                      ${isActive ? 'bg-primary/5' : 'hover:bg-gray-50'}
+                    `}
+                  >
+                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                      <FaUserGraduate className="text-primary text-xs" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium text-dark truncate">{s.name}</p>
+                      <div className="flex items-center gap-3 mt-0.5 text-[11px] text-gray-400">
+                        <span className="inline-flex items-center gap-1">
+                          <FaIdCard className="text-[9px]" />
+                          {s.studentId || 'N/A'}
+                        </span>
+                        {s.phone && (
+                          <span className="inline-flex items-center gap-1">
+                            <FaPhone className="text-[9px]" />
+                            {s.phone}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                    {isActive && <FaCheck className="text-primary text-xs shrink-0" />}
+                  </button>
+                );
+              })
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+// ============================================================
+// MAIN PAYMENTS COMPONENT
+// ============================================================
+
 const Payments = () => {
   const [payments, setPayments] = useState([]);
   const [students, setStudents] = useState([]);
@@ -37,7 +208,11 @@ const Payments = () => {
       setPayments(res.data?.payments || []);
     } catch (err) {
       console.error(err);
-      Swal.fire({ icon: 'error', title: 'Failed', text: err.response?.data?.message || 'Could not load payments.' });
+      Swal.fire({
+        icon: 'error',
+        title: 'Failed',
+        text: err.response?.data?.message || 'Could not load payments.',
+      });
     } finally {
       setLoading(false);
     }
@@ -71,7 +246,9 @@ const Payments = () => {
       amount: payment.amount ?? '',
       paymentMethod: payment.paymentMethod || 'cash',
       transactionId: payment.transactionId || '',
-      paymentDate: payment.paymentDate ? new Date(payment.paymentDate).toISOString().slice(0, 10) : '',
+      paymentDate: payment.paymentDate
+        ? new Date(payment.paymentDate).toISOString().slice(0, 10)
+        : '',
       remarks: payment.remarks || '',
     });
     setShowModal(true);
@@ -105,7 +282,12 @@ const Payments = () => {
           paymentDate: form.paymentDate || undefined,
           remarks: form.remarks,
         });
-        Swal.fire({ icon: 'success', title: 'Payment Updated', timer: 1500, showConfirmButton: false });
+        Swal.fire({
+          icon: 'success',
+          title: 'Payment Updated',
+          timer: 1500,
+          showConfirmButton: false,
+        });
       } else {
         const res = await createPayment({
           ...form,
@@ -125,7 +307,11 @@ const Payments = () => {
       closeModal();
       await fetchPayments();
     } catch (err) {
-      Swal.fire({ icon: 'error', title: 'Failed', text: err.response?.data?.message || 'Could not save payment.' });
+      Swal.fire({
+        icon: 'error',
+        title: 'Failed',
+        text: err.response?.data?.message || 'Could not save payment.',
+      });
     } finally {
       setSaving(false);
     }
@@ -144,10 +330,19 @@ const Payments = () => {
 
     try {
       await deletePayment(payment._id);
-      Swal.fire({ icon: 'success', title: 'Deleted', timer: 1300, showConfirmButton: false });
+      Swal.fire({
+        icon: 'success',
+        title: 'Deleted',
+        timer: 1300,
+        showConfirmButton: false,
+      });
       await fetchPayments();
     } catch (err) {
-      Swal.fire({ icon: 'error', title: 'Failed', text: err.response?.data?.message || 'Could not delete payment.' });
+      Swal.fire({
+        icon: 'error',
+        title: 'Failed',
+        text: err.response?.data?.message || 'Could not delete payment.',
+      });
     }
   };
 
@@ -183,7 +378,11 @@ const Payments = () => {
         showCloseButton: true,
       });
     } catch (err) {
-      Swal.fire({ icon: 'error', title: 'Failed', text: err.response?.data?.message || 'Could not load receipt.' });
+      Swal.fire({
+        icon: 'error',
+        title: 'Failed',
+        text: err.response?.data?.message || 'Could not load receipt.',
+      });
     }
   };
 
@@ -191,10 +390,10 @@ const Payments = () => {
     if (!search) return true;
     const needle = search.toLowerCase();
     return (
-      p.student?.name?.toLowerCase().includes(needle)
-      || p.receiptNumber?.toLowerCase().includes(needle)
-      || p.student?.studentId?.toLowerCase().includes(needle)
-      || p.course?.title?.toLowerCase().includes(needle)
+      p.student?.name?.toLowerCase().includes(needle) ||
+      p.receiptNumber?.toLowerCase().includes(needle) ||
+      p.student?.studentId?.toLowerCase().includes(needle) ||
+      p.course?.title?.toLowerCase().includes(needle)
     );
   });
 
@@ -207,7 +406,10 @@ const Payments = () => {
           <h1 className="text-2xl font-bold text-dark">Payments</h1>
           <p className="text-gray-500 text-sm">Real payment ledger loaded from the database</p>
         </div>
-        <button onClick={openCreate} className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary text-white rounded-xl text-sm font-semibold hover:bg-primary/90 shadow-lg shadow-primary/25 transition">
+        <button
+          onClick={openCreate}
+          className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary text-white rounded-xl text-sm font-semibold hover:bg-primary/90 shadow-lg shadow-primary/25 transition"
+        >
           <FaPlus /> Add Payment
         </button>
       </div>
@@ -227,7 +429,9 @@ const Payments = () => {
 
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
         {loading ? (
-          <div className="flex justify-center py-16"><FaSpinner className="text-2xl text-primary animate-spin" /></div>
+          <div className="flex justify-center py-16">
+            <FaSpinner className="text-2xl text-primary animate-spin" />
+          </div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
@@ -245,19 +449,47 @@ const Payments = () => {
               <tbody className="divide-y divide-gray-50">
                 {filtered.map((p) => (
                   <tr key={p._id} className="hover:bg-gray-50/50">
-                    <td className="px-5 py-3.5 font-mono text-xs text-primary font-semibold">{p.receiptNumber}</td>
+                    <td className="px-5 py-3.5 font-mono text-xs text-primary font-semibold">
+                      {p.receiptNumber}
+                    </td>
                     <td className="px-5 py-3.5">
                       <p className="font-medium text-dark">{p.student?.name || 'Unknown'}</p>
                       <p className="text-xs text-gray-400">{p.student?.studentId || '-'}</p>
                     </td>
-                    <td className="px-5 py-3.5 text-gray-500 hidden md:table-cell">{p.course?.title || '-'}</td>
-                    <td className="px-5 py-3.5 font-semibold text-dark">৳{Number(p.amount || 0).toLocaleString()}</td>
-                    <td className="px-5 py-3.5 text-gray-500 hidden lg:table-cell">{methodLabel[p.paymentMethod] || p.paymentMethod}</td>
-                    <td className="px-5 py-3.5 text-gray-500">{p.paymentDate ? new Date(p.paymentDate).toLocaleDateString() : '-'}</td>
+                    <td className="px-5 py-3.5 text-gray-500 hidden md:table-cell">
+                      {p.course?.title || '-'}
+                    </td>
+                    <td className="px-5 py-3.5 font-semibold text-dark">
+                      ৳{Number(p.amount || 0).toLocaleString()}
+                    </td>
+                    <td className="px-5 py-3.5 text-gray-500 hidden lg:table-cell">
+                      {methodLabel[p.paymentMethod] || p.paymentMethod}
+                    </td>
+                    <td className="px-5 py-3.5 text-gray-500">
+                      {p.paymentDate ? new Date(p.paymentDate).toLocaleDateString() : '-'}
+                    </td>
                     <td className="px-5 py-3.5 text-right whitespace-nowrap">
-                      <button onClick={() => viewReceipt(p._id)} className="p-2 rounded-lg text-gray-400 hover:text-primary hover:bg-primary/10 transition" title="View Receipt"><FaReceipt className="text-sm" /></button>
-                      <button onClick={() => openEdit(p)} className="p-2 rounded-lg text-gray-400 hover:text-amber-600 hover:bg-amber-50 transition" title="Edit"><FaEdit className="text-sm" /></button>
-                      <button onClick={() => handleDelete(p)} className="p-2 rounded-lg text-gray-400 hover:text-red-600 hover:bg-red-50 transition" title="Delete"><FaTrash className="text-sm" /></button>
+                      <button
+                        onClick={() => viewReceipt(p._id)}
+                        className="p-2 rounded-lg text-gray-400 hover:text-primary hover:bg-primary/10 transition"
+                        title="View Receipt"
+                      >
+                        <FaReceipt className="text-sm" />
+                      </button>
+                      <button
+                        onClick={() => openEdit(p)}
+                        className="p-2 rounded-lg text-gray-400 hover:text-amber-600 hover:bg-amber-50 transition"
+                        title="Edit"
+                      >
+                        <FaEdit className="text-sm" />
+                      </button>
+                      <button
+                        onClick={() => handleDelete(p)}
+                        className="p-2 rounded-lg text-gray-400 hover:text-red-600 hover:bg-red-50 transition"
+                        title="Delete"
+                      >
+                        <FaTrash className="text-sm" />
+                      </button>
                     </td>
                   </tr>
                 ))}
@@ -265,55 +497,137 @@ const Payments = () => {
             </table>
           </div>
         )}
-        {!loading && filtered.length === 0 && <div className="text-center py-12 text-gray-400">No payments found.</div>}
+        {!loading && filtered.length === 0 && (
+          <div className="text-center py-12 text-gray-400">No payments found.</div>
+        )}
       </div>
 
       {showModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
           <div className="bg-white rounded-2xl w-full max-w-md shadow-xl max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between p-5 border-b border-gray-100 sticky top-0 bg-white z-10">
-              <h2 className="text-lg font-bold text-dark">{editing ? 'Update Payment' : 'Record Payment'}</h2>
-              <button onClick={closeModal} className="p-2 rounded-lg text-gray-400 hover:bg-gray-100"><FaTimes /></button>
+            <div className="flex items-center justify-between p-5 border-b border-gray-100 sticky top-0 bg-white z-20">
+              <div>
+                <h2 className="text-lg font-bold text-dark">
+                  {editing ? 'Update Payment' : 'Record Payment'}
+                </h2>
+                <p className="text-xs text-gray-400 mt-0.5">
+                  {editing ? 'Modify payment details' : 'Add a new payment to the ledger'}
+                </p>
+              </div>
+              <button
+                onClick={closeModal}
+                className="p-2 rounded-lg text-gray-400 hover:bg-gray-100 transition"
+              >
+                <FaTimes />
+              </button>
             </div>
+
             <form onSubmit={handleSubmit} className="p-5 space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Student *</label>
-                <select required disabled={Boolean(editing)} value={form.student} onChange={(e) => handleStudentChange(e.target.value)} className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/30 disabled:bg-gray-100">
-                  <option value="">Select student</option>
-                  {students.map((s) => <option key={s._id} value={s._id}>{s.name} ({s.studentId})</option>)}
-                </select>
-                {students.length === 0 && <p className="text-xs text-amber-600 mt-1">No students found. Approve admissions first.</p>}
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Student <span className="text-red-500">*</span>
+                </label>
+                <StudentSelect
+                  students={students}
+                  value={form.student}
+                  onChange={handleStudentChange}
+                  disabled={Boolean(editing)}
+                />
+                {editing && (
+                  <p className="text-[11px] text-gray-400 mt-1">
+                    Student cannot be changed after payment is recorded.
+                  </p>
+                )}
+                {students.length === 0 && !editing && (
+                  <p className="text-xs text-amber-600 mt-1">
+                    No students found. Approve admissions first.
+                  </p>
+                )}
               </div>
+
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Amount (৳) *</label>
-                <input required type="number" min="1" value={form.amount} onChange={(e) => setForm({ ...form, amount: e.target.value })} className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/30" />
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Amount (৳) <span className="text-red-500">*</span>
+                </label>
+                <input
+                  required
+                  type="number"
+                  min="1"
+                  value={form.amount}
+                  onChange={(e) => setForm({ ...form, amount: e.target.value })}
+                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/30"
+                />
               </div>
+
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Payment Date</label>
-                <input type="date" value={form.paymentDate} onChange={(e) => setForm({ ...form, paymentDate: e.target.value })} className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/30" />
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Payment Date
+                </label>
+                <input
+                  type="date"
+                  value={form.paymentDate}
+                  onChange={(e) => setForm({ ...form, paymentDate: e.target.value })}
+                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/30"
+                />
               </div>
+
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Payment Method *</label>
-                <select required value={form.paymentMethod} onChange={(e) => setForm({ ...form, paymentMethod: e.target.value })} className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/30">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Payment Method <span className="text-red-500">*</span>
+                </label>
+                <select
+                  required
+                  value={form.paymentMethod}
+                  onChange={(e) => setForm({ ...form, paymentMethod: e.target.value })}
+                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/30"
+                >
                   <option value="cash">Cash</option>
                   <option value="bkash">bKash</option>
                   <option value="nagad">Nagad</option>
                   <option value="bank">Bank Transfer</option>
                 </select>
               </div>
+
               {['bkash', 'nagad', 'bank'].includes(form.paymentMethod) && (
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Transaction ID</label>
-                  <input value={form.transactionId} onChange={(e) => setForm({ ...form, transactionId: e.target.value })} className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/30" placeholder="Txn ID" />
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Transaction ID
+                  </label>
+                  <input
+                    value={form.transactionId}
+                    onChange={(e) => setForm({ ...form, transactionId: e.target.value })}
+                    className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/30"
+                    placeholder="Txn ID"
+                  />
                 </div>
               )}
+
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Remarks</label>
-                <input value={form.remarks} onChange={(e) => setForm({ ...form, remarks: e.target.value })} className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/30" />
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Remarks
+                </label>
+                <input
+                  value={form.remarks}
+                  onChange={(e) => setForm({ ...form, remarks: e.target.value })}
+                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/30"
+                />
               </div>
+
               <div className="flex justify-end gap-3 pt-2">
-                <button type="button" onClick={closeModal} className="px-5 py-2.5 rounded-xl border border-gray-200 text-sm font-medium">Cancel</button>
-                <button type="submit" disabled={saving} className="px-5 py-2.5 rounded-xl bg-primary text-white text-sm font-semibold disabled:opacity-60">{saving ? 'Saving...' : editing ? 'Update Payment' : 'Record Payment'}</button>
+                <button
+                  type="button"
+                  onClick={closeModal}
+                  className="px-5 py-2.5 rounded-xl border border-gray-200 text-sm font-medium hover:bg-gray-50 transition"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={saving}
+                  className="px-5 py-2.5 rounded-xl bg-primary text-white text-sm font-semibold disabled:opacity-60 hover:bg-primary/90 transition"
+                >
+                  {saving ? 'Saving...' : editing ? 'Update Payment' : 'Record Payment'}
+                </button>
               </div>
             </form>
           </div>

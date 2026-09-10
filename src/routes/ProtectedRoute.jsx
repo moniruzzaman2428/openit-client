@@ -79,6 +79,10 @@ export const PrivateRoute = ({ children }) => {
   return children;
 };
 
+// ✅ Alias: LoginRequiredRoute = PrivateRoute
+// (যেকোনো logged-in user access করতে পারবে — admin/teacher/student)
+export const LoginRequiredRoute = PrivateRoute;
+
 // Redirect logged-in users away from login/register
 export const PublicOnlyRoute = ({ children }) => {
   const { user, loading, isAuthenticated } = useAuth();
