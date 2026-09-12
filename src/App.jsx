@@ -20,7 +20,6 @@ import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 import Unauthorized from './pages/Unauthorized';
 import Loading from './components/Loading/Loading';
-
 // ========== LAZY LOADED PAGES ==========
 // Public
 const Home = lazy(() => import('./pages/public/Home'));
@@ -39,6 +38,7 @@ const VerifyCertificate = lazy(() => import('./pages/public/VerifyCertificate'))
 
 // ✅ NEW: Student Info (PublicLayout এ দেখাবে, কিন্তু লগইন লাগবে)
 const StudentInfo = lazy(() => import('./pages/public/StudentInfo'));
+const StudentProfileDetails = lazy(() => import('./pages/public/StudentProfileDetails'));
 
 // Admin
 const AdminDashboard = lazy(() => import('./dashboard/admin/Dashboard'));
@@ -119,6 +119,10 @@ function App() {
                   <StudentInfo />
                 </LoginRequiredRoute>
               }
+            />
+            <Route
+              path="/student-info/:id"
+              element={<StudentProfileDetails />}
             />
           </Route>
 

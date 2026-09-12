@@ -99,10 +99,10 @@ const Footer = () => {
               transition={{ delay: 0.2 }}
             >
               {[
-                { icon: FaFacebook, color: 'hover:bg-blue-600', href: '#' },
-                { icon: FaYoutube, color: 'hover:bg-red-600', href: '#' },
+                { icon: FaFacebook, color: 'hover:bg-blue-600', href: 'https://www.facebook.com/openitinstitute' },
+                { icon: FaYoutube, color: 'hover:bg-red-600', href: 'http://www.youtube.com/@%E0%A6%93%E0%A6%AA%E0%A7%87%E0%A6%A8%E0%A6%86%E0%A6%87%E0%A6%9F%E0%A6%BF%E0%A6%87%E0%A6%A8%E0%A6%B8%E0%A7%8D%E0%A6%9F%E0%A6%BF%E0%A6%9F%E0%A6%BF%E0%A6%89%E0%A6%9F' },
                 { icon: FaLinkedin, color: 'hover:bg-blue-700', href: '#' },
-                { icon: FaGithub, color: 'hover:bg-gray-700', href: '#' },
+                { icon: FaGithub, color: 'hover:bg-gray-700', href: 'https://github.com/nur922184' },
               ].map((social, index) => (
                 <motion.a
                   key={index}
