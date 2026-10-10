@@ -34,6 +34,10 @@ import SEO from '../../components/seo/SEO';
 import StructuredData, { organizationSchema, breadcrumbSchema } from '../../components/seo/StructuredData';
 import LeadershipSection from '../../components/aboutpagesComponent/LeadershipSection';
 
+
+import nuruzzamanImage from '../../assets/images/nur.webp';
+import tonoyImage from '../../assets/images/DSC03830.webp';
+
 const About = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
@@ -66,7 +70,8 @@ const About = () => {
       designation: 'প্রতিষ্ঠাতা ও সিইও',
       subTitle: 'আইটি প্রশিক্ষক ও উদ্যোক্তা',
       description: 'দক্ষতা ও নৈতিকতার সমন্বয়ে আধুনিক আইটি শিক্ষার বিস্তারে নিবেদিত।',
-      image: 'https://i.ibb.co.com/7JgcS1m7/nur.jpg',
+      // image: 'https://i.ibb.co.com/7JgcS1m7/nur.jpg',
+      image: {nuruzzamanImage},
       social: { facebook: '#', linkedin: '#', twitter: '#' }
     },
     {
@@ -75,8 +80,9 @@ const About = () => {
       designation: 'প্রধান প্রশিক্ষক',
       subTitle: 'আইটি বিশেষজ্ঞ ও মেন্টর',
       description: 'তরুণ প্রজন্মকে প্রযুক্তিতে দক্ষ করে গড়ে তোলার লক্ষ্যে নিরলসভাবে কাজ করে যাচ্ছেন।',
-      image: 'https://i.ibb.co.com/3Hzx3sB/DSC03830.jpg',
-      social: { facebook: '#', linkedin: '#', twitter: '#' }
+      image: {tonoyImage},
+      // image: 'https://i.ibb.co.com/3Hzx3sB/DSC03830.jpg',
+      social: { facebook: 'https://www.facebook.com/md.moniruzzaman.tonoy', linkedin: 'https://www.linkedin.com/in/md-moniruzzaman-tonoy-7bb52b285', twitter: 'https://x.com/moniruzzaman_24' }
     }
   ];
 
@@ -486,7 +492,7 @@ const About = () => {
                           <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 opacity-40 blur-sm" />
 
                           <img
-                            src="https://i.ibb.co.com/7JgcS1m7/nur.jpg"
+                          src={nuruzzamanImage}
                             alt="মো: নুরুজ্জামান"
                             className="relative w-14 h-14 rounded-full object-cover border-2 border-white/20"
                           />
@@ -538,7 +544,7 @@ const About = () => {
                           <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-cyan-500 to-blue-400 opacity-40 blur-sm" />
 
                           <img
-                            src="https://i.ibb.co.com/3Hzx3sB/DSC03830.jpg"
+                            src={tonoyImage}
                             alt="মো: মনিরুজ্জামান"
                             className="relative w-14 h-14 rounded-full object-cover border-2 border-white/20"
                           />

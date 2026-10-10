@@ -1,12 +1,11 @@
-import { useEffect, useMemo, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import {
-  FaImages,
-  FaSpinner,
   FaArrowRight,
-  FaExpand,
   FaChevronLeft,
   FaChevronRight,
+  FaExpand,
+  FaImages,
   FaTimes,
 } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
@@ -14,11 +13,215 @@ import { Link } from 'react-router-dom';
 import { getGallery } from '../../services/contentService';
 
 // ============================================================
-// FALLBACK IMAGE
+// CONFIG
 // ============================================================
 
 const fallbackImage =
   'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1400&h=900&fit=crop&q=85';
+
+const HERO_LIMIT = 7; // photos shown in the hero slider
+const FETCH_LIMIT = 20; // photos loaded for the lightbox
+const AUTOPLAY_MS = 5500;
+
+const HERO_STYLES = `
+@keyframes gh-progress {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+.gh-thumbs { scrollbar-width: none; }
+.gh-thumbs::-webkit-scrollbar { display: none; }
+`;
+
+const pad = (n) => String(n).padStart(2, '0');
+
+const handleImageError = (event) => {
+  event.currentTarget.onerror = null;
+  event.currentTarget.src = fallbackImage;
+};
+
+// ============================================================
+// LIGHTBOX
+// ============================================================
+
+const lightboxVariants = {
+  enter: (dir) => ({ opacity: 0, x: dir > 0 ? 48 : -48 }),
+  center: { opacity: 1, x: 0 },
+  exit: (dir) => ({ opacity: 0, x: dir > 0 ? -48 : 48 }),
+};
+
+const Lightbox = ({ images, index, onClose, onChange }) => {
+  const total = images.length;
+  const closeRef = useRef(null);
+  const directionRef = useRef(1);
+  const touchStartX = useRef(null);
+  const reduceMotion = useReducedMotion();
+
+  const go = useCallback(
+    (dir) => {
+      directionRef.current = dir;
+      onChange((index + dir + total) % total);
+    },
+    [index, total, onChange]
+  );
+
+  // Keyboard, scroll lock, focus
+  useEffect(() => {
+    const onKey = (event) => {
+      if (event.key === 'Escape') onClose();
+      else if (event.key === 'ArrowRight') go(1);
+      else if (event.key === 'ArrowLeft') go(-1);
+    };
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', onKey);
+    closeRef.current?.focus();
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', onKey);
+    };
+  }, [go, onClose]);
+
+  // Preload neighbours for instant navigation
+  useEffect(() => {
+    [index + 1, index - 1].forEach((i) => {
+      const src = images[(i + total) % total];
+      if (src) {
+        const img = new Image();
+        img.src = src;
+      }
+    });
+  }, [index, images, total]);
+
+  const onTouchStart = (event) => {
+    touchStartX.current = event.touches[0].clientX;
+  };
+
+  const onTouchEnd = (event) => {
+    if (touchStartX.current === null) return;
+    const dx = event.changedTouches[0].clientX - touchStartX.current;
+    touchStartX.current = null;
+    if (Math.abs(dx) > 50) go(dx < 0 ? 1 : -1);
+  };
+
+  const navButton =
+    'flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white/80 ring-1 ring-white/15 backdrop-blur transition hover:bg-white/20 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white';
+
+  return (
+    <motion.div
+      role="dialog"
+      aria-modal="true"
+      aria-label="Photo gallery viewer"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
+      className="fixed inset-0 z-[100] flex flex-col bg-slate-950/95 backdrop-blur-md"
+      onClick={onClose}
+    >
+      {/* Top bar */}
+      <div className="flex items-center justify-between px-4 py-4 sm:px-6">
+        <div className="text-sm font-medium tabular-nums text-white/70">
+          {pad(index + 1)} <span className="text-white/30">/</span> {pad(total)}
+        </div>
+        <button
+          ref={closeRef}
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            onClose();
+          }}
+          className={navButton}
+          aria-label="Close viewer"
+        >
+          <FaTimes />
+        </button>
+      </div>
+
+      {/* Stage */}
+      <div
+        className="relative flex min-h-0 flex-1 items-center justify-center px-4 pb-6 sm:px-20"
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+      >
+        {total > 1 && (
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              go(-1);
+            }}
+            className={`${navButton} absolute left-3 top-1/2 z-10 hidden -translate-y-1/2 sm:flex sm:left-6`}
+            aria-label="Previous photo"
+          >
+            <FaChevronLeft />
+          </button>
+        )}
+
+        <AnimatePresence mode="wait" custom={directionRef.current} initial={false}>
+          <motion.img
+            key={index}
+            custom={directionRef.current}
+            variants={lightboxVariants}
+            initial={reduceMotion ? false : 'enter'}
+            animate="center"
+            exit={reduceMotion ? undefined : 'exit'}
+            transition={{ duration: 0.28, ease: 'easeOut' }}
+            src={images[index] || fallbackImage}
+            alt={`Open IT Institute gallery photo ${index + 1} of ${total}`}
+            draggable={false}
+            onError={handleImageError}
+            onClick={(e) => e.stopPropagation()}
+            className="max-h-full max-w-full select-none rounded-xl object-contain shadow-2xl"
+          />
+        </AnimatePresence>
+
+        {total > 1 && (
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              go(1);
+            }}
+            className={`${navButton} absolute right-3 top-1/2 z-10 hidden -translate-y-1/2 sm:flex sm:right-6`}
+            aria-label="Next photo"
+          >
+            <FaChevronRight />
+          </button>
+        )}
+      </div>
+
+      {/* Mobile controls */}
+      {total > 1 && (
+        <div className="flex items-center justify-center gap-4 pb-6 sm:hidden">
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              go(-1);
+            }}
+            className={navButton}
+            aria-label="Previous photo"
+          >
+            <FaChevronLeft />
+          </button>
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              go(1);
+            }}
+            className={navButton}
+            aria-label="Next photo"
+          >
+            <FaChevronRight />
+          </button>
+        </div>
+      )}
+    </motion.div>
+  );
+};
 
 // ============================================================
 // GALLERY HERO
@@ -28,10 +231,15 @@ const GalleryHero = () => {
   const [galleryImages, setGalleryImages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [showPreview, setShowPreview] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(null);
+  const [hovered, setHovered] = useState(false);
+  const [tabHidden, setTabHidden] = useState(false);
+
+  const thumbsRef = useRef(null);
+  const reduceMotion = useReducedMotion();
 
   // ============================================================
-  // LOAD GALLERY FROM MONGODB
+  // LOAD GALLERY
   // ============================================================
 
   useEffect(() => {
@@ -41,9 +249,7 @@ const GalleryHero = () => {
       try {
         setLoading(true);
 
-        const response = await getGallery({
-          limit: 20,
-        });
+        const response = await getGallery({ limit: FETCH_LIMIT });
 
         const data =
           response?.data?.gallery ||
@@ -58,14 +264,9 @@ const GalleryHero = () => {
         }
       } catch (error) {
         console.error('Gallery loading failed:', error);
-
-        if (mounted) {
-          setGalleryImages([]);
-        }
+        if (mounted) setGalleryImages([]);
       } finally {
-        if (mounted) {
-          setLoading(false);
-        }
+        if (mounted) setLoading(false);
       }
     };
 
@@ -80,572 +281,347 @@ const GalleryHero = () => {
   // NORMALIZE IMAGE DATA
   // ============================================================
 
-  const images = useMemo(() => {
-    return galleryImages
-      .map((item) => {
-        if (typeof item === 'string') {
-          return item;
-        }
+  const images = useMemo(
+    () =>
+      galleryImages
+        .map((item) => {
+          if (typeof item === 'string') return item;
+          return (
+            item?.image ||
+            item?.imageUrl ||
+            item?.url ||
+            item?.photo ||
+            item?.src ||
+            item?.fileUrl ||
+            null
+          );
+        })
+        .filter(Boolean),
+    [galleryImages]
+  );
 
-        return (
-          item?.image ||
-          item?.imageUrl ||
-          item?.url ||
-          item?.photo ||
-          item?.src ||
-          item?.fileUrl ||
-          null
-        );
-      })
-      .filter(Boolean);
-  }, [galleryImages]);
+  const collection = useMemo(() => images.slice(0, HERO_LIMIT), [images]);
+  const total = collection.length;
+  const hasMany = total > 1;
+  const lightboxOpen = lightboxIndex !== null;
 
-  // ============================================================
-  // HERO COLLECTION
-  // 7 IMAGES MAXIMUM
-  // ============================================================
-
-  const collection = useMemo(() => {
-    if (!images.length) {
-      return [];
-    }
-
-    return images.slice(0, 7);
-  }, [images]);
+  // Keep the active index valid if the list changes
+  useEffect(() => {
+    if (activeIndex >= total && total > 0) setActiveIndex(0);
+  }, [total, activeIndex]);
 
   // ============================================================
-  // AUTO ACTIVE IMAGE
+  // AUTOPLAY (driven by the progress bar animation)
   // ============================================================
 
   useEffect(() => {
-    if (collection.length <= 1) return;
+    const onVisibility = () => setTabHidden(document.hidden);
+    document.addEventListener('visibilitychange', onVisibility);
+    return () => document.removeEventListener('visibilitychange', onVisibility);
+  }, []);
 
-    const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % collection.length);
-    }, 5000);
+  const autoplay = hasMany && !reduceMotion;
+  const paused = hovered || tabHidden || lightboxOpen;
 
-    return () => clearInterval(interval);
-  }, [collection.length]);
+  const goTo = useCallback(
+    (index) => {
+      if (!total) return;
+      setActiveIndex(((index % total) + total) % total);
+    },
+    [total]
+  );
 
-  // ============================================================
-  // OPEN PREVIEW
-  // ============================================================
+  // Keep the active thumbnail visible inside the strip (horizontal only)
+  useEffect(() => {
+    const strip = thumbsRef.current;
+    const el = strip?.children?.[activeIndex];
+    if (!strip || !el) return;
 
-  const openPreview = (index) => {
-    setActiveIndex(index);
-    setShowPreview(true);
-  };
-
-  // ============================================================
-  // PREVIOUS
-  // ============================================================
-
-  const previousImage = (event) => {
-    event?.stopPropagation();
-
-    setActiveIndex(
-      (prev) =>
-        (prev - 1 + collection.length) % collection.length
-    );
-  };
+    const target = el.offsetLeft - (strip.clientWidth - el.clientWidth) / 2;
+    strip.scrollTo({ left: Math.max(0, target), behavior: 'smooth' });
+  }, [activeIndex]);
 
   // ============================================================
-  // NEXT
+  // MOTION HELPERS
   // ============================================================
 
-  const nextImage = (event) => {
-    event?.stopPropagation();
+  const fadeUp = (delay = 0) =>
+    reduceMotion
+      ? {}
+      : {
+          initial: { opacity: 0, y: 16 },
+          animate: { opacity: 1, y: 0 },
+          transition: { duration: 0.6, delay, ease: 'easeOut' },
+        };
 
-    setActiveIndex(
-      (prev) => (prev + 1) % collection.length
-    );
-  };
+  const imageCountLabel = `${images.length}${images.length >= FETCH_LIMIT ? '+' : ''}`;
+
+  // ============================================================
+  // RENDER
+  // ============================================================
 
   return (
     <>
-      {/* ======================================================
-          HERO SECTION
-      ====================================================== */}
+      <style>{HERO_STYLES}</style>
 
-      <section className="relative min-h-[500px] overflow-hidden bg-[#f8fafc] sm:min-h-[590px] lg:min-h-[650px]">
-        {/* ====================================================
-            BACKGROUND
-        ==================================================== */}
-
-        <div className="pointer-events-none absolute inset-0">
-          {/* Base */}
-
-          <div className="absolute inset-0 bg-gradient-to-br from-white via-[#f8fbff] to-[#eef7ff]" />
-
-          {/* Blue Glow */}
-
-          <motion.div
-            animate={{
-              x: [0, 40, 0],
-              y: [0, -25, 0],
-              scale: [1, 1.08, 1],
-              opacity: [0.2, 0.3, 0.2],
-            }}
-            transition={{
-              duration: 12,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
-            className="absolute -left-40 top-20 h-[450px] w-[450px] rounded-full bg-blue-300/20 blur-[110px]"
-          />
-
-          {/* Cyan Glow */}
-
-          <motion.div
-            animate={{
-              x: [0, -35, 0],
-              y: [0, 30, 0],
-              scale: [1.05, 1, 1.05],
-              opacity: [0.16, 0.25, 0.16],
-            }}
-            transition={{
-              duration: 14,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
-            className="absolute -right-40 top-10 h-[430px] w-[430px] rounded-full bg-cyan-300/20 blur-[110px]"
-          />
-
-          {/* Purple Glow */}
-
-          <motion.div
-            animate={{
-              scale: [1, 1.15, 1],
-              opacity: [0.08, 0.16, 0.08],
-            }}
-            transition={{
-              duration: 15,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
-            className="absolute bottom-[-180px] left-1/2 h-[400px] w-[650px] -translate-x-1/2 rounded-full bg-purple-300/10 blur-[130px]"
-          />
-
-          {/* Grid */}
-
+      <section className="relative overflow-hidden bg-white">
+        {/* Background: one soft brand wash + faint grid, nothing animated */}
+        <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+          <div className="absolute inset-0 bg-[radial-gradient(60%_55%_at_88%_8%,rgba(15,76,129,0.09),transparent_70%),radial-gradient(45%_45%_at_0%_100%,rgba(34,211,238,0.07),transparent_70%)]" />
           <div
-            className="absolute inset-0 opacity-[0.025]"
+            className="absolute inset-0 opacity-[0.35]"
             style={{
               backgroundImage:
-                'linear-gradient(rgba(15,23,42,.8) 1px, transparent 1px), linear-gradient(90deg, rgba(15,23,42,.8) 1px, transparent 1px)',
-              backgroundSize: '60px 60px',
+                'linear-gradient(rgba(15,23,42,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(15,23,42,0.045) 1px, transparent 1px)',
+              backgroundSize: '56px 56px',
+              WebkitMaskImage:
+                'radial-gradient(ellipse at 70% 30%, #000 0%, transparent 70%)',
+              maskImage: 'radial-gradient(ellipse at 70% 30%, #000 0%, transparent 70%)',
             }}
           />
-
-          {/* Giant Brand Text */}
-
-          <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
-            <motion.h1
-              initial={{
-                opacity: 0,
-                scale: 0.94,
-              }}
-              animate={{
-                opacity: 1,
-                scale: 1,
-              }}
-              transition={{
-                duration: 1.5,
-              }}
-              className="select-none whitespace-nowrap text-[70px] font-black tracking-[-0.08em] text-slate-900/[0.035] sm:text-[120px] md:text-[170px] lg:text-[220px]"
-            >
-              OPEN IT
-            </motion.h1>
-          </div>
         </div>
 
-        {/* ====================================================
-            MAIN CONTAINER
-        ==================================================== */}
-
-        <div className="relative z-10 mx-auto flex min-h-[500px] max-w-7xl items-center px-4 py-14 sm:min-h-[590px] sm:px-6 lg:min-h-[650px] lg:px-8">
-          <div className="grid w-full items-center gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:gap-12">
+        <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+          <div className="grid items-center gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
             {/* =================================================
-                LEFT CONTENT
+                LEFT – CONTENT
             ================================================= */}
-
-            <motion.div
-              initial={{
-                opacity: 0,
-                x: -40,
-              }}
-              animate={{
-                opacity: 1,
-                x: 0,
-              }}
-              transition={{
-                duration: 0.8,
-              }}
-              className="relative z-20"
-            >
-              {/* Badge */}
-
+            <div className="relative z-10">
               <motion.div
-                initial={{
-                  opacity: 0,
-                  y: 15,
-                }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                transition={{
-                  delay: 0.2,
-                  duration: 0.6,
-                }}
-                className="mb-5 inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white/80 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.18em] text-blue-600 shadow-sm backdrop-blur-xl sm:text-xs"
+                {...fadeUp(0)}
+                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3.5 py-1.5 text-xs font-semibold text-slate-600 shadow-sm"
               >
-                <FaImages />
+                <FaImages className="text-[#0F4C81]" />
                 Open IT Institute
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                Gallery
+                <span className="h-3 w-px bg-slate-200" />
+                <span className="text-slate-400">Photo gallery</span>
               </motion.div>
 
-              {/* Heading */}
-
               <motion.h2
-                initial={{
-                  opacity: 0,
-                  y: 20,
-                }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                transition={{
-                  delay: 0.3,
-                  duration: 0.7,
-                }}
-                className="max-w-xl text-4xl font-black leading-[1.05] tracking-[-0.04em] text-slate-900 sm:text-5xl lg:text-[58px]"
+                {...fadeUp(0.08)}
+                className="mt-6 text-4xl font-bold leading-[1.08] tracking-tight text-slate-900 sm:text-5xl lg:text-[56px]"
               >
                 Learning.
                 <br />
-
-                <span className="bg-gradient-to-r from-blue-600 via-cyan-500 to-indigo-600 bg-clip-text text-transparent">
-                  Growing.
-                </span>
-
+                <span className="text-[#0F4C81]">Growing.</span>
                 <br />
-
-                <span className="text-slate-800">
-                  Creating Future.
-                </span>
+                Creating Future.
               </motion.h2>
 
-              {/* Description */}
-
               <motion.p
-                initial={{
-                  opacity: 0,
-                  y: 15,
-                }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                transition={{
-                  delay: 0.45,
-                  duration: 0.6,
-                }}
-                className="mt-5 max-w-lg text-sm leading-7 text-slate-500 sm:text-[15px]"
+                {...fadeUp(0.16)}
+                className="mt-5 max-w-md text-[15px] leading-7 text-slate-600"
               >
-                আমাদের প্রশিক্ষণ কার্যক্রম, শিক্ষার্থীদের
-                সাফল্য এবং Open IT Institute-এর স্মরণীয়
-                মুহূর্তগুলোর একটি ছোট্ট সংগ্রহ।
+                আমাদের প্রশিক্ষণ কার্যক্রম, শিক্ষার্থীদের সাফল্য এবং Open IT
+                Institute-এর স্মরণীয় মুহূর্তগুলোর একটি ছোট্ট সংগ্রহ।
               </motion.p>
 
-              {/* Buttons */}
-
               <motion.div
-                initial={{
-                  opacity: 0,
-                  y: 15,
-                }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                transition={{
-                  delay: 0.6,
-                  duration: 0.6,
-                }}
-                className="mt-7 flex flex-wrap items-center gap-3"
+                {...fadeUp(0.24)}
+                className="mt-8 flex flex-wrap items-center gap-3"
               >
                 <Link
                   to="/gallery"
-                  className="group inline-flex items-center gap-2 rounded-xl bg-[#071b32] px-5 py-3 text-xs font-bold text-white shadow-xl shadow-blue-900/15 transition-all duration-300 hover:-translate-y-1 hover:bg-blue-600 hover:shadow-blue-600/20"
+                  className="group inline-flex items-center gap-2 rounded-xl bg-[#0F4C81] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-900/15 transition hover:bg-[#0b3b64] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0F4C81] focus-visible:ring-offset-2"
                 >
-                  Explore Gallery
-
-                  <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
+                  Explore gallery
+                  <FaArrowRight className="text-xs transition-transform duration-300 group-hover:translate-x-0.5" />
                 </Link>
 
-                {collection.length > 0 && (
+                {total > 0 && (
                   <button
-                    onClick={() => openPreview(activeIndex)}
-                    className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white/80 px-5 py-3 text-xs font-bold text-slate-700 shadow-sm backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:text-blue-600"
+                    type="button"
+                    onClick={() => setLightboxIndex(activeIndex)}
+                    className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0F4C81] focus-visible:ring-offset-2"
                   >
-                    <FaExpand />
-                    View Moments
+                    <FaExpand className="text-xs text-slate-500" />
+                    View moments
                   </button>
                 )}
               </motion.div>
 
-              {/* Small Stats */}
-
-              <motion.div
-                initial={{
-                  opacity: 0,
-                }}
-                animate={{
-                  opacity: 1,
-                }}
-                transition={{
-                  delay: 0.8,
-                }}
-                className="mt-8 flex items-center gap-6"
-              >
-                <div>
-                  <p className="text-xl font-black text-slate-900">
-                    {images.length || 0}+
-                  </p>
-
-                  <p className="mt-0.5 text-[10px] font-medium uppercase tracking-wider text-slate-400">
-                    Moments
-                  </p>
-                </div>
-
-                <div className="h-8 w-px bg-slate-200" />
-
-                <div>
-                  <p className="text-xl font-black text-slate-900">
-                    01
-                  </p>
-
-                  <p className="mt-0.5 text-[10px] font-medium uppercase tracking-wider text-slate-400">
-                    Collection
-                  </p>
-                </div>
-
-                <div className="h-8 w-px bg-slate-200" />
-
-                <div className="flex items-center gap-1">
-                  <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-500" />
-
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
-                    Live
-                  </span>
-                </div>
-              </motion.div>
-            </motion.div>
+              {images.length > 0 && (
+                <motion.div
+                  {...fadeUp(0.32)}
+                  className="mt-10 flex items-center gap-4 border-t border-slate-200 pt-6"
+                >
+                  <div>
+                    <div className="text-2xl font-bold tabular-nums text-slate-900">
+                      {imageCountLabel}
+                    </div>
+                    <div className="text-xs text-slate-500">Moments captured</div>
+                  </div>
+                </motion.div>
+              )}
+            </div>
 
             {/* =================================================
-                RIGHT - PHOTO COLLECTION
+                RIGHT – FEATURED SLIDER
             ================================================= */}
-
-            <div className="relative h-[360px] w-full sm:h-[430px] lg:h-[510px]">
-              {/* Collection Glow */}
-
-              <div className="absolute left-1/2 top-1/2 h-[260px] w-[260px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-300/20 blur-[100px] sm:h-[350px] sm:w-[350px]" />
-
-              {/* Loading */}
-
+            <div className="relative min-w-0">
               {loading && (
-                <div className="relative flex h-full items-center justify-center">
-                  <div className="flex flex-col items-center">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-slate-200 bg-white/80 text-blue-600 shadow-xl backdrop-blur-xl">
-                      <FaSpinner className="animate-spin text-xl" />
-                    </div>
-
-                    <p className="mt-3 text-xs font-semibold text-slate-400">
-                      Loading gallery...
-                    </p>
-                  </div>
-                </div>
-              )}
-
-              {/* Empty */}
-
-              {!loading && collection.length === 0 && (
-                <div className="relative flex h-full items-center justify-center">
-                  <div className="flex flex-col items-center">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-slate-400 shadow-xl">
-                      <FaImages className="text-2xl" />
-                    </div>
-
-                    <p className="mt-3 text-xs font-semibold text-slate-400">
-                      No gallery images available
-                    </p>
-                  </div>
-                </div>
-              )}
-
-              {/* =================================================
-                  PHOTO COLLECTION
-              ================================================= */}
-
-              {!loading && collection.length > 0 && (
-                <div className="absolute inset-0">
-                  {/* Decorative Ring */}
-
-                  <motion.div
-                    animate={{
-                      rotate: 360,
-                    }}
-                    transition={{
-                      duration: 45,
-                      repeat: Infinity,
-                      ease: 'linear',
-                    }}
-                    className="absolute left-1/2 top-1/2 h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-blue-200/60 sm:h-[390px] sm:w-[390px] lg:h-[450px] lg:w-[450px]"
-                  />
-
-                  {/* =================================================
-                      IMAGE 1 - CENTER
-                  ================================================= */}
-
-                  {collection[0] && (
-                    <FloatingPhoto
-                      image={collection[0]}
-                      index={0}
-                      className="left-1/2 top-1/2 z-20 h-[230px] w-[300px] -translate-x-1/2 -translate-y-1/2 sm:h-[280px] sm:w-[370px] lg:h-[330px] lg:w-[440px]"
-                      rotate={-2}
-                      delay={0}
-                      duration={7}
-                      onClick={() => openPreview(0)}
-                    />
-                  )}
-
-                  {/* =================================================
-                      IMAGE 2 - TOP LEFT
-                  ================================================= */}
-
-                  {collection[1] && (
-                    <FloatingPhoto
-                      image={collection[1]}
-                      index={1}
-                      className="left-[2%] top-[4%] z-10 h-[115px] w-[145px] sm:h-[145px] sm:w-[185px] lg:left-[4%] lg:top-[5%] lg:h-[175px] lg:w-[220px]"
-                      rotate={-7}
-                      delay={0.8}
-                      duration={8}
-                      onClick={() => openPreview(1)}
-                    />
-                  )}
-
-                  {/* =================================================
-                      IMAGE 3 - TOP RIGHT
-                  ================================================= */}
-
-                  {collection[2] && (
-                    <FloatingPhoto
-                      image={collection[2]}
-                      index={2}
-                      className="right-[2%] top-[2%] z-10 h-[105px] w-[140px] sm:h-[140px] sm:w-[180px] lg:right-[3%] lg:top-[3%] lg:h-[165px] lg:w-[215px]"
-                      rotate={7}
-                      delay={1.3}
-                      duration={9}
-                      onClick={() => openPreview(2)}
-                    />
-                  )}
-
-                  {/* =================================================
-                      IMAGE 4 - BOTTOM LEFT
-                  ================================================= */}
-
-                  {collection[3] && (
-                    <FloatingPhoto
-                      image={collection[3]}
-                      index={3}
-                      className="bottom-[4%] left-[5%] z-10 h-[120px] w-[155px] sm:h-[150px] sm:w-[195px] lg:bottom-[5%] lg:left-[5%] lg:h-[180px] lg:w-[225px]"
-                      rotate={5}
-                      delay={1.7}
-                      duration={10}
-                      onClick={() => openPreview(3)}
-                    />
-                  )}
-
-                  {/* =================================================
-                      IMAGE 5 - BOTTOM RIGHT
-                  ================================================= */}
-
-                  {collection[4] && (
-                    <FloatingPhoto
-                      image={collection[4]}
-                      index={4}
-                      className="bottom-[2%] right-[4%] z-10 h-[125px] w-[160px] sm:h-[155px] sm:w-[200px] lg:bottom-[4%] lg:right-[4%] lg:h-[185px] lg:w-[230px]"
-                      rotate={-5}
-                      delay={2}
-                      duration={8.5}
-                      onClick={() => openPreview(4)}
-                    />
-                  )}
-
-                  {/* =================================================
-                      IMAGE 6 - LEFT CENTER
-                  ================================================= */}
-
-                  {collection[5] && (
-                    <FloatingPhoto
-                      image={collection[5]}
-                      index={5}
-                      className="left-[-2%] top-[43%] z-[15] h-[95px] w-[120px] sm:left-[0%] sm:h-[120px] sm:w-[150px] lg:left-[0%] lg:h-[140px] lg:w-[175px]"
-                      rotate={-10}
-                      delay={2.5}
-                      duration={9.5}
-                      onClick={() => openPreview(5)}
-                    />
-                  )}
-
-                  {/* =================================================
-                      IMAGE 7 - RIGHT CENTER
-                  ================================================= */}
-
-                  {collection[6] && (
-                    <FloatingPhoto
-                      image={collection[6]}
-                      index={6}
-                      className="right-[-2%] top-[44%] z-[15] h-[95px] w-[120px] sm:right-[0%] sm:h-[120px] sm:w-[150px] lg:right-[0%] lg:h-[140px] lg:w-[175px]"
-                      rotate={9}
-                      delay={3}
-                      duration={10.5}
-                      onClick={() => openPreview(6)}
-                    />
-                  )}
-
-                  {/* =================================================
-                      CENTER ACTIVE INDICATOR
-                  ================================================= */}
-
-                  <div className="absolute bottom-[-2px] left-1/2 z-30 flex -translate-x-1/2 items-center gap-1.5 rounded-full border border-white/60 bg-white/75 px-3 py-2 shadow-lg backdrop-blur-xl">
-                    {collection.map((_, index) => (
-                      <button
-                        key={index}
-                        onClick={() => setActiveIndex(index)}
-                        className={`h-1.5 rounded-full transition-all duration-500 ${
-                          activeIndex === index
-                            ? 'w-6 bg-blue-600'
-                            : 'w-1.5 bg-slate-300 hover:bg-blue-300'
-                        }`}
-                        aria-label={`View image ${index + 1}`}
-                      />
+                <div className="animate-pulse">
+                  <div className="aspect-[4/3] w-full rounded-3xl bg-slate-100" />
+                  <div className="mt-3 flex gap-2">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <div key={i} className="h-14 w-20 rounded-xl bg-slate-100" />
                     ))}
                   </div>
                 </div>
+              )}
+
+              {!loading && total === 0 && (
+                <div className="flex aspect-[4/3] w-full flex-col items-center justify-center rounded-3xl border border-dashed border-slate-300 bg-slate-50 text-center">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-xl text-slate-400 shadow-sm ring-1 ring-slate-200">
+                    <FaImages />
+                  </div>
+                  <p className="mt-4 text-sm font-semibold text-slate-700">
+                    No photos yet
+                  </p>
+                  <p className="mt-1 text-xs text-slate-500">
+                    New moments will appear here soon.
+                  </p>
+                </div>
+              )}
+
+              {!loading && total > 0 && (
+                <motion.div
+                  {...(reduceMotion
+                    ? {}
+                    : {
+                        initial: { opacity: 0, y: 20 },
+                        animate: { opacity: 1, y: 0 },
+                        transition: { duration: 0.7, delay: 0.15, ease: 'easeOut' },
+                      })}
+                  onMouseEnter={() => setHovered(true)}
+                  onMouseLeave={() => setHovered(false)}
+                  onFocus={() => setHovered(true)}
+                  onBlur={() => setHovered(false)}
+                >
+                  {/* Featured image */}
+                  <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl bg-slate-100 shadow-[0_30px_70px_-30px_rgba(15,23,42,0.4)] ring-1 ring-slate-900/10">
+                    <AnimatePresence initial={false}>
+                      <motion.img
+                        key={activeIndex}
+                        src={collection[activeIndex] || fallbackImage}
+                        alt={`Open IT Institute gallery photo ${activeIndex + 1}`}
+                        draggable={false}
+                        loading={activeIndex === 0 ? 'eager' : 'lazy'}
+                        fetchpriority={activeIndex === 0 ? 'high' : undefined}
+                        onError={handleImageError}
+                        initial={reduceMotion ? { opacity: 1 } : { opacity: 0, scale: 1.05 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.9, ease: 'easeOut' }}
+                        className="absolute inset-0 h-full w-full select-none object-cover"
+                      />
+                    </AnimatePresence>
+
+                    {/* Click target for lightbox */}
+                    <button
+                      type="button"
+                      onClick={() => setLightboxIndex(activeIndex)}
+                      className="absolute inset-0 z-10 cursor-zoom-in focus:outline-none focus-visible:ring-4 focus-visible:ring-inset focus-visible:ring-[#0F4C81]/60"
+                      aria-label="Open photo in full screen"
+                    />
+
+                    {/* Bottom gradient + caption */}
+                    <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 bg-gradient-to-t from-slate-950/60 via-slate-950/15 to-transparent px-4 pb-4 pt-16 sm:px-5 sm:pb-5">
+                      <div className="flex items-end justify-between gap-3">
+                        <div className="text-white">
+                          <div className="text-xs font-medium text-white/70">Moment</div>
+                          <div className="text-lg font-semibold tabular-nums leading-tight">
+                            {pad(activeIndex + 1)}
+                            <span className="text-white/50"> / {pad(total)}</span>
+                          </div>
+                        </div>
+
+                        {hasMany && (
+                          <div className="pointer-events-auto flex items-center gap-2">
+                            <button
+                              type="button"
+                              onClick={() => goTo(activeIndex - 1)}
+                              className="relative z-20 flex h-10 w-10 items-center justify-center rounded-full bg-white/15 text-white ring-1 ring-white/25 backdrop-blur transition hover:bg-white/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                              aria-label="Previous photo"
+                            >
+                              <FaChevronLeft className="text-sm" />
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => goTo(activeIndex + 1)}
+                              className="relative z-20 flex h-10 w-10 items-center justify-center rounded-full bg-white/15 text-white ring-1 ring-white/25 backdrop-blur transition hover:bg-white/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                              aria-label="Next photo"
+                            >
+                              <FaChevronRight className="text-sm" />
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Expand hint */}
+                    <div className="pointer-events-none absolute right-4 top-4 z-20 flex h-9 w-9 items-center justify-center rounded-full bg-black/30 text-xs text-white ring-1 ring-white/20 backdrop-blur">
+                      <FaExpand />
+                    </div>
+
+                    {/* Autoplay progress */}
+                    {autoplay && (
+                      <span
+                        key={activeIndex}
+                        onAnimationEnd={() => goTo(activeIndex + 1)}
+                        className="pointer-events-none absolute bottom-0 left-0 z-30 h-[3px] w-full origin-left bg-white/80"
+                        style={{
+                          animation: `gh-progress ${AUTOPLAY_MS}ms linear forwards`,
+                          animationPlayState: paused ? 'paused' : 'running',
+                        }}
+                      />
+                    )}
+                  </div>
+
+                  {/* Thumbnails */}
+                  {hasMany && (
+                    <div
+                      ref={thumbsRef}
+                      className="gh-thumbs mt-3 flex gap-2 overflow-x-auto pb-1"
+                      role="tablist"
+                      aria-label="Gallery photos"
+                    >
+                      {collection.map((src, index) => {
+                        const active = index === activeIndex;
+                        return (
+                          <button
+                            key={`${src}-${index}`}
+                            type="button"
+                            role="tab"
+                            aria-selected={active}
+                            aria-label={`Show photo ${index + 1}`}
+                            onClick={() => goTo(index)}
+                            className={`relative h-14 w-20 shrink-0 overflow-hidden rounded-xl transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0F4C81] focus-visible:ring-offset-2 sm:h-16 sm:w-24 ${
+                              active
+                                ? 'opacity-100 ring-2 ring-[#0F4C81] ring-offset-2'
+                                : 'opacity-55 hover:opacity-100'
+                            }`}
+                          >
+                            <img
+                              src={src}
+                              alt=""
+                              draggable={false}
+                              loading="lazy"
+                              onError={handleImageError}
+                              className="h-full w-full select-none object-cover"
+                            />
+                          </button>
+                        );
+                      })}
+                    </div>
+                  )}
+                </motion.div>
               )}
             </div>
           </div>
         </div>
 
-        {/* ====================================================
-            BOTTOM FADE
-        ==================================================== */}
-
-        <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-30 h-20 bg-gradient-to-t from-white/70 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
       </section>
 
       {/* ======================================================
@@ -653,220 +629,16 @@ const GalleryHero = () => {
       ====================================================== */}
 
       <AnimatePresence>
-        {showPreview && collection.length > 0 && (
-          <motion.div
-            initial={{
-              opacity: 0,
-            }}
-            animate={{
-              opacity: 1,
-            }}
-            exit={{
-              opacity: 0,
-            }}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/90 p-4 backdrop-blur-2xl"
-            onClick={() => setShowPreview(false)}
-          >
-            {/* Close */}
-
-            <button
-              onClick={() => setShowPreview(false)}
-              className="absolute right-5 top-5 z-[110] flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white/70 backdrop-blur-xl transition hover:bg-white/20 hover:text-white"
-              aria-label="Close preview"
-            >
-              <FaTimes />
-            </button>
-
-            {/* Previous */}
-
-            <button
-              onClick={previousImage}
-              className="absolute left-4 top-1/2 z-[110] flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white/70 backdrop-blur-xl transition hover:bg-white/20 hover:text-white sm:left-8"
-              aria-label="Previous image"
-            >
-              <FaChevronLeft />
-            </button>
-
-            {/* Next */}
-
-            <button
-              onClick={nextImage}
-              className="absolute right-4 top-1/2 z-[110] flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white/70 backdrop-blur-xl transition hover:bg-white/20 hover:text-white sm:right-8"
-              aria-label="Next image"
-            >
-              <FaChevronRight />
-            </button>
-
-            {/* Image */}
-
-            <motion.div
-              initial={{
-                scale: 0.9,
-                opacity: 0,
-              }}
-              animate={{
-                scale: 1,
-                opacity: 1,
-              }}
-              exit={{
-                scale: 0.9,
-                opacity: 0,
-              }}
-              className="relative max-h-[88vh] max-w-6xl overflow-hidden rounded-3xl border border-white/10 bg-black/20 shadow-2xl"
-              onClick={(event) => event.stopPropagation()}
-            >
-              <AnimatePresence mode="wait">
-                <motion.img
-                  key={activeIndex}
-                  initial={{
-                    opacity: 0,
-                    scale: 1.04,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    scale: 1,
-                  }}
-                  exit={{
-                    opacity: 0,
-                    scale: 0.98,
-                  }}
-                  transition={{
-                    duration: 0.4,
-                  }}
-                  src={
-                    collection[activeIndex] ||
-                    fallbackImage
-                  }
-                  alt="Open IT Institute Gallery"
-                  className="max-h-[82vh] w-auto max-w-full object-contain"
-                  onError={(event) => {
-                    event.currentTarget.onerror = null;
-                    event.currentTarget.src = fallbackImage;
-                  }}
-                />
-              </AnimatePresence>
-
-              {/* Counter */}
-
-              <div className="absolute bottom-5 left-1/2 -translate-x-1/2 rounded-full border border-white/10 bg-black/40 px-4 py-2 text-xs font-bold text-white backdrop-blur-xl">
-                {activeIndex + 1} / {collection.length}
-              </div>
-            </motion.div>
-          </motion.div>
+        {lightboxOpen && images.length > 0 && (
+          <Lightbox
+            images={images}
+            index={Math.min(lightboxIndex, images.length - 1)}
+            onClose={() => setLightboxIndex(null)}
+            onChange={setLightboxIndex}
+          />
         )}
       </AnimatePresence>
     </>
-  );
-};
-
-// ============================================================
-// FLOATING PHOTO
-// ============================================================
-
-const FloatingPhoto = ({
-  image,
-  index,
-  className,
-  rotate = 0,
-  delay = 0,
-  duration = 8,
-  onClick,
-}) => {
-  return (
-    <motion.button
-      type="button"
-      initial={{
-        opacity: 0,
-        scale: 0.8,
-        rotate: rotate - 4,
-      }}
-      animate={{
-        opacity: 1,
-        scale: [1, 1.025, 1],
-        y: [0, -8, 0, 7, 0],
-        rotate: [
-          rotate,
-          rotate + 1.2,
-          rotate - 1,
-          rotate,
-        ],
-      }}
-      transition={{
-        opacity: {
-          duration: 0.8,
-          delay,
-        },
-        scale: {
-          duration,
-          repeat: Infinity,
-          ease: 'easeInOut',
-          delay,
-        },
-        y: {
-          duration: duration + 1,
-          repeat: Infinity,
-          ease: 'easeInOut',
-          delay,
-        },
-        rotate: {
-          duration: duration + 2,
-          repeat: Infinity,
-          ease: 'easeInOut',
-          delay,
-        },
-      }}
-      whileHover={{
-        scale: 1.07,
-        rotate: 0,
-        y: -8,
-        transition: {
-          duration: 0.3,
-        },
-      }}
-      onClick={onClick}
-      className={`group absolute overflow-hidden rounded-[18px] border-[6px] border-white bg-slate-100 text-left shadow-[0_25px_70px_rgba(15,23,42,0.18)] transition-shadow duration-500 hover:shadow-[0_35px_90px_rgba(15,23,42,0.28)] sm:rounded-[22px] sm:border-[7px] ${className}`}
-    >
-      {/* Image */}
-
-      <img
-        src={image || fallbackImage}
-        alt={`Open IT Institute Gallery ${index + 1}`}
-        draggable="false"
-        loading={index < 3 ? 'eager' : 'lazy'}
-        className="h-full w-full select-none object-cover transition-transform duration-700 group-hover:scale-110"
-        onError={(event) => {
-          event.currentTarget.onerror = null;
-          event.currentTarget.src = fallbackImage;
-        }}
-      />
-
-      {/* Image Overlay */}
-
-      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/30 via-transparent to-white/10 opacity-70" />
-
-      {/* Shine */}
-
-      <motion.div
-        animate={{
-          x: ['-120%', '130%'],
-        }}
-        transition={{
-          duration: 5,
-          repeat: Infinity,
-          repeatDelay: 5,
-          ease: 'easeInOut',
-        }}
-        className="pointer-events-none absolute inset-y-0 w-1/3 skew-x-[-18deg] bg-gradient-to-r from-transparent via-white/20 to-transparent"
-      />
-
-      {/* Hover Icon */}
-
-      <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-        <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-black/30 text-white backdrop-blur-xl">
-          <FaExpand className="text-xs" />
-        </div>
-      </div>
-    </motion.button>
   );
 };
 

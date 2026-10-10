@@ -15,8 +15,8 @@ import {
 
 import { getNotices } from '../../services/contentService';
 
-import nuruzzamanImage from '../../assets/images/nur.jpg';
-import tonoyImage from '../../assets/images/DSC03830.jpg';
+import nuruzzamanImage from '../../assets/images/nur.webp';
+import tonoyImage from '../../assets/images/DSC03830.webp';
 
 // ============================================================
 // SLUG GENERATOR

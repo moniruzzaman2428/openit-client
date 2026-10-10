@@ -36,8 +36,8 @@ import {
   SiNodedotjs,
 } from "react-icons/si";
 
-import nuruzzamanImage from "../../assets/images/nur.jpg";
-import tonoyImage from "../../assets/images/DSC03830.jpg";
+import nuruzzamanImage from "../../assets/images/nur.webp";
+import tonoyImage from "../../assets/images/DSC03830.webp";
 
 const LeadershipSection = () => {
   const [selectedLeader, setSelectedLeader] = useState(null);
@@ -93,7 +93,7 @@ const LeadershipSection = () => {
         "Git",
         "GitHub",
       ],
-      email: null,
+      email: "moniruzzaman2428@gmail.com",
       icon: FaLaptopCode,
       color: "from-purple-500 to-pink-400",
       bgColor: "bg-purple-50",
