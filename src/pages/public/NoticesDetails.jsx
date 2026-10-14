@@ -1,20 +1,28 @@
-import { useEffect, useMemo, useState } from 'react';
+// ============================================================
+// FILE: NoticesDetails.jsx
+// Requires: src/components/notices/NoticeLetter.jsx
+//           src/components/notices/noticeExport.js
+// ============================================================
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import {
   FaArrowLeft,
   FaArrowRight,
   FaBullhorn,
   FaCalendarAlt,
   FaClock,
+  FaDownload,
   FaExclamationCircle,
+  FaEye,
   FaFacebookF,
+  FaHashtag,
   FaHome,
   FaInfoCircle,
   FaLink,
   FaPrint,
+  FaRedo,
   FaShareAlt,
-  FaTag,
+  FaSpinner,
   FaUser,
   FaWhatsapp,
 } from 'react-icons/fa';
@@ -25,106 +33,48 @@ import StructuredData, {
   breadcrumbSchema,
   organizationSchema,
 } from '../../components/seo/StructuredData';
+import NoticeLetter, {
+  NoticeLetterModal,
+  RichText,
+} from '../../components/notices/NoticeLetter';
+import {
+  buildFileName,
+  downloadNoticePDF,
+  ensureBengaliFonts,
+  formatLetterDate,
+  printNoticeNode,
+} from '../../components/notices/noticeExport';
 
 // ============================================================
 // CATEGORY CONFIG
 // ============================================================
 
 const categoryConfig = {
-  general: {
-    label: 'General',
-    icon: FaInfoCircle,
-    bg: 'bg-blue-50',
-    text: 'text-blue-700',
-    border: 'border-blue-200',
-    dark: 'bg-blue-600',
-    gradient: 'from-blue-600 to-cyan-500',
-  },
-
-  admission: {
-    label: 'Admission',
-    icon: FaBullhorn,
-    bg: 'bg-emerald-50',
-    text: 'text-emerald-700',
-    border: 'border-emerald-200',
-    dark: 'bg-emerald-600',
-    gradient: 'from-emerald-600 to-teal-500',
-  },
-
-  exam: {
-    label: 'Exam',
-    icon: FaExclamationCircle,
-    bg: 'bg-orange-50',
-    text: 'text-orange-700',
-    border: 'border-orange-200',
-    dark: 'bg-orange-600',
-    gradient: 'from-orange-500 to-amber-500',
-  },
-
-  class: {
-    label: 'Class',
-    icon: FaInfoCircle,
-    bg: 'bg-purple-50',
-    text: 'text-purple-700',
-    border: 'border-purple-200',
-    dark: 'bg-purple-600',
-    gradient: 'from-purple-600 to-fuchsia-500',
-  },
-
-  result: {
-    label: 'Result',
-    icon: FaBullhorn,
-    bg: 'bg-pink-50',
-    text: 'text-pink-700',
-    border: 'border-pink-200',
-    dark: 'bg-pink-600',
-    gradient: 'from-pink-600 to-rose-500',
-  },
-
-  holiday: {
-    label: 'Holiday',
-    icon: FaCalendarAlt,
-    bg: 'bg-red-50',
-    text: 'text-red-700',
-    border: 'border-red-200',
-    dark: 'bg-red-600',
-    gradient: 'from-red-600 to-orange-500',
-  },
+  general: { label: 'General', icon: FaInfoCircle, chip: 'bg-blue-50 text-blue-700 ring-blue-200' },
+  admission: { label: 'Admission', icon: FaBullhorn, chip: 'bg-emerald-50 text-emerald-700 ring-emerald-200' },
+  exam: { label: 'Exam', icon: FaExclamationCircle, chip: 'bg-orange-50 text-orange-700 ring-orange-200' },
+  class: { label: 'Class', icon: FaInfoCircle, chip: 'bg-violet-50 text-violet-700 ring-violet-200' },
+  result: { label: 'Result', icon: FaBullhorn, chip: 'bg-pink-50 text-pink-700 ring-pink-200' },
+  holiday: { label: 'Holiday', icon: FaCalendarAlt, chip: 'bg-red-50 text-red-700 ring-red-200' },
 };
 
 // ============================================================
-// SLUG GENERATOR
+// HELPERS
 // ============================================================
 
-const createSlug = (text = '') => {
-  return text
+const createSlug = (text = '') =>
+  text
     .toString()
     .trim()
     .toLowerCase()
-    .replace(
-      /[\u0980-\u09FF]+/g,
-      (match) => match
-    )
     .replace(/[^a-z0-9\u0980-\u09FF]+/g, '-')
     .replace(/^-+|-+$/g, '');
-};
-
-// ============================================================
-// DATE FORMATTER
-// ============================================================
 
 const formatDate = (date) => {
-  if (!date) {
-    return 'Date unavailable';
-  }
-
-  const parsedDate = new Date(date);
-
-  if (Number.isNaN(parsedDate.getTime())) {
-    return 'Date unavailable';
-  }
-
-  return parsedDate.toLocaleDateString('en-US', {
+  if (!date) return 'Date unavailable';
+  const parsed = new Date(date);
+  if (Number.isNaN(parsed.getTime())) return 'Date unavailable';
+  return parsed.toLocaleDateString('en-US', {
     weekday: 'long',
     year: 'numeric',
     month: 'long',
@@ -132,29 +82,24 @@ const formatDate = (date) => {
   });
 };
 
-// ============================================================
-// TIME FORMATTER
-// ============================================================
-
-const formatTime = (date) => {
-  if (!date) {
-    return '';
-  }
-
-  const parsedDate = new Date(date);
-
-  if (Number.isNaN(parsedDate.getTime())) {
-    return '';
-  }
-
-  return parsedDate.toLocaleTimeString('en-US', {
-    hour: '2-digit',
-    minute: '2-digit',
-  });
+const formatShortDate = (date) => {
+  if (!date) return '';
+  const parsed = new Date(date);
+  if (Number.isNaN(parsed.getTime())) return '';
+  return parsed.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
 };
 
+const formatTime = (date) => {
+  if (!date) return '';
+  const parsed = new Date(date);
+  if (Number.isNaN(parsed.getTime())) return '';
+  return parsed.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+};
+
+const dateValue = (item) => new Date(item?.publishDate || item?.createdAt || 0).getTime() || 0;
+
 // ============================================================
-// NOTICES DETAILS
+// PAGE
 // ============================================================
 
 const NoticesDetails = () => {
@@ -162,8 +107,29 @@ const NoticesDetails = () => {
 
   const [notice, setNotice] = useState(null);
   const [relatedNotices, setRelatedNotices] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+  const [status, setStatus] = useState('loading'); // loading | ready | notfound | error
+  const [reloadKey, setReloadKey] = useState(0);
+
+  const [showLetter, setShowLetter] = useState(false);
+  const [downloading, setDownloading] = useState(false);
+  const [printing, setPrinting] = useState(false);
+  const [toast, setToast] = useState('');
+
+  const exportRef = useRef(null); // hidden A4 letter used for PDF + print
+  const toastTimer = useRef(null);
+
+  // Load Bengali fonts once (needed for a correct PDF)
+  useEffect(() => {
+    ensureBengaliFonts();
+  }, []);
+
+  useEffect(() => () => clearTimeout(toastTimer.current), []);
+
+  const showToast = useCallback((message) => {
+    setToast(message);
+    clearTimeout(toastTimer.current);
+    toastTimer.current = setTimeout(() => setToast(''), 2600);
+  }, []);
 
   // ==========================================================
   // LOAD NOTICE
@@ -174,12 +140,9 @@ const NoticesDetails = () => {
 
     const loadNotice = async () => {
       try {
-        setLoading(true);
-        setError('');
+        setStatus('loading');
 
-        const response = await getNotices({
-          limit: 50,
-        });
+        const response = await getNotices({ limit: 50 });
 
         const notices =
           response?.data?.notices ||
@@ -188,203 +151,128 @@ const NoticesDetails = () => {
           response?.data ||
           [];
 
-        if (!mounted) {
-          return;
-        }
+        if (!mounted) return;
+        if (!Array.isArray(notices)) throw new Error('Invalid notices response');
 
-        if (!Array.isArray(notices)) {
-          throw new Error(
-            'Invalid notices response'
-          );
-        }
+        const found = notices.find((item) => (item?.slug || createSlug(item?.title)) === slug);
 
-        // ------------------------------------------------------
-        // FIND NOTICE BY SLUG
-        // ------------------------------------------------------
-
-        const foundNotice = notices.find((item) => {
-          const itemSlug =
-            item?.slug ||
-            createSlug(item?.title);
-
-          return itemSlug === slug;
-        });
-
-        if (!foundNotice) {
-          setError(
-            'The notice you are looking for could not be found.'
-          );
+        if (!found) {
           setNotice(null);
+          setStatus('notfound');
           return;
         }
-
-        setNotice(foundNotice);
-
-        // ------------------------------------------------------
-        // RELATED NOTICES
-        // ------------------------------------------------------
 
         const related = notices
-          .filter(
-            (item) =>
-              item?._id !== foundNotice?._id
-          )
-          .filter((item) => {
-            if (!foundNotice.category) {
-              return true;
-            }
-
-            return (
-              item.category ===
-              foundNotice.category
-            );
-          })
-          .sort(
-            (a, b) =>
-              new Date(
-                b.publishDate ||
-                  b.createdAt
-              ) -
-              new Date(
-                a.publishDate ||
-                  a.createdAt
-              )
-          )
+          .filter((item) => item?._id !== found._id)
+          .filter((item) => !found.category || item.category === found.category)
+          .sort((a, b) => dateValue(b) - dateValue(a))
           .slice(0, 3);
 
+        setNotice(found);
         setRelatedNotices(related);
+        setStatus('ready');
       } catch (err) {
-        console.error(
-          'Failed to load notice:',
-          err
-        );
-
-        if (mounted) {
-          setError(
-            'Failed to load notice. Please try again later.'
-          );
-        }
-      } finally {
-        if (mounted) {
-          setLoading(false);
-        }
+        console.error('Failed to load notice:', err);
+        if (mounted) setStatus('error');
       }
     };
 
     loadNotice();
+    window.scrollTo({ top: 0 });
 
     return () => {
       mounted = false;
     };
-  }, [slug]);
+  }, [slug, reloadKey]);
 
   // ==========================================================
-  // NOTICE CONFIG
+  // DERIVED
   // ==========================================================
 
-  const config = useMemo(() => {
-    return (
-      categoryConfig[
-        notice?.category
-      ] || categoryConfig.general
-    );
-  }, [notice?.category]);
-
+  const config = categoryConfig[notice?.category] || categoryConfig.general;
   const CategoryIcon = config.icon;
+  const publishDate = notice?.publishDate || notice?.createdAt;
+  const memoNo =
+    notice?.memoNo || notice?.memoNumber || notice?.referenceNumber || notice?.refNo || '';
+
+  const letter = useMemo(
+    () =>
+      notice
+        ? {
+            title: notice.title,
+            description: notice.description,
+            additionalInfo: notice.additionalInfo,
+            memoNo,
+            dateText: formatLetterDate(publishDate),
+          }
+        : null,
+    [notice, memoNo, publishDate]
+  );
+
+  const fileName = buildFileName(slug, publishDate);
+  const canNativeShare = typeof navigator !== 'undefined' && typeof navigator.share === 'function';
 
   // ==========================================================
-  // SHARE
+  // ACTIONS
   // ==========================================================
 
-  const handleShare = async () => {
-    if (!notice) {
-      return;
-    }
-
-    const shareUrl =
-      window.location.href;
-
-    const shareData = {
-      title: notice.title,
-      text:
-        notice.description ||
-        'OPEN IT INSTITUTE Notice',
-      url: shareUrl,
-    };
-
+  const handleDownload = async () => {
+    if (!exportRef.current || downloading) return;
     try {
-      if (navigator.share) {
-        await navigator.share(
-          shareData
-        );
-        return;
-      }
-
-      await navigator.clipboard.writeText(
-        shareUrl
-      );
-
-      alert(
-        'Notice link copied to clipboard!'
-      );
+      setDownloading(true);
+      await downloadNoticePDF(exportRef.current, fileName);
+      showToast('PDF downloaded');
     } catch (err) {
-      console.error(
-        'Share failed:',
-        err
-      );
+      console.error('PDF error:', err);
+      showToast('Could not create the PDF. Please try again.');
+    } finally {
+      setDownloading(false);
     }
   };
 
-  // ==========================================================
-  // COPY LINK
-  // ==========================================================
+  const handlePrint = async () => {
+    if (!exportRef.current || printing) return;
+    try {
+      setPrinting(true);
+      await printNoticeNode(exportRef.current, fileName);
+    } catch (err) {
+      console.error('Print error:', err);
+      showToast('Could not open the print dialog.');
+    } finally {
+      setPrinting(false);
+    }
+  };
 
   const copyLink = async () => {
     try {
-      await navigator.clipboard.writeText(
-        window.location.href
-      );
-
-      alert(
-        'Notice link copied successfully!'
-      );
-    } catch (error) {
-      console.error(
-        'Copy link failed:',
-        error
-      );
+      await navigator.clipboard.writeText(window.location.href);
+      showToast('Link copied');
+    } catch {
+      showToast('Could not copy the link');
     }
   };
 
-  // ==========================================================
-  // WHATSAPP SHARE
-  // ==========================================================
+  const nativeShare = async () => {
+    if (!notice) return;
+    try {
+      await navigator.share({
+        title: notice.title,
+        text: notice.description?.slice(0, 120) || 'Open IT Institute notice',
+        url: window.location.href,
+      });
+    } catch {
+      /* user cancelled */
+    }
+  };
 
   const shareWhatsApp = () => {
-    if (!notice) {
-      return;
-    }
-
-    const text = encodeURIComponent(
-      `${notice.title}\n\n${window.location.href}`
-    );
-
-    window.open(
-      `https://wa.me/?text=${text}`,
-      '_blank',
-      'noopener,noreferrer'
-    );
+    if (!notice) return;
+    const text = encodeURIComponent(`${notice.title}\n\n${window.location.href}`);
+    window.open(`https://wa.me/?text=${text}`, '_blank', 'noopener,noreferrer');
   };
 
-  // ==========================================================
-  // FACEBOOK SHARE
-  // ==========================================================
-
   const shareFacebook = () => {
-    const url = encodeURIComponent(
-      window.location.href
-    );
-
+    const url = encodeURIComponent(window.location.href);
     window.open(
       `https://www.facebook.com/sharer/sharer.php?u=${url}`,
       '_blank',
@@ -393,136 +281,106 @@ const NoticesDetails = () => {
   };
 
   // ==========================================================
-  // PRINT
-  // ==========================================================
-
-  const handlePrint = () => {
-    window.print();
-  };
-
-  // ==========================================================
   // LOADING
   // ==========================================================
 
-  if (loading) {
+  if (status === 'loading') {
     return (
-      <div className="min-h-screen bg-slate-50">
-        <SEO
-          title="Notice"
-          description="OPEN IT INSTITUTE notice and announcement"
-          path={`/notices/${slug}`}
-        />
+      <div className="min-h-screen bg-slate-50" aria-busy="true">
+        <SEO title="Notice" description="Open IT Institute notice and announcement" path={`/notices/${slug}`} />
 
-        {/* Loading Hero */}
-
-        <section className="relative overflow-hidden bg-[#061426] py-24">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#061426] via-[#0b2440] to-[#07111d]" />
-
-          <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="mx-auto max-w-4xl animate-pulse">
-              <div className="mb-6 h-8 w-32 rounded-full bg-white/10" />
-
-              <div className="h-12 w-3/4 rounded-xl bg-white/10" />
-
-              <div className="mt-5 h-5 w-1/2 rounded-lg bg-white/10" />
-            </div>
+        <section className="bg-[#071b32] py-20">
+          <div className="mx-auto max-w-6xl animate-pulse px-4 sm:px-6 lg:px-8">
+            <div className="h-4 w-48 rounded bg-white/10" />
+            <div className="mt-6 h-6 w-28 rounded-full bg-white/10" />
+            <div className="mt-5 h-10 w-3/4 rounded-xl bg-white/10" />
+            <div className="mt-5 h-4 w-1/2 rounded bg-white/10" />
           </div>
         </section>
 
-        {/* Loading Content */}
-
-        <section className="px-4 py-12 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-6xl">
-            <div className="grid gap-8 lg:grid-cols-[1fr_330px]">
-              <div className="animate-pulse rounded-[28px] bg-white p-7 shadow-sm">
-                <div className="h-5 w-40 rounded bg-slate-200" />
-
-                <div className="mt-7 space-y-4">
-                  <div className="h-5 w-full rounded bg-slate-200" />
-                  <div className="h-5 w-full rounded bg-slate-200" />
-                  <div className="h-5 w-5/6 rounded bg-slate-200" />
-                  <div className="h-5 w-4/6 rounded bg-slate-200" />
-                </div>
-
-                <div className="mt-10 space-y-4">
-                  <div className="h-5 w-full rounded bg-slate-200" />
-                  <div className="h-5 w-full rounded bg-slate-200" />
-                  <div className="h-5 w-3/4 rounded bg-slate-200" />
-                </div>
-              </div>
-
-              <div className="hidden h-72 animate-pulse rounded-[28px] bg-white lg:block" />
+        <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+          <div className="grid gap-6 lg:grid-cols-[1fr_320px]">
+            <div className="animate-pulse space-y-4 rounded-2xl border border-slate-200 bg-white p-8">
+              {[100, 100, 90, 75, 100, 60].map((w, i) => (
+                <div key={i} className="h-4 rounded bg-slate-100" style={{ width: `${w}%` }} />
+              ))}
             </div>
+            <div className="hidden h-64 animate-pulse rounded-2xl bg-white lg:block" />
           </div>
-        </section>
+        </div>
       </div>
     );
   }
 
   // ==========================================================
-  // ERROR / NOT FOUND
+  // NOT FOUND / ERROR
   // ==========================================================
 
-  if (error || !notice) {
+  if (status !== 'ready' || !notice) {
+    const isError = status === 'error';
+
     return (
       <div className="min-h-screen bg-slate-50">
         <SEO
-          title="Notice Not Found"
-          description="The requested notice could not be found."
+          title={isError ? 'Notice' : 'Notice Not Found'}
+          description="The requested notice could not be loaded."
           path={`/notices/${slug}`}
         />
 
-        <section className="relative overflow-hidden bg-[#061426] py-24 text-white">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#061426] via-[#0b2440] to-[#07111d]" />
-
-          <div className="relative mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-            <FaBullhorn className="mx-auto mb-5 text-5xl text-cyan-400" />
-
-            <h1 className="text-4xl font-black sm:text-5xl">
-              Notice Not Found
+        <div className="mx-auto flex min-h-[70vh] max-w-lg items-center px-4">
+          <div className="w-full rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-sm">
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-slate-100 text-xl text-slate-400">
+              <FaBullhorn />
+            </div>
+            <h1 className="mt-4 text-2xl font-bold text-slate-900">
+              {isError ? 'Could not load notice' : 'Notice not found'}
             </h1>
-
-            <p className="mx-auto mt-4 max-w-xl text-white/60">
-              {error ||
-                'The requested notice does not exist or may have been removed.'}
+            <p className="mt-2 text-sm leading-6 text-slate-500">
+              {isError
+                ? 'Something went wrong while loading this notice. Please check your connection and try again.'
+                : 'The notice you are looking for does not exist or may have been removed.'}
             </p>
 
-            <Link
-              to="/notices"
-              className="mt-8 inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-bold text-slate-900 transition hover:-translate-y-0.5 hover:shadow-xl"
-            >
-              <FaArrowLeft />
-              Back to Notices
-            </Link>
+            <div className="mt-6 flex flex-wrap justify-center gap-3">
+              {isError && (
+                <button
+                  type="button"
+                  onClick={() => setReloadKey((k) => k + 1)}
+                  className="inline-flex items-center gap-2 rounded-xl bg-[#0F4C81] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#0b3b64]"
+                >
+                  <FaRedo className="text-xs" /> Try again
+                </button>
+              )}
+              <Link
+                to="/notices"
+                className="inline-flex items-center gap-2 rounded-xl border border-slate-200 px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
+              >
+                <FaArrowLeft className="text-xs" /> Back to notices
+              </Link>
+            </div>
           </div>
-        </section>
+        </div>
       </div>
     );
   }
-
-  // ==========================================================
-  // DATE
-  // ==========================================================
-
-  const publishDate =
-    notice.publishDate ||
-    notice.createdAt;
 
   // ==========================================================
   // MAIN
   // ==========================================================
 
+  const time = formatTime(publishDate);
+  const postedBy = notice.createdBy?.name || 'Open IT Institute';
+
+  const heroBtn =
+    'inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#071b32] disabled:cursor-not-allowed disabled:opacity-60';
+
   return (
     <div className="min-h-screen bg-slate-50">
-      {/* ======================================================
-          SEO
-      ====================================================== */}
-
       <SEO
         title={`${notice.title} | Notice`}
         description={
-          notice.description ||
-          `Latest notice from OPEN IT INSTITUTE — ${notice.title}`
+          notice.description?.slice(0, 160) ||
+          `Latest notice from Open IT Institute - ${notice.title}`
         }
         path={`/notices/${slug}`}
       />
@@ -531,696 +389,351 @@ const NoticesDetails = () => {
         data={[
           organizationSchema(),
           breadcrumbSchema([
-            {
-              name: 'Home',
-              url: '/',
-            },
-            {
-              name: 'Notices',
-              url: '/notices',
-            },
-            {
-              name: notice.title,
-              url: `/notices/${slug}`,
-            },
+            { name: 'Home', url: '/' },
+            { name: 'Notices', url: '/notices' },
+            { name: notice.title, url: `/notices/${slug}` },
           ]),
         ]}
       />
 
+      {/* Hidden A4 letter: the source for PDF and print */}
+      <div
+        aria-hidden="true"
+        style={{ position: 'fixed', left: '-10000px', top: 0, pointerEvents: 'none' }}
+      >
+        <NoticeLetter ref={exportRef} {...letter} />
+      </div>
+
       {/* ======================================================
-          HERO
+          HEADER
       ====================================================== */}
-
-      <section className="relative overflow-hidden bg-[#061426] text-white">
-        {/* Background */}
-
-        <div className="absolute inset-0 bg-gradient-to-br from-[#061426] via-[#0a2340] to-[#050d18]" />
-
-        {/* Glow */}
-
-        <motion.div
-          animate={{
-            scale: [1, 1.15, 1],
-            opacity: [0.08, 0.16, 0.08],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-          className="absolute -right-32 -top-32 h-96 w-96 rounded-full bg-cyan-400/20 blur-[100px]"
-        />
-
-        <motion.div
-          animate={{
-            scale: [1.1, 1, 1.1],
-            opacity: [0.08, 0.14, 0.08],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-          className="absolute -bottom-40 -left-40 h-96 w-96 rounded-full bg-blue-500/20 blur-[110px]"
-        />
-
-        {/* Grid */}
-
-        <div
-          className="absolute inset-0 opacity-[0.045]"
-          style={{
-            backgroundImage:
-              'linear-gradient(rgba(255,255,255,.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.6) 1px, transparent 1px)',
-            backgroundSize: '55px 55px',
-          }}
-        />
-
-        {/* Huge Background Text */}
-
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden">
-          <span className="select-none whitespace-nowrap text-[100px] font-black uppercase tracking-[-0.08em] text-white/[0.025] sm:text-[160px] lg:text-[230px]">
-            NOTICE
-          </span>
+      <section className="relative overflow-hidden bg-[#071b32] text-white">
+        <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+          <div className="absolute inset-0 bg-[radial-gradient(60%_90%_at_90%_0%,rgba(34,211,238,0.13),transparent_65%),radial-gradient(50%_80%_at_0%_100%,rgba(15,76,129,0.55),transparent_70%)]" />
+          <div
+            className="absolute inset-0 opacity-[0.06]"
+            style={{
+              backgroundImage:
+                'linear-gradient(rgba(255,255,255,0.7) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.7) 1px, transparent 1px)',
+              backgroundSize: '56px 56px',
+              WebkitMaskImage: 'radial-gradient(ellipse at 50% 0%, #000 0%, transparent 75%)',
+              maskImage: 'radial-gradient(ellipse at 50% 0%, #000 0%, transparent 75%)',
+            }}
+          />
         </div>
 
-        {/* Hero Content */}
-
-        <div className="relative z-10 mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
-          <div className="mx-auto max-w-5xl">
-            {/* Breadcrumb */}
-
-            <motion.div
-              initial={{
-                opacity: 0,
-                y: 15,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
-              transition={{
-                duration: 0.5,
-              }}
-              className="mb-7 flex flex-wrap items-center gap-2 text-xs text-white/50"
-            >
-              <Link
-                to="/"
-                className="flex items-center gap-1.5 transition hover:text-white"
-              >
-                <FaHome />
-                Home
-              </Link>
-
-              <span>/</span>
-
-              <Link
-                to="/notices"
-                className="transition hover:text-white"
-              >
-                Notices
-              </Link>
-
-              <span>/</span>
-
-              <span className="max-w-[180px] truncate text-white/70 sm:max-w-xs">
-                {notice.title}
-              </span>
-            </motion.div>
-
-            {/* Category */}
-
-            <motion.div
-              initial={{
-                opacity: 0,
-                y: 15,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
-              transition={{
-                duration: 0.6,
-              }}
-              className="mb-6"
-            >
-              <span
-                className={`inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.15em] text-white backdrop-blur-md`}
-              >
-                <CategoryIcon className="text-cyan-300" />
-                {config.label}
-              </span>
-            </motion.div>
-
-            {/* Title */}
-
-            <motion.h1
-              initial={{
-                opacity: 0,
-                y: 25,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
-              transition={{
-                duration: 0.7,
-                delay: 0.05,
-              }}
-              className="max-w-4xl text-3xl font-black leading-tight tracking-tight sm:text-4xl md:text-5xl lg:text-6xl"
-            >
+        <div className="relative mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+          {/* Breadcrumb */}
+          <nav aria-label="Breadcrumb" className="mb-6 flex flex-wrap items-center gap-2 text-sm text-white/60">
+            <Link to="/" className="inline-flex items-center gap-1.5 transition hover:text-white">
+              <FaHome className="text-xs" /> Home
+            </Link>
+            <span className="text-white/30">/</span>
+            <Link to="/notices" className="transition hover:text-white">
+              Notices
+            </Link>
+            <span className="text-white/30">/</span>
+            <span className="max-w-[200px] truncate text-white/90 sm:max-w-sm" aria-current="page">
               {notice.title}
-            </motion.h1>
+            </span>
+          </nav>
 
-            {/* Meta */}
+          <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1.5 text-sm font-medium text-white ring-1 ring-white/15">
+            <CategoryIcon className="text-xs text-cyan-300" />
+            {config.label}
+          </span>
 
-            <motion.div
-              initial={{
-                opacity: 0,
-                y: 20,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
-              transition={{
-                duration: 0.7,
-                delay: 0.12,
-              }}
-              className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-white/60"
-            >
-              <span className="flex items-center gap-2">
-                <FaCalendarAlt className="text-cyan-300" />
-                {formatDate(publishDate)}
+          <h1 className="mt-4 max-w-4xl text-3xl font-bold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
+            {notice.title}
+          </h1>
+
+          <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/65">
+            <span className="inline-flex items-center gap-2">
+              <FaCalendarAlt className="text-cyan-300" />
+              {formatDate(publishDate)}
+            </span>
+            {time && (
+              <span className="inline-flex items-center gap-2">
+                <FaClock className="text-cyan-300" />
+                {time}
               </span>
+            )}
+            <span className="inline-flex items-center gap-2">
+              <FaUser className="text-cyan-300" />
+              {postedBy}
+            </span>
+          </div>
 
-              {formatTime(publishDate) && (
-                <span className="flex items-center gap-2">
-                  <FaClock className="text-cyan-300" />
-                  {formatTime(publishDate)}
-                </span>
-              )}
+          {/* Official copy actions */}
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <button
+              type="button"
+              onClick={handleDownload}
+              disabled={downloading}
+              className={`${heroBtn} bg-white text-[#071b32] shadow-lg shadow-black/10 hover:bg-cyan-50`}
+            >
+              {downloading ? <FaSpinner className="animate-spin" /> : <FaDownload className="text-xs" />}
+              {downloading ? 'Generating PDF…' : 'Download PDF'}
+            </button>
 
-              {notice.createdBy && (
-                <span className="flex items-center gap-2">
-                  <FaUser className="text-cyan-300" />
-                  {notice.createdBy?.name ||
-                    'Open IT Institute'}
-                </span>
-              )}
-            </motion.div>
+            <button
+              type="button"
+              onClick={handlePrint}
+              disabled={printing}
+              className={`${heroBtn} bg-white/10 text-white ring-1 ring-white/20 hover:bg-white/15`}
+            >
+              {printing ? <FaSpinner className="animate-spin" /> : <FaPrint className="text-xs" />}
+              Print
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setShowLetter(true)}
+              className={`${heroBtn} text-white/85 hover:bg-white/10 hover:text-white`}
+            >
+              <FaEye className="text-xs" />
+              View official copy
+            </button>
           </div>
         </div>
       </section>
 
       {/* ======================================================
-          MAIN CONTENT
+          CONTENT
       ====================================================== */}
+      <main className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
+        <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-8">
+          {/* ---------------- ARTICLE ---------------- */}
+          <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+            <div className="h-1 bg-gradient-to-r from-[#0F4C81] to-cyan-400" />
 
-      <main className="relative mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8 lg:py-16">
-        <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_330px]">
-          {/* ==================================================
-              ARTICLE
-          ================================================== */}
-
-          <motion.article
-            initial={{
-              opacity: 0,
-              y: 25,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            transition={{
-              duration: 0.7,
-            }}
-            className="overflow-hidden rounded-[28px] border border-slate-200/80 bg-white shadow-[0_20px_70px_rgba(15,23,42,0.07)]"
-          >
-            {/* Article top */}
-
-            <div className="h-1.5 bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600" />
-
-            <div className="p-6 sm:p-8 md:p-10 lg:p-12">
-              {/* Notice label */}
-
-              <div className="mb-7 flex items-center gap-3">
-                <div
-                  className={`flex h-11 w-11 items-center justify-center rounded-2xl ${config.bg} ${config.text}`}
+            <div className="p-6 sm:p-8 lg:p-10">
+              <div className="mb-6 flex items-center gap-3">
+                <span
+                  className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold ring-1 ${config.chip}`}
                 >
-                  <CategoryIcon />
-                </div>
-
-                <div>
-                  <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-slate-400">
-                    Official Announcement
-                  </p>
-
-                  <p
-                    className={`mt-0.5 text-sm font-bold ${config.text}`}
-                  >
-                    {config.label} Notice
-                  </p>
-                </div>
+                  <CategoryIcon className="text-[11px]" />
+                  {config.label}
+                </span>
+                <span className="text-sm text-slate-500">Official announcement</span>
               </div>
 
-              {/* Description */}
-
-              <div className="relative">
-                <FaBullhorn className="pointer-events-none absolute -right-2 -top-5 text-7xl text-blue-600/[0.035] sm:text-8xl" />
-
-                <div className="prose prose-slate max-w-none">
-                  <p className="whitespace-pre-line text-[16px] leading-8 text-slate-600 sm:text-[17px] sm:leading-9">
-                    {notice.description ||
-                      'No detailed description is available for this notice.'}
-                  </p>
-                </div>
+              <div className="whitespace-pre-line text-[17px] leading-8 text-slate-700">
+                <RichText text={notice.description || 'No detailed description is available for this notice.'} />
               </div>
-
-              {/* Additional Info */}
 
               {notice.additionalInfo && (
-                <div className="mt-9 overflow-hidden rounded-2xl border border-blue-100 bg-gradient-to-br from-blue-50 to-cyan-50/40">
-                  <div className="flex items-start gap-4 p-5 sm:p-6">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-600 text-white shadow-lg shadow-blue-600/20">
-                      <FaInfoCircle />
-                    </div>
-
-                    <div>
-                      <h3 className="font-black text-slate-800">
-                        Additional Information
-                      </h3>
-
-                      <p className="mt-2 whitespace-pre-line text-sm leading-7 text-slate-600">
-                        {notice.additionalInfo}
-                      </p>
-                    </div>
+                <div className="mt-8 flex items-start gap-4 rounded-xl border border-blue-100 bg-blue-50/60 p-5">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#0F4C81] text-white">
+                    <FaInfoCircle />
+                  </div>
+                  <div className="min-w-0">
+                    <h2 className="font-semibold text-slate-900">Additional information</h2>
+                    <p className="mt-1.5 whitespace-pre-line text-[15px] leading-7 text-slate-600">
+                      <RichText text={notice.additionalInfo} />
+                    </p>
                   </div>
                 </div>
               )}
 
-              {/* Tags */}
-
-              {Array.isArray(notice.tags) &&
-                notice.tags.length > 0 && (
-                  <div className="mt-9 border-t border-slate-100 pt-7">
-                    <div className="mb-3 flex items-center gap-2 text-sm font-bold text-slate-700">
-                      <FaTag className="text-blue-600" />
-                      Tags
-                    </div>
-
-                    <div className="flex flex-wrap gap-2">
-                      {notice.tags.map(
-                        (tag, index) => (
-                          <span
-                            key={`${tag}-${index}`}
-                            className="rounded-full border border-slate-200 bg-slate-50 px-3.5 py-1.5 text-xs font-semibold text-slate-500 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-600"
-                          >
-                            #{tag}
-                          </span>
-                        )
-                      )}
-                    </div>
+              {Array.isArray(notice.tags) && notice.tags.length > 0 && (
+                <div className="mt-8 border-t border-slate-100 pt-6">
+                  <div className="mb-3 flex items-center gap-2 text-sm font-semibold text-slate-700">
+                    <FaHashtag className="text-[#0F4C81]" />
+                    Tags
                   </div>
-                )}
-
-              {/* Share */}
-
-              <div className="mt-10 border-t border-slate-100 pt-7">
-                <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                  <div>
-                    <h3 className="font-black text-slate-800">
-                      Share this notice
-                    </h3>
-
-                    <p className="mt-1 text-xs text-slate-400">
-                      Help others stay informed.
-                    </p>
-                  </div>
-
                   <div className="flex flex-wrap gap-2">
-                    <button
-                      type="button"
-                      onClick={shareWhatsApp}
-                      className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 transition hover:-translate-y-0.5 hover:bg-emerald-500 hover:text-white"
-                      title="Share on WhatsApp"
-                    >
-                      <FaWhatsapp />
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={shareFacebook}
-                      className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600 transition hover:-translate-y-0.5 hover:bg-blue-600 hover:text-white"
-                      title="Share on Facebook"
-                    >
-                      <FaFacebookF />
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={copyLink}
-                      className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-slate-600 transition hover:-translate-y-0.5 hover:bg-slate-800 hover:text-white"
-                      title="Copy Link"
-                    >
-                      <FaLink />
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={handleShare}
-                      className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-50 text-cyan-600 transition hover:-translate-y-0.5 hover:bg-cyan-600 hover:text-white"
-                      title="More Share Options"
-                    >
-                      <FaShareAlt />
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={handlePrint}
-                      className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-slate-600 transition hover:-translate-y-0.5 hover:bg-slate-800 hover:text-white"
-                      title="Print"
-                    >
-                      <FaPrint />
-                    </button>
+                    {notice.tags.map((tag, index) => (
+                      <span
+                        key={`${tag}-${index}`}
+                        className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-600"
+                      >
+                        #{tag}
+                      </span>
+                    ))}
                   </div>
                 </div>
-              </div>
+              )}
 
-              {/* Back */}
-
-              <div className="mt-8">
+              <div className="mt-8 border-t border-slate-100 pt-6">
                 <Link
                   to="/notices"
-                  className="group inline-flex items-center gap-2 text-sm font-bold text-slate-500 transition hover:text-blue-600"
+                  className="group inline-flex items-center gap-2 text-sm font-semibold text-slate-500 transition hover:text-[#0F4C81]"
                 >
-                  <FaArrowLeft className="transition-transform group-hover:-translate-x-1" />
+                  <FaArrowLeft className="text-xs transition-transform group-hover:-translate-x-0.5" />
                   Back to all notices
                 </Link>
               </div>
             </div>
-          </motion.article>
+          </article>
 
-          {/* ==================================================
-              SIDEBAR
-          ================================================== */}
-
+          {/* ---------------- SIDEBAR ---------------- */}
           <aside className="space-y-5 lg:sticky lg:top-24">
-            {/* Notice Info */}
+            <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+              <h2 className="text-sm font-semibold text-slate-900">Notice details</h2>
 
-            <motion.div
-              initial={{
-                opacity: 0,
-                x: 20,
-              }}
-              animate={{
-                opacity: 1,
-                x: 0,
-              }}
-              transition={{
-                duration: 0.7,
-                delay: 0.15,
-              }}
-              className="overflow-hidden rounded-[24px] border border-slate-200 bg-white shadow-[0_15px_50px_rgba(15,23,42,0.06)]"
-            >
-              <div
-                className={`bg-gradient-to-br ${config.gradient} p-6 text-white`}
-              >
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 backdrop-blur-md">
-                  <CategoryIcon className="text-xl" />
+              <dl className="mt-3 divide-y divide-slate-100 text-sm">
+                <div className="flex items-center justify-between gap-4 py-3">
+                  <dt className="text-slate-500">Category</dt>
+                  <dd>
+                    <span className={`rounded-full px-2.5 py-1 text-xs font-semibold ring-1 ${config.chip}`}>
+                      {config.label}
+                    </span>
+                  </dd>
                 </div>
-
-                <p className="mt-5 text-xs font-bold uppercase tracking-[0.15em] text-white/60">
-                  Notice Information
-                </p>
-
-                <h3 className="mt-1 text-xl font-black">
-                  {config.label}
-                </h3>
-              </div>
-
-              <div className="divide-y divide-slate-100">
-                {/* Date */}
-
-                <div className="flex items-center gap-4 p-5">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
-                    <FaCalendarAlt />
-                  </div>
-
-                  <div>
-                    <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
-                      Published
-                    </p>
-
-                    <p className="mt-1 text-sm font-bold text-slate-700">
-                      {formatDate(
-                        publishDate
-                      )}
-                    </p>
-                  </div>
+                <div className="flex items-center justify-between gap-4 py-3">
+                  <dt className="text-slate-500">Published</dt>
+                  <dd className="text-right font-medium text-slate-800">{formatShortDate(publishDate) || '—'}</dd>
                 </div>
-
-                {/* Time */}
-
-                {formatTime(
-                  publishDate
-                ) && (
-                  <div className="flex items-center gap-4 p-5">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-cyan-50 text-cyan-600">
-                      <FaClock />
-                    </div>
-
-                    <div>
-                      <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
-                        Time
-                      </p>
-
-                      <p className="mt-1 text-sm font-bold text-slate-700">
-                        {formatTime(
-                          publishDate
-                        )}
-                      </p>
-                    </div>
+                {time && (
+                  <div className="flex items-center justify-between gap-4 py-3">
+                    <dt className="text-slate-500">Time</dt>
+                    <dd className="font-medium text-slate-800">{time}</dd>
                   </div>
                 )}
-
-                {/* Posted By */}
-
-                <div className="flex items-center gap-4 p-5">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-purple-50 text-purple-600">
-                    <FaUser />
+                {memoNo && (
+                  <div className="flex items-center justify-between gap-4 py-3">
+                    <dt className="text-slate-500">Memo no.</dt>
+                    <dd className="truncate font-mono text-[13px] font-medium text-slate-800">{memoNo}</dd>
                   </div>
-
-                  <div>
-                    <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
-                      Posted By
-                    </p>
-
-                    <p className="mt-1 text-sm font-bold text-slate-700">
-                      {notice.createdBy?.name ||
-                        'Open IT Institute'}
-                    </p>
-                  </div>
+                )}
+                <div className="flex items-center justify-between gap-4 py-3">
+                  <dt className="text-slate-500">Posted by</dt>
+                  <dd className="truncate text-right font-medium text-slate-800">{postedBy}</dd>
                 </div>
-              </div>
-            </motion.div>
+              </dl>
+            </div>
 
-            {/* Quick Actions */}
+            <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+              <h2 className="text-sm font-semibold text-slate-900">Share this notice</h2>
+              <p className="mt-1 text-xs text-slate-500">Help others stay informed.</p>
 
-            <div className="rounded-[24px] border border-slate-200 bg-white p-5 shadow-sm">
-              <p className="mb-4 text-xs font-black uppercase tracking-[0.14em] text-slate-400">
-                Quick Actions
-              </p>
-
-              <div className="space-y-2">
+              <div className="mt-4 grid grid-cols-2 gap-2">
                 <button
                   type="button"
-                  onClick={handleShare}
-                  className="flex w-full items-center justify-between rounded-xl bg-slate-50 px-4 py-3 text-sm font-bold text-slate-600 transition hover:bg-blue-50 hover:text-blue-600"
+                  onClick={shareWhatsApp}
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-50 px-3 py-2.5 text-sm font-semibold text-emerald-700 transition hover:bg-emerald-500 hover:text-white"
                 >
-                  <span className="flex items-center gap-3">
-                    <FaShareAlt />
-                    Share Notice
-                  </span>
-
-                  <FaArrowRight className="text-xs" />
+                  <FaWhatsapp /> WhatsApp
                 </button>
-
                 <button
                   type="button"
-                  onClick={handlePrint}
-                  className="flex w-full items-center justify-between rounded-xl bg-slate-50 px-4 py-3 text-sm font-bold text-slate-600 transition hover:bg-slate-800 hover:text-white"
+                  onClick={shareFacebook}
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-50 px-3 py-2.5 text-sm font-semibold text-blue-700 transition hover:bg-blue-600 hover:text-white"
                 >
-                  <span className="flex items-center gap-3">
-                    <FaPrint />
-                    Print Notice
-                  </span>
-
-                  <FaArrowRight className="text-xs" />
+                  <FaFacebookF /> Facebook
                 </button>
+                <button
+                  type="button"
+                  onClick={copyLink}
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-100 px-3 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-800 hover:text-white"
+                >
+                  <FaLink /> Copy link
+                </button>
+                {canNativeShare && (
+                  <button
+                    type="button"
+                    onClick={nativeShare}
+                    className="inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-50 px-3 py-2.5 text-sm font-semibold text-cyan-700 transition hover:bg-cyan-600 hover:text-white"
+                  >
+                    <FaShareAlt /> More
+                  </button>
+                )}
               </div>
             </div>
 
-            {/* Back To Notices */}
-
             <Link
               to="/notices"
-              className="group flex items-center justify-between rounded-[20px] bg-[#061426] px-5 py-4 text-sm font-bold text-white shadow-xl shadow-slate-900/10 transition hover:-translate-y-0.5"
+              className="group flex items-center justify-between rounded-2xl bg-[#071b32] px-5 py-4 text-sm font-semibold text-white shadow-lg shadow-slate-900/10 transition hover:bg-[#0b2a4a]"
             >
               <span className="flex items-center gap-3">
-                <FaBullhorn className="text-cyan-400" />
-                All Notices
+                <FaBullhorn className="text-cyan-300" />
+                All notices
               </span>
-
-              <FaArrowRight className="transition-transform group-hover:translate-x-1" />
+              <FaArrowRight className="text-xs transition-transform group-hover:translate-x-0.5" />
             </Link>
           </aside>
         </div>
 
         {/* ====================================================
-            RELATED NOTICES
+            RELATED
         ==================================================== */}
-
         {relatedNotices.length > 0 && (
-          <section className="mt-14 border-t border-slate-200 pt-12">
-            <div className="mb-7 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <section className="mt-14 border-t border-slate-200 pt-10">
+            <div className="mb-6 flex items-end justify-between gap-4">
               <div>
-                <span className="text-xs font-black uppercase tracking-[0.15em] text-blue-600">
-                  More Updates
-                </span>
-
-                <h2 className="mt-2 text-2xl font-black text-slate-900 sm:text-3xl">
-                  Related Notices
-                </h2>
+                <p className="text-sm font-semibold text-[#0F4C81]">More updates</p>
+                <h2 className="mt-1 text-2xl font-bold tracking-tight text-slate-900">Related notices</h2>
               </div>
-
               <Link
                 to="/notices"
-                className="group inline-flex items-center gap-2 text-sm font-bold text-blue-600"
+                className="group inline-flex items-center gap-2 text-sm font-semibold text-[#0F4C81]"
               >
-                View All
-                <FaArrowRight className="transition-transform group-hover:translate-x-1" />
+                View all
+                <FaArrowRight className="text-xs transition-transform group-hover:translate-x-0.5" />
               </Link>
             </div>
 
             <div className="grid gap-5 md:grid-cols-3">
-              {relatedNotices.map(
-                (item, index) => {
-                  const itemConfig =
-                    categoryConfig[
-                      item.category
-                    ] ||
-                    categoryConfig.general;
+              {relatedNotices.map((item, index) => {
+                const itemConfig = categoryConfig[item.category] || categoryConfig.general;
+                const ItemIcon = itemConfig.icon;
+                const itemSlug = item.slug || createSlug(item.title);
 
-                  const ItemIcon =
-                    itemConfig.icon;
-
-                  const itemSlug =
-                    item.slug ||
-                    createSlug(
-                      item.title
-                    );
-
-                  return (
-                    <motion.div
-                      key={
-                        item._id ||
-                        itemSlug ||
-                        index
-                      }
-                      initial={{
-                        opacity: 0,
-                        y: 20,
-                      }}
-                      whileInView={{
-                        opacity: 1,
-                        y: 0,
-                      }}
-                      viewport={{
-                        once: true,
-                      }}
-                      transition={{
-                        delay:
-                          index * 0.08,
-                      }}
+                return (
+                  <Link
+                    key={item._id || itemSlug || index}
+                    to={`/notices/${itemSlug}`}
+                    className="group flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-lg"
+                  >
+                    <span
+                      className={`inline-flex w-fit items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold ring-1 ${itemConfig.chip}`}
                     >
-                      <Link
-                        to={`/notices/${itemSlug}`}
-                        className="group block h-full overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl"
-                      >
-                        <div className="flex items-start justify-between gap-4">
-                          <div
-                            className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${itemConfig.bg} ${itemConfig.text}`}
-                          >
-                            <ItemIcon />
-                          </div>
+                      <ItemIcon className="text-[10px]" />
+                      {itemConfig.label}
+                    </span>
 
-                          <FaArrowRight className="mt-2 text-xs text-slate-300 transition-transform group-hover:translate-x-1 group-hover:text-blue-600" />
-                        </div>
+                    <h3 className="mt-3 line-clamp-2 font-semibold leading-6 text-slate-900 transition-colors group-hover:text-[#0F4C81]">
+                      {item.title}
+                    </h3>
 
-                        <span
-                          className={`mt-4 inline-block rounded-full px-2.5 py-1 text-[10px] font-bold ${itemConfig.bg} ${itemConfig.text}`}
-                        >
-                          {itemConfig.label}
-                        </span>
-
-                        <h3 className="mt-3 line-clamp-2 font-black leading-6 text-slate-800 transition-colors group-hover:text-blue-600">
-                          {item.title}
-                        </h3>
-
-                        <div className="mt-4 flex items-center gap-2 text-xs text-slate-400">
-                          <FaCalendarAlt />
-
-                          {formatDate(
-                            item.publishDate ||
-                              item.createdAt
-                          )}
-                        </div>
-                      </Link>
-                    </motion.div>
-                  );
-                }
-              )}
+                    <div className="mt-auto flex items-center justify-between pt-4 text-xs text-slate-500">
+                      <span className="inline-flex items-center gap-1.5">
+                        <FaCalendarAlt />
+                        {formatShortDate(item.publishDate || item.createdAt)}
+                      </span>
+                      <FaArrowRight className="text-slate-300 transition group-hover:translate-x-0.5 group-hover:text-[#0F4C81]" />
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
           </section>
         )}
       </main>
 
-      {/* ======================================================
-          PRINT STYLES
-      ====================================================== */}
+      {/* Official copy preview */}
+      {showLetter && (
+        <NoticeLetterModal
+          letter={letter}
+          onClose={() => setShowLetter(false)}
+          onDownload={handleDownload}
+          onPrint={handlePrint}
+          downloading={downloading}
+          printing={printing}
+        />
+      )}
 
-      <style>
-        {`
-          @media print {
-            header,
-            nav,
-            footer,
-            aside,
-            button,
-            .no-print {
-              display: none !important;
-            }
-
-            body {
-              background: white !important;
-            }
-
-            main {
-              max-width: 100% !important;
-              padding: 0 !important;
-            }
-
-            article {
-              border: none !important;
-              box-shadow: none !important;
-            }
-
-            article > div:first-child {
-              display: none !important;
-            }
-          }
-        `}
-      </style>
+      {/* Toast */}
+      {toast && (
+        <div
+          role="status"
+          aria-live="polite"
+          className="fixed bottom-6 left-1/2 z-[10000] -translate-x-1/2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-medium text-white shadow-xl"
+        >
+          {toast}
+        </div>
+      )}
     </div>
   );
 };
