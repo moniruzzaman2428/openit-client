@@ -24,6 +24,7 @@ import {
   FaHome,
   FaChevronRight,
   FaShieldAlt,
+  FaIdCard,
 } from "react-icons/fa";
 
 import { useAuth } from "../../context/AuthContext";
@@ -85,9 +86,9 @@ const menuItems = [
     icon: FaMoneyBillWave,
   },
   {
-    name: "Receipts",
-    path: "/admin/receipts",
-    icon: FaReceipt,
+    name: "Student Id Card",
+    path: "/admin/id-cards",
+    icon: FaIdCard,
   },
   {
     name: "Certificates",

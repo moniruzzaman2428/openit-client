@@ -25,6 +25,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Swal from 'sweetalert2';
 import { useAuth } from '../../context/AuthContext';
 import api from '../../services/api';
+import { Link } from 'react-router-dom';
 
 const extractStudent = (response) =>
   response?.data?.data?.student ||
@@ -380,6 +381,15 @@ const Profile = () => {
               <FaEdit />
               Edit Profile
             </button>
+          )}
+          {!editing && (
+            <Link
+              to="/student/id-card"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-sky-200 bg-white text-[#075b96] text-sm font-semibold hover:bg-sky-50 transition"
+            >
+              <FaIdCard />
+              ID Card
+            </Link>
           )}
         </div>
       </div>

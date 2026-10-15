@@ -13,6 +13,7 @@ import {
   FaChevronRight,
   FaSave,
   FaSyncAlt,
+  FaIdCard,
 } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import Swal from 'sweetalert2';
@@ -165,10 +166,10 @@ const Students = () => {
         setTotal(
           Number(
             response?.data?.total ??
-              response?.data?.data?.total ??
-              response?.data?.count ??
-              data?.length ??
-              0
+            response?.data?.data?.total ??
+            response?.data?.count ??
+            data?.length ??
+            0
           )
         );
       } catch (err) {
@@ -789,10 +790,9 @@ const Students = () => {
                       {/* STATUS */}
                       <td className="px-5 py-4">
                         <span
-                          className={`inline-flex text-xs font-semibold px-2.5 py-1 rounded-lg capitalize ${
-                            statusColors[student.status] ||
+                          className={`inline-flex text-xs font-semibold px-2.5 py-1 rounded-lg capitalize ${statusColors[student.status] ||
                             statusColors.inactive
-                          }`}
+                            }`}
                         >
                           {student.status || 'unknown'}
                         </span>
@@ -818,6 +818,7 @@ const Students = () => {
                           >
                             <FaEdit className="text-sm" />
                           </button>
+
 
                           <button
                             type="button"
@@ -897,11 +898,10 @@ const Students = () => {
                   key={pageNumber}
                   type="button"
                   onClick={() => setPage(pageNumber)}
-                  className={`w-9 h-9 rounded-lg text-xs font-semibold transition ${
-                    page === pageNumber
+                  className={`w-9 h-9 rounded-lg text-xs font-semibold transition ${page === pageNumber
                       ? 'bg-primary text-white shadow-md shadow-primary/20'
                       : 'border border-gray-200 text-gray-600 hover:bg-gray-50'
-                  }`}
+                    }`}
                 >
                   {pageNumber}
                 </button>
@@ -1230,10 +1230,9 @@ const Students = () => {
                     label="Status"
                     value={
                       <span
-                        className={`inline-flex text-xs font-semibold px-2.5 py-1 rounded-lg capitalize ${
-                          statusColors[selectedStudent.status] ||
+                        className={`inline-flex text-xs font-semibold px-2.5 py-1 rounded-lg capitalize ${statusColors[selectedStudent.status] ||
                           statusColors.inactive
-                        }`}
+                          }`}
                       >
                         {selectedStudent.status || '—'}
                       </span>
@@ -1297,6 +1296,7 @@ const Students = () => {
                     <FaEdit />
                     Edit Student
                   </button>
+               
                 </div>
               </div>
             </motion.div>

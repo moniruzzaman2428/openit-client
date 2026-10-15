@@ -55,6 +55,7 @@ const AdminTestimonials = lazy(() => import('./dashboard/admin/Testimonials'));
 const AdminAttendance = lazy(() => import('./dashboard/admin/Attendance'));
 const AdminExams = lazy(() => import('./dashboard/admin/Exams'));
 const AdminResults = lazy(() => import('./dashboard/admin/Results'));
+const AdminStudentIdCards = lazy(() => import('./dashboard/admin/StudentIdCards'));
 const AdminSettings = lazy(() => import('./dashboard/admin/Settings'));
 const AdminProfile = lazy(() => import('./dashboard/admin/Profile'));
 
@@ -82,6 +83,7 @@ const StudentExams = lazy(() => import('./dashboard/student/Exams'));
 const StudentResults = lazy(() => import('./dashboard/student/Results'));
 const StudentPayments = lazy(() => import('./dashboard/student/Payments'));
 const StudentNotices = lazy(() => import('./dashboard/student/Notices'));
+const StudentIdCard = lazy(() => import('./dashboard/student/StudentIdCard'));
 const StudentCertificate = lazy(() => import('./dashboard/student/Certificate'));
 const StudentChangePassword = lazy(() => import('./dashboard/student/ChangePassword'));
 
@@ -147,6 +149,7 @@ function App() {
             <Route path="receipts" element={<AdminPayments />} />
             <Route path="certificates" element={<AdminCertificates />} />
             <Route path="notices" element={<AdminNotices />} />
+            <Route path="id-cards" element={<AdminStudentIdCards />} />
             <Route path="gallery" element={<AdminGallery />} />
             <Route path="testimonials" element={<AdminTestimonials />} />
             <Route path="settings" element={<AdminSettings />} />
@@ -182,6 +185,7 @@ function App() {
             <Route path="results" element={<StudentResults />} />
             <Route path="payments" element={<StudentPayments />} />
             <Route path="notices" element={<StudentNotices />} />
+            <Route path="id-card" element={<StudentIdCard />} />
             <Route path="certificate" element={<StudentCertificate />} />
             <Route path="change-password" element={<StudentChangePassword />} />
           </Route>

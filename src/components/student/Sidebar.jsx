@@ -20,6 +20,7 @@ import {
   FaChevronRight,
   FaGraduationCap,
   FaShieldAlt,
+  FaIdCard,
 } from "react-icons/fa";
 
 import { useAuth } from "../../context/AuthContext";
@@ -84,6 +85,11 @@ const menuItems = [
     name: "Certificate",
     path: "/student/certificate",
     icon: FaCertificate,
+  },
+  {
+    name: "Student Id Card",
+    path: "/student/id-card",
+    icon: FaIdCard,
   },
   {
     name: "Change Password",
