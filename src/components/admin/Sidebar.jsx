@@ -25,6 +25,7 @@ import {
   FaChevronRight,
   FaShieldAlt,
   FaIdCard,
+  FaBlog,
 } from "react-icons/fa";
 
 import { useAuth } from "../../context/AuthContext";
@@ -109,6 +110,11 @@ const menuItems = [
     name: "Testimonials",
     path: "/admin/testimonials",
     icon: FaQuoteLeft,
+  },
+  {
+    name: "Blog Management",
+    path: "/admin/blogs",
+    icon: FaBlog,
   },
   {
     name: "Settings",

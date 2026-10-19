@@ -20,6 +20,11 @@ import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 import Unauthorized from './pages/Unauthorized';
 import Loading from './components/Loading/Loading';
+import BlogAdminLayout from './layouts/BlogAdminLayout';
+import BlogPage from './pages/BlogPage';
+import BlogDetails from './pages/BlogDetails';
+import BlogLayout from './layouts/BlogLayout';
+import BlogDashboard from './pages/BlogDashboard';
 // ========== LAZY LOADED PAGES ==========
 // Public
 const Home = lazy(() => import('./pages/public/Home'));
@@ -52,6 +57,8 @@ const AdminCertificates = lazy(() => import('./dashboard/admin/Certificates'));
 const AdminNotices = lazy(() => import('./dashboard/admin/Notices'));
 const AdminGallery = lazy(() => import('./dashboard/admin/Gallery'));
 const AdminTestimonials = lazy(() => import('./dashboard/admin/Testimonials'));
+const AdminBlogs = lazy(() => import('./pages/AdminBlogs'));
+const BlogEditor = lazy(() => import('./pages/BlogEditor'));
 const AdminAttendance = lazy(() => import('./dashboard/admin/Attendance'));
 const AdminExams = lazy(() => import('./dashboard/admin/Exams'));
 const AdminResults = lazy(() => import('./dashboard/admin/Results'));
@@ -133,6 +140,11 @@ function App() {
           <Route path="/register" element={<PublicOnlyRoute><Register /></PublicOnlyRoute>} />
           <Route path="/unauthorized" element={<Unauthorized />} />
 
+          <Route element={<BlogLayout />}>
+            <Route path="/blogs" element={<BlogPage />} />
+            <Route path="/blogs/:slug" element={<BlogDetails />} />
+          </Route>
+
           {/* Admin */}
           <Route path="/admin" element={<AdminRoute><AdminLayout /></AdminRoute>}>
             <Route index element={<Navigate to="dashboard" replace />} />
@@ -156,6 +168,22 @@ function App() {
             <Route path="profile" element={<AdminProfile />} />
           </Route>
 
+
+          {/* Blog Admin — protected routes */}
+          <Route
+            path="/admin/blogs"
+            element={
+              <AdminRoute>
+                <BlogAdminLayout />
+              </AdminRoute>
+            }
+          >
+            <Route index element={<BlogDashboard />} />
+            <Route path="articles" element={<AdminBlogs />} />
+            <Route path="create" element={<BlogEditor />} />
+            <Route path="edit/:id" element={<BlogEditor />} />
+          </Route>
+        
           {/* Teacher */}
           <Route path="/teacher" element={<TeacherRoute><TeacherLayout /></TeacherRoute>}>
             <Route index element={<Navigate to="dashboard" replace />} />

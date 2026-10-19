@@ -1,0 +1,139 @@
+
+/* Open IT Institute — Article Content */
+
+.article-content {
+  color: #334155;
+  font-size: 16px;
+  line-height: 1.9;
+  overflow-wrap: anywhere;
+}
+
+.article-content h1,
+.article-content h2,
+.article-content h3 {
+  line-height: 1.4;
+  font-weight: 800;
+  margin-top: 1.8em;
+  margin-bottom: 0.7em;
+}
+
+.article-content h1 {
+  color: #082b55;
+  font-size: 2rem;
+}
+
+.article-content h2 {
+  color: #075b96;
+  font-size: 1.55rem;
+  border-left: 4px solid #075b96;
+  padding-left: 12px;
+}
+
+.article-content h3 {
+  color: #123d65;
+  font-size: 1.2rem;
+}
+
+.article-content p {
+  margin: 1em 0;
+}
+
+.article-content ul,
+.article-content ol {
+  padding-left: 1.6rem;
+  margin: 1rem 0;
+}
+
+.article-content ul {
+  list-style: disc;
+}
+
+.article-content ol {
+  list-style: decimal;
+}
+
+.article-content li {
+  padding-left: 0.25rem;
+  margin: 0.45rem 0;
+}
+
+.article-content a {
+  color: #075b96;
+  text-decoration: underline;
+  overflow-wrap: anywhere;
+}
+
+.article-content img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1.5rem auto;
+  border-radius: 12px;
+}
+
+.article-content blockquote {
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  border-left: 4px solid #075b96;
+  background: #eff6ff;
+  border-radius: 0 10px 10px 0;
+}
+
+.article-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  display: block;
+  overflow-x: auto;
+}
+
+.article-content th,
+.article-content td {
+  border: 1px solid #dbe3ed;
+  padding: 10px 12px;
+  text-align: left;
+}
+
+.article-content th {
+  background: #eff6ff;
+  color: #082b55;
+  font-weight: 700;
+}
+
+.article-content hr {
+  border: 0;
+  border-top: 1px solid #dbe3ed;
+  margin: 2rem 0;
+}
+
+.article-content strong {
+  color: #123d65;
+}
+
+.article-content pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  padding: 1rem;
+  background: #f1f5f9;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+@media (max-width: 640px) {
+  .article-content {
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .article-content h1 {
+    font-size: 1.65rem;
+  }
+
+  .article-content h2 {
+    font-size: 1.3rem;
+  }
+
+  .article-content h3 {
+    font-size: 1.1rem;
+  }
+}
