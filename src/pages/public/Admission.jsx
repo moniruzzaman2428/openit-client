@@ -1,4 +1,9 @@
-import { useEffect, useMemo, useState } from 'react';
+// ============================================================
+// FILE: Admission.jsx
+// Requires: src/components/admission/AdmissionForm.jsx
+//           src/components/notices/noticeExport.js  (PDF + print helpers)
+// ============================================================
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
@@ -16,13 +21,16 @@ import {
   FaSpinner,
   FaCalendarAlt,
   FaUsers,
-  FaMoneyBillWave,
   FaCertificate,
   FaShieldAlt,
   FaClock,
   FaLaptopCode,
   FaAward,
   FaRocket,
+  FaDownload,
+  FaPrint,
+  FaEye,
+  FaRedo,
 } from 'react-icons/fa';
 
 import { submitAdmission } from '../../services/admissionService';
@@ -34,12 +42,31 @@ import StructuredData, {
   organizationSchema,
 } from '../../components/seo/StructuredData';
 
+import AdmissionFormDocument, {
+  AdmissionFormModal,
+} from '../../components/AdmissionForm';
+import {
+  downloadNoticePDF,
+  ensureBengaliFonts,
+  printNoticeNode,
+} from '../../components/notices/noticeExport';
+
 const Admission = () => {
   const [searchParams] = useSearchParams();
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [courses, setCourses] = useState([]);
   const [coursesLoading, setCoursesLoading] = useState(true);
+
+  // Success screen + form export
+  const [submission, setSubmission] = useState(null);
+  const [showPreview, setShowPreview] = useState(false);
+  const [downloading, setDownloading] = useState(false);
+  const [printing, setPrinting] = useState(false);
+  const [exportError, setExportError] = useState('');
+
+  const exportRef = useRef(null); // hidden A4 form: source for PDF + print
+  const successRef = useRef(null);
 
   const {
     register,
@@ -53,6 +80,11 @@ const Admission = () => {
       course: searchParams.get('course') || '',
     },
   });
+
+  // Load Bengali fonts once so the PDF looks right
+  useEffect(() => {
+    ensureBengaliFonts();
+  }, []);
 
   // ==================================================
   // LOAD COURSES
@@ -162,60 +194,20 @@ const Admission = () => {
     try {
       const res = await submitAdmission(data);
 
-      Swal.fire({
-        icon: 'success',
-        title: 'Application Submitted!',
-        html: `
-          <div style="text-align:center;">
-            <p style="font-size:15px;color:#64748b;">
-              Your admission application has been received successfully.
-            </p>
+      const applicationId =
+        res?.data?.applicationId ||
+        res?.data?.data?.applicationId ||
+        res?.applicationId ||
+        '';
 
-            <div style="
-              margin-top:18px;
-              padding:16px;
-              background:#f8fafc;
-              border-radius:14px;
-              border:1px solid #e2e8f0;
-            ">
-              <p style="
-                margin:0;
-                font-size:12px;
-                color:#64748b;
-                text-transform:uppercase;
-                letter-spacing:1px;
-              ">
-                Application ID
-              </p>
-
-              <p style="
-                margin:7px 0 0;
-                font-size:22px;
-                font-weight:800;
-                color:#0F4C81;
-                letter-spacing:2px;
-              ">
-                ${res.data.applicationId}
-              </p>
-            </div>
-
-            <p style="
-              margin-top:15px;
-              font-size:13px;
-              color:#64748b;
-            ">
-              Please save this ID for future reference.
-              We will contact you soon.
-            </p>
-          </div>
-        `,
-        confirmButtonText: 'Done',
-        confirmButtonColor: '#0F4C81',
-        customClass: {
-          popup: 'rounded-3xl',
-          confirmButton: 'rounded-xl px-7 py-3',
-        },
+      // Keep everything the PDF needs BEFORE the form is reset
+      setSubmission({
+        ...data,
+        applicationId,
+        courseTitle: selectedCourse?.title || data.course,
+        submittedAt: new Date().toISOString(),
       });
+      setExportError('');
 
       reset({
         studentName: '',
@@ -229,6 +221,8 @@ const Admission = () => {
         address: '',
         course: '',
       });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch (err) {
       Swal.fire({
         icon: 'error',
@@ -244,6 +238,50 @@ const Admission = () => {
     }
   };
 
+  // Move focus to the success message for screen readers
+  useEffect(() => {
+    if (submission) successRef.current?.focus();
+  }, [submission]);
+
+  // ==================================================
+  // FORM EXPORT (PDF + PRINT)
+  // ==================================================
+
+  const fileName = `OpenIT-Admission-${String(submission?.applicationId || 'form').replace(
+    /[^\w-]/g,
+    ''
+  )}`;
+
+  const handleDownload = async () => {
+    if (!exportRef.current || downloading) return;
+
+    try {
+      setDownloading(true);
+      setExportError('');
+      await downloadNoticePDF(exportRef.current, fileName);
+    } catch (err) {
+      console.error('Admission PDF error:', err);
+      setExportError('Could not create the PDF. Please try again.');
+    } finally {
+      setDownloading(false);
+    }
+  };
+
+  const handlePrint = async () => {
+    if (!exportRef.current || printing) return;
+
+    try {
+      setPrinting(true);
+      setExportError('');
+      await printNoticeNode(exportRef.current, fileName);
+    } catch (err) {
+      console.error('Admission print error:', err);
+      setExportError('Could not open the print dialog.');
+    } finally {
+      setPrinting(false);
+    }
+  };
+
   // ==================================================
   // FORM INPUT STYLE
   // ==================================================
@@ -252,6 +290,9 @@ const Admission = () => {
     `w-full rounded-xl border ${
       fieldError ? 'border-red-300 bg-red-50/30' : 'border-slate-200 bg-white'
     } px-4 py-3.5 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-primary focus:ring-4 focus:ring-primary/10`;
+
+  const exportBtn =
+    'inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60';
 
   return (
     <div className="overflow-hidden bg-slate-50">
@@ -280,6 +321,16 @@ const Admission = () => {
           ]),
         ]}
       />
+
+      {/* Hidden A4 form: the source for PDF and print */}
+      {submission && (
+        <div
+          aria-hidden="true"
+          style={{ position: 'fixed', left: '-10000px', top: 0, pointerEvents: 'none' }}
+        >
+          <AdmissionFormDocument ref={exportRef} data={submission} />
+        </div>
+      )}
 
       {/* ==================================================
           HERO
@@ -324,7 +375,7 @@ const Admission = () => {
             </h1>
 
             <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-white/70 sm:text-base">
-              আপনার ক্যারিয়ার গড়ার যাত্রা শুরু করুন। অনলাইনে ভর্তি আবেদন
+              আপনার ক্যারিয়ার গড়ার যাত্রা শুরু করুন। অনলাইনে ভর্তি আবেদন
               করুন — সহজ, দ্রুত ও নিরাপদ।
             </p>
 
@@ -358,388 +409,490 @@ const Admission = () => {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_350px]">
             {/* ==================================================
-                FORM
+                SUCCESS  (shown after a successful submit)
             ================================================== */}
 
-            <motion.div
-              initial={{ opacity: 0, y: 25 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl shadow-slate-200/50"
-            >
-              {/* Form Header */}
+            {submission ? (
+              <motion.div
+                initial={{ opacity: 0, y: 25 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl shadow-slate-200/50"
+              >
+                <div className="h-1.5 bg-gradient-to-r from-emerald-400 to-primary" />
 
-              <div className="border-b border-slate-100 bg-gradient-to-r from-white to-slate-50 p-6 sm:p-8">
-                <div className="flex items-center gap-4">
-                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-                    <FaUserGraduate className="text-2xl" />
+                <div
+                  ref={successRef}
+                  tabIndex={-1}
+                  role="status"
+                  aria-live="polite"
+                  className="p-6 text-center outline-none sm:p-10"
+                >
+                  <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-50 text-3xl text-emerald-500 ring-8 ring-emerald-50/60">
+                    <FaCheckCircle />
                   </div>
+
+                  <h2 className="mt-5 text-2xl font-extrabold text-slate-900 sm:text-3xl">
+                    Application submitted
+                  </h2>
+
+                  <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-slate-500">
+                    আপনার ভর্তির আবেদন সফলভাবে জমা হয়েছে। আমরা শীঘ্রই আপনার সাথে যোগাযোগ করব।
+                  </p>
+
+                  {submission.applicationId && (
+                    <div className="mx-auto mt-6 max-w-sm rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                      <p className="text-xs font-medium text-slate-500">Application ID</p>
+                      <p className="mt-1 font-mono text-2xl font-extrabold tracking-wider text-primary">
+                        {submission.applicationId}
+                      </p>
+                      <p className="mt-1 text-xs text-slate-400">Please save this ID for future reference.</p>
+                    </div>
+                  )}
+
+                  {/* Form download */}
+                  <div className="mx-auto mt-8 max-w-xl rounded-2xl border border-primary/15 bg-primary/[0.04] p-5 text-left">
+                    <h3 className="text-base font-bold text-slate-900">Your admission form</h3>
+                    <p className="mt-1 text-sm leading-6 text-slate-500">
+                      আপনার দেওয়া তথ্য দিয়ে ভর্তির আবেদন ফরমটি তৈরি হয়েছে। ডাউনলোড বা প্রিন্ট করে, ছবি লাগিয়ে
+                      স্বাক্ষর করে অফিসে জমা দিন।
+                    </p>
+
+                    <div className="mt-4 flex flex-wrap gap-3">
+                      <button
+                        type="button"
+                        onClick={handleDownload}
+                        disabled={downloading}
+                        className={`${exportBtn} bg-primary text-white shadow-lg shadow-primary/20 hover:opacity-90`}
+                      >
+                        {downloading ? <FaSpinner className="animate-spin" /> : <FaDownload className="text-xs" />}
+                        {downloading ? 'Generating PDF…' : 'Download form (PDF)'}
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={handlePrint}
+                        disabled={printing}
+                        className={`${exportBtn} border border-slate-200 bg-white text-slate-700 hover:bg-slate-50`}
+                      >
+                        {printing ? <FaSpinner className="animate-spin" /> : <FaPrint className="text-xs" />}
+                        Print
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => setShowPreview(true)}
+                        className={`${exportBtn} text-slate-600 hover:bg-white`}
+                      >
+                        <FaEye className="text-xs" />
+                        Preview
+                      </button>
+                    </div>
+
+                    {exportError && (
+                      <p role="alert" className="mt-3 text-sm font-medium text-red-500">
+                        {exportError}
+                      </p>
+                    )}
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSubmission(null);
+                      setExportError('');
+                    }}
+                    className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-slate-500 transition hover:text-primary"
+                  >
+                    <FaRedo className="text-xs" />
+                    Submit another application
+                  </button>
+                </div>
+              </motion.div>
+            ) : (
+              /* ==================================================
+                  FORM
+              ================================================== */
+              <motion.div
+                initial={{ opacity: 0, y: 25 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl shadow-slate-200/50"
+              >
+                {/* Form Header */}
+
+                <div className="border-b border-slate-100 bg-gradient-to-r from-white to-slate-50 p-6 sm:p-8">
+                  <div className="flex items-center gap-4">
+                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                      <FaUserGraduate className="text-2xl" />
+                    </div>
+
+                    <div>
+                      <h2 className="text-xl font-extrabold text-slate-900 sm:text-2xl">
+                        Admission Form
+                      </h2>
+
+                      <p className="mt-1 text-sm text-slate-500">
+                        Fill in your information carefully
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Form */}
+
+                <form
+                  onSubmit={handleSubmit(onSubmit)}
+                  className="space-y-7 p-6 sm:p-8"
+                >
+                  {/* ==================================================
+                      PERSONAL INFORMATION
+                  ================================================== */}
+
+                  <FormSection
+                    number="01"
+                    icon={<FaUser />}
+                    title="Personal Information"
+                    description="Enter your basic personal information"
+                  />
+
+                  <div className="grid gap-5 sm:grid-cols-2">
+                    {/* Student Name */}
+
+                    <InputField
+                      label="Student Name"
+                      required
+                      icon={<FaUser />}
+                      error={errors.studentName}
+                    >
+                      <input
+                        {...register('studentName', {
+                          required: 'Student name is required',
+                          minLength: {
+                            value: 3,
+                            message: 'Name must be at least 3 characters',
+                          },
+                        })}
+                        className={inputClass(errors.studentName)}
+                        placeholder="Enter your full name"
+                      />
+                    </InputField>
+
+                    {/* Father's Name */}
+
+                    <InputField
+                      label="Father's Name"
+                      required
+                      icon={<FaUser />}
+                      error={errors.fatherName}
+                    >
+                      <input
+                        {...register('fatherName', {
+                          required: "Father's name is required",
+                        })}
+                        className={inputClass(errors.fatherName)}
+                        placeholder="Enter father's name"
+                      />
+                    </InputField>
+
+                    {/* Mother's Name */}
+
+                    <InputField
+                      label="Mother's Name"
+                      required
+                      icon={<FaUser />}
+                      error={errors.motherName}
+                    >
+                      <input
+                        {...register('motherName', {
+                          required: "Mother's name is required",
+                        })}
+                        className={inputClass(errors.motherName)}
+                        placeholder="Enter mother's name"
+                      />
+                    </InputField>
+
+                    {/* Date of Birth */}
+
+                    <InputField
+                      label="Date of Birth"
+                      required
+                      icon={<FaCalendarAlt />}
+                      error={errors.dateOfBirth}
+                    >
+                      <input
+                        type="date"
+                        {...register('dateOfBirth', {
+                          required: 'Date of birth is required',
+                        })}
+                        className={inputClass(errors.dateOfBirth)}
+                      />
+                    </InputField>
+
+                    {/* Gender */}
+
+                    <InputField
+                      label="Gender"
+                      required
+                      icon={<FaUsers />}
+                      error={errors.gender}
+                    >
+                      <select
+                        {...register('gender', {
+                          required: 'Please select your gender',
+                        })}
+                        className={inputClass(errors.gender)}
+                      >
+                        <option value="">Select gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                      </select>
+                    </InputField>
+
+                    {/* Education */}
+
+                    <InputField
+                      label="Educational Qualification"
+                      required
+                      icon={<FaGraduationCap />}
+                      error={errors.education}
+                    >
+                      <input
+                        {...register('education', {
+                          required:
+                            'Educational qualification is required',
+                        })}
+                        className={inputClass(errors.education)}
+                        placeholder="e.g. SSC, HSC, Graduate"
+                      />
+                    </InputField>
+                  </div>
+
+                  {/* ==================================================
+                      CONTACT INFORMATION
+                  ================================================== */}
+
+                  <FormSection
+                    number="02"
+                    icon={<FaPhone />}
+                    title="Contact Information"
+                    description="How can we contact you?"
+                  />
+
+                  <div className="grid gap-5 sm:grid-cols-2">
+                    {/* Phone */}
+
+                    <InputField
+                      label="Mobile Number"
+                      required
+                      icon={<FaPhone />}
+                      error={errors.phone}
+                    >
+                      <input
+                        type="tel"
+                        {...register('phone', {
+                          required: 'Mobile number is required',
+                          pattern: {
+                            value: /^(?:\+?88)?01[3-9]\d{8}$/,
+                            message: 'Enter a valid Bangladesh mobile number',
+                          },
+                        })}
+                        className={inputClass(errors.phone)}
+                        placeholder="01XXXXXXXXX"
+                      />
+                    </InputField>
+
+                    {/* Email */}
+
+                    <InputField
+                      label="Email Address"
+                      required
+                      icon={<FaEnvelope />}
+                      error={errors.email}
+                    >
+                      <input
+                        type="email"
+                        {...register('email', {
+                          required: 'Email address is required',
+                          pattern: {
+                            value: /^\S+@\S+\.\S+$/,
+                            message: 'Enter a valid email address',
+                          },
+                        })}
+                        className={inputClass(errors.email)}
+                        placeholder="example@email.com"
+                      />
+                    </InputField>
+                  </div>
+
+                  {/* Address */}
+
+                  <InputField
+                    label="Present Address"
+                    required
+                    icon={<FaMapMarkerAlt />}
+                    error={errors.address}
+                  >
+                    <textarea
+                      {...register('address', {
+                        required: 'Address is required',
+                      })}
+                      rows={3}
+                      className={`${inputClass(
+                        errors.address
+                      )} resize-none`}
+                      placeholder="Enter your present address"
+                    />
+                  </InputField>
+
+                  {/* ==================================================
+                      COURSE INFORMATION
+                  ================================================== */}
+
+                  <FormSection
+                    number="03"
+                    icon={<FaBookOpen />}
+                    title="Course Selection"
+                    description="Choose the course you want to enroll in"
+                  />
 
                   <div>
-                    <h2 className="text-xl font-extrabold text-slate-900 sm:text-2xl">
-                      Admission Form
-                    </h2>
-
-                    <p className="mt-1 text-sm text-slate-500">
-                      Fill in your information carefully
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Form */}
-
-              <form
-                onSubmit={handleSubmit(onSubmit)}
-                className="space-y-7 p-6 sm:p-8"
-              >
-                {/* ==================================================
-                    PERSONAL INFORMATION
-                ================================================== */}
-
-                <FormSection
-                  number="01"
-                  icon={<FaUser />}
-                  title="Personal Information"
-                  description="Enter your basic personal information"
-                />
-
-                <div className="grid gap-5 sm:grid-cols-2">
-                  {/* Student Name */}
-
-                  <InputField
-                    label="Student Name"
-                    required
-                    icon={<FaUser />}
-                    error={errors.studentName}
-                  >
-                    <input
-                      {...register('studentName', {
-                        required: 'Student name is required',
-                        minLength: {
-                          value: 3,
-                          message: 'Name must be at least 3 characters',
-                        },
-                      })}
-                      className={inputClass(errors.studentName)}
-                      placeholder="Enter your full name"
-                    />
-                  </InputField>
-
-                  {/* Father's Name */}
-
-                  <InputField
-                    label="Father's Name"
-                    required
-                    icon={<FaUser />}
-                    error={errors.fatherName}
-                  >
-                    <input
-                      {...register('fatherName', {
-                        required: "Father's name is required",
-                      })}
-                      className={inputClass(errors.fatherName)}
-                      placeholder="Enter father's name"
-                    />
-                  </InputField>
-
-                  {/* Mother's Name */}
-
-                  <InputField
-                    label="Mother's Name"
-                    required
-                    icon={<FaUser />}
-                    error={errors.motherName}
-                  >
-                    <input
-                      {...register('motherName', {
-                        required: "Mother's name is required",
-                      })}
-                      className={inputClass(errors.motherName)}
-                      placeholder="Enter mother's name"
-                    />
-                  </InputField>
-
-                  {/* Date of Birth */}
-
-                  <InputField
-                    label="Date of Birth"
-                    required
-                    icon={<FaCalendarAlt />}
-                    error={errors.dateOfBirth}
-                  >
-                    <input
-                      type="date"
-                      {...register('dateOfBirth', {
-                        required: 'Date of birth is required',
-                      })}
-                      className={inputClass(errors.dateOfBirth)}
-                    />
-                  </InputField>
-
-                  {/* Gender */}
-
-                  <InputField
-                    label="Gender"
-                    required
-                    icon={<FaUsers />}
-                    error={errors.gender}
-                  >
-                    <select
-                      {...register('gender', {
-                        required: 'Please select your gender',
-                      })}
-                      className={inputClass(errors.gender)}
+                    <InputField
+                      label="Select Course"
+                      required
+                      icon={<FaBookOpen />}
+                      error={errors.course}
                     >
-                      <option value="">Select gender</option>
-                      <option value="male">Male</option>
-                      <option value="female">Female</option>
-                      <option value="other">Other</option>
-                    </select>
-                  </InputField>
-
-                  {/* Education */}
-
-                  <InputField
-                    label="Educational Qualification"
-                    required
-                    icon={<FaGraduationCap />}
-                    error={errors.education}
-                  >
-                    <input
-                      {...register('education', {
-                        required:
-                          'Educational qualification is required',
-                      })}
-                      className={inputClass(errors.education)}
-                      placeholder="e.g. SSC, HSC, Graduate"
-                    />
-                  </InputField>
-                </div>
-
-                {/* ==================================================
-                    CONTACT INFORMATION
-                ================================================== */}
-
-                <FormSection
-                  number="02"
-                  icon={<FaPhone />}
-                  title="Contact Information"
-                  description="How can we contact you?"
-                />
-
-                <div className="grid gap-5 sm:grid-cols-2">
-                  {/* Phone */}
-
-                  <InputField
-                    label="Mobile Number"
-                    required
-                    icon={<FaPhone />}
-                    error={errors.phone}
-                  >
-                    <input
-                      type="tel"
-                      {...register('phone', {
-                        required: 'Mobile number is required',
-                        pattern: {
-                          value: /^(?:\+?88)?01[3-9]\d{8}$/,
-                          message: 'Enter a valid Bangladesh mobile number',
-                        },
-                      })}
-                      className={inputClass(errors.phone)}
-                      placeholder="01XXXXXXXXX"
-                    />
-                  </InputField>
-
-                  {/* Email */}
-
-                  <InputField
-                    label="Email Address"
-                    required
-                    icon={<FaEnvelope />}
-                    error={errors.email}
-                  >
-                    <input
-                      type="email"
-                      {...register('email', {
-                        required: 'Email address is required',
-                        pattern: {
-                          value: /^\S+@\S+\.\S+$/,
-                          message: 'Enter a valid email address',
-                        },
-                      })}
-                      className={inputClass(errors.email)}
-                      placeholder="example@email.com"
-                    />
-                  </InputField>
-                </div>
-
-                {/* Address */}
-
-                <InputField
-                  label="Present Address"
-                  required
-                  icon={<FaMapMarkerAlt />}
-                  error={errors.address}
-                >
-                  <textarea
-                    {...register('address', {
-                      required: 'Address is required',
-                    })}
-                    rows={3}
-                    className={`${inputClass(
-                      errors.address
-                    )} resize-none`}
-                    placeholder="Enter your present address"
-                  />
-                </InputField>
-
-                {/* ==================================================
-                    COURSE INFORMATION
-                ================================================== */}
-
-                <FormSection
-                  number="03"
-                  icon={<FaBookOpen />}
-                  title="Course Selection"
-                  description="Choose the course you want to enroll in"
-                />
-
-                <div>
-                  <InputField
-                    label="Select Course"
-                    required
-                    icon={<FaBookOpen />}
-                    error={errors.course}
-                  >
-                    <select
-                      {...register('course', {
-                        required: 'Please select a course',
-                      })}
-                      disabled={coursesLoading}
-                      className={inputClass(errors.course)}
-                    >
-                      <option value="">
-                        {coursesLoading
-                          ? 'Loading courses...'
-                          : 'Choose a course'}
-                      </option>
-
-                      {courses.map((course) => (
-                        <option
-                          key={course._id || course.slug}
-                          value={course.slug || course._id}
-                        >
-                          {course.title}
+                      <select
+                        {...register('course', {
+                          required: 'Please select a course',
+                        })}
+                        disabled={coursesLoading}
+                        className={inputClass(errors.course)}
+                      >
+                        <option value="">
+                          {coursesLoading
+                            ? 'Loading courses...'
+                            : 'Choose a course'}
                         </option>
-                      ))}
-                    </select>
-                  </InputField>
-                </div>
 
-                {/* ==================================================
-                    SELECTED COURSE PREVIEW
-                ================================================== */}
+                        {courses.map((course) => (
+                          <option
+                            key={course._id || course.slug}
+                            value={course.slug || course._id}
+                          >
+                            {course.title}
+                          </option>
+                        ))}
+                      </select>
+                    </InputField>
+                  </div>
 
-                {selectedCourse && (
-                  <motion.div
-                    initial={{
-                      opacity: 0,
-                      height: 0,
-                    }}
-                    animate={{
-                      opacity: 1,
-                      height: 'auto',
-                    }}
-                    className="overflow-hidden"
-                  >
-                    <div className="rounded-2xl border border-primary/15 bg-gradient-to-r from-primary/[0.05] to-secondary/[0.05] p-5">
-                      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                        <div className="flex items-start gap-3">
-                          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                            <FaLaptopCode />
+                  {/* ==================================================
+                      SELECTED COURSE PREVIEW
+                  ================================================== */}
+
+                  {selectedCourse && (
+                    <motion.div
+                      initial={{
+                        opacity: 0,
+                        height: 0,
+                      }}
+                      animate={{
+                        opacity: 1,
+                        height: 'auto',
+                      }}
+                      className="overflow-hidden"
+                    >
+                      <div className="rounded-2xl border border-primary/15 bg-gradient-to-r from-primary/[0.05] to-secondary/[0.05] p-5">
+                        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                          <div className="flex items-start gap-3">
+                            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                              <FaLaptopCode />
+                            </div>
+
+                            <div>
+                              <p className="text-xs font-medium text-slate-400">
+                                SELECTED COURSE
+                              </p>
+
+                              <h3 className="mt-1 text-base font-bold text-slate-800">
+                                {selectedCourse.title}
+                              </h3>
+
+                              {selectedCourse.duration && (
+                                <p className="mt-1 flex items-center gap-1.5 text-xs text-slate-500">
+                                  <FaClock className="text-primary" />
+                                  {selectedCourse.duration}
+                                </p>
+                              )}
+                            </div>
                           </div>
 
-                          <div>
-                            <p className="text-xs font-medium text-slate-400">
-                              SELECTED COURSE
+                          <div className="sm:text-right">
+                            <p className="text-xs text-slate-400">
+                              COURSE FEE
                             </p>
 
-                            <h3 className="mt-1 text-base font-bold text-slate-800">
-                              {selectedCourse.title}
-                            </h3>
+                            <div className="mt-1 flex items-center gap-2 sm:justify-end">
+                              <span className="text-xl font-extrabold text-primary">
+                                ৳
+                                {selectedCoursePricing.discounted.toLocaleString()}
+                              </span>
 
-                            {selectedCourse.duration && (
-                              <p className="mt-1 flex items-center gap-1.5 text-xs text-slate-500">
-                                <FaClock className="text-primary" />
-                                {selectedCourse.duration}
+                              {selectedCoursePricing.discount > 0 && (
+                                <span className="text-xs text-slate-400 line-through">
+                                  ৳
+                                  {selectedCoursePricing.fee.toLocaleString()}
+                                </span>
+                              )}
+                            </div>
+
+                            {selectedCoursePricing.saving > 0 && (
+                              <p className="mt-1 text-xs font-semibold text-emerald-500">
+                                Save ৳
+                                {selectedCoursePricing.saving.toLocaleString()}
                               </p>
                             )}
                           </div>
                         </div>
-
-                        <div className="sm:text-right">
-                          <p className="text-xs text-slate-400">
-                            COURSE FEE
-                          </p>
-
-                          <div className="mt-1 flex items-center gap-2 sm:justify-end">
-                            <span className="text-xl font-extrabold text-primary">
-                              ৳
-                              {selectedCoursePricing.discounted.toLocaleString()}
-                            </span>
-
-                            {selectedCoursePricing.discount > 0 && (
-                              <span className="text-xs text-slate-400 line-through">
-                                ৳
-                                {selectedCoursePricing.fee.toLocaleString()}
-                              </span>
-                            )}
-                          </div>
-
-                          {selectedCoursePricing.saving > 0 && (
-                            <p className="mt-1 text-xs font-semibold text-emerald-500">
-                              Save ৳
-                              {selectedCoursePricing.saving.toLocaleString()}
-                            </p>
-                          )}
-                        </div>
                       </div>
+                    </motion.div>
+                  )}
+
+                  {/* ==================================================
+                      SUBMIT
+                  ================================================== */}
+
+                  <div className="border-t border-slate-100 pt-6">
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="group flex w-full items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-primary to-secondary px-6 py-4 text-sm font-bold text-white shadow-xl shadow-primary/20 transition hover:-translate-y-0.5 hover:shadow-2xl disabled:cursor-not-allowed disabled:opacity-60"
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <FaSpinner className="animate-spin text-lg" />
+                          Submitting Application...
+                        </>
+                      ) : (
+                        <>
+                          <FaCheckCircle className="text-lg" />
+                          Submit Admission Application
+                          <FaArrowRight className="text-xs transition group-hover:translate-x-1" />
+                        </>
+                      )}
+                    </button>
+
+                    <div className="mt-4 flex items-center justify-center gap-2 text-center text-xs text-slate-400">
+                      <FaShieldAlt className="text-emerald-500" />
+                      Your information is safe and secure
                     </div>
-                  </motion.div>
-                )}
-
-                {/* ==================================================
-                    SUBMIT
-                ================================================== */}
-
-                <div className="border-t border-slate-100 pt-6">
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="group flex w-full items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-primary to-secondary px-6 py-4 text-sm font-bold text-white shadow-xl shadow-primary/20 transition hover:-translate-y-0.5 hover:shadow-2xl disabled:cursor-not-allowed disabled:opacity-60"
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <FaSpinner className="animate-spin text-lg" />
-                        Submitting Application...
-                      </>
-                    ) : (
-                      <>
-                        <FaCheckCircle className="text-lg" />
-                        Submit Admission Application
-                        <FaArrowRight className="text-xs transition group-hover:translate-x-1" />
-                      </>
-                    )}
-                  </button>
-
-                  <div className="mt-4 flex items-center justify-center gap-2 text-center text-xs text-slate-400">
-                    <FaShieldAlt className="text-emerald-500" />
-                    Your information is safe and secure
                   </div>
-                </div>
-              </form>
-            </motion.div>
+                </form>
+              </motion.div>
+            )}
 
             {/* ==================================================
                 RIGHT SIDEBAR
@@ -810,7 +963,7 @@ const Admission = () => {
 
               {/* Selected Course Card */}
 
-              {selectedCourse && (
+              {!submission && selectedCourse && (
                 <motion.div
                   initial={{
                     opacity: 0,
@@ -902,7 +1055,7 @@ const Admission = () => {
           </div>
 
           <h2 className="mt-5 text-2xl font-extrabold sm:text-3xl">
-            আপনার ক্যারিয়ার গড়ার সময় এখনই
+            আপনার ক্যারিয়ার গড়ার সময় এখনই
           </h2>
 
           <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-white/60 sm:text-base">
@@ -911,6 +1064,18 @@ const Admission = () => {
           </p>
         </div>
       </section>
+
+      {/* Form preview */}
+      {showPreview && submission && (
+        <AdmissionFormModal
+          data={submission}
+          onClose={() => setShowPreview(false)}
+          onDownload={handleDownload}
+          onPrint={handlePrint}
+          downloading={downloading}
+          printing={printing}
+        />
+      )}
     </div>
   );
 };
@@ -1033,3 +1198,4 @@ const SidebarInfo = ({ icon, label, value }) => (
 );
 
 export default Admission;
+

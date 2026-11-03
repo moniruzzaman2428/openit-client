@@ -166,6 +166,7 @@ const Lightbox = ({ images, index, onClose, onChange }) => {
             variants={lightboxVariants}
             initial={reduceMotion ? false : 'enter'}
             animate="center"
+            fetchPriority="high"
             exit={reduceMotion ? undefined : 'exit'}
             transition={{ duration: 0.28, ease: 'easeOut' }}
             src={images[index] || fallbackImage}
