@@ -1,0 +1,977 @@
+[
+  {
+    "id": "2706",
+    "question": "ROM এর পূর্ণ নাম লেখ।",
+    "options": [
+      {
+        "id": "6612",
+        "text": "Read Only Memory.",
+        "correct": true
+      },
+      {
+        "id": "6613",
+        "text": "Read Access Memory.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2707",
+    "question": "MS Powerpoint কী ধরনের প্যাকেজ ?",
+    "options": [
+      {
+        "id": "6615",
+        "text": "Preservation Software",
+        "correct": false
+      },
+      {
+        "id": "6614",
+        "text": "Presentation Software",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2708",
+    "question": "MS Word এ Text alingment কয় প্রকার লেখ।",
+    "options": [
+      {
+        "id": "6617",
+        "text": "৫ প্রকার",
+        "correct": false
+      },
+      {
+        "id": "6619",
+        "text": "৬প্রকার",
+        "correct": false
+      },
+      {
+        "id": "6618",
+        "text": "২ প্রকার",
+        "correct": false
+      },
+      {
+        "id": "6616",
+        "text": "৪ প্রকার",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2709",
+    "question": "MS Excel program এ Default column width কত ?",
+    "options": [
+      {
+        "id": "6622",
+        "text": "65 Pixel",
+        "correct": false
+      },
+      {
+        "id": "6621",
+        "text": "85 Pixel",
+        "correct": false
+      },
+      {
+        "id": "6620",
+        "text": "75 Pixel",
+        "correct": true
+      },
+      {
+        "id": "6623",
+        "text": "95 Pixel",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2710",
+    "question": "MS Word এ copy ও Paste এর Keyboard command লেখ।",
+    "options": [
+      {
+        "id": "6624",
+        "text": "Copy command:ctrl+C ,paste command :ctrl+V",
+        "correct": true
+      },
+      {
+        "id": "6625",
+        "text": "Copy command:ctrl+V ,paste command :ctrl+C",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2711",
+    "question": "Print Preview এর কাজ কী ?",
+    "options": [
+      {
+        "id": "6627",
+        "text": "কোন ডকুমেন্ট প্রিন্ট করার জন্য Print preview ব্যাবহৃত হয়।",
+        "correct": false
+      },
+      {
+        "id": "6626",
+        "text": "কোন ডকুমেন্ট প্রিন্ট করার পূর্বে তা দেখার জন্য Print preview ব্যাবহৃত হয়।",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2712",
+    "question": "একটি ই-মেইল অ্যাড্রেসের সাধারণ গঠন লেখ।",
+    "options": [
+      {
+        "id": "6628",
+        "text": "ইমেইল অ্যাড্রেস একটি উইনিক অ্যাড্রেস ।অথ্যাৎ এক নামে শুধু একটি মাত্র ইমেইল অ্যাড্রেস থাকে।ইমেইল অ্যাড্রেসের সাধারণ গঠন হলোঃ @domain name> প্রতিটি ইমেইল অংশের দুইটি অংশ থাকে।অংশ দুইটির মাঝে সেপারেটর হিসাবে একটি @ ( Cat sign) ব্যাবহৃত হয়।",
+        "correct": true
+      },
+      {
+        "id": "6629",
+        "text": "ইমেইল অ্যাড্রেসের সাধারণ গঠন হলোঃ domain name>@.com প্রতিটি ইমেইল অংশের একটি অংশ থাকে।",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2713",
+    "question": "MS Access program এ export এর কাজ কী ?",
+    "options": [
+      {
+        "id": "6631",
+        "text": "এম এস এক্সেল হতে এম এস ওয়ার্ড এ ডাটা কপি করা",
+        "correct": false
+      },
+      {
+        "id": "6630",
+        "text": "এম এস এক্সেল হতে এক্সেল এ ডাটা কপি করা",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2714",
+    "question": "চারটি I/O ডিভাইসের নাম লেখ।",
+    "options": [
+      {
+        "id": "6633",
+        "text": "Harddisk,RAM,Processor.",
+        "correct": false
+      },
+      {
+        "id": "6632",
+        "text": "Keyboard, Mouse, Scanner, Joystick.",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2715",
+    "question": "একটি আধুনিক কম্পিউটারের প্রধান অংশগুলোর নাম লেখ।",
+    "options": [
+      {
+        "id": "6634",
+        "text": "Input Unit, Output unit,CPU Unit.",
+        "correct": true
+      },
+      {
+        "id": "6635",
+        "text": "Output device,Input device",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2716",
+    "question": "www এর পূর্ণনাম হলো...........।",
+    "options": [
+      {
+        "id": "6637",
+        "text": "Web Wide World",
+        "correct": false
+      },
+      {
+        "id": "6636",
+        "text": "World Wide Web",
+        "correct": true
+      },
+      {
+        "id": "6638",
+        "text": "Wide Web World",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2717",
+    "question": "(২৮)১০ এর বাইনারি মান...............।",
+    "options": [
+      {
+        "id": "6639",
+        "text": "11100",
+        "correct": true
+      },
+      {
+        "id": "6641",
+        "text": "11110",
+        "correct": false
+      },
+      {
+        "id": "6640",
+        "text": "11000",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2718",
+    "question": "MS Access একটি ...............Program ।",
+    "options": [
+      {
+        "id": "6642",
+        "text": "ডাটাবেস",
+        "correct": true
+      },
+      {
+        "id": "6643",
+        "text": "ডাটা",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2719",
+    "question": "Primary key এর কাজ হলো ...........।",
+    "options": [
+      {
+        "id": "6644",
+        "text": "সম্পর্ক তৈরী একক ইউনিট হিসেবে",
+        "correct": true
+      },
+      {
+        "id": "6645",
+        "text": "সম্পর্ক তৈরী দুই বা ততোধিক ইউনিট হিসেবে",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2720",
+    "question": "এম এস ওয়ার্ডে ফাইল ফাইল সেভ করার কমান্ড হলো.............।",
+    "options": [
+      {
+        "id": "6648",
+        "text": "Ctrl+C",
+        "correct": false
+      },
+      {
+        "id": "6647",
+        "text": "Ctrl+V",
+        "correct": false
+      },
+      {
+        "id": "6646",
+        "text": "Ctrl+S",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2721",
+    "question": "...............এর কাজে Query ব্যাবহার করা হয়।",
+    "options": [
+      {
+        "id": "6650",
+        "text": "ডাটাবেস থেকে শর্ত অনুসারে প্রয়োজনীয় ফাইল প্রিন্ট।",
+        "correct": false
+      },
+      {
+        "id": "6649",
+        "text": "ডাটাবেস থেকে শর্ত অনুসারে প্রয়োজনীয় ডাটা প্রদর্শন।",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2722",
+    "question": "Anti Virus...............এর কাজে ব্যাবহৃত হয়।",
+    "options": [
+      {
+        "id": "6652",
+        "text": "কম্পিউটারের উপকারী প্রোগ্রাম",
+        "correct": false
+      },
+      {
+        "id": "6651",
+        "text": "কম্পিউটারের ভাইরাস প্রতিষেধক",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2723",
+    "question": "১ গিগাবাইট=.........কিলোবাইট।",
+    "options": [
+      {
+        "id": "6655",
+        "text": "1002565",
+        "correct": false
+      },
+      {
+        "id": "6654",
+        "text": "1000026",
+        "correct": false
+      },
+      {
+        "id": "6653",
+        "text": "1000000",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2724",
+    "question": "RAM হলো ...............Memory।",
+    "options": [
+      {
+        "id": "6657",
+        "text": "Read Access",
+        "correct": false
+      },
+      {
+        "id": "6656",
+        "text": "Random Access",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2725",
+    "question": "কম্পিউটরের ক্ষতিকর প্রোগ্রাম হলো ............।",
+    "options": [
+      {
+        "id": "6658",
+        "text": "ভাইরাস",
+        "correct": true
+      },
+      {
+        "id": "6660",
+        "text": "এন্টিভাইরাস",
+        "correct": false
+      },
+      {
+        "id": "6659",
+        "text": "সফটওয়্যার",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2726",
+    "question": "File এর নাম পরিবর্তনের জন্য ব্যাবহৃত হয় save as ।",
+    "options": [
+      {
+        "id": "6661",
+        "text": "মি",
+        "correct": true
+      },
+      {
+        "id": "6662",
+        "text": "স",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2727",
+    "question": "একাধিক file close করার জন্য exit ব্যাবহৃত হয় ।",
+    "options": [
+      {
+        "id": "6664",
+        "text": "স",
+        "correct": false
+      },
+      {
+        "id": "6663",
+        "text": "মি",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2728",
+    "question": "MS Word এ কোনো কিছু মুছে গেলে Undo করতে হয়।",
+    "options": [
+      {
+        "id": "6665",
+        "text": "স",
+        "correct": true
+      },
+      {
+        "id": "6666",
+        "text": "মি",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2729",
+    "question": "MS Word এ convert ব্যাবহৃত হয় Data sort করার জন্য।",
+    "options": [
+      {
+        "id": "6667",
+        "text": "মি",
+        "correct": true
+      },
+      {
+        "id": "6668",
+        "text": "স",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2730",
+    "question": "Application program এ file save করলে তা My Document এ save হয়।",
+    "options": [
+      {
+        "id": "6670",
+        "text": "মি",
+        "correct": false
+      },
+      {
+        "id": "6669",
+        "text": "স",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2731",
+    "question": "Line spacing এর কাজে Paragraph কমান্ড ব্যাবহৃত হয়।",
+    "options": [
+      {
+        "id": "6672",
+        "text": "স",
+        "correct": false
+      },
+      {
+        "id": "6671",
+        "text": "মি",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2732",
+    "question": "Data move করতে ব্যাবহৃত হয় Cut & Paste কমান্ড ।",
+    "options": [
+      {
+        "id": "6673",
+        "text": "মি",
+        "correct": true
+      },
+      {
+        "id": "6674",
+        "text": "স",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2733",
+    "question": "Email বলতে Document তৈরী করা বুঝায়।",
+    "options": [
+      {
+        "id": "6676",
+        "text": "স",
+        "correct": false
+      },
+      {
+        "id": "6675",
+        "text": "মি",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2734",
+    "question": "Text Box এর কাজ হলো Text কে Color করা ।",
+    "options": [
+      {
+        "id": "6678",
+        "text": "স",
+        "correct": false
+      },
+      {
+        "id": "6677",
+        "text": "মি",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2735",
+    "question": "অভ্র একটি Language program ।",
+    "options": [
+      {
+        "id": "6680",
+        "text": "মি",
+        "correct": false
+      },
+      {
+        "id": "6679",
+        "text": "স",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2736",
+    "question": "MS Word এর File এর Extension Name হলো-",
+    "options": [
+      {
+        "id": "6681",
+        "text": ".exl",
+        "correct": false
+      },
+      {
+        "id": "6683",
+        "text": ".doc",
+        "correct": true
+      },
+      {
+        "id": "6684",
+        "text": ".ms",
+        "correct": false
+      },
+      {
+        "id": "6682",
+        "text": ".dbs",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2737",
+    "question": "Windows কী ?",
+    "options": [
+      {
+        "id": "6688",
+        "text": "Application Program",
+        "correct": false
+      },
+      {
+        "id": "6687",
+        "text": "Operating System program",
+        "correct": true
+      },
+      {
+        "id": "6686",
+        "text": "User Program",
+        "correct": false
+      },
+      {
+        "id": "6685",
+        "text": "Language Program",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2738",
+    "question": "Pen drive হল-",
+    "options": [
+      {
+        "id": "6689",
+        "text": "I/O ডিভাইস",
+        "correct": true
+      },
+      {
+        "id": "6691",
+        "text": "আউটপুট ডিভাইস",
+        "correct": false
+      },
+      {
+        "id": "6692",
+        "text": "কোনোটিই নয়",
+        "correct": false
+      },
+      {
+        "id": "6690",
+        "text": "ইনপুট ডিভাইস",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2739",
+    "question": "হেডার অংশ কী ?",
+    "options": [
+      {
+        "id": "6696",
+        "text": "কোনোটিই নয়",
+        "correct": false
+      },
+      {
+        "id": "6695",
+        "text": "মার্জিনের নিচের অংশ",
+        "correct": false
+      },
+      {
+        "id": "6693",
+        "text": "পৃষ্টার উপরের অংশের টাইটেল",
+        "correct": true
+      },
+      {
+        "id": "6694",
+        "text": "পৃষ্টার নিচের অংশের টাইটেল",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2740",
+    "question": "Accounting এর কাজে ব্যাবহৃত Program হলো-",
+    "options": [
+      {
+        "id": "6699",
+        "text": "MS Access",
+        "correct": false
+      },
+      {
+        "id": "6698",
+        "text": "MS Power point",
+        "correct": false
+      },
+      {
+        "id": "6697",
+        "text": "MS Word",
+        "correct": false
+      },
+      {
+        "id": "6700",
+        "text": "MS Excel",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2741",
+    "question": "(a+b)2a লেখার জন্য ব্যাবহৃত হয়-",
+    "options": [
+      {
+        "id": "6703",
+        "text": "Format-Font-Outline",
+        "correct": false
+      },
+      {
+        "id": "6702",
+        "text": "Format-Font-Superscript",
+        "correct": false
+      },
+      {
+        "id": "6704",
+        "text": "Format-Font-Emboss",
+        "correct": false
+      },
+      {
+        "id": "6701",
+        "text": "Format-Font-Subscript",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2742",
+    "question": "প্রিন্ট্রার একটি-",
+    "options": [
+      {
+        "id": "6707",
+        "text": "আই/ও ডিভাইস",
+        "correct": false
+      },
+      {
+        "id": "6705",
+        "text": "ইনপুট ডিভাইস",
+        "correct": false
+      },
+      {
+        "id": "6708",
+        "text": "ফার্মওয়ার",
+        "correct": false
+      },
+      {
+        "id": "6706",
+        "text": "আউটপুট ডিভাইস",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2743",
+    "question": "Row and column হেডিং দৃম্যমান রাখার জন্য ব্যাবহৃত হয়-",
+    "options": [
+      {
+        "id": "6711",
+        "text": "উভয়টি",
+        "correct": false
+      },
+      {
+        "id": "6709",
+        "text": "Column width",
+        "correct": false
+      },
+      {
+        "id": "6710",
+        "text": "Row height",
+        "correct": false
+      },
+      {
+        "id": "6712",
+        "text": "Freeze panes",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2744",
+    "question": "B10 হতে B20 সেলের মানসমূহের যোগের ফাংশন হলো-",
+    "options": [
+      {
+        "id": "6713",
+        "text": "=sum (B10+B20)",
+        "correct": false
+      },
+      {
+        "id": "6715",
+        "text": "=sum (B10:B20)",
+        "correct": true
+      },
+      {
+        "id": "6714",
+        "text": "=sum (B10,B20)",
+        "correct": false
+      },
+      {
+        "id": "6716",
+        "text": "=sum (B10;B20)",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2745",
+    "question": "এম এস ওয়ার্ড হল-",
+    "options": [
+      {
+        "id": "6717",
+        "text": "স্প্রেডশীট প্যাকেজ",
+        "correct": false
+      },
+      {
+        "id": "6720",
+        "text": "ওয়ার্ড প্রসেসিং প্যাকেজ",
+        "correct": true
+      },
+      {
+        "id": "6719",
+        "text": "ব্রাউজিং প্যাকেজ",
+        "correct": false
+      },
+      {
+        "id": "6718",
+        "text": "ডাটাবেজ প্যাকেজ",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2746",
+    "question": "বাংলাদেশ আমার জন্মভূমি।",
+    "options": [
+      {
+        "id": "6722",
+        "text": "Bangladesh are my motherland.",
+        "correct": false
+      },
+      {
+        "id": "6721",
+        "text": "Bangladesh is my motherland.",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2747",
+    "question": "তোমরা সুখি হও।",
+    "options": [
+      {
+        "id": "6723",
+        "text": "May you be happy",
+        "correct": true
+      },
+      {
+        "id": "6724",
+        "text": "May you will happy",
+        "correct": false
+      },
+      {
+        "id": "6725",
+        "text": "May you happy",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2748",
+    "question": "তুমি কাকে চাও ?",
+    "options": [
+      {
+        "id": "6727",
+        "text": "Who do you want ?",
+        "correct": false
+      },
+      {
+        "id": "6726",
+        "text": "Whom do you want ?",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2749",
+    "question": "আমি কারিগরি বিষয়ে পড়বো।",
+    "options": [
+      {
+        "id": "6730",
+        "text": "I am study in technical subject.",
+        "correct": false
+      },
+      {
+        "id": "6729",
+        "text": "I will studying in technical subject.",
+        "correct": false
+      },
+      {
+        "id": "6728",
+        "text": "I will study in technical subject.",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2750",
+    "question": "I am too........to walk.",
+    "options": [
+      {
+        "id": "6733",
+        "text": "quiet",
+        "correct": false
+      },
+      {
+        "id": "6732",
+        "text": "tight",
+        "correct": false
+      },
+      {
+        "id": "6731",
+        "text": "weak",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2751",
+    "question": "I will be.......technician.",
+    "options": [
+      {
+        "id": "6735",
+        "text": "the",
+        "correct": false
+      },
+      {
+        "id": "6736",
+        "text": "a",
+        "correct": true
+      },
+      {
+        "id": "6734",
+        "text": "an",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2752",
+    "question": "Teaching is........profession.",
+    "options": [
+      {
+        "id": "6738",
+        "text": "good",
+        "correct": false
+      },
+      {
+        "id": "6739",
+        "text": "honest",
+        "correct": false
+      },
+      {
+        "id": "6737",
+        "text": "noble",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2753",
+    "question": "Write down the name of your institute in English.",
+    "options": [
+      {
+        "id": "6741",
+        "text": "The name in my institute is Noakhali Ideal Polytechnic institute.",
+        "correct": false
+      },
+      {
+        "id": "6740",
+        "text": "The name of my institute is Noakhali Ideal Polytechnic institute.",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2754",
+    "question": "What is your favourite hobby ?",
+    "options": [
+      {
+        "id": "6742",
+        "text": "My favourite hobby is gardening.",
+        "correct": true
+      },
+      {
+        "id": "6743",
+        "text": "My favourite hobby gardening.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2755",
+    "question": "how old are you ?",
+    "options": [
+      {
+        "id": "6746",
+        "text": "I am 18 years older.",
+        "correct": false
+      },
+      {
+        "id": "6745",
+        "text": "I am in 18.",
+        "correct": false
+      },
+      {
+        "id": "6744",
+        "text": "I am 18 years old.",
+        "correct": true
+      }
+    ]
+  }
+]

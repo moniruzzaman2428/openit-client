@@ -1,0 +1,1117 @@
+[
+  {
+    "id": "3056",
+    "question": "File ও Folder কী ?",
+    "options": [
+      {
+        "id": "7518",
+        "text": "যখন কোন Document কে কোন নাম দিয়ে সংরক্ষন করা হয় তখন তাকে ফাইল বলে। ফোল্ডারঃ-ফোল্ডারের মধ্যে ফাইল রাখা হয়।তাচাড়াও ফোল্ডারের মধ্যে ফোল্ডার ও রাখা যায়।",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3057",
+    "question": "Computer Virus কী ?",
+    "options": [
+      {
+        "id": "7519",
+        "text": "কম্পিউটারের পরিভাষায় ভাইরাস শব্দের পূর্ণরূপ -Vital Information Resoureces Under Seize, যার অর্থ গুরত্বপূর্ন অর্থগুলো বাজেয়াপ্ত করা হয়েছে।",
+        "correct": true
+      },
+      {
+        "id": "7520",
+        "text": "কম্পিউটারের পরিভাষায় ভাইরাস শব্দের পূর্ণরূপ -Vital Information Resoureces Under Size.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3058",
+    "question": "Cell Address কী ?",
+    "options": [
+      {
+        "id": "7521",
+        "text": "ওয়ার্কশীট এর প্রতিটি ঘরকেই সেল বলা হয় ।সেল সমূহের অ্যাড্রেস নির্ধারণ করা হয় রো ও কলাম দ্বারা। অথ্যাৎ রো ও কলাম দ্বারা কোন সেলকে নির্ণয় করাকেই সেল অ্যাড্রেস বলা হয় ।",
+        "correct": true
+      },
+      {
+        "id": "7522",
+        "text": "স্প্রেডশীট এর প্রতিটি ঘরকেই সেল বলা হয় ।সেল সমূহের অ্যাড্রেস নির্ধারণ করা হয় মার্জ ও কলাম দ্বারা। অথ্যাৎ মার্জ ও কলাম দ্বারা কোন সেলকে নির্ণয় করাকেই সেল অ্যাড্রেস বলা হয় ।",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3059",
+    "question": "দুটি Spreadsheet সফটওয়্যারের নাম লেখ ।",
+    "options": [
+      {
+        "id": "7523",
+        "text": "এম এস অ্যাক্সেস ,ওরাকল",
+        "correct": true
+      },
+      {
+        "id": "7524",
+        "text": "এম এস পাওয়ার পয়েন্ট, এম এস ওয়ার্ড।",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3060",
+    "question": "database কী ?",
+    "options": [
+      {
+        "id": "7525",
+        "text": "শাব্দিক অর্থে ডাটাবেস হচ্ছে কোন সম্পর্কিত বিষয়ের উপর ব্যাপক তথ্য বা উপাত্তের সমাবেশ।",
+        "correct": true
+      },
+      {
+        "id": "7526",
+        "text": "শাব্দিক অর্থে ডাটাবেস হচ্ছে কোন হিসাব নিকাশ কাজের জন্য একটি নির্দিষ্ট সফটওয়্যার।",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3061",
+    "question": "File ও Record এর মাঝে একটি পার্থ্যক্য লেখ।",
+    "options": [
+      {
+        "id": "7527",
+        "text": "ডাটা টেবিলের ফিল্ডসমূহের অধীনে যেসব তথ্যাবলী সারি বা সারিসমূহ এন্ট্রি করা হয় উক্ত প্রতিটি সারির তথ্যাবলি হল রেকর্ড। অপরদিকে ফাইল হচ্ছে এক বা একাধিক টেবিল বা তথ্যের আঁধার।",
+        "correct": true
+      },
+      {
+        "id": "7528",
+        "text": "ডাটা টেবিলের ফিল্ডসমূহের অধীনে যেসব তথ্যাবলী টেবিলে বা টেবিলসমূহে এন্ট্রি করা হয় উক্ত প্রতিটি টেবিলের তথ্যাবলি হল রেকর্ড। অপরদিকে ফাইল হচ্ছে এক বা একাধিক কলামের সমষ্টি।",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3062",
+    "question": "Table merge করা বলতে কী বুঝায় ?",
+    "options": [
+      {
+        "id": "7530",
+        "text": "দুটো টেবিলকে আলাদা করাকে টেবিল মার্জ বলে।",
+        "correct": false
+      },
+      {
+        "id": "7529",
+        "text": "দুটো টেবিলকে একত্র করাকে টেবিল মার্জ বলে।",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3063",
+    "question": "Primary Key কী /",
+    "options": [
+      {
+        "id": "7532",
+        "text": "Primary key এমন একটি ’কী’যে Key এ সাহায্যে হিসাব নিকাশের বিভিন্ন কাজ করা হয় ।",
+        "correct": false
+      },
+      {
+        "id": "7531",
+        "text": "Primary Key এমন একটি Key যা একক ভাবে সনাক্ত হবে।কোনো টেবিল এর কোনো Field এ Primary key set করলে Data entry এর সময় কোন ফিল্ড ফাকা রেখে অন্য ফিল্ডে যাওয়া যাবে না এবং Field এ ডাবল কোন কিছু লেখা যাবে না।",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3064",
+    "question": "ইমেইল এর ক্ষেত্রে CC ও BC কী ?",
+    "options": [
+      {
+        "id": "7534",
+        "text": "BCC এর পূর্নরূপ হলো কার্বন কপি এবং CC এর পূর্নরূপ ব্লাইন্ড কার্বন কপি ।BCC এর মাধ্যমে কোন মেইল প্রেরন করলে খোনে সেন্ডা6রের ইমেইল অ্যাড্রেস সো করবে ।কিন্তু CC এ মাধ্যমে কোন ইমেইল প্রেরণ করলে সেখানে প্রেরকের অ্যাড্রেস সো করবে না ।",
+        "correct": false
+      },
+      {
+        "id": "7533",
+        "text": "CC এর পূর্নরূপ হলো কার্বন কপি এবং BCC এর পূর্নরূপ ব্লাইন্ড কার্বন কপি । CC এর মাধ্যমে কোন মেইল প্রেরন করলে সেখানে সেন্ডারের ইমেইল অ্যাড্রেস সো করবে ।কিন্তু BCC এ মাধ্যমে কোন ইমেইল প্রেরণ করলে সেখানে প্রেরকের অ্যাড্রেস সো করবে না ।",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3065",
+    "question": "Text alingment কয় ধরনের ?",
+    "options": [
+      {
+        "id": "7535",
+        "text": "টেক্সট অ্যালাইনমেন্ট চার প্রকার।",
+        "correct": true
+      },
+      {
+        "id": "7537",
+        "text": "টেক্সট অ্যালাইনমেন্ট দুই প্রকার।",
+        "correct": false
+      },
+      {
+        "id": "7536",
+        "text": "টেক্সট অ্যালাইনমেন্ট তিন প্রকার।",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3066",
+    "question": "দুটি জনপ্রিয় Search engine এর নাম লেখ -",
+    "options": [
+      {
+        "id": "7538",
+        "text": "Google, Yahoo",
+        "correct": true
+      },
+      {
+        "id": "7539",
+        "text": "Instragram,Twitter",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3067",
+    "question": "Home Page কী ?",
+    "options": [
+      {
+        "id": "7540",
+        "text": "একটি ওয়েব পেইজের প্রাথমিক বা প্রধান পেজ হচ্ছে হোম পেইজ। ওয়েব পেইজের সব ধরনের সংক্ষিপ্ত বিবরণ থাকে এই হোম পেজে।",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3068",
+    "question": "Save ও Save as এর মাঝে ১টি পার্থক্য লেখ ।",
+    "options": [
+      {
+        "id": "7541",
+        "text": "কোন ডকুমেন্ট তৈরী করার পর সেটিকে প্রথম বারের মত সেভ করতে চাইলে Save as ব্যাবহার করা হয় । আর পূর্বের কোন ডকুমেন্ট এ নতুন কোন অবজেক্ট সংযোগ করার প্রয়োজন হলে তখন Save ব্যাবহার করা হয় ।",
+        "correct": true
+      },
+      {
+        "id": "7542",
+        "text": "কোন ডকুমেন্ট তৈরী করার পর সেটিকে প্রথম বারের মত সেভ করতে চাইলে Saveব্যাবহার করা হয় । আর পূর্বের কোন ডকুমেন্ট এ নতুন কোন অবজেক্ট সংযোগ করার প্রয়োজন হলে তখন Save as ব্যাবহার করা হয় ।",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3069",
+    "question": "BIOS এ পূর্ণরূপ হলো..................।",
+    "options": [
+      {
+        "id": "7544",
+        "text": "Basic Output Input System.",
+        "correct": false
+      },
+      {
+        "id": "7543",
+        "text": "Basic Input Output System.",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3070",
+    "question": "RAM একটি .................মেমোরি।",
+    "options": [
+      {
+        "id": "7545",
+        "text": "অস্থায়ী",
+        "correct": true
+      },
+      {
+        "id": "7546",
+        "text": "স্থায়ী",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3071",
+    "question": "Linux হলো ...................সফটওয়্যার।",
+    "options": [
+      {
+        "id": "7547",
+        "text": "অপারেটিং",
+        "correct": true
+      },
+      {
+        "id": "7548",
+        "text": "এন্টি-ভাইরাস",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3072",
+    "question": "A4 কাগজের দৈর্ঘ্য ও প্রস্থ যথাক্রমে .......ইঞ্চি ও..................ইঞ্চি।",
+    "options": [
+      {
+        "id": "7549",
+        "text": "১১.৬৯ ইঞ্চি ও ৮.২৭",
+        "correct": true
+      },
+      {
+        "id": "7551",
+        "text": "১১.৬৯ ইঞ্চি ও ৮.৩৭",
+        "correct": false
+      },
+      {
+        "id": "7550",
+        "text": "১২.৬৯ ইঞ্চি ও ৮.২৭",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3073",
+    "question": "৮-বিট সমান...............বাইট ।",
+    "options": [
+      {
+        "id": "7552",
+        "text": "এক(১)",
+        "correct": true
+      },
+      {
+        "id": "7553",
+        "text": "দুই (২)",
+        "correct": false
+      },
+      {
+        "id": "7554",
+        "text": "তিন (৩)",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3074",
+    "question": "ই-মেইল অ্যাকাউন্ট বন্ধ করার জন্য ...........বাটনে ক্লিক করতে হয়।",
+    "options": [
+      {
+        "id": "7556",
+        "text": "Sign In",
+        "correct": false
+      },
+      {
+        "id": "7555",
+        "text": "Sign Out",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3075",
+    "question": "OMR একটি ............ডিভাইস।",
+    "options": [
+      {
+        "id": "7558",
+        "text": "ইনপুট",
+        "correct": false
+      },
+      {
+        "id": "7557",
+        "text": "আউটপুট",
+        "correct": true
+      },
+      {
+        "id": "7559",
+        "text": "আউটপুট এবং ইনপুট",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3076",
+    "question": "ডাটার গড় মান নির্ণয়ের জন্য ..........ফাংশন ব্যাবহৃত হয় ।",
+    "options": [
+      {
+        "id": "7561",
+        "text": "Sum",
+        "correct": false
+      },
+      {
+        "id": "7560",
+        "text": "Average",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3077",
+    "question": "Record হলো কতগুলো ..............এর সমষ্টি।",
+    "options": [
+      {
+        "id": "7562",
+        "text": "ফিল্ড",
+        "correct": true
+      },
+      {
+        "id": "7563",
+        "text": "ফাইল",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3078",
+    "question": "MS-Word এ ইংরেজী ভুল বানান শুদ্ধ করার জন্য .........মেন্যু ব্যাবহৃত হয়।",
+    "options": [
+      {
+        "id": "7564",
+        "text": "Spelling & Grammer",
+        "correct": true
+      },
+      {
+        "id": "7565",
+        "text": "Format",
+        "correct": false
+      },
+      {
+        "id": "7566",
+        "text": "Tools",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3079",
+    "question": "Copy ও Paste এর ‘কী’ বোর্ড কমান্ড যথাক্রমে...........ও.............।",
+    "options": [
+      {
+        "id": "7568",
+        "text": "Ctrl+V ও Ctrl+C",
+        "correct": false
+      },
+      {
+        "id": "7567",
+        "text": "Ctrl+C ও Ctrl+V",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3080",
+    "question": "ডকুমেন্টের সব পৃষ্টা Print করতে Print dialog box -এ .............Select করতে হয়",
+    "options": [
+      {
+        "id": "7569",
+        "text": "SELECT ALL",
+        "correct": true
+      },
+      {
+        "id": "7570",
+        "text": "Printer",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3081",
+    "question": "MS office প্রোগ্রামে নতুন File Save করলে Default folder হিসাবে ................ফোল্ডার জমা হয় ।",
+    "options": [
+      {
+        "id": "7572",
+        "text": "Desktop",
+        "correct": false
+      },
+      {
+        "id": "7573",
+        "text": "My Computer",
+        "correct": false
+      },
+      {
+        "id": "7571",
+        "text": "ডকুমেন্ট",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3082",
+    "question": "পঞ্চম প্রজন্মের কম্পিউটারের প্রধান বৈশিষ্ট হলো Artifficial Intelligence (Al) -এর ব্যাবহার।",
+    "options": [
+      {
+        "id": "7575",
+        "text": "মি",
+        "correct": false
+      },
+      {
+        "id": "7574",
+        "text": "স",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3083",
+    "question": "Copy-Paste ও Cut-Paste এর মাঝে কোনো পার্থক্য নেই।",
+    "options": [
+      {
+        "id": "7577",
+        "text": "স",
+        "correct": false
+      },
+      {
+        "id": "7576",
+        "text": "মি",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3084",
+    "question": "A-Z পর্যন্ত Key গুলোকে Numeric Key বলে।",
+    "options": [
+      {
+        "id": "7579",
+        "text": "মি",
+        "correct": false
+      },
+      {
+        "id": "7578",
+        "text": "স",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3085",
+    "question": "ফাইলের ভিতর Folder ও File উভয়ই থাকতে পারে।",
+    "options": [
+      {
+        "id": "7581",
+        "text": "মি",
+        "correct": false
+      },
+      {
+        "id": "7580",
+        "text": "স",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3086",
+    "question": "Recycle bin এর data ফিরিয়ে আনা যায় ।",
+    "options": [
+      {
+        "id": "7582",
+        "text": "স",
+        "correct": true
+      },
+      {
+        "id": "7583",
+        "text": "মি",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3087",
+    "question": "Worksheet হলো Workbook এর অংশ।",
+    "options": [
+      {
+        "id": "7585",
+        "text": "মি",
+        "correct": false
+      },
+      {
+        "id": "7584",
+        "text": "স",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3088",
+    "question": "Ctrl+Alt+V এই Keyboard কমান্ডটি বাংলা ইংরেজী মোডে Keyboard পরিবর্তনের জন্য ব্যাবহৃত হয় ।",
+    "options": [
+      {
+        "id": "7586",
+        "text": "স",
+        "correct": true
+      },
+      {
+        "id": "7587",
+        "text": "মি",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3089",
+    "question": "ম্যাক্রোর কাজ নতুন কমান্ড তৈরী করা ।",
+    "options": [
+      {
+        "id": "7588",
+        "text": "স",
+        "correct": true
+      },
+      {
+        "id": "7589",
+        "text": "মি",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3090",
+    "question": "Text box এর কিছু লেখা যায় না।",
+    "options": [
+      {
+        "id": "7591",
+        "text": "স",
+        "correct": false
+      },
+      {
+        "id": "7590",
+        "text": "মি",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3091",
+    "question": "’পিপীলিকা’ একটি বাংলা সার্চ ইন্জিন।",
+    "options": [
+      {
+        "id": "7592",
+        "text": "স",
+        "correct": true
+      },
+      {
+        "id": "7593",
+        "text": "মি",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3092",
+    "question": "Nikosh একটি বাংলা Font এর নাম ।",
+    "options": [
+      {
+        "id": "7594",
+        "text": "স",
+        "correct": true
+      },
+      {
+        "id": "7595",
+        "text": "মি",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3093",
+    "question": "MS-Access একটি Programming language ।",
+    "options": [
+      {
+        "id": "7597",
+        "text": "স",
+        "correct": false
+      },
+      {
+        "id": "7596",
+        "text": "মি",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3094",
+    "question": "কোনটি অপারেটিং সিস্টেম?",
+    "options": [
+      {
+        "id": "7601",
+        "text": "Avast",
+        "correct": false
+      },
+      {
+        "id": "7600",
+        "text": "Press",
+        "correct": false
+      },
+      {
+        "id": "7599",
+        "text": "cale",
+        "correct": false
+      },
+      {
+        "id": "7598",
+        "text": "Linux",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3095",
+    "question": "USB এর পূর্ণরূপ হলো-",
+    "options": [
+      {
+        "id": "7603",
+        "text": "Universal Serial Bus",
+        "correct": true
+      },
+      {
+        "id": "7602",
+        "text": "Uni Serial Bus",
+        "correct": false
+      },
+      {
+        "id": "7604",
+        "text": "Unicode System Bus",
+        "correct": false
+      },
+      {
+        "id": "7605",
+        "text": "Uni System Bus",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3096",
+    "question": "নিচের কোনটি বাংলা সফটওয়্যার ?",
+    "options": [
+      {
+        "id": "7606",
+        "text": "বিজয়",
+        "correct": false
+      },
+      {
+        "id": "7609",
+        "text": "সবগুলো",
+        "correct": true
+      },
+      {
+        "id": "7608",
+        "text": "প্রশিকা",
+        "correct": false
+      },
+      {
+        "id": "7607",
+        "text": "অভ্র",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3097",
+    "question": "1 TB সমান কত ?",
+    "options": [
+      {
+        "id": "7610",
+        "text": "1000 MB",
+        "correct": false
+      },
+      {
+        "id": "7611",
+        "text": "1000 GB",
+        "correct": false
+      },
+      {
+        "id": "7612",
+        "text": "1000 XB",
+        "correct": false
+      },
+      {
+        "id": "7613",
+        "text": "1024 GB",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3098",
+    "question": "প্রিন্ট এর কী-বোর্ড কমান্ড কোনটি ?",
+    "options": [
+      {
+        "id": "7617",
+        "text": "সবগুলো",
+        "correct": false
+      },
+      {
+        "id": "7616",
+        "text": "Win+P",
+        "correct": false
+      },
+      {
+        "id": "7615",
+        "text": "Ctrl+P",
+        "correct": true
+      },
+      {
+        "id": "7614",
+        "text": "Alt+P",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3099",
+    "question": "ABS(5.555) সমান কত ?",
+    "options": [
+      {
+        "id": "7618",
+        "text": "5",
+        "correct": false
+      },
+      {
+        "id": "7621",
+        "text": "5.555",
+        "correct": true
+      },
+      {
+        "id": "7620",
+        "text": "5.55",
+        "correct": false
+      },
+      {
+        "id": "7619",
+        "text": "5.5",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3100",
+    "question": "MS-Excel এ একাধিক Cell কে একত্রিত করাকে কী বলে ?",
+    "options": [
+      {
+        "id": "7624",
+        "text": "Join",
+        "correct": false
+      },
+      {
+        "id": "7625",
+        "text": "Union",
+        "correct": false
+      },
+      {
+        "id": "7622",
+        "text": "Merge",
+        "correct": true
+      },
+      {
+        "id": "7623",
+        "text": "Add",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3101",
+    "question": "ছবি ,Text ও Graph -এর জন্য কোন ডাটা টাইপ ব্যাবহৃত হয় ?",
+    "options": [
+      {
+        "id": "7627",
+        "text": "Number",
+        "correct": false
+      },
+      {
+        "id": "7626",
+        "text": "Text",
+        "correct": false
+      },
+      {
+        "id": "7628",
+        "text": "Hyperlink",
+        "correct": false
+      },
+      {
+        "id": "7629",
+        "text": "OLE",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3102",
+    "question": "Keyboard এ Control key এর সংখ্যা কত ?",
+    "options": [
+      {
+        "id": "7633",
+        "text": "৫টি",
+        "correct": false
+      },
+      {
+        "id": "7630",
+        "text": "২টি",
+        "correct": false
+      },
+      {
+        "id": "7632",
+        "text": "৪টি",
+        "correct": true
+      },
+      {
+        "id": "7631",
+        "text": "৩টি",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3103",
+    "question": "কোনটি Logical Function ?",
+    "options": [
+      {
+        "id": "7636",
+        "text": "=IF( )",
+        "correct": true
+      },
+      {
+        "id": "7634",
+        "text": "=Max( )",
+        "correct": false
+      },
+      {
+        "id": "7635",
+        "text": "=SUM( )",
+        "correct": false
+      },
+      {
+        "id": "7637",
+        "text": "=ABS( )",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3104",
+    "question": "Page break এর ‘কী’ বোর্ড কমান্ড কী ?",
+    "options": [
+      {
+        "id": "7638",
+        "text": "Ctrl+Del",
+        "correct": false
+      },
+      {
+        "id": "7641",
+        "text": "Ctrl+Home",
+        "correct": false
+      },
+      {
+        "id": "7639",
+        "text": "Ctrl+Enter",
+        "correct": true
+      },
+      {
+        "id": "7640",
+        "text": "Ctrl+End",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3105",
+    "question": "Cell -এর নামকরণ করতে হয় কেন ?",
+    "options": [
+      {
+        "id": "7643",
+        "text": "সেলকে সঠিকভাবে Identify করতে",
+        "correct": true
+      },
+      {
+        "id": "7642",
+        "text": "হিসাব করতে",
+        "correct": false
+      },
+      {
+        "id": "7644",
+        "text": "Cell freeze করতে",
+        "correct": false
+      },
+      {
+        "id": "7645",
+        "text": "Cell Edit করতে",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3106",
+    "question": "What is the capital of Bangladesh ?",
+    "options": [
+      {
+        "id": "7646",
+        "text": "Dhaka is the capital of bangladesh.",
+        "correct": true
+      },
+      {
+        "id": "7647",
+        "text": "Dhaka capital of bangladesh.",
+        "correct": false
+      },
+      {
+        "id": "7648",
+        "text": "Dhaka were capital in bangladesh.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3107",
+    "question": "How old are you?",
+    "options": [
+      {
+        "id": "7649",
+        "text": "I am 18 years old.",
+        "correct": true
+      },
+      {
+        "id": "7650",
+        "text": "I am 18 years older.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3108",
+    "question": "পৃথিবী সূর্যের চারিদিকে ঘোরে।",
+    "options": [
+      {
+        "id": "7652",
+        "text": "The sun moves round the earth.",
+        "correct": false
+      },
+      {
+        "id": "7651",
+        "text": "The earth moves round the sun.",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3109",
+    "question": "বাদল ও কাজল দুই ভাই।",
+    "options": [
+      {
+        "id": "7653",
+        "text": "Badal and Kazal are two brothers.",
+        "correct": true
+      },
+      {
+        "id": "7654",
+        "text": "Badal and Kazal was two brothers.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3110",
+    "question": "সে প্রতিদিন বিকালে ফুটবল খেলে।",
+    "options": [
+      {
+        "id": "7656",
+        "text": "He playing football every afternoon.",
+        "correct": false
+      },
+      {
+        "id": "7655",
+        "text": "He plays football every afternoon.",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3111",
+    "question": "ঢাকা বুড়িগঙ্গা নদীর তীরে অবস্থিত।",
+    "options": [
+      {
+        "id": "7657",
+        "text": "Dhaka stands on the Buriganga.",
+        "correct": true
+      },
+      {
+        "id": "7658",
+        "text": "Dhaka standing on the Buriganga.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3112",
+    "question": "তুমি কি কখন ও চট্ট্রগ্রাম গিয়েছ ?",
+    "options": [
+      {
+        "id": "7660",
+        "text": "Have you are going been Chittagong?",
+        "correct": false
+      },
+      {
+        "id": "7659",
+        "text": "Have you ever been to Chittagong.",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3113",
+    "question": "Bangladesh ......many small rivers.",
+    "options": [
+      {
+        "id": "7661",
+        "text": "have",
+        "correct": false
+      },
+      {
+        "id": "7662",
+        "text": "has",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3114",
+    "question": "Salim made the journey..............boat.",
+    "options": [
+      {
+        "id": "7665",
+        "text": "on",
+        "correct": false
+      },
+      {
+        "id": "7664",
+        "text": "by",
+        "correct": true
+      },
+      {
+        "id": "7663",
+        "text": "to",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3115",
+    "question": "He is..........one-eyed man.",
+    "options": [
+      {
+        "id": "7667",
+        "text": "an",
+        "correct": false
+      },
+      {
+        "id": "7666",
+        "text": "a",
+        "correct": true
+      },
+      {
+        "id": "7668",
+        "text": "the",
+        "correct": false
+      }
+    ]
+  }
+]

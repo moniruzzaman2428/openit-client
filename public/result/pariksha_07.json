@@ -1,0 +1,1122 @@
+[
+  {
+    "id": "2876",
+    "question": "ফাইল সেভ করলে কী ঘটে ?",
+    "options": [
+      {
+        "id": "7056",
+        "text": "ফাইল সেভ করলে একটি নির্দিষ্ট নামে কোনো ডকুমেন্টকে সংরক্ষন করা যায়।",
+        "correct": true
+      },
+      {
+        "id": "7057",
+        "text": "ফাইল সেভ করলে কোনো ডকুমেন্টকে সংরক্ষন করা যায় না।",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2877",
+    "question": "Computer Virus এর কাজ কী ?",
+    "options": [
+      {
+        "id": "7058",
+        "text": "কম্পিউটারের বিভিন্ন প্রোগ্রামকে ধ্বংস করে দেওয়া।ভাইরাস আক্রান্ত হলে কম্পিউটারে বিভিন্ন সমস্যা দেখা দেয়।",
+        "correct": true
+      },
+      {
+        "id": "7059",
+        "text": "কম্পিউটারের বিভিন্ন প্রোগ্রামকে সংরক্ষন করা।কম্পিউটার ভাইরাস কম্পিউটারের কোন ক্ষতি করতে পারে না।",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2878",
+    "question": "Work book ও Work sheet কী ?",
+    "options": [
+      {
+        "id": "7060",
+        "text": "মাইক্সোসফট এক্সেলের স্প্রেডশিট এর বিভিন্ন তথ্য সন্নিবেশিত করে তা বিশ্লেশন বা পরিগনণা করা হয়।সুবিশাল শিটের যে অংশে কাজ করা হয় তাকে ওয়ার্কশিট বলে।",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2879",
+    "question": "দুটি স্প্রেডশিট সফটওয়্যারের নাম লেখ।",
+    "options": [
+      {
+        "id": "7062",
+        "text": "MS Word,MS Powerpoint",
+        "correct": false
+      },
+      {
+        "id": "7061",
+        "text": "মাইক্সোসফট এক্সেল, লোটাস-১-২-৩, কোয়াট্রো প্রো,সুপারক্যাক্ল,সরকিম,মাল্টিপ্লান।",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2880",
+    "question": "Database application কী ?",
+    "options": [
+      {
+        "id": "7063",
+        "text": "মাইক্সোসফট এক্সেস (Microsoft Access)একটি ডাটাবেস সফটওয়্যার।এই সফটওয়্যার ব্যাবহারের মাধ্যমে বিভিন্ন টেবিল তৈরী করে ডাটা এন্ট্রির জন্য সহজবোধ্য ও আকর্সনীয় ফর্ম ডিজাইন করা হয়।",
+        "correct": true
+      },
+      {
+        "id": "7064",
+        "text": "মাইক্সোসফট এক্সেস (Microsoft Access)একটি হিসাব নিকাশের সফটওয়্যার।এই সফটওয়্যার ব্যাবহারের মাধ্যমে বিভিন্ন টেবিল তৈরী করে ডাটা এন্ট্রির জন্য সহজবোধ্য ও আকর্সনীয় ফর্ম ডিজাইন করা হয়।",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2881",
+    "question": "File ও রেকর্ডের মাঝে পার্থক্য কী ?",
+    "options": [
+      {
+        "id": "7066",
+        "text": "ডাটা কলামের অধীনে যেসব তথ্যাবলী সারিসমুহে এন্ট্রি করা হয়,উক্ত প্রতিটি সারির তথ্যাবলির সমষ্টি হলো রেকর্ড।অপরদিকে ফাইল হচ্ছে এক বা একাধিক টেবিল বা তথ্যের আধার।",
+        "correct": false
+      },
+      {
+        "id": "7065",
+        "text": "ডাটা টেবিলের ফিল্ডসমূহের অধীনে যেসব তথ্যাবলী সারিসমুহে এন্ট্রি করা হয়,উক্ত প্রতিটি সারির তথ্যাবলির সমষ্টি হলো রেকর্ড।অপরদিকে ফাইল হচ্ছে এক বা একাধিক টেবিল বা তথ্যের আধার।",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2882",
+    "question": "কোন লেখাকে বড় করার কী বোর্ড কমান্ড কী ?",
+    "options": [
+      {
+        "id": "7067",
+        "text": "Ctrl + }",
+        "correct": true
+      },
+      {
+        "id": "7068",
+        "text": "Ctrl + {",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2883",
+    "question": "টেবিল মার্জ করা বলতে কী বুঝায় ?",
+    "options": [
+      {
+        "id": "7069",
+        "text": "দুটো টেবিলকে একত্র করাকে টেবিল মার্জ বলে।",
+        "correct": true
+      },
+      {
+        "id": "7070",
+        "text": "দুটো টেবিলের মাঝে সম্পর্ক স্থাপন করাকে টেবিল মার্জ বলে।",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2884",
+    "question": "পয়েন্টার প্রথম সেলে আনার নিয়ম কী ?",
+    "options": [
+      {
+        "id": "7072",
+        "text": "পয়েন্টার প্রথম সেলে আনতে হলে পয়েন্টারকে শেষের সেলে রেখে মাউসের লেফট বাটন এ Click করতে হবে ।",
+        "correct": false
+      },
+      {
+        "id": "7071",
+        "text": "পয়েন্টার প্রথম সেলে আনতে হলে পয়েন্টারকে প্রথম সেলে রেখে মাউসের লেফট বাটন এ Click করতে হবে ।",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2885",
+    "question": "ENIAC এর পূর্ণনাম কী ?",
+    "options": [
+      {
+        "id": "7074",
+        "text": "Electrical Number Integrator and calculator.",
+        "correct": false
+      },
+      {
+        "id": "7073",
+        "text": "Electrical Numerical Integrator and calculator.",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2886",
+    "question": "Page setup কাকে বলে?",
+    "options": [
+      {
+        "id": "7075",
+        "text": "এম এস অফিস এর কোনো প্রোগ্রামে কোনো ডকুমেন্ট তৈরী করার পর সেটা প্রিন্ট দিতে হলে ,কোন আকারের পৃষ্টা ব্যাবহার হবে, পৃস্টার মার্জিন কতটুকু হবে এসব কিছুকে একত্রে পেজ সেট আপ বলা হয়।",
+        "correct": true
+      },
+      {
+        "id": "7076",
+        "text": "কোন ডকুমেন্টকে প্রিন্ট করার পূর্বের অবস্থা এবং প্রদর্শন করার জন্য Page setup ব্যাবহার করা হয়।",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2887",
+    "question": "চার্লস ব্যাবেজকে কম্পিউটারের জনক বলা হয় কেন ?",
+    "options": [
+      {
+        "id": "7077",
+        "text": "ডিফারেন্স ইন্জিন তৈরী করার মাধ্যমে চার্লস ব্যাবেজ কম্পিউটার তৈরীর সুস্পষ্ট ধারনা দেন, তাই তাকে কম্পিউটারের জনক বলা হয়।",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2888",
+    "question": "প্রিন্ট করার ’কী’ বোর্ড কমান্ড .........।",
+    "options": [
+      {
+        "id": "7078",
+        "text": "Ctrl + P",
+        "correct": true
+      },
+      {
+        "id": "7079",
+        "text": "Ctrl +V",
+        "correct": false
+      },
+      {
+        "id": "7080",
+        "text": "Ctrl +C",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2889",
+    "question": "MS Office হচ্ছে অনেকগুলো ..........এর সমষ্টি।",
+    "options": [
+      {
+        "id": "7083",
+        "text": "ডকুমেন্ট",
+        "correct": false
+      },
+      {
+        "id": "7081",
+        "text": "ফাইল",
+        "correct": true
+      },
+      {
+        "id": "7082",
+        "text": "ফিল্ড",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2890",
+    "question": "ROM-এর পূর্ণরূপ হচ্ছে-",
+    "options": [
+      {
+        "id": "7084",
+        "text": "Read Only Memory.",
+        "correct": true
+      },
+      {
+        "id": "7085",
+        "text": "Read Only Memo.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2891",
+    "question": "Mozilla Firefox হলো এক ধরনের..........।",
+    "options": [
+      {
+        "id": "7087",
+        "text": "এন্টিভাইরাস",
+        "correct": false
+      },
+      {
+        "id": "7086",
+        "text": "ব্রাউজার",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2892",
+    "question": "কম্পিউটারের জনক বলা হয়..............কে।",
+    "options": [
+      {
+        "id": "7088",
+        "text": "চার্লস ব্যাবেজ",
+        "correct": true
+      },
+      {
+        "id": "7089",
+        "text": "নেপোলিয়ন",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2893",
+    "question": "ওয়ার্কবুক হলো অনেকগুলো...............এর সমষ্টি।",
+    "options": [
+      {
+        "id": "7091",
+        "text": "স্প্রেডশিট",
+        "correct": false
+      },
+      {
+        "id": "7090",
+        "text": "ওয়ার্কশিট",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2894",
+    "question": "MS Access এ............... তৈরী করা যায়।",
+    "options": [
+      {
+        "id": "7092",
+        "text": "ডাটাবেস ফাইল",
+        "correct": true
+      },
+      {
+        "id": "7093",
+        "text": "হিসাবনিকাশ",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2895",
+    "question": "WWW.bteb.gov.bd হলো ............এর ওয়েব অ্যাড্রেস।",
+    "options": [
+      {
+        "id": "7096",
+        "text": "জাতীয় বিশ্ববিদ্যারয় বোর্ড",
+        "correct": false
+      },
+      {
+        "id": "7094",
+        "text": "বাংলাদেশ কারিগরি শিক্ষা বোর্ড।",
+        "correct": true
+      },
+      {
+        "id": "7095",
+        "text": "মাধ্যমিক ও উচ্চ মাধ্যমিক শিক্ষা বোর্ড",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2896",
+    "question": "ডাটা sorting করা যায়............ভাবে।",
+    "options": [
+      {
+        "id": "7098",
+        "text": "তিন(৩)",
+        "correct": false
+      },
+      {
+        "id": "7099",
+        "text": "চার(৪)",
+        "correct": false
+      },
+      {
+        "id": "7097",
+        "text": "দুই(২)",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2897",
+    "question": "Microsoft Excel মূলত একটি ............Software ।",
+    "options": [
+      {
+        "id": "7100",
+        "text": "স্প্রেডশিট",
+        "correct": true
+      },
+      {
+        "id": "7101",
+        "text": "ওয়ার্কবুক",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2898",
+    "question": "File save করার কী বোর্ড কমান্ড..........।",
+    "options": [
+      {
+        "id": "7103",
+        "text": "Ctrl + V",
+        "correct": false
+      },
+      {
+        "id": "7104",
+        "text": "Ctrl +P",
+        "correct": false
+      },
+      {
+        "id": "7102",
+        "text": "Ctrl + S",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2899",
+    "question": "লেজার প্রিন্টার একটি ...........ডিভাইস।",
+    "options": [
+      {
+        "id": "7107",
+        "text": "ইনপুট এবং আউটপুট",
+        "correct": false
+      },
+      {
+        "id": "7106",
+        "text": "ইনপুট",
+        "correct": false
+      },
+      {
+        "id": "7105",
+        "text": "আউটপুট",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2900",
+    "question": "টেক্সট বক্সে...........লেখা যায় ।",
+    "options": [
+      {
+        "id": "7108",
+        "text": "অক্ষর",
+        "correct": true
+      },
+      {
+        "id": "7109",
+        "text": "কোন কিছু লেখা যায় না",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2901",
+    "question": "বাইনারি সংখ্যা পদ্ধতির মৌলিক অংঙ্ক ১০ টি।",
+    "options": [
+      {
+        "id": "7110",
+        "text": "মি",
+        "correct": true
+      },
+      {
+        "id": "7111",
+        "text": "স",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2902",
+    "question": "CD ROM এ CD Write করা যায় না ।",
+    "options": [
+      {
+        "id": "7113",
+        "text": "মি",
+        "correct": false
+      },
+      {
+        "id": "7112",
+        "text": "স",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2903",
+    "question": "MS Word একটি Word Processing software.",
+    "options": [
+      {
+        "id": "7114",
+        "text": "স",
+        "correct": true
+      },
+      {
+        "id": "7115",
+        "text": "মি",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2904",
+    "question": "মনিটর একটি আউটপুট ডিভাইস।",
+    "options": [
+      {
+        "id": "7117",
+        "text": "মি",
+        "correct": false
+      },
+      {
+        "id": "7116",
+        "text": "স",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2905",
+    "question": "Powerpoint একটি Presentation Softwarev ।",
+    "options": [
+      {
+        "id": "7119",
+        "text": "মি",
+        "correct": false
+      },
+      {
+        "id": "7118",
+        "text": "স",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2906",
+    "question": "MS Excel এ গড় বের করার সুত্র হচ্ছে=Average (Cell Number : Cell Number)।",
+    "options": [
+      {
+        "id": "7120",
+        "text": "স",
+        "correct": true
+      },
+      {
+        "id": "7121",
+        "text": "মি",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2907",
+    "question": "Access দিয়ে নতুন ডাটাবেস প্রোগ্রাম তৈরী করা যায়।",
+    "options": [
+      {
+        "id": "7122",
+        "text": "স",
+        "correct": true
+      },
+      {
+        "id": "7123",
+        "text": "মি",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2908",
+    "question": "Internet অর্থ International Network.",
+    "options": [
+      {
+        "id": "7124",
+        "text": "মি",
+        "correct": true
+      },
+      {
+        "id": "7125",
+        "text": "স",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2909",
+    "question": "Mail পাঠাতে হলে Sign Up করতে হয় ।",
+    "options": [
+      {
+        "id": "7127",
+        "text": "স",
+        "correct": false
+      },
+      {
+        "id": "7126",
+        "text": "মি",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2910",
+    "question": "1000 Megabyte = 1Gigabyte ।",
+    "options": [
+      {
+        "id": "7128",
+        "text": "মি",
+        "correct": true
+      },
+      {
+        "id": "7129",
+        "text": "স",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2911",
+    "question": "ব্যাপক কোনো তথ্য থেকে বিশেষ কোনো রেকর্ডকে খুঁজে বের করাকে কুয়েরিং বলে।",
+    "options": [
+      {
+        "id": "7131",
+        "text": "মি",
+        "correct": false
+      },
+      {
+        "id": "7130",
+        "text": "স",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2912",
+    "question": "Exit কমান্ড File মেন্যুতে থাকে ।",
+    "options": [
+      {
+        "id": "7132",
+        "text": "স",
+        "correct": true
+      },
+      {
+        "id": "7133",
+        "text": "মি",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2913",
+    "question": "অ্যাবাকাস কী ধরনের যন্ত্র ?",
+    "options": [
+      {
+        "id": "7136",
+        "text": "পাথরের তৈরী গণনাকারী যন্ত্র",
+        "correct": false
+      },
+      {
+        "id": "7134",
+        "text": "নুড়ি ও পাথরের তৈরী গণনাকারী যন্ত্র",
+        "correct": false
+      },
+      {
+        "id": "7135",
+        "text": "কাঠের তৈরী গণনাকারী যন্ত্র",
+        "correct": true
+      },
+      {
+        "id": "7137",
+        "text": "লোহার তৈরী গণনাকারী যন্ত্র",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2914",
+    "question": "কত বিট সমান এক বাইট ?",
+    "options": [
+      {
+        "id": "7140",
+        "text": "৩২ বিট সমান ১বাইট",
+        "correct": false
+      },
+      {
+        "id": "7138",
+        "text": "৮ বিট সমান ১বাইট",
+        "correct": true
+      },
+      {
+        "id": "7141",
+        "text": "৬৪ বিট সমান ১বাইট",
+        "correct": false
+      },
+      {
+        "id": "7139",
+        "text": "১৬ বিট সমান ১বাইট",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2915",
+    "question": "কত বিট সমান এক বাইট ?",
+    "options": [
+      {
+        "id": "7145",
+        "text": "৬৪ বিট সমান এক বাইট",
+        "correct": false
+      },
+      {
+        "id": "7143",
+        "text": "১৬ বিট সমান এক বাইট",
+        "correct": false
+      },
+      {
+        "id": "7144",
+        "text": "৩২ বিট সমান এক বাইট",
+        "correct": false
+      },
+      {
+        "id": "7142",
+        "text": "৮ বিট সমান এক বাইট",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2916",
+    "question": "A4 সাইজের কাগজের পরিমাপ কোনটি ?",
+    "options": [
+      {
+        "id": "7147",
+        "text": "8.29”X10.69\"",
+        "correct": false
+      },
+      {
+        "id": "7148",
+        "text": "8.37\" X 12.69\"",
+        "correct": false
+      },
+      {
+        "id": "7146",
+        "text": "8.26” X 11.69”",
+        "correct": false
+      },
+      {
+        "id": "7149",
+        "text": "8.27\" X 11.69\"",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2917",
+    "question": "পেন ড্রাইভ হলো একটি-",
+    "options": [
+      {
+        "id": "7153",
+        "text": "কোনোটিই নয়",
+        "correct": false
+      },
+      {
+        "id": "7150",
+        "text": "ইনপুট",
+        "correct": false
+      },
+      {
+        "id": "7151",
+        "text": "আউটপুট",
+        "correct": false
+      },
+      {
+        "id": "7152",
+        "text": "ইনপুট-আউটপুট",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2918",
+    "question": "ওয়ার্কশিটকে কীসের সাথে তুলনা করা যায় ?",
+    "options": [
+      {
+        "id": "7156",
+        "text": "এক টুকরো বড় কাগজের সাথে",
+        "correct": true
+      },
+      {
+        "id": "7154",
+        "text": "এক টুকরো বড় কাঠের সাথে",
+        "correct": false
+      },
+      {
+        "id": "7155",
+        "text": "এক টুকরো বড় লোহার সাথে",
+        "correct": false
+      },
+      {
+        "id": "7157",
+        "text": "এক টুকরো বড় প্রাস্টিকের সাথে",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2919",
+    "question": "ডাটাবেস টেবিলে Primary Key নির্ধারণ করা হয়-",
+    "options": [
+      {
+        "id": "7160",
+        "text": "Table Import করার জন্য",
+        "correct": false
+      },
+      {
+        "id": "7159",
+        "text": "Design করার জন্য",
+        "correct": false
+      },
+      {
+        "id": "7158",
+        "text": "Relation সৃষ্টির জন্য",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2920",
+    "question": "HTTP-এর পুর্ণরূপ কোনটি ?",
+    "options": [
+      {
+        "id": "7161",
+        "text": "Higher Text Technology Problem.",
+        "correct": false
+      },
+      {
+        "id": "7164",
+        "text": "Haker Text Transfer Permission",
+        "correct": false
+      },
+      {
+        "id": "7163",
+        "text": "Hot Text Transfer Problem",
+        "correct": false
+      },
+      {
+        "id": "7162",
+        "text": "Hyper Text Transfer Protocol",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2921",
+    "question": "=ABS (1.258) মান কত ?",
+    "options": [
+      {
+        "id": "7165",
+        "text": "=1.23",
+        "correct": true
+      },
+      {
+        "id": "7167",
+        "text": "=1.258",
+        "correct": false
+      },
+      {
+        "id": "7168",
+        "text": "1.26",
+        "correct": false
+      },
+      {
+        "id": "7166",
+        "text": "=1.24",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2922",
+    "question": "ম্যাক্রো মুছার কমান্ড কী ?",
+    "options": [
+      {
+        "id": "7170",
+        "text": "Select",
+        "correct": false
+      },
+      {
+        "id": "7169",
+        "text": "Erase",
+        "correct": false
+      },
+      {
+        "id": "7171",
+        "text": "Delete",
+        "correct": false
+      },
+      {
+        "id": "7172",
+        "text": "Move",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2923",
+    "question": "ইমেইল ঠিকানায় @ এর আগে কী থাকে ?",
+    "options": [
+      {
+        "id": "7174",
+        "text": "ব্যাবহারকারীর ঠিকানা",
+        "correct": false
+      },
+      {
+        "id": "7173",
+        "text": "ব্যাবহারকারীর দেশের নাম",
+        "correct": false
+      },
+      {
+        "id": "7176",
+        "text": "ব্যাবহারকারীর ডিভাইসের নাম",
+        "correct": false
+      },
+      {
+        "id": "7175",
+        "text": "ব্যাবহারকারীর নাম",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2924",
+    "question": "Lock এর ’কী‘ বোর্ড কমান্ড হলো-",
+    "options": [
+      {
+        "id": "7179",
+        "text": "Ctrl+Alt+K",
+        "correct": false
+      },
+      {
+        "id": "7178",
+        "text": "Alt+K",
+        "correct": false
+      },
+      {
+        "id": "7177",
+        "text": "Ctrl+K",
+        "correct": false
+      },
+      {
+        "id": "7180",
+        "text": "Ctrl+L",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2925",
+    "question": "Record কী ?",
+    "options": [
+      {
+        "id": "7184",
+        "text": "কোনোটিই নয়",
+        "correct": false
+      },
+      {
+        "id": "7182",
+        "text": "কিছু ফাইলের সমাহার",
+        "correct": false
+      },
+      {
+        "id": "7181",
+        "text": "পরস্পর সম্পর্কযুক্ত কিছু ফিল্ডের সমাহার",
+        "correct": true
+      },
+      {
+        "id": "7183",
+        "text": "কিছু রেকর্ডের সমাহার",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2926",
+    "question": "What is your father or mother ?",
+    "options": [
+      {
+        "id": "7186",
+        "text": "My father are farmer.My mother are housewife.",
+        "correct": false
+      },
+      {
+        "id": "7185",
+        "text": "My father is a farmer.My mother is a housewife.",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2927",
+    "question": "Where were you born ?",
+    "options": [
+      {
+        "id": "7188",
+        "text": "I am born in Mirzapur, Tangail",
+        "correct": false
+      },
+      {
+        "id": "7187",
+        "text": "I was born in Mirzapur, Tangail",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2928",
+    "question": "What is the Capital of Bangladesh ?",
+    "options": [
+      {
+        "id": "7189",
+        "text": "Dhaka is the capital of Bangladesh.",
+        "correct": true
+      },
+      {
+        "id": "7190",
+        "text": "Dhaka is capital of Bangladesh.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2929",
+    "question": "Where do you live ?",
+    "options": [
+      {
+        "id": "7192",
+        "text": "I live in Mirpur at Dhaka",
+        "correct": false
+      },
+      {
+        "id": "7191",
+        "text": "I live at Mirpur in Dhaka",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2930",
+    "question": "How old are you ?",
+    "options": [
+      {
+        "id": "7194",
+        "text": "I am eighteen tears older.",
+        "correct": false
+      },
+      {
+        "id": "7193",
+        "text": "I am eighteen tears old.",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2931",
+    "question": "I want to...........a Job.",
+    "options": [
+      {
+        "id": "7195",
+        "text": "do",
+        "correct": true
+      },
+      {
+        "id": "7197",
+        "text": "done",
+        "correct": false
+      },
+      {
+        "id": "7196",
+        "text": "did",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2932",
+    "question": "put the book.............the table.",
+    "options": [
+      {
+        "id": "7199",
+        "text": "on",
+        "correct": true
+      },
+      {
+        "id": "7198",
+        "text": "in",
+        "correct": false
+      },
+      {
+        "id": "7200",
+        "text": "at",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2933",
+    "question": "We can print a document by using..........",
+    "options": [
+      {
+        "id": "7202",
+        "text": "a printer",
+        "correct": true
+      },
+      {
+        "id": "7203",
+        "text": "a drill machine",
+        "correct": false
+      },
+      {
+        "id": "7201",
+        "text": "a television",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2934",
+    "question": "সূর্য পূর্ব দিকে উঠে।",
+    "options": [
+      {
+        "id": "7205",
+        "text": "The east rises in the sun.",
+        "correct": false
+      },
+      {
+        "id": "7204",
+        "text": "The sun rises in the east.",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2935",
+    "question": "আমরা বাংলাদেশে বাস করি ।",
+    "options": [
+      {
+        "id": "7206",
+        "text": "We live in Bangladesh.",
+        "correct": true
+      },
+      {
+        "id": "7207",
+        "text": "I live in Bangladesh.",
+        "correct": false
+      }
+    ]
+  }
+]

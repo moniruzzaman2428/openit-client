@@ -247,8 +247,7 @@ const AdmissionFormDocument = forwardRef(function AdmissionFormDocument({ data =
             fontWeight: 700,
             padding: '2px 0 4px',
           }}
-        >
-          ভর্তির আবেদন ফরম
+        >ভর্তির আবেদন ফরম
         </div>
 
         {/* ---------------- SERIAL + COURSE ---------------- */}

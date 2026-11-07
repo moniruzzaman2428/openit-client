@@ -1,0 +1,782 @@
+[
+  {
+    "id": "2157",
+    "question": "কম্পিউটারের জনক কে ?",
+    "options": [
+      {
+        "id": "5173",
+        "text": "নেপোলিয়ান",
+        "correct": false
+      },
+      {
+        "id": "5176",
+        "text": "মার্কনী",
+        "correct": false
+      },
+      {
+        "id": "5174",
+        "text": "চার্লস ব্যাবেজ",
+        "correct": true
+      },
+      {
+        "id": "5175",
+        "text": "স্টিফেন হকিংস",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2158",
+    "question": "Row hide ব্যাবহৃত হয়-",
+    "options": [
+      {
+        "id": "5178",
+        "text": "Row- কে লুকিয়ে রাখতে",
+        "correct": true
+      },
+      {
+        "id": "5180",
+        "text": "Row- কে মুছে ফেলতে",
+        "correct": false
+      },
+      {
+        "id": "5177",
+        "text": "Column- কে লুকিয়ে রাখতে",
+        "correct": false
+      },
+      {
+        "id": "5179",
+        "text": "Column ও Row- কে লুকিয়ে রাখতে",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2159",
+    "question": "Print- এর শর্টকাট কমান্ড -",
+    "options": [
+      {
+        "id": "5181",
+        "text": "Ctrl + Y",
+        "correct": false
+      },
+      {
+        "id": "5183",
+        "text": "Ctrl + P",
+        "correct": true
+      },
+      {
+        "id": "5182",
+        "text": "Ctrl + X",
+        "correct": false
+      },
+      {
+        "id": "5184",
+        "text": "Ctrl + Z",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2160",
+    "question": "কোনটি Logical ফাংশন ?",
+    "options": [
+      {
+        "id": "5185",
+        "text": "= Max ( )",
+        "correct": false
+      },
+      {
+        "id": "5186",
+        "text": "= Sum ( )",
+        "correct": false
+      },
+      {
+        "id": "5188",
+        "text": ".Abs ( )",
+        "correct": false
+      },
+      {
+        "id": "5187",
+        "text": "= If ( )",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2161",
+    "question": "ফ্লপি ডিক্সের ধারণক্ষমতা কত ?",
+    "options": [
+      {
+        "id": "5190",
+        "text": "1 MB",
+        "correct": false
+      },
+      {
+        "id": "5189",
+        "text": "1.44 MB",
+        "correct": true
+      },
+      {
+        "id": "5191",
+        "text": "1.44 GB",
+        "correct": false
+      },
+      {
+        "id": "5192",
+        "text": "1.44 KB",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2162",
+    "question": "ই-মেইল এর নতুন একাউন্ট খোলার জন্য ব্যাবহৃত হয় -",
+    "options": [
+      {
+        "id": "5195",
+        "text": "Sing out",
+        "correct": false
+      },
+      {
+        "id": "5196",
+        "text": "Sign up",
+        "correct": true
+      },
+      {
+        "id": "5194",
+        "text": "Sign in",
+        "correct": false
+      },
+      {
+        "id": "5193",
+        "text": "Log in",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2163",
+    "question": "নেপিয়ার কোন দেশের বিঙ্গানী ছিলেন ?",
+    "options": [
+      {
+        "id": "5199",
+        "text": "জার্মানী",
+        "correct": true
+      },
+      {
+        "id": "5197",
+        "text": "নেদারল্যান্ড",
+        "correct": false
+      },
+      {
+        "id": "5200",
+        "text": "ইংল্যান্ড",
+        "correct": false
+      },
+      {
+        "id": "5198",
+        "text": "স্কটল্যাংন্ড",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2164",
+    "question": "কুয়েরি বলতে কী বুঝায় ?",
+    "options": [
+      {
+        "id": "5201",
+        "text": "ডাটাবেস থেকে অপ্রয়োজনীয় তথ্য বাদ দেয়া",
+        "correct": false
+      },
+      {
+        "id": "5203",
+        "text": "ডাটাবেস থেকে প্রয়োজনীয় তথ্য খুঁজে বের করা",
+        "correct": true
+      },
+      {
+        "id": "5204",
+        "text": "ডাটাবেস থেকে রেকর্ড বাদ দেয়া",
+        "correct": false
+      },
+      {
+        "id": "5202",
+        "text": "ডাটাবেস থেকে ফিল্ড বাদ দেয়া",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2165",
+    "question": "কম্পিউটার ভাইরাস কী ?",
+    "options": [
+      {
+        "id": "5206",
+        "text": "রোগ",
+        "correct": false
+      },
+      {
+        "id": "5208",
+        "text": "কী-বোর্ড",
+        "correct": false
+      },
+      {
+        "id": "5205",
+        "text": "জীবাণু",
+        "correct": false
+      },
+      {
+        "id": "5207",
+        "text": "সফটওয়্যার",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2166",
+    "question": "কোনটি ইনপুট ডিভাইস নয় ?",
+    "options": [
+      {
+        "id": "5212",
+        "text": "কী-বোর্ড",
+        "correct": false
+      },
+      {
+        "id": "5211",
+        "text": "মাইক্রোফোন",
+        "correct": false
+      },
+      {
+        "id": "5209",
+        "text": "মাউস",
+        "correct": false
+      },
+      {
+        "id": "5210",
+        "text": "মনিটর",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2167",
+    "question": "কী বোর্ডকে-------শ্রেনীতে ভাগ করা যায়।",
+    "options": [
+      {
+        "id": "5214",
+        "text": "পাঁচ",
+        "correct": false
+      },
+      {
+        "id": "5213",
+        "text": "ছয়",
+        "correct": true
+      },
+      {
+        "id": "5215",
+        "text": "চার",
+        "correct": false
+      },
+      {
+        "id": "5216",
+        "text": "তিন",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2168",
+    "question": "মাউস একটি ------------ডিভাইস।",
+    "options": [
+      {
+        "id": "5217",
+        "text": "পয়েন্টিং",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2169",
+    "question": "কার্যগত দিক থেকে কম্পিউটার সফটওয়্যারকে ------শ্রেনিতে ভাগ করা যায়।",
+    "options": [
+      {
+        "id": "5218",
+        "text": "দুই",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2170",
+    "question": "Ctrl +Esc ’কী’ দুটি চাপলে পর্দায়---------মেনুটি ওপেন হবে।",
+    "options": [
+      {
+        "id": "5219",
+        "text": "Start",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2171",
+    "question": "MS Word এ সর্বনিম্ন Zoom করা যায়--------পর্যন্ত।",
+    "options": [
+      {
+        "id": "5220",
+        "text": "১০ %",
+        "correct": true
+      },
+      {
+        "id": "5222",
+        "text": "২০ %",
+        "correct": false
+      },
+      {
+        "id": "5221",
+        "text": "৫ %",
+        "correct": false
+      },
+      {
+        "id": "5223",
+        "text": "৩০ %",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2172",
+    "question": "Excel এ Row সংখ্যা --------------টি ।",
+    "options": [
+      {
+        "id": "5224",
+        "text": "৬৫৫৩৬",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2173",
+    "question": "ডকুমেন্টের পেজের উপরের অংশকে ---------বলা হয় ।",
+    "options": [
+      {
+        "id": "5225",
+        "text": "হেডার",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2174",
+    "question": "RAM এর পূর্নরূপ-----।",
+    "options": [
+      {
+        "id": "5226",
+        "text": "Random Access Memory",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2175",
+    "question": "A4 সাইজের কাগজের পরিমাণ হচ্ছে-------।",
+    "options": [
+      {
+        "id": "5227",
+        "text": "8.27” X 11.69\"",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2176",
+    "question": "Caps Lock off থাকলে লেখা ---------Case এর হয়।",
+    "options": [
+      {
+        "id": "5228",
+        "text": "Lower",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2177",
+    "question": "মাদারবোর্ড হল সিস্টেম ইউনিট তথা কম্পিউটারের প্রাণকেন্দ্র।",
+    "options": [
+      {
+        "id": "5229",
+        "text": "স",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2178",
+    "question": "Software স্পর্শ করা যায় ।",
+    "options": [
+      {
+        "id": "5230",
+        "text": "মি",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2179",
+    "question": "Google একটি সার্চ ইন্জিন নয়।",
+    "options": [
+      {
+        "id": "5231",
+        "text": "মি",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2180",
+    "question": "Merge Cell - এর কাজ হল Block- কৃত Cell কে একত্রিত করা।",
+    "options": [
+      {
+        "id": "5232",
+        "text": "স",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2181",
+    "question": "স্পেডশিট প্যাকেজ দিয়ে হিসাব নিকাশ এর কাজ হয়।",
+    "options": [
+      {
+        "id": "5233",
+        "text": "স",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2182",
+    "question": "A-Z নিউমেরিক Key।",
+    "options": [
+      {
+        "id": "5234",
+        "text": "মি",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2183",
+    "question": "মেন্যুর আন্ডারে সাব-মেনু থাকে না ।",
+    "options": [
+      {
+        "id": "5235",
+        "text": "মি",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2184",
+    "question": "B10 হতে K10 পর্যন্ত যোগ করার ফাংশন = Sum (B10:K10) ।",
+    "options": [
+      {
+        "id": "5236",
+        "text": "স",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2185",
+    "question": "TAB এর কাজ Format- মেন্যুতে থাকে।",
+    "options": [
+      {
+        "id": "5237",
+        "text": "স",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2186",
+    "question": "Keyboard - এ মোট চারটি Arrow key থাকে।",
+    "options": [
+      {
+        "id": "5238",
+        "text": "স",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2187",
+    "question": "CPU- এর পুর্ননাম লেখ।",
+    "options": [
+      {
+        "id": "5239",
+        "text": "Central Processing Unit.",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2188",
+    "question": "কয়েকটি কম্পিউটার এন্টিভাইরাস এর নাম লেখ।",
+    "options": [
+      {
+        "id": "5240",
+        "text": "Kaspersky, Avast,Norton, Avira, AVG.",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2189",
+    "question": "কম্পিউটারের স্মৃতি প্রথানত কয় প্রকার ?",
+    "options": [
+      {
+        "id": "5241",
+        "text": "দুই প্রকার যথাঃ Primary memory & Selection memory",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2190",
+    "question": "কতো কিলোবাইটে ১ মেঘাবাইট ?",
+    "options": [
+      {
+        "id": "5242",
+        "text": "1024 KB = 1 MB",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2191",
+    "question": "Paste -এর শর্টকার্ট কমান্ড কী ?",
+    "options": [
+      {
+        "id": "5243",
+        "text": "Ctrl + V",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2192",
+    "question": "MS Word-এ Mail Merge -ব্যাবহারের সুবিধা উল্লেখ কর।",
+    "options": [
+      {
+        "id": "5244",
+        "text": "Mail merge ব্যাবহারের ফলে একটি চিঠি অনেকগুলো ঠিকানায় প্রেরণের সুবিধা পাওয়া যায় ।",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2193",
+    "question": "Keyboard-এ End key এর কাজ কী ?",
+    "options": [
+      {
+        "id": "5245",
+        "text": "Line - এর শেষে Cursor -কে স্থানান্তর করা End-key-এর কাজ ।",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2194",
+    "question": "MS Excel -এ কয়টি Column আছে ?",
+    "options": [
+      {
+        "id": "5246",
+        "text": "Row= 65536, Column=256",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2195",
+    "question": "MS Word-এ Column কোন মেন্যুর অধীনে ?",
+    "options": [
+      {
+        "id": "5247",
+        "text": "Format menu.",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2196",
+    "question": "File শব্দের অর্থ কী ?",
+    "options": [
+      {
+        "id": "5248",
+        "text": "যখন কোন Document কে কোন নাম দিয়ে সংরক্ষন করা হয়, তখন তাকে File বলে ।",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2197",
+    "question": "তোমার নাম কী ?",
+    "options": [
+      {
+        "id": "5249",
+        "text": "What is your name ?",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2198",
+    "question": "আমি বাংলাদেশে বাস করি।",
+    "options": [
+      {
+        "id": "5250",
+        "text": "I live in Bangladesh.",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2199",
+    "question": "দেশপ্রেম মহৎ গুণ।",
+    "options": [
+      {
+        "id": "5251",
+        "text": "Patritiosm is a great/noble virtue.",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2200",
+    "question": "সে স্কুলে যায়।",
+    "options": [
+      {
+        "id": "5252",
+        "text": "He goes to school.",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2201",
+    "question": "আমরা দুই ভাই এক বোন।",
+    "options": [
+      {
+        "id": "5253",
+        "text": "We are two brothers and one sister.",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2202",
+    "question": "That is--------intersting book.",
+    "options": [
+      {
+        "id": "5254",
+        "text": "a",
+        "correct": false
+      },
+      {
+        "id": "5255",
+        "text": "an",
+        "correct": true
+      },
+      {
+        "id": "5256",
+        "text": "the",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2203",
+    "question": "What---------in his free time?",
+    "options": [
+      {
+        "id": "5259",
+        "text": "do he does",
+        "correct": false
+      },
+      {
+        "id": "5258",
+        "text": "does he do",
+        "correct": true
+      },
+      {
+        "id": "5257",
+        "text": "do he do",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2204",
+    "question": "What--------he like ?",
+    "options": [
+      {
+        "id": "5262",
+        "text": "do",
+        "correct": false
+      },
+      {
+        "id": "5261",
+        "text": "is",
+        "correct": false
+      },
+      {
+        "id": "5260",
+        "text": "does",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2205",
+    "question": "My father ----------in a bank.",
+    "options": [
+      {
+        "id": "5263",
+        "text": "works",
+        "correct": true
+      },
+      {
+        "id": "5264",
+        "text": "work",
+        "correct": false
+      },
+      {
+        "id": "5265",
+        "text": "working",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2206",
+    "question": "Do you always-------at 7 o'clock ?",
+    "options": [
+      {
+        "id": "5266",
+        "text": "got up",
+        "correct": false
+      },
+      {
+        "id": "5268",
+        "text": "getting up",
+        "correct": false
+      },
+      {
+        "id": "5267",
+        "text": "get up",
+        "correct": true
+      }
+    ]
+  }
+]

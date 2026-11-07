@@ -25,6 +25,8 @@ import BlogPage from './pages/BlogPage';
 import BlogDetails from './pages/BlogDetails';
 import BlogLayout from './layouts/BlogLayout';
 import BlogDashboard from './pages/BlogDashboard';
+// import Exam from './components/Exam/Exam';
+// import ExamResult from './Exam/ExamResult';
 // ========== LAZY LOADED PAGES ==========
 // Public
 const Home = lazy(() => import('./pages/public/Home'));
@@ -38,6 +40,9 @@ const Gallery = lazy(() => import('./pages/public/Gallery'));
 const Results = lazy(() => import('./pages/public/Results'));
 const Contact = lazy(() => import('./pages/public/Contact'));
 const TypingTest = lazy(() => import('./pages/public/TypingTest'));
+// const ExamResult = lazy(() => import('./Exam/ExamResult'));
+const Exam = lazy(() => import('./components/Exam/Exam'));
+// const OnlineExam = lazy(() => import('./pages/public/TypingTest'));
 const MouseAccuracyGame = lazy(() => import('./pages/public/MouseAccuracyGame'));
 const VerifyCertificate = lazy(() => import('./pages/public/VerifyCertificate'));
 
@@ -115,6 +120,7 @@ function App() {
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/results" element={<Results />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/OnlineExam" element={<Exam/>} />
             <Route path="/TypingTest" element={<TypingTest />} />
             <Route path="/MouseAccuracyGame" element={<MouseAccuracyGame />} />
             <Route path="/verify-certificate" element={<VerifyCertificate />} />

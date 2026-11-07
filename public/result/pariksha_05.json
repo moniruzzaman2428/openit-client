@@ -1,0 +1,1007 @@
+[
+  {
+    "id": "2556",
+    "question": "এক কিলোবাইট সমান কত ?",
+    "options": [
+      {
+        "id": "6200",
+        "text": "১০১৪ কিলোবাইট",
+        "correct": false
+      },
+      {
+        "id": "6202",
+        "text": "১০১১ কিলোবাইট",
+        "correct": false
+      },
+      {
+        "id": "6199",
+        "text": "১০২৪ কিলোবাইট",
+        "correct": true
+      },
+      {
+        "id": "6201",
+        "text": "১১২৪ কিলোবাইট",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2557",
+    "question": "ডট মেট্রিক্স প্রিন্টার হলো-",
+    "options": [
+      {
+        "id": "6204",
+        "text": "আউটপুট ডিভাইস",
+        "correct": true
+      },
+      {
+        "id": "6203",
+        "text": "ইনপুট ডিভাইস",
+        "correct": false
+      },
+      {
+        "id": "6205",
+        "text": "মেমোরি",
+        "correct": false
+      },
+      {
+        "id": "6206",
+        "text": "প্রক্রিয়াকরণ ডিভাইস",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2558",
+    "question": "Save এর কী বোর্ড কমান্ড কোনটি ?",
+    "options": [
+      {
+        "id": "6207",
+        "text": "Ctrl +C",
+        "correct": false
+      },
+      {
+        "id": "6209",
+        "text": "Ctrl + P",
+        "correct": false
+      },
+      {
+        "id": "6210",
+        "text": "Ctrl + S",
+        "correct": true
+      },
+      {
+        "id": "6208",
+        "text": "Ctrl + X",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2559",
+    "question": "ছবি ,টেক্সট ,গ্রাফ ইত্যাদীর ক্ষেত্রে কোন Object টি ব্যাবহৃত হয় ?",
+    "options": [
+      {
+        "id": "6214",
+        "text": "Yes/No",
+        "correct": false
+      },
+      {
+        "id": "6213",
+        "text": "Text",
+        "correct": false
+      },
+      {
+        "id": "6212",
+        "text": "OLE",
+        "correct": true
+      },
+      {
+        "id": "6211",
+        "text": "Hyperlink",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2560",
+    "question": "কোন মেনুতে Sort/formula থাকে ?",
+    "options": [
+      {
+        "id": "6216",
+        "text": "Insert",
+        "correct": false
+      },
+      {
+        "id": "6217",
+        "text": "Table",
+        "correct": true
+      },
+      {
+        "id": "6215",
+        "text": "Edit",
+        "correct": false
+      },
+      {
+        "id": "6218",
+        "text": "Tools",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2561",
+    "question": "ফার্ম-ওয়্যার হচ্ছে ?",
+    "options": [
+      {
+        "id": "6221",
+        "text": "ROM",
+        "correct": true
+      },
+      {
+        "id": "6219",
+        "text": "RAM",
+        "correct": false
+      },
+      {
+        "id": "6222",
+        "text": "কোনোটিই নয়",
+        "correct": false
+      },
+      {
+        "id": "6220",
+        "text": "HDD",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2562",
+    "question": "নিচের কোনটি সহায়ক মেমোরি ?",
+    "options": [
+      {
+        "id": "6225",
+        "text": "ROM",
+        "correct": false
+      },
+      {
+        "id": "6224",
+        "text": "HDD",
+        "correct": true
+      },
+      {
+        "id": "6223",
+        "text": "RAM",
+        "correct": false
+      },
+      {
+        "id": "6226",
+        "text": "কোনটিই নয়",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2563",
+    "question": "কোন প্রোগ্রাম দিয়ে Presentation তৈরী করা হয়?",
+    "options": [
+      {
+        "id": "6227",
+        "text": "MS-Word",
+        "correct": false
+      },
+      {
+        "id": "6230",
+        "text": "MS Powerpoint",
+        "correct": true
+      },
+      {
+        "id": "6228",
+        "text": "MS Access",
+        "correct": false
+      },
+      {
+        "id": "6229",
+        "text": "MS Excel",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2564",
+    "question": "LAN শব্দের পূর্নরূপ কোনটি ?",
+    "options": [
+      {
+        "id": "6234",
+        "text": "Logal Assemble network",
+        "correct": false
+      },
+      {
+        "id": "6232",
+        "text": "Local Assemble network",
+        "correct": false
+      },
+      {
+        "id": "6231",
+        "text": "Local Area network",
+        "correct": true
+      },
+      {
+        "id": "6233",
+        "text": "Lokal Area network",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2565",
+    "question": "কোনটি Antivirus ডিভাইস নয় ?",
+    "options": [
+      {
+        "id": "6237",
+        "text": "AVG",
+        "correct": false
+      },
+      {
+        "id": "6236",
+        "text": "Linax",
+        "correct": true
+      },
+      {
+        "id": "6238",
+        "text": "Norton",
+        "correct": false
+      },
+      {
+        "id": "6235",
+        "text": "Avast",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2566",
+    "question": "RAM এর পূর্ণরূপ.............।",
+    "options": [
+      {
+        "id": "6239",
+        "text": "Random Access Memory.",
+        "correct": true
+      },
+      {
+        "id": "6240",
+        "text": "Random Read Only Memory.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2567",
+    "question": "A4 সাইজ কাগজের পরিমাপ হচ্ছে .................।",
+    "options": [
+      {
+        "id": "6243",
+        "text": "প্রস্থ ৮.২৭” ,দৈর্ঘ্য ১১.৭৯”",
+        "correct": false
+      },
+      {
+        "id": "6242",
+        "text": "প্রস্থ ৮.৭৭” ,দৈর্ঘ্য ১১.৬৯”",
+        "correct": false
+      },
+      {
+        "id": "6241",
+        "text": "প্রস্থ ৮.২৭” ,দৈর্ঘ্য ১১.৬৯”",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2568",
+    "question": "Excel এর Row সংখ্যা .........টি[Excel 2003]",
+    "options": [
+      {
+        "id": "6245",
+        "text": "৬৫৫৫৬",
+        "correct": false
+      },
+      {
+        "id": "6244",
+        "text": "৬৫৫৩৬",
+        "correct": true
+      },
+      {
+        "id": "6246",
+        "text": "৬৫৪৩৬",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2569",
+    "question": "Recycle Bin ফোল্ডারে ................ফাইল জমা থাকে।",
+    "options": [
+      {
+        "id": "6247",
+        "text": "অপ্রয়োজনীয় ডিলেটকৃত ফাইল।",
+        "correct": true
+      },
+      {
+        "id": "6248",
+        "text": "প্রয়োজনীয় সংরক্ষন করা ফাইল।",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2570",
+    "question": "একটি চিঠি বিভিন্ন ঠিকানায় প্রেরণের জন্য..................কমান্ড ব্যাবহৃত হয় ।",
+    "options": [
+      {
+        "id": "6251",
+        "text": "Facebook",
+        "correct": false
+      },
+      {
+        "id": "6249",
+        "text": "Mail merge",
+        "correct": true
+      },
+      {
+        "id": "6250",
+        "text": "Twitter",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2571",
+    "question": "কম্পিউটারের মা্ধ্যমে পারস্পারিক যোগাযোগকে.................... বলে।",
+    "options": [
+      {
+        "id": "6254",
+        "text": "ডিভাইস",
+        "correct": false
+      },
+      {
+        "id": "6253",
+        "text": "রিলেশনশিপ",
+        "correct": false
+      },
+      {
+        "id": "6252",
+        "text": "নেটওয়ার্ক",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2572",
+    "question": "WWW এর পূর্নরূপ ...........।",
+    "options": [
+      {
+        "id": "6255",
+        "text": "World Wide Web.",
+        "correct": true
+      },
+      {
+        "id": "6256",
+        "text": "World Web Wide .",
+        "correct": false
+      },
+      {
+        "id": "6257",
+        "text": "Web World Wide",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2573",
+    "question": "Page break এর কাজ হলো.................করা।",
+    "options": [
+      {
+        "id": "6259",
+        "text": "দুইটি পেইজকে একত্র করা ।",
+        "correct": false
+      },
+      {
+        "id": "6260",
+        "text": "নতুন পৃষ্টা সংযোজন করা",
+        "correct": false
+      },
+      {
+        "id": "6258",
+        "text": "একটি পেইজকে দ্বিখন্ডিত করা ।",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2574",
+    "question": "স্ক্যানার এক প্রকার..................ডিভাইস।",
+    "options": [
+      {
+        "id": "6263",
+        "text": "ইনপুট এবং আউটপুট",
+        "correct": false
+      },
+      {
+        "id": "6261",
+        "text": "ইনপুট",
+        "correct": true
+      },
+      {
+        "id": "6262",
+        "text": "আউটপুট",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2575",
+    "question": "Data Paste করার সংক্ষিপ্ত কমান্ড হলো...............।",
+    "options": [
+      {
+        "id": "6265",
+        "text": "Ctrl +C",
+        "correct": false
+      },
+      {
+        "id": "6264",
+        "text": "Ctrl +V",
+        "correct": true
+      },
+      {
+        "id": "6266",
+        "text": "Ctrl +P",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2576",
+    "question": "কম্পিউটারের প্রধান ভাষা বাংলা।",
+    "options": [
+      {
+        "id": "6268",
+        "text": "স",
+        "correct": false
+      },
+      {
+        "id": "6267",
+        "text": "মি",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2577",
+    "question": "ওয়ার্কসীট ওয়ার্কবুকের অংশবিশেষ।",
+    "options": [
+      {
+        "id": "6270",
+        "text": "মি",
+        "correct": false
+      },
+      {
+        "id": "6269",
+        "text": "স",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2578",
+    "question": "মেইল অ্যাকাউন্ট বন্ধ করার জন্য Sing in এ ক্লিক করতে হয় ।",
+    "options": [
+      {
+        "id": "6271",
+        "text": "মি",
+        "correct": true
+      },
+      {
+        "id": "6272",
+        "text": "স",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2579",
+    "question": "১০(১০) কে বাইনারিতে প্রকাশ করলে (১০১০)২ হবে।",
+    "options": [
+      {
+        "id": "6273",
+        "text": "স",
+        "correct": true
+      },
+      {
+        "id": "6274",
+        "text": "মি",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2580",
+    "question": "Facebook একটি ইন্টারনেট ব্রাউজিং সফটওয়্যার।",
+    "options": [
+      {
+        "id": "6276",
+        "text": "স",
+        "correct": false
+      },
+      {
+        "id": "6275",
+        "text": "মি",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2581",
+    "question": "Data sort দুই প্রকার ।",
+    "options": [
+      {
+        "id": "6278",
+        "text": "মি",
+        "correct": false
+      },
+      {
+        "id": "6277",
+        "text": "স",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2582",
+    "question": "কম্পিউটারের প্রক্রিয়াকরণ অংশ হচ্ছে Motherboard।",
+    "options": [
+      {
+        "id": "6280",
+        "text": "স",
+        "correct": false
+      },
+      {
+        "id": "6279",
+        "text": "মি",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2583",
+    "question": "ফোল্ডারের ভিতর ফাইল ও ফোল্ডার উভয়ই থাকে ।",
+    "options": [
+      {
+        "id": "6281",
+        "text": "স",
+        "correct": true
+      },
+      {
+        "id": "6282",
+        "text": "মি",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2584",
+    "question": "কম্পিউটার ভাইরাস একটি প্রোগ্রাম।",
+    "options": [
+      {
+        "id": "6284",
+        "text": "মি",
+        "correct": false
+      },
+      {
+        "id": "6283",
+        "text": "স",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2585",
+    "question": "Google একটি Browser ।",
+    "options": [
+      {
+        "id": "6286",
+        "text": "স",
+        "correct": false
+      },
+      {
+        "id": "6285",
+        "text": "মি",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2586",
+    "question": "Mail Merge কী ?",
+    "options": [
+      {
+        "id": "6288",
+        "text": "এক চিঠি একটি ঠিকানায় পাঠানোর পদ্ধতিকে মেইল মার্জ বলে।",
+        "correct": false
+      },
+      {
+        "id": "6287",
+        "text": "একই চিঠি বিভিন্ন ঠিকানায় ভিন্ন ভিন্ন ব্যাক্তি ও প্রতিষ্ঠানের নিকট পাঠানোর প্রয়োজন হয় ,তখন উক্ত চিঠির সাথে ভিন্ ভিন্ন ঠিকানাকে একত্র করে খুব অর্প সময়ে পুর্ণাঙ্গ চিঠি গঠন করার পদ্ধতিকে মেইল মার্জ বলে।",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2587",
+    "question": "ROM- এর পূর্নরূপ লেখ ।",
+    "options": [
+      {
+        "id": "6289",
+        "text": "রম এর পূর্ণ অর্থ Read only memory; প্রধান স্মৃতির এই অংশটি স্থায়ী, অপরিবর্তনীয় ও অধ্বাংসাত্নক।কম্পিউটার তৈরীর সময় এই স্মৃতিতে কিছু প্রোগ্রাম ঢুকিয়ে দেওয়া হয়। কম্পিউটার বন্ধ করলে ও এই স্মৃতিতে রক্ষিত কোন তথ্য মুছে যায় না।এটি একটি গঠন স্মৃতি।",
+        "correct": true
+      },
+      {
+        "id": "6290",
+        "text": "রম এর পূর্ণ অর্থ Read access memory; প্রধান স্মৃতির এই অংশটি স্থায়ী, অপরিবর্তনীয় ও অধ্বাংসাত্নক।কম্পিউটার তৈরীর সময় এই স্মৃতিতে কিছু প্রোগ্রাম ঢুকিয়ে দেওয়া হয়। কম্পিউটার বন্ধ করলে ও এই স্মৃতিতে রক্ষিত কোন তথ্য মুছে যায় না।এটি একটি গঠন স্মৃতি।",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2588",
+    "question": "Mozila firefox কী ?",
+    "options": [
+      {
+        "id": "6292",
+        "text": "এটি একটি জনপ্রিয় সোস্যাল মাধ্যম।",
+        "correct": false
+      },
+      {
+        "id": "6291",
+        "text": "এটি একটি জনপ্রিয় ওয়েব ব্রাউজার।",
+        "correct": true
+      },
+      {
+        "id": "6293",
+        "text": "এটি একটি জনপ্রিয় সফটওয়্যার।",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2589",
+    "question": "স্প্রেডশীট প্যাকেজ দিয়ে কী ধরনের কাজ করা হয় ?",
+    "options": [
+      {
+        "id": "6295",
+        "text": "স্প্রেডশীট প্যাকেজ দিয়ে Database এর কাজ করা হয় ।",
+        "correct": false
+      },
+      {
+        "id": "6294",
+        "text": "স্প্রেডশীট প্যাকেজ দিয়ে Accounting এর কাজ করা হয় ।",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2590",
+    "question": "কয়েকটি Anti-Virus এর নাম লেখ।",
+    "options": [
+      {
+        "id": "6296",
+        "text": "Kaspersky, Avg, Avast, Avira, Toolkit",
+        "correct": true
+      },
+      {
+        "id": "6297",
+        "text": "Pc clean,Toolbox,java.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2591",
+    "question": "File বলতে কী বোঝায় ?",
+    "options": [
+      {
+        "id": "6298",
+        "text": "যখন কোন Document কে কোন নাম দিয়ে সংরক্ষন করা হয় ,তখন তাকে File বলে।",
+        "correct": true
+      },
+      {
+        "id": "6299",
+        "text": "কোন Software দিয়ে কাজ করা হলে তাকে File বলা হয় ।",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2592",
+    "question": "Excel এ Row এর সংখ্যা কয়টি ?",
+    "options": [
+      {
+        "id": "6300",
+        "text": "Ms Excel ২০০৩ এ রো আছে ৬৫,৫৩৬ টি এবং Ms Excel ২০০৭ এ রো আছে ১০,৪৮৫৭৬ টি।",
+        "correct": true
+      },
+      {
+        "id": "6301",
+        "text": "Ms Excel ২০০৩ এ রো আছে ৬৫,৫৩৬ টি এবং Ms Excel ২০০৭ এ রো আছে ১০,৪৭৫৭৬ টি।",
+        "correct": false
+      },
+      {
+        "id": "6302",
+        "text": "Ms Excel ২০০৩ এ রো আছে ৬৫,৬৩৬ টি এবং Ms Excel ২০০৭ এ রো আছে ১০,৪৮৫৭৬ টি।",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2593",
+    "question": "Desktop কী ?",
+    "options": [
+      {
+        "id": "6303",
+        "text": "কম্পিউটার অন করার পর স্থির অবস্থায় মনিটরে যা দেখতে পাই তাকে Desktop বলে।",
+        "correct": true
+      },
+      {
+        "id": "6304",
+        "text": "কম্পিউটার বন্ধ অবস্থায় মনিটরে যা দেখতে পাই তাকে Desktop বলে।",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2594",
+    "question": "Email কী ?",
+    "options": [
+      {
+        "id": "6305",
+        "text": "ইলেকট্রনিক মেইল(Electronic Mail) এর সংক্ষিপ্ত রুপই হলো ই-মেইল। এটি ইন্টারনেটের একটি বিশেষ সেবা, যার দ্বারা ব্যাবহারকারী ইন্টারনেটের মাধ্যমে পৃতিবীর যেকোনো প্রান্তে অবস্থিত ইলেকট্রনিক মেইল অ্যাড্রেসধারী যে কোনো ব্যাবহারকারীর কম্পিউটারের বার্ত্ প্রেরণ করতে পারে।বিপরীতক্রমে অন্য প্রান্ত্র হতে কোন বার্তা গ্রহন করতে পারে।",
+        "correct": true
+      },
+      {
+        "id": "6306",
+        "text": "ইলেকট্রনিক কমার্স (Electronic Commerse) এর সংক্ষিপ্ত রুপই হলো ই-মেইল। এটি ইন্টারনেটের একটি বিশেষ সেবা, যার দ্বারা ব্যাবহারকারী ইন্টারনেটের মাধ্যমে পৃতিবীর যেকোনো প্রান্তে অবস্থিত ইলেকট্রনিক কমার্স অ্যাড্রেসধারী যে কোনো ব্যাবহারকারীর কম্পিউটারের বার্তা প্রেরণ করতে পারে।বিপরীতক্রমে অন্য প্রান্ত্র হতে কোন বার্তা গ্রহন করতে পারে।",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2595",
+    "question": "বিট ও বাইট কী ?",
+    "options": [
+      {
+        "id": "6308",
+        "text": "বাইনারি পদ্ধতিতে ব্যাবহৃত অংঙ্ক ২ এবং ১ কে বিট বলে। বাইটঃ নয় বিটে এক বাইট হয়।এরুপ ৯ বিটের কোড দিয়ে যে কোন বর্ন ,অঙ্ক বা বিশেষ চিন্হকে প্রকাশ করা হয়ে থাকে।",
+        "correct": false
+      },
+      {
+        "id": "6307",
+        "text": "বাইনারি পদ্ধতিতে ব্যাবহৃত অংঙ্ক ০ এবং ১ কে বিট বলে। বাইটঃ আট বিটে এক বাইট হয়।এরুপ ৮বিটের কোড দিয়ে যে কোন বর্ন ,অঙ্ক বা বিশেষ চিন্হকে প্রকাশ করা হয়ে থাকে।",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2596",
+    "question": "দেশপ্রেম মহৎ গুণ।",
+    "options": [
+      {
+        "id": "6310",
+        "text": "Patritriotism the great/noble virtue.",
+        "correct": false
+      },
+      {
+        "id": "6311",
+        "text": "Patritriotism a great/noble virtue.",
+        "correct": false
+      },
+      {
+        "id": "6309",
+        "text": "Patritriotism is a great/noble virtue.",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2597",
+    "question": "বাংলাদেশ আমার জন্মভূমি।",
+    "options": [
+      {
+        "id": "6313",
+        "text": "Bangladesh my motherland.",
+        "correct": false
+      },
+      {
+        "id": "6312",
+        "text": "Bangladesh is my motherland.",
+        "correct": true
+      },
+      {
+        "id": "6314",
+        "text": "Bangladesh is a my motherland.",
+        "correct": false
+      },
+      {
+        "id": "6315",
+        "text": "Bangladesh are my motherland.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2598",
+    "question": "তোমার পিতার নাম কী ?",
+    "options": [
+      {
+        "id": "6319",
+        "text": "What your father,s name ?",
+        "correct": false
+      },
+      {
+        "id": "6317",
+        "text": "What is your,s father,s names ?",
+        "correct": false
+      },
+      {
+        "id": "6316",
+        "text": "What is your father,s name ?",
+        "correct": true
+      },
+      {
+        "id": "6318",
+        "text": "What are your father,s name ?",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2599",
+    "question": "আমি বাড়ি যাব ।",
+    "options": [
+      {
+        "id": "6320",
+        "text": "I will go home.",
+        "correct": true
+      },
+      {
+        "id": "6321",
+        "text": "I were go home.",
+        "correct": false
+      },
+      {
+        "id": "6322",
+        "text": "I go to home.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2600",
+    "question": "তুমি কেমন আছ ?",
+    "options": [
+      {
+        "id": "6323",
+        "text": "How are you ?",
+        "correct": true
+      },
+      {
+        "id": "6324",
+        "text": "You are good ?",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2601",
+    "question": "To be healthy ,We must eat................",
+    "options": [
+      {
+        "id": "6327",
+        "text": "balanced food",
+        "correct": true
+      },
+      {
+        "id": "6325",
+        "text": "good food",
+        "correct": false
+      },
+      {
+        "id": "6326",
+        "text": "rich food",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2602",
+    "question": "He is...............honest man.",
+    "options": [
+      {
+        "id": "6328",
+        "text": "a",
+        "correct": false
+      },
+      {
+        "id": "6329",
+        "text": "an",
+        "correct": true
+      },
+      {
+        "id": "6330",
+        "text": "the",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2603",
+    "question": "my mother reads ..........holy Quran.",
+    "options": [
+      {
+        "id": "6331",
+        "text": "a",
+        "correct": false
+      },
+      {
+        "id": "6332",
+        "text": "an",
+        "correct": false
+      },
+      {
+        "id": "6333",
+        "text": "the",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2604",
+    "question": "I want to..........a letter.",
+    "options": [
+      {
+        "id": "6334",
+        "text": "make",
+        "correct": false
+      },
+      {
+        "id": "6335",
+        "text": "write",
+        "correct": true
+      },
+      {
+        "id": "6336",
+        "text": "learn",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2605",
+    "question": "Swimming.........a good exercise .",
+    "options": [
+      {
+        "id": "6338",
+        "text": "am",
+        "correct": false
+      },
+      {
+        "id": "6337",
+        "text": "is",
+        "correct": true
+      },
+      {
+        "id": "6339",
+        "text": "are",
+        "correct": false
+      }
+    ]
+  }
+]

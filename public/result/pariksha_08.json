@@ -1,0 +1,1132 @@
+[
+  {
+    "id": "1",
+    "question": "To be healthy, we must eat -",
+    "options": [
+      {
+        "id": "1",
+        "text": "good food",
+        "correct": false
+      },
+      {
+        "id": "2",
+        "text": "rich food",
+        "correct": false
+      },
+      {
+        "id": "3",
+        "text": "balanced diet",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "question": "Th girl came to me -",
+    "options": [
+      {
+        "id": "10",
+        "text": "iii. to dance",
+        "correct": false
+      },
+      {
+        "id": "9",
+        "text": "ii . dancing",
+        "correct": true
+      },
+      {
+        "id": "8",
+        "text": "i . Dance",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "question": "Swimming ____ a good exercise .",
+    "options": [
+      {
+        "id": "12",
+        "text": "i . is",
+        "correct": true
+      },
+      {
+        "id": "14",
+        "text": "iii. are",
+        "correct": false
+      },
+      {
+        "id": "13",
+        "text": "ii . am",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "7",
+    "question": "you ____ do eat easily",
+    "options": [
+      {
+        "id": "16",
+        "text": "i . Could",
+        "correct": false
+      },
+      {
+        "id": "18",
+        "text": "iii. might",
+        "correct": false
+      },
+      {
+        "id": "17",
+        "text": "ii. Can",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "10",
+    "question": "move ____ you will die",
+    "options": [
+      {
+        "id": "28",
+        "text": "ii. but",
+        "correct": false
+      },
+      {
+        "id": "27",
+        "text": "i. and",
+        "correct": false
+      },
+      {
+        "id": "29",
+        "text": "iii. or",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "11",
+    "question": "*** where do you came from ?",
+    "options": [
+      {
+        "id": "30",
+        "text": "I came from Rajshahi",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "12",
+    "question": "*** how old old are you ?",
+    "options": [
+      {
+        "id": "31",
+        "text": "i am 18 year,s old",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "13",
+    "question": "what is your father ?",
+    "options": [
+      {
+        "id": "32",
+        "text": "my father is a teacher .",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "14",
+    "question": "do you know how to swim ?",
+    "options": [
+      {
+        "id": "33",
+        "text": "Yes, i know how to swim",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "15",
+    "question": "****Where do you get up from bed ?",
+    "options": [
+      {
+        "id": "34",
+        "text": "i get up from bed early in the morning .",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "16",
+    "question": "** Computer শব্দের অর্থ কি ?",
+    "options": [
+      {
+        "id": "36",
+        "text": "বর্ণনা করা",
+        "correct": false
+      },
+      {
+        "id": "37",
+        "text": "গণনা করা",
+        "correct": true
+      },
+      {
+        "id": "38",
+        "text": "কোনটাই নয়",
+        "correct": false
+      },
+      {
+        "id": "35",
+        "text": "হিসাব করা",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "17",
+    "question": "সাময়িক রণকৌশল নির্ণয়, আবহাওয়া পূর্বাভাস, তেল ও গ্যাস অনুসন্ধান প্রভৃতি কাজে ব্যবহৃত হয় -",
+    "options": [
+      {
+        "id": "42",
+        "text": "মাইক্রো কম্পিউটার",
+        "correct": false
+      },
+      {
+        "id": "41",
+        "text": "মিনি কম্পিউটার",
+        "correct": false
+      },
+      {
+        "id": "40",
+        "text": "মেইনফ্রেম কম্পিউটার",
+        "correct": false
+      },
+      {
+        "id": "39",
+        "text": "সুপার কম্পিউটার",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "21",
+    "question": "নিচের কোনটি Rom এর বৈশিষ্ট ?",
+    "options": [
+      {
+        "id": "48",
+        "text": "বিদ্যুত চলে গেলে ডাটা মুছে যায়",
+        "correct": true
+      },
+      {
+        "id": "47",
+        "text": "শুধুমাএ ডাটা পড়া যায়",
+        "correct": false
+      },
+      {
+        "id": "46",
+        "text": "Read only memory",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "22",
+    "question": "কোনটি অপারেটিং সিস্টেমের কাজ নয় ?",
+    "options": [
+      {
+        "id": "49",
+        "text": "প্রধান স্মৃতি ব্যবস্থাপনা করা",
+        "correct": false
+      },
+      {
+        "id": "50",
+        "text": "ডাটা প্রসেসিং করা",
+        "correct": true
+      },
+      {
+        "id": "51",
+        "text": "ইনপুট / আউটপুট ডিভাইস নিয়ন্ত্রন করা",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "33",
+    "question": "2 GB = কয় কিলোবাইট ?",
+    "options": [
+      {
+        "id": "64",
+        "text": "1700 কিলোবাইট",
+        "correct": false
+      },
+      {
+        "id": "63",
+        "text": "1524 কিলোবাইট",
+        "correct": false
+      },
+      {
+        "id": "62",
+        "text": "2248 কিলোবাইট",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "34",
+    "question": "কম্পিউটারের যাবতীয় গাণিতিক ও যুক্তিমূলক সমস্যার সমাধান করে --",
+    "options": [
+      {
+        "id": "66",
+        "text": "AlU",
+        "correct": true
+      },
+      {
+        "id": "68",
+        "text": "Memmory unit",
+        "correct": false
+      },
+      {
+        "id": "67",
+        "text": "Control unit",
+        "correct": false
+      },
+      {
+        "id": "65",
+        "text": "I/O unit",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "35",
+    "question": "Ms- Word এ Columns কোন মেনুর অধীনে ?",
+    "options": [
+      {
+        "id": "71",
+        "text": "Format menu",
+        "correct": true
+      },
+      {
+        "id": "69",
+        "text": "view Manu",
+        "correct": false
+      },
+      {
+        "id": "70",
+        "text": "insert Manu",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "38",
+    "question": "গাটার ( gutter ) কী ?",
+    "options": [
+      {
+        "id": "76",
+        "text": "পৃষ্ঠার মার্জিন সংযুক্ত অতিরিক্ত জায়গা",
+        "correct": true
+      },
+      {
+        "id": "77",
+        "text": "পৃষ্ঠার মাঝের অংশ",
+        "correct": false
+      },
+      {
+        "id": "75",
+        "text": "পৃষ্ঠার নিচের অংশ",
+        "correct": false
+      },
+      {
+        "id": "74",
+        "text": "পৃষ্ঠার ওপরের অংশের Title",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "39",
+    "question": "ফার্মওয়্যার সংরক্ষিত থাকে -",
+    "options": [
+      {
+        "id": "79",
+        "text": "Ram",
+        "correct": false
+      },
+      {
+        "id": "80",
+        "text": "Hard-disk",
+        "correct": false
+      },
+      {
+        "id": "78",
+        "text": "Rom",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "43",
+    "question": "ইনপুট ডিভাইস নয় কোনটি ?",
+    "options": [
+      {
+        "id": "95",
+        "text": "কী-বোর্ড",
+        "correct": false
+      },
+      {
+        "id": "94",
+        "text": "স্পিকার",
+        "correct": true
+      },
+      {
+        "id": "96",
+        "text": "মাইক্রোফোন",
+        "correct": false
+      },
+      {
+        "id": "97",
+        "text": "স্ক্যানার",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "44",
+    "question": "কোনটি সঠিক নয় ?",
+    "options": [
+      {
+        "id": "98",
+        "text": "সফটওয়্যারের বাহ্যিক কাঠামো আছে",
+        "correct": true
+      },
+      {
+        "id": "99",
+        "text": "সফটওয়্যার হার্ডওয়ারকে কার্যক্ষম করে",
+        "correct": false
+      },
+      {
+        "id": "101",
+        "text": "হার্ডওয়্যার ছাড়া সফটওয়্যার অর্থহীন",
+        "correct": false
+      },
+      {
+        "id": "100",
+        "text": "হার্ডওয়্যার স্পর্শ করা যায়",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "45",
+    "question": "নিচের কোনটি সহায়ক মেমোরি নয় ?",
+    "options": [
+      {
+        "id": "102",
+        "text": "Floopy disk",
+        "correct": false
+      },
+      {
+        "id": "103",
+        "text": "Hard disk",
+        "correct": false
+      },
+      {
+        "id": "105",
+        "text": "Cache",
+        "correct": true
+      },
+      {
+        "id": "104",
+        "text": "cd-rom",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "46",
+    "question": "Cursor কোন ডকুমেন্টের প্রথমে আনার কমান্ড ?",
+    "options": [
+      {
+        "id": "108",
+        "text": "Ctrl+Alt+Home",
+        "correct": false
+      },
+      {
+        "id": "106",
+        "text": "Ctrl-Home",
+        "correct": true
+      },
+      {
+        "id": "107",
+        "text": "Ctrl+Shift+Home",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "47",
+    "question": "নতুন পৃষ্ঠা তৈরি করার কমান্ট -",
+    "options": [
+      {
+        "id": "110",
+        "text": "Ctrl + N",
+        "correct": true
+      },
+      {
+        "id": "109",
+        "text": "Ctrl+Pause Break",
+        "correct": false
+      },
+      {
+        "id": "111",
+        "text": "Ctrl + Enter",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "48",
+    "question": "Taxt Alignment / jusification কত প্রকার ?",
+    "options": [
+      {
+        "id": "114",
+        "text": "২ প্রকার",
+        "correct": false
+      },
+      {
+        "id": "112",
+        "text": "৪ প্রকার",
+        "correct": true
+      },
+      {
+        "id": "113",
+        "text": "৩ প্রকার",
+        "correct": false
+      },
+      {
+        "id": "115",
+        "text": "৫ প্রকার",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "49",
+    "question": "প্রতিটি শব্দ আলাদাভাবে Underline করার কমান্ট --",
+    "options": [
+      {
+        "id": "119",
+        "text": "Ctrl+Shift+W",
+        "correct": false
+      },
+      {
+        "id": "118",
+        "text": "Ctrl+Shift+u",
+        "correct": false
+      },
+      {
+        "id": "116",
+        "text": "Ctrl+u",
+        "correct": false
+      },
+      {
+        "id": "117",
+        "text": "Ctrl+w",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "50",
+    "question": "নিচের কোনটি Tiltle case এর উদাহরণ ?",
+    "options": [
+      {
+        "id": "121",
+        "text": "Run!Forest Run",
+        "correct": true
+      },
+      {
+        "id": "122",
+        "text": "Run!Forest Run",
+        "correct": false
+      },
+      {
+        "id": "120",
+        "text": "Runlforest run",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "51",
+    "question": "Line spaching দেড়গুণ করার কমান্ড -",
+    "options": [
+      {
+        "id": "124",
+        "text": "Ctrl + 2",
+        "correct": false
+      },
+      {
+        "id": "125",
+        "text": "Ctrl + 1.5",
+        "correct": true
+      },
+      {
+        "id": "123",
+        "text": "Ctrl + 1",
+        "correct": false
+      },
+      {
+        "id": "126",
+        "text": "Ctrl + 5",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "52",
+    "question": "কোনটি মিথ্যা ?",
+    "options": [
+      {
+        "id": "128",
+        "text": "Save as ....... কমান্ড দিয়ে ডকুমেন্ট Save করা হয়",
+        "correct": true
+      },
+      {
+        "id": "129",
+        "text": "Undo typing এর জন্য ব্যবহার করা হয় Ctrl+Z",
+        "correct": false
+      },
+      {
+        "id": "127",
+        "text": "Ctrl + F হলে Search এর কমান্ড",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "53",
+    "question": "Date শব্দের অর্থ --",
+    "options": [
+      {
+        "id": "132",
+        "text": "শব্দের ঘাটি",
+        "correct": false
+      },
+      {
+        "id": "133",
+        "text": "সবগুলো",
+        "correct": false
+      },
+      {
+        "id": "130",
+        "text": "শব্দের সমাবেশ",
+        "correct": false
+      },
+      {
+        "id": "131",
+        "text": "তথ্যের সমাবেশ",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "54",
+    "question": "Equation লেখার জন্য ব্যবহৃত হয় -",
+    "options": [
+      {
+        "id": "135",
+        "text": "Insart >Equation",
+        "correct": false
+      },
+      {
+        "id": "137",
+        "text": "Insart >Object>Macrosoft Equation",
+        "correct": true
+      },
+      {
+        "id": "134",
+        "text": "File >Object>Macrosoft Equation",
+        "correct": false
+      },
+      {
+        "id": "136",
+        "text": "View > Equation",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "55",
+    "question": "একটি File এর নাম লিখতে সর্বোচ্চ কয়টি Chatacter ব্যবহার করা হয় ?",
+    "options": [
+      {
+        "id": "141",
+        "text": "64",
+        "correct": true
+      },
+      {
+        "id": "139",
+        "text": "32",
+        "correct": false
+      },
+      {
+        "id": "138",
+        "text": "10",
+        "correct": false
+      },
+      {
+        "id": "140",
+        "text": "50",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "56",
+    "question": "নিচের কোন data tape এর সাহায্যে Windows এর অন্যান্য Program থেকে ডাটা ( ছবি,শব্দ,গ্রাফ ইত্যাদি) এনে Fild -এ রাখা যায় ?",
+    "options": [
+      {
+        "id": "145",
+        "text": "Currencey",
+        "correct": false
+      },
+      {
+        "id": "144",
+        "text": "OLE",
+        "correct": true
+      },
+      {
+        "id": "142",
+        "text": "Memo",
+        "correct": false
+      },
+      {
+        "id": "143",
+        "text": "text",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "57",
+    "question": "কোনটি মিথ্যা ?",
+    "options": [
+      {
+        "id": "146",
+        "text": "primary Key অবশ্যই Unique হয় .",
+        "correct": false
+      },
+      {
+        "id": "147",
+        "text": "primary Key Field - এ Null value থাকতে পরে",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "60",
+    "question": "data base এর সবচেয়ে গুরুত্বপূর্ণ ও ফান্ডামেন্টাল অবজেষ্ট -",
+    "options": [
+      {
+        "id": "159",
+        "text": "Report",
+        "correct": false
+      },
+      {
+        "id": "156",
+        "text": "Table",
+        "correct": true
+      },
+      {
+        "id": "158",
+        "text": "From",
+        "correct": false
+      },
+      {
+        "id": "157",
+        "text": "Query",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "64",
+    "question": "Find all information of students whose age are above 20 years সঠিক Query কোনটি ?",
+    "options": [
+      {
+        "id": "172",
+        "text": "Select* from student info where age>20",
+        "correct": false
+      },
+      {
+        "id": "174",
+        "text": "Select* from student info where age<20>",
+        "correct": false
+      },
+      {
+        "id": "175",
+        "text": "Select* from student info where age<=20",
+        "correct": false
+      },
+      {
+        "id": "173",
+        "text": "Select* from student info where age>=20",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "67",
+    "question": "ডাটাবেসের ক্ষুদ্রতম অংশকে বলা হয় ?",
+    "options": [
+      {
+        "id": "186",
+        "text": "Table",
+        "correct": false
+      },
+      {
+        "id": "185",
+        "text": "Record",
+        "correct": false
+      },
+      {
+        "id": "187",
+        "text": "Field",
+        "correct": true
+      },
+      {
+        "id": "184",
+        "text": "File",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "68",
+    "question": "Query এর কাজ হলো ডাটাবেস থেকে প্রয়োজনীয় ডাটা -",
+    "options": [
+      {
+        "id": "188",
+        "text": "সুন্দরভাবে প্রদর্শন করা",
+        "correct": false
+      },
+      {
+        "id": "191",
+        "text": "খুঁজে বের করা",
+        "correct": true
+      },
+      {
+        "id": "189",
+        "text": "সাজিয়ে প্রিন্ট করা",
+        "correct": false
+      },
+      {
+        "id": "190",
+        "text": "রেকর্ডগুলো সাজানো",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "72",
+    "question": "এক্সেলে paste special কমান্ড ব্যবহার হয় -",
+    "options": [
+      {
+        "id": "205",
+        "text": "Value কপি করার জন্য",
+        "correct": false
+      },
+      {
+        "id": "204",
+        "text": "Formula কপি করার জন্য",
+        "correct": false
+      },
+      {
+        "id": "206",
+        "text": "Format কপি করার জন্য",
+        "correct": false
+      },
+      {
+        "id": "207",
+        "text": "সবগুলো",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "73",
+    "question": "Relation তৈরির শর্ত নয় কোনটি ?",
+    "options": [
+      {
+        "id": "209",
+        "text": "Relation তৈরি হয় Primory Key ও Foreigon Key এর মাঝে",
+        "correct": false
+      },
+      {
+        "id": "211",
+        "text": "উভয় টেবিলে কমন field এর ডাটা টাইপ,সাইজ, property সমান না হলেও চলে",
+        "correct": true
+      },
+      {
+        "id": "208",
+        "text": "উভয় টেবিলের একটি কমন ফিল্ড Field থাকতে হবে",
+        "correct": false
+      },
+      {
+        "id": "210",
+        "text": "উভয় টেবিলকে একই Window ck দৃশ্যমান থাকতে হবে",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "74",
+    "question": "এক্সলের নিচের কোন ফাংশনটি আজকের তারিখ প্রদান করে ?",
+    "options": [
+      {
+        "id": "214",
+        "text": "DAY",
+        "correct": false
+      },
+      {
+        "id": "212",
+        "text": "TODAY",
+        "correct": true
+      },
+      {
+        "id": "213",
+        "text": "NEW",
+        "correct": false
+      },
+      {
+        "id": "215",
+        "text": "DATE VALUE",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "75",
+    "question": "নিচের কোনটি সত্য ?",
+    "options": [
+      {
+        "id": "218",
+        "text": "=FLOOR(-2.5,-2) =.4",
+        "correct": false
+      },
+      {
+        "id": "216",
+        "text": "=ABC(-2)= -2",
+        "correct": false
+      },
+      {
+        "id": "217",
+        "text": "=CELLING(-2.5,-2)= -4",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "80",
+    "question": "নিচের কোনটি WEB BROWER নয় ?",
+    "options": [
+      {
+        "id": "228",
+        "text": "Mozila Firefox",
+        "correct": false
+      },
+      {
+        "id": "230",
+        "text": "facebook",
+        "correct": true
+      },
+      {
+        "id": "229",
+        "text": "opera",
+        "correct": false
+      },
+      {
+        "id": "227",
+        "text": "Internet Explorer",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "81",
+    "question": "সেল অ্যাড্রেস D10 এর অর্থ কী ?",
+    "options": [
+      {
+        "id": "234",
+        "text": "D নং কলামের 10 নং কলাম",
+        "correct": false
+      },
+      {
+        "id": "233",
+        "text": "D নং কলামের 0 নং সারি",
+        "correct": false
+      },
+      {
+        "id": "232",
+        "text": "D নং সারির 10 নং কলাম",
+        "correct": false
+      },
+      {
+        "id": "231",
+        "text": "D নং কলামের 10 নং সারি",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "82",
+    "question": "=sum (\"5\", 15, true)= ?",
+    "options": [
+      {
+        "id": "235",
+        "text": "20",
+        "correct": false
+      },
+      {
+        "id": "236",
+        "text": "21",
+        "correct": true
+      },
+      {
+        "id": "238",
+        "text": "25",
+        "correct": false
+      },
+      {
+        "id": "237",
+        "text": "16",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "83",
+    "question": "Go to page এর কাজ কী ?",
+    "options": [
+      {
+        "id": "240",
+        "text": "নিদিষ্ট Column -এ যেতে",
+        "correct": false
+      },
+      {
+        "id": "239",
+        "text": "নিদিষ্ট text Box -এ যেতে",
+        "correct": false
+      },
+      {
+        "id": "241",
+        "text": "নিদিষ্ট paragraph -এ যেতে",
+        "correct": false
+      },
+      {
+        "id": "242",
+        "text": "নিদিষ্ট কোন page -এ যেতে",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "84",
+    "question": "Horizontal Scaling কী ?",
+    "options": [
+      {
+        "id": "244",
+        "text": "বাক্যগুলোকে সমান্তরালভাবে প্রসারিত করা",
+        "correct": false
+      },
+      {
+        "id": "246",
+        "text": "অক্ষরগুলোকে সমান্তরালভাবে প্রসারিত করা",
+        "correct": true
+      },
+      {
+        "id": "243",
+        "text": "অক্ষরগুলোকে উল্লম্বভাবে প্রসারিত করে",
+        "correct": false
+      },
+      {
+        "id": "245",
+        "text": "শব্দগুলোকে সমান্তরালভাবে প্রসারিত করা",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "87",
+    "question": "Microsort power point কী ধরনের প্রোগ্রাম ?",
+    "options": [
+      {
+        "id": "253",
+        "text": "Presentation program",
+        "correct": false
+      },
+      {
+        "id": "254",
+        "text": "date base program",
+        "correct": true
+      },
+      {
+        "id": "251",
+        "text": "Spread Sheet program",
+        "correct": false
+      },
+      {
+        "id": "252",
+        "text": "Word Parocessing program",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "92",
+    "question": "কোনটি স্ট্যাটিসটিক্যাল ফাংশন ?",
+    "options": [
+      {
+        "id": "264",
+        "text": "Average ( )",
+        "correct": true
+      },
+      {
+        "id": "266",
+        "text": "Exact ( )",
+        "correct": false
+      },
+      {
+        "id": "265",
+        "text": "Mid ( )",
+        "correct": false
+      },
+      {
+        "id": "263",
+        "text": "Lost ( )",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "93",
+    "question": "১ গিগাবাইট কয় বাইকের সমান ?",
+    "options": [
+      {
+        "id": "268",
+        "text": "10 >9",
+        "correct": true
+      },
+      {
+        "id": "267",
+        "text": "10>3",
+        "correct": false
+      }
+    ]
+  }
+]

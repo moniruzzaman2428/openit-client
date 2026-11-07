@@ -1,0 +1,1011 @@
+[
+  {
+    "id": "2357",
+    "question": "ছবি,টেক্সট,গ্রাফ ইত্যাদির ক্ষেত্রে কোন অবজেক্ট টি ব্যাবহৃত হয় ?",
+    "options": [
+      {
+        "id": "5633",
+        "text": "Display text",
+        "correct": false
+      },
+      {
+        "id": "5631",
+        "text": "Hyperlink",
+        "correct": false
+      },
+      {
+        "id": "5632",
+        "text": "Text",
+        "correct": false
+      },
+      {
+        "id": "5634",
+        "text": "OLE",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2358",
+    "question": "D11 হতে D20 সেলের ডাটা যোগ করার ফাংশন-",
+    "options": [
+      {
+        "id": "5636",
+        "text": "=SUM (D11 ; D20)",
+        "correct": false
+      },
+      {
+        "id": "5635",
+        "text": "=SUM (D11 + D20)",
+        "correct": false
+      },
+      {
+        "id": "5637",
+        "text": "=SUM (D11ঃ D20)",
+        "correct": true
+      },
+      {
+        "id": "5638",
+        "text": "=SUM (D11 , D20)",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2359",
+    "question": "Sort এবং Formula থাকে কোন মেন্যুতে ?",
+    "options": [
+      {
+        "id": "5640",
+        "text": "Insert",
+        "correct": false
+      },
+      {
+        "id": "5639",
+        "text": "Window",
+        "correct": false
+      },
+      {
+        "id": "5642",
+        "text": "Table",
+        "correct": true
+      },
+      {
+        "id": "5641",
+        "text": "Tools",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2360",
+    "question": "কোনটি ‍Stroage device ?",
+    "options": [
+      {
+        "id": "5646",
+        "text": "Mouse",
+        "correct": false
+      },
+      {
+        "id": "5643",
+        "text": "Keyboard",
+        "correct": false
+      },
+      {
+        "id": "5644",
+        "text": "Scanner",
+        "correct": false
+      },
+      {
+        "id": "5645",
+        "text": "Hard disk",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2361",
+    "question": "একটি ফিল্ডের নাম লেখতে সর্বোচ্চ কয়টি ক্যারেক্টার ব্যাবহার করা হয় ?",
+    "options": [
+      {
+        "id": "5648",
+        "text": "৩৩ টি",
+        "correct": false
+      },
+      {
+        "id": "5650",
+        "text": "৬৪ টি",
+        "correct": true
+      },
+      {
+        "id": "5649",
+        "text": "২১ টি",
+        "correct": false
+      },
+      {
+        "id": "5647",
+        "text": "৪০ টি",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2362",
+    "question": "Line spacing দেড়গুণ করার কমান্ড-",
+    "options": [
+      {
+        "id": "5654",
+        "text": "Ctrl + 1.5",
+        "correct": true
+      },
+      {
+        "id": "5653",
+        "text": "Ctrl + 5",
+        "correct": false
+      },
+      {
+        "id": "5651",
+        "text": "Ctrl + 1",
+        "correct": false
+      },
+      {
+        "id": "5652",
+        "text": "Ctrl + 2",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2363",
+    "question": "Excel - এ একাধিক Cell একত্রিত করাকে কী বলে ?",
+    "options": [
+      {
+        "id": "5656",
+        "text": "Join",
+        "correct": false
+      },
+      {
+        "id": "5658",
+        "text": "Union",
+        "correct": false
+      },
+      {
+        "id": "5655",
+        "text": "Add",
+        "correct": false
+      },
+      {
+        "id": "5657",
+        "text": "Merge",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2364",
+    "question": "File close এর কী বোর্ড কমান্ড কোনটি ?",
+    "options": [
+      {
+        "id": "5661",
+        "text": "Alt + O",
+        "correct": false
+      },
+      {
+        "id": "5662",
+        "text": "Ctrl + F4",
+        "correct": true
+      },
+      {
+        "id": "5659",
+        "text": "Ctrl + O",
+        "correct": false
+      },
+      {
+        "id": "5660",
+        "text": "Alt + W",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2365",
+    "question": "প্রাইমারি ‘কী’ হচ্ছে-",
+    "options": [
+      {
+        "id": "5666",
+        "text": "যে এট্রিবিউটের একাধিক মান ধারণ করে",
+        "correct": false
+      },
+      {
+        "id": "5663",
+        "text": "যে এট্রিবিউটের প্রতিটি মান অভিন্ন হয়",
+        "correct": false
+      },
+      {
+        "id": "5665",
+        "text": "যে এট্রিবিউটের কোনো মান থাকে না",
+        "correct": false
+      },
+      {
+        "id": "5664",
+        "text": "যে এট্রিবিউটের প্রতিটি মান ভিন্ন ভিন্ন হয়",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2366",
+    "question": "ICT -এর পূর্নরূপ কোনটি ?",
+    "options": [
+      {
+        "id": "5668",
+        "text": "Information & Communication Technology",
+        "correct": true
+      },
+      {
+        "id": "5670",
+        "text": "International Commerical Trading",
+        "correct": false
+      },
+      {
+        "id": "5669",
+        "text": "Information Computer Technology",
+        "correct": false
+      },
+      {
+        "id": "5667",
+        "text": "Information Communication & Technology",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2367",
+    "question": "Computer এর প্রথম প্রোগ্রাম রচয়িতার নাম.................।",
+    "options": [
+      {
+        "id": "5671",
+        "text": "লেডি এডা অগাস্টা",
+        "correct": true
+      },
+      {
+        "id": "5672",
+        "text": "লেডি",
+        "correct": false
+      },
+      {
+        "id": "5673",
+        "text": "এডা",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2368",
+    "question": "Legal কাগজের সাইজ হলো..........।",
+    "options": [
+      {
+        "id": "5675",
+        "text": "দৈর্ঘ্য 15” এবং প্রস্থ 8.5“",
+        "correct": false
+      },
+      {
+        "id": "5674",
+        "text": "দৈর্ঘ্য 14” এবং প্রস্থ 8.5“",
+        "correct": true
+      },
+      {
+        "id": "5676",
+        "text": "দৈর্ঘ্য 14” এবং প্রস্থ 4.5“",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2369",
+    "question": "Double Underline করার সংক্ষিপ্ত কমান্ড.............।",
+    "options": [
+      {
+        "id": "5677",
+        "text": "Ctrl + Shift + D",
+        "correct": true
+      },
+      {
+        "id": "5678",
+        "text": "Ctrl + Shift + X",
+        "correct": false
+      },
+      {
+        "id": "5679",
+        "text": "Ctrl + Shift + B",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2370",
+    "question": "MS Power Point একটি .............Software ।",
+    "options": [
+      {
+        "id": "5682",
+        "text": "Presentension",
+        "correct": false
+      },
+      {
+        "id": "5681",
+        "text": "Preservation",
+        "correct": false
+      },
+      {
+        "id": "5680",
+        "text": "Presentation",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2371",
+    "question": "OMR এর পূর্নরুপ হলো...........।",
+    "options": [
+      {
+        "id": "5684",
+        "text": "Optical Marks Reader",
+        "correct": false
+      },
+      {
+        "id": "5685",
+        "text": "Optical Mark Readers",
+        "correct": false
+      },
+      {
+        "id": "5683",
+        "text": "Optical Mark Reader",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2372",
+    "question": "CPU হচ্ছে...............।",
+    "options": [
+      {
+        "id": "5687",
+        "text": "Central Processing Units.",
+        "correct": false
+      },
+      {
+        "id": "5686",
+        "text": "Central Processing Unit.",
+        "correct": true
+      },
+      {
+        "id": "5688",
+        "text": "Central Processings Units.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2373",
+    "question": "Redo- এর Keyboard কমান্ড হল...........।",
+    "options": [
+      {
+        "id": "5689",
+        "text": "Ctrl + Y",
+        "correct": true
+      },
+      {
+        "id": "5690",
+        "text": "Ctrl + Q",
+        "correct": false
+      },
+      {
+        "id": "5691",
+        "text": "Ctrl + Y",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2374",
+    "question": "সাধারণত চিঠিপত্র লেখার জন্য ...........প্রোগ্রাম ব্যাবহৃত হয়।",
+    "options": [
+      {
+        "id": "5692",
+        "text": "MS Word.",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2375",
+    "question": "স্লাইড শো এর জন্য ...................ফাংশন ‘কী’ চাপতে হয়।",
+    "options": [
+      {
+        "id": "5693",
+        "text": "Shift + F5",
+        "correct": true
+      },
+      {
+        "id": "5695",
+        "text": "Shift + F2",
+        "correct": false
+      },
+      {
+        "id": "5694",
+        "text": "Shift + F4",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2376",
+    "question": "MS Excel এ ১৬৭৭৭২৫৬ টি সেল আছে।",
+    "options": [
+      {
+        "id": "5697",
+        "text": "মি",
+        "correct": false
+      },
+      {
+        "id": "5696",
+        "text": "স",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2377",
+    "question": "Data Sort দুই প্রকার।",
+    "options": [
+      {
+        "id": "5699",
+        "text": "মি",
+        "correct": false
+      },
+      {
+        "id": "5698",
+        "text": "স",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2378",
+    "question": "Back space key চেপে ডান পাশের লেখা মুছা যায়।",
+    "options": [
+      {
+        "id": "5700",
+        "text": "মি",
+        "correct": true
+      },
+      {
+        "id": "5701",
+        "text": "স",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2379",
+    "question": "Keyboard এর মোট দুটি Alt-key আছে।",
+    "options": [
+      {
+        "id": "5703",
+        "text": "মি",
+        "correct": false
+      },
+      {
+        "id": "5702",
+        "text": "স",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2380",
+    "question": "Scanner একটি Output device ।",
+    "options": [
+      {
+        "id": "5705",
+        "text": "স",
+        "correct": false
+      },
+      {
+        "id": "5704",
+        "text": "মি",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2381",
+    "question": "Function key মোট ১০ টি।",
+    "options": [
+      {
+        "id": "5707",
+        "text": "স",
+        "correct": false
+      },
+      {
+        "id": "5706",
+        "text": "মি",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2382",
+    "question": "MS Excel এ যে কোন ফাংশনের শুরুতে IF ব্যাবহার করা হয়।",
+    "options": [
+      {
+        "id": "5708",
+        "text": "মি",
+        "correct": true
+      },
+      {
+        "id": "5709",
+        "text": "স",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2383",
+    "question": "Facebook একটি ইন্টারনেট ব্রাউজিং সফটওয়্যার।",
+    "options": [
+      {
+        "id": "5710",
+        "text": "মি",
+        "correct": true
+      },
+      {
+        "id": "5711",
+        "text": "স",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2384",
+    "question": "(১১)১০ সংখ্যাটিকে বাইনারি সংখ্যায় প্রকাশ করলে (১০১১)২ হবে।",
+    "options": [
+      {
+        "id": "5713",
+        "text": "মি",
+        "correct": false
+      },
+      {
+        "id": "5712",
+        "text": "স",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2385",
+    "question": "কম্পিউটারে Recycle Bin হতে মুছে ফেলা ডাটা পুনরায় ফিরিয়ে আনা যায় না।",
+    "options": [
+      {
+        "id": "5714",
+        "text": "মি",
+        "correct": true
+      },
+      {
+        "id": "5715",
+        "text": "স",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2386",
+    "question": "Application software কী ?",
+    "options": [
+      {
+        "id": "5716",
+        "text": "ব্যাবহারিক সমস্যা সমাধান বা তথ্য প্রক্রিয়াকরণের প্রোগ্রামকে ব্যাবহারিক প্রোগ্রাম বা অ্যাপ্লিকেশন সফটওয়্যার বলা হয়।",
+        "correct": true
+      },
+      {
+        "id": "5717",
+        "text": "যে কোন সমস্যা সমাধান বা তথ্য প্রক্রিয়াকরণের প্রোগ্রামকে ব্যাবহারিক প্রোগ্রাম বা অ্যাপ্লিকেশন সফটওয়্যার বলা হয়।",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2387",
+    "question": "কয় Bit এ 1 Byte ?",
+    "options": [
+      {
+        "id": "5718",
+        "text": "8(Eight) Bit এ 1 Byte হয়।",
+        "correct": true
+      },
+      {
+        "id": "5720",
+        "text": "6(Six) Bit এ 1 Byte হয়।",
+        "correct": false
+      },
+      {
+        "id": "5719",
+        "text": "7(Seven) Bit এ 1 Byte হয়।",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2388",
+    "question": "BTEB এর পূর্ণরূপ লেখ।",
+    "options": [
+      {
+        "id": "5723",
+        "text": "Bangladesh Technicalist Education Board.",
+        "correct": false
+      },
+      {
+        "id": "5722",
+        "text": "Bangladesh Technic Education Board.",
+        "correct": false
+      },
+      {
+        "id": "5721",
+        "text": "Bangladesh Technical Education Board.",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2389",
+    "question": "MS Word এ Ctrl + D কমান্ডটি প্রয়োগ করলে কী আসে?",
+    "options": [
+      {
+        "id": "5726",
+        "text": "File ডায়রগ বক্র প্রদর্শিত হয়।",
+        "correct": false
+      },
+      {
+        "id": "5725",
+        "text": "Format ডায়রগ বক্র প্রদর্শিত হয়।",
+        "correct": false
+      },
+      {
+        "id": "5724",
+        "text": "Font ডায়রগ বক্র প্রদর্শিত হয়।",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2390",
+    "question": "Column break করার জন্য কী-বোর্ড কমান্ড থেকে প্রদত্ত কমান্ডটি লেখ।",
+    "options": [
+      {
+        "id": "5727",
+        "text": "ALT +l, B,C,ENTER",
+        "correct": true
+      },
+      {
+        "id": "5729",
+        "text": "ALT +D, B,C,ENTER",
+        "correct": false
+      },
+      {
+        "id": "5728",
+        "text": "ALT +B, B,C,ENTER",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2391",
+    "question": "কোনো প্যারাকে Left,right এবং center করার ‘কী’ বোর্ড কমান্ড লেখ।",
+    "options": [
+      {
+        "id": "5730",
+        "text": "ব্লক করার পর ctrl + L, ctrl +R, ctrl +E এছাড়া Justify এর জন্য ctrl + J ব্যাবহার করা হয়।",
+        "correct": true
+      },
+      {
+        "id": "5731",
+        "text": "ব্লক করার পর ctrl + K, ctrl +R, ctrl +E এছাড়া Justify এর জন্য ctrl + O ব্যাবহার করা হয়।",
+        "correct": false
+      },
+      {
+        "id": "5732",
+        "text": "ব্লক করার পর ctrl + I, ctrl +T, ctrl +K এছাড়া Justify এর জন্য ctrl + D ব্যাবহার করা হয়।",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2392",
+    "question": "MS Excel এ F2 key কী কাজে ব্যাবহার করা হয়?",
+    "options": [
+      {
+        "id": "5734",
+        "text": "কোনো cell এর ডাটাকে Edit করার জন্য সেলের অভ্যন্তরে Row স্পাপনের ক্ষেত্রে।",
+        "correct": false
+      },
+      {
+        "id": "5735",
+        "text": "কোনো cell এর ডাটাকে Edit করার জন্য সেলের অভ্যন্তরে Column স্পাপনের ক্ষেত্রে।",
+        "correct": false
+      },
+      {
+        "id": "5733",
+        "text": "কোনো cell এর ডাটাকে Edit করার জন্য সেলের অভ্যন্তরে cursor স্পাপনের ক্ষেত্রে।",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2393",
+    "question": "রিলেটিভ ও অ্যাবসোলুট সেল অ্যাড্রেসের একটি করে উদাহরণ দাও ।",
+    "options": [
+      {
+        "id": "5737",
+        "text": "Column এবং Row এর স্বমন্বয়ে সরাসরি যে সেল অ্যাড্রেস ব্যাবহার করা হয় যেমন -B কলামের ৩ নং Row এর জন্য B9, D কলামের 8 নং Row এর জন্য D8 ইত্যাদি।একে রিলেটিভ সেল এ্যাড্রেস বলে। # চিন্হ ব্যাবহার করে যে সেল অ্যাড্রেস লিখা হয় ।যেমন #AB:#A7 তাকে অ্যাবসোলুট অ্যাড্রেস বলে।",
+        "correct": false
+      },
+      {
+        "id": "5736",
+        "text": "Column এবং Row এর স্বমন্বয়ে সরাসরি যে সেল অ্যাড্রেস ব্যাবহার করা হয় যেমন -B কলামের ৩ নং Row এর জন্য B3, D কলামের 5 নং Row এর জন্য D5 ইত্যাদি।একে রিলেটিভ সেল এ্যাড্রেস বলে। $ চিন্হ ব্যাবহার করে যে সেল অ্যাড্রেস লিখা হয় ।যেমন $Al:$A5 তাকে অ্যাবসোলুট অ্যাড্রেস বলে।",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2394",
+    "question": "Title case এ একটি বাক্য লেখ।",
+    "options": [
+      {
+        "id": "5739",
+        "text": "A quick brown fox jumps over the lazy dog. এক্ষেত্রে অথাৎ Title case এ প্রতিটি Word এর প্রথম অক্ষর Small হবে।",
+        "correct": false
+      },
+      {
+        "id": "5738",
+        "text": "A quick brown fox jumps over the lazy dog. এক্ষেত্রে অথাৎ Title case এ প্রতিটি Word এর প্রথম অক্ষর Capital হবে।",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2395",
+    "question": "বাংলাদেশের কারিগরি শিক্ষা বোর্ড কত সালে প্রতিষ্টিত হয় এবং কোন জেলায় অবস্থিত ?",
+    "options": [
+      {
+        "id": "5741",
+        "text": "১৯৫৬ সালে ৭নং সংসদীয় আইন বলে এটি প্রতিষ্টিত হয়। এটি খুলনা জেলায় অবস্থিত।",
+        "correct": false
+      },
+      {
+        "id": "5742",
+        "text": "১৯৫৯ সালে ৯নং সংসদীয় আইন বলে এটি প্রতিষ্টিত হয়। এটি চট্টগ্রাম জেলায় অবস্থিত।",
+        "correct": false
+      },
+      {
+        "id": "5740",
+        "text": "১৯৫৪ সালে ১নং সংসদীয় আইন বলে এটি প্রতিষ্টিত হয়। এটি ঢাকা জেলায় অবস্থিত।",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2396",
+    "question": "সে স্কুলে যায়।",
+    "options": [
+      {
+        "id": "5743",
+        "text": "He goes to school.",
+        "correct": true
+      },
+      {
+        "id": "5744",
+        "text": "He goes to schools.",
+        "correct": false
+      },
+      {
+        "id": "5745",
+        "text": "He goes,t to schools.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2397",
+    "question": "আমাকে একটি কমলা দাও।",
+    "options": [
+      {
+        "id": "5747",
+        "text": "Give me the Orange.",
+        "correct": false
+      },
+      {
+        "id": "5746",
+        "text": "Give me an Orange.",
+        "correct": true
+      },
+      {
+        "id": "5748",
+        "text": "Gives me an Oranges.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2398",
+    "question": "তুমি কেমন আছ ?",
+    "options": [
+      {
+        "id": "5750",
+        "text": "Whom Are You?",
+        "correct": false
+      },
+      {
+        "id": "5751",
+        "text": "Whose Are You",
+        "correct": false
+      },
+      {
+        "id": "5749",
+        "text": "How Are You?",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2399",
+    "question": "He is ..................honest man.",
+    "options": [
+      {
+        "id": "5752",
+        "text": "an",
+        "correct": true
+      },
+      {
+        "id": "5754",
+        "text": "a",
+        "correct": false
+      },
+      {
+        "id": "5753",
+        "text": "the",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2400",
+    "question": "The earth............round.",
+    "options": [
+      {
+        "id": "5755",
+        "text": "is",
+        "correct": true
+      },
+      {
+        "id": "5757",
+        "text": "an",
+        "correct": false
+      },
+      {
+        "id": "5756",
+        "text": "the",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2401",
+    "question": "I want to...........a letter.",
+    "options": [
+      {
+        "id": "5760",
+        "text": "bear",
+        "correct": false
+      },
+      {
+        "id": "5758",
+        "text": "Write",
+        "correct": true
+      },
+      {
+        "id": "5759",
+        "text": "Eat",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2402",
+    "question": "My mother reads...............holy Quran.",
+    "options": [
+      {
+        "id": "5762",
+        "text": "an",
+        "correct": false
+      },
+      {
+        "id": "5763",
+        "text": "are",
+        "correct": false
+      },
+      {
+        "id": "5761",
+        "text": "the",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2403",
+    "question": "How old are you?",
+    "options": [
+      {
+        "id": "5764",
+        "text": "I am 14 years old.",
+        "correct": true
+      },
+      {
+        "id": "5765",
+        "text": "I am the 14 years old.",
+        "correct": false
+      },
+      {
+        "id": "5766",
+        "text": "I am are 14 years old.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2404",
+    "question": "How many brothers do you have >",
+    "options": [
+      {
+        "id": "5767",
+        "text": "I have two brothers.",
+        "correct": true
+      },
+      {
+        "id": "5768",
+        "text": "I has two brothers.",
+        "correct": false
+      },
+      {
+        "id": "5769",
+        "text": "I had two brothers.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2405",
+    "question": "Who is your best friend ?",
+    "options": [
+      {
+        "id": "5772",
+        "text": "Raju are my best friend.",
+        "correct": false
+      },
+      {
+        "id": "5771",
+        "text": "Raju is my best friend,s.",
+        "correct": false
+      },
+      {
+        "id": "5770",
+        "text": "Raju is my best friend.",
+        "correct": true
+      },
+      {
+        "id": "5773",
+        "text": "Raju in my best friend.",
+        "correct": false
+      }
+    ]
+  }
+]

@@ -1,0 +1,1122 @@
+[
+  {
+    "id": "2996",
+    "question": "কম্পিউটার পরিচালনার ক্ষেত্রে উইন্ডোজ সফটওয়্যার এর প্রয়োজনীয়তা কী?",
+    "options": [
+      {
+        "id": "7366",
+        "text": "কম্পিউটার পরিচালনার ক্ষেত্রে উইন্ডোজ সফটওয়্যার এর প্রয়োজনীয়তা অপরিসীম।উইন্ডোজ অপারেটিং সফটওয়্যার ব্যাতীত কম্পিউটার পরিচালনা করা সম্ভব না ।",
+        "correct": true
+      },
+      {
+        "id": "7367",
+        "text": "কম্পিউটার পরিচালনার ক্ষেত্রে উইন্ডোজ সফটওয়্যার এর প্রয়োজনীয়তা নেই।উইন্ডোজ অপারেটিং সফটওয়্যার ব্যাতীত কম্পিউটার পরিচালনা করা সম্ভব।",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2997",
+    "question": "MS-Word এ মেইল মার্জ বলতে কী বুঝায় ।",
+    "options": [
+      {
+        "id": "7368",
+        "text": "একই চিঠি ,মেইলিং লেবেল বা বিঙ্গপ্তি যদি বিভিন্ন ঠিকানায় ভিন্ন ভিন্ন ব্যাক্তি বা প্রতিষ্ঠানের নিকট পাঠানোর প্রয়োজন হয়, তখন উক্ত চিঠির সাথে ভিন্ন ভিন্ন ঠিকানাকে একত্র করে কুব অল্প সময়ে পূর্ণাঙ্গ চিঠি গঠন করার পদ্ধতিকে মেইল মার্জ বলে।",
+        "correct": true
+      },
+      {
+        "id": "7369",
+        "text": "একই চিঠি ,মেইলিং লেবেল বা বিঙ্গপ্তি যদি একটি ঠিকানায় একটি ব্যাক্তি বা প্রতিষ্ঠানের নিকট পাঠানোর প্রয়োজন হয়, তখন উক্ত পদ্ধতিকে মেইল মার্জ বলে।",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "2998",
+    "question": "কম্পিউটারের দুটি I/O ডিভাইসের নাম লেখ ।",
+    "options": [
+      {
+        "id": "7370",
+        "text": "Keyboard, Mouse",
+        "correct": true
+      },
+      {
+        "id": "7371",
+        "text": "RAM, Hard disk.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "2999",
+    "question": "Anti virus প্রোগ্রামের কাজ কী ?",
+    "options": [
+      {
+        "id": "7372",
+        "text": "Virus এর কাজ হচ্ছে কম্পিউটারের বিভিন্ন প্রোগ্রামকে ধ্বংস করে দেওয়া।এবং এন্টিভাইরাস সেই ক্ষতিকর ভাইরাস গুলোকে কম্পিউটার হতে মুক্ত করে।",
+        "correct": true
+      },
+      {
+        "id": "7373",
+        "text": "এন্টিভাইরাস এর কাজ হচ্ছে কম্পিউটারের বিভিন্ন প্রোগ্রামকে ধ্বংস করে দেওয়া।Virus সেই গুলোকে কম্পিউটার হতে মুক্ত করে।",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3000",
+    "question": "ডকুমেন্টে Footnote ব্যাবহার করা হয় কেন ?",
+    "options": [
+      {
+        "id": "7375",
+        "text": "প্রতিটি পৃষ্টার উপরে টিকা লেখা হলো ফুটনোট।",
+        "correct": false
+      },
+      {
+        "id": "7374",
+        "text": "প্রতিটি পৃষ্টার নিচে টিকা লেখা হলো ফুটনোট।",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3001",
+    "question": "Recycle Bin কী ?",
+    "options": [
+      {
+        "id": "7377",
+        "text": "কোন অপ্রয়োজনীয় ফাইল যখন কম্পিউটার হতে ডিলেট করে দেওয়া হয় তখন সেই ফাইল Recycle bin এ জমা থাকে না এবং প্রয়োজনে Recycle bin থেকে ডিলিটকৃত ফাইলগুলো উদ্ধার ও করা যায় না।",
+        "correct": false
+      },
+      {
+        "id": "7376",
+        "text": "কোন অপ্রয়োজনীয় ফাইল যখন কম্পিউটার হতে ডিলেট করে দেওয়া হয় তখন সেই ফাইল Recycle bin এ জমা থাকে এবং প্রয়োজনে Recycle bin থেকে ডিলিটকৃত ফাইলগুলো উদ্ধার করা যায়।",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3002",
+    "question": "একটি ইমেইল অ্যাড্রেসের প্রধান দুটি অংশের নাম লেখ।",
+    "options": [
+      {
+        "id": "7378",
+        "text": "@ . @(catsign)",
+        "correct": true
+      },
+      {
+        "id": "7379",
+        "text": "@ . (catsign)@",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3003",
+    "question": "B2 হতে D8 পর্যন্ত সেলগুলোর ডাটা যোগ করার MS-Excel এর Sum ফাংশনটি লেখ।",
+    "options": [
+      {
+        "id": "7382",
+        "text": "=Sum(B2+D8)",
+        "correct": false
+      },
+      {
+        "id": "7381",
+        "text": "=Sum(B2;D8)",
+        "correct": false
+      },
+      {
+        "id": "7380",
+        "text": "=Sum(B2:D8)",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3004",
+    "question": "C5 সেলের ডাটা 33 বা তার বেশি হলে”Pass\"এবং কম হলে ”Fail\" ছাপানোর একটি IF ফাংশন লেখ ।",
+    "options": [
+      {
+        "id": "7384",
+        "text": "=IF (C5<33>",
+        "correct": false
+      },
+      {
+        "id": "7383",
+        "text": "=IF (C5>33,\"Pass\",\"Fail\")।",
+        "correct": true
+      },
+      {
+        "id": "7385",
+        "text": "=IF (C5+33,\"Pass\",\"Fail\")।",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3005",
+    "question": "MS Excel তৈরী করা যায় এমন কয়েকটি Chart/graph হলো-",
+    "options": [
+      {
+        "id": "7386",
+        "text": "কলাম,বার,পাই,লাইন",
+        "correct": true
+      },
+      {
+        "id": "7387",
+        "text": "রো,টেবিল",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3006",
+    "question": "একটি Excel ডকুমেন্ট প্রিন্ট করার ধাপগুলো লেখ ।",
+    "options": [
+      {
+        "id": "7388",
+        "text": "ওয়ার্কশীট ওপেন করে ,সেটা সিলেক্ট করে নিতে হবে,ওয়ার্কশীট এর উপরে বাম পাশের কোনায় রয়েছে অফিস বাটন ।অফিস বাটনে ক্লিক করতে হবে।একটি মেনু আসবে। সেখান থেকে প্রিন্ট অপমনটি ক্লিক করে নিতে হবেঅেএকটি প্রিন্ট ডায়ালগ বক্স আসবে।সেখানে print what এ Selection অপশন সিলেক্ট করে Ok Click করতে হবে।",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3007",
+    "question": "ডাটাবেস প্রোগ্রামে কুয়েরি বলতে কী বোঝায় ?",
+    "options": [
+      {
+        "id": "7389",
+        "text": "ডাটাবেস থেকে প্রয়োজনীয় তথ্য সহজে খুঁজে বের করা ।",
+        "correct": true
+      },
+      {
+        "id": "7390",
+        "text": "ডাটাবেস থেকে প্রয়োজনীয় তথ্যের হিসাব বের করা ।",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3008",
+    "question": "MS Access প্রোগ্রামে যে কোন চার প্রকারের ডাটা টাইপের নাম লেখ ।",
+    "options": [
+      {
+        "id": "7392",
+        "text": "অক্টাল,হেক্রাডেসিম্যাল,বাইট,ওয়েট",
+        "correct": false
+      },
+      {
+        "id": "7391",
+        "text": "বাইনারী,বিট,কাউন্টার,কারেন্সি",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3009",
+    "question": "চার গিগাবাইট সমান...........কিলোবাইট।",
+    "options": [
+      {
+        "id": "7395",
+        "text": "41,84,304",
+        "correct": false
+      },
+      {
+        "id": "7394",
+        "text": "41,94,314",
+        "correct": false
+      },
+      {
+        "id": "7393",
+        "text": "41,94,304",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3010",
+    "question": "A4 সাইজের একটি কাগজের পরিমাপ হচ্ছে.............।",
+    "options": [
+      {
+        "id": "7396",
+        "text": "210X297 মিমি. অথবা 8.27 X 11.69 ইঞ্চি",
+        "correct": true
+      },
+      {
+        "id": "7398",
+        "text": "220X297 মিমি. অথবা 8.27 X 11.69 ইঞ্চি",
+        "correct": false
+      },
+      {
+        "id": "7397",
+        "text": "210X297 মিমি. অথবা 8.28 X 11.69 ইঞ্চি",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3011",
+    "question": "কতগুলো সংখ্যা হতে বড় সংখ্যাটি নির্ণয়ের জন্য MS-Excel এ ............ফাংশন ব্যাবহার করা হয় ।",
+    "options": [
+      {
+        "id": "7399",
+        "text": "MAX ( )",
+        "correct": true
+      },
+      {
+        "id": "7400",
+        "text": "MIN ( )",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3012",
+    "question": "মাল্টিমিডিয়া প্রজেক্টর একটি ..............ডিভাইস।",
+    "options": [
+      {
+        "id": "7402",
+        "text": "ইলেকট্রিক",
+        "correct": false
+      },
+      {
+        "id": "7401",
+        "text": "ইলেকট্রনিক",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3013",
+    "question": "OMR-এর পূর্ণরূপ হচ্ছে.................।",
+    "options": [
+      {
+        "id": "7404",
+        "text": "Optical Mark Recognization.",
+        "correct": false
+      },
+      {
+        "id": "7403",
+        "text": "Optical Mark Recognition.",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3014",
+    "question": "LAN এর পূর্ণরূপ হচ্ছে ............।",
+    "options": [
+      {
+        "id": "7405",
+        "text": "Local Area Network",
+        "correct": true
+      },
+      {
+        "id": "7406",
+        "text": "Lokal Area Network",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3015",
+    "question": "Google হচ্ছে একটি......................সফটওয়্যার",
+    "options": [
+      {
+        "id": "7407",
+        "text": "ওয়েব ব্রাউজার",
+        "correct": false
+      },
+      {
+        "id": "7408",
+        "text": "প্রেজনেটেটিভ",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3016",
+    "question": "ডকুমেন্ট প্রিন্ট করার শর্টকার্ট ’কী’ হচ্ছে..............।",
+    "options": [
+      {
+        "id": "7411",
+        "text": "Win + P",
+        "correct": false
+      },
+      {
+        "id": "7409",
+        "text": "Ctrl + P",
+        "correct": true
+      },
+      {
+        "id": "7410",
+        "text": "Alt + P",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3017",
+    "question": "১০১১১ বাইনারি সংখ্যার দশমিক সংখ্যা হচ্ছে............।",
+    "options": [
+      {
+        "id": "7413",
+        "text": "২৪",
+        "correct": false
+      },
+      {
+        "id": "7412",
+        "text": "২৩",
+        "correct": true
+      },
+      {
+        "id": "7414",
+        "text": "২৫",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3018",
+    "question": "RAM এর পূর্ণরূপ হচ্ছে...................।",
+    "options": [
+      {
+        "id": "7415",
+        "text": "Random Access Memory.",
+        "correct": true
+      },
+      {
+        "id": "7416",
+        "text": "Read Access Memory.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3019",
+    "question": "...............Key দিয়ে ডাটাবেস এর সকল রেকর্ডকে আলাদা করা যায় ।",
+    "options": [
+      {
+        "id": "7417",
+        "text": "Primary",
+        "correct": true
+      },
+      {
+        "id": "7418",
+        "text": "Function",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3020",
+    "question": "BIOS এর পূর্ণরূপ হচ্ছে...............।",
+    "options": [
+      {
+        "id": "7420",
+        "text": "Basic Output Input System.",
+        "correct": false
+      },
+      {
+        "id": "7419",
+        "text": "Basic Input Output System.",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3021",
+    "question": "স্লাইড শো ............সফটওয়্যারের একটি কমান্ড ।",
+    "options": [
+      {
+        "id": "7422",
+        "text": "এম এস ওয়ার্ড",
+        "correct": false
+      },
+      {
+        "id": "7421",
+        "text": "এম এস পাওয়ার পয়েন্ট",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3022",
+    "question": "Save ও Save as এর মধ্যে কোন পার্থক্য নেই ।",
+    "options": [
+      {
+        "id": "7423",
+        "text": "মি",
+        "correct": true
+      },
+      {
+        "id": "7424",
+        "text": "স",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3023",
+    "question": "ডাটাবেসের ক্ষেত্রে কতগুলো রেকর্ডকে একটি ফাইল বলা হয় ।",
+    "options": [
+      {
+        "id": "7426",
+        "text": "মি",
+        "correct": false
+      },
+      {
+        "id": "7425",
+        "text": "স",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3024",
+    "question": "Powerpoint সফটওয়্যারে Custom Animation সেট করা যায় না ।",
+    "options": [
+      {
+        "id": "7428",
+        "text": "স",
+        "correct": false
+      },
+      {
+        "id": "7427",
+        "text": "মি",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3025",
+    "question": "কম্পিউটারে ডাটা মাইক্রোপ্রসেসর এর ভিতর জমা হয় ।",
+    "options": [
+      {
+        "id": "7429",
+        "text": "মি",
+        "correct": true
+      },
+      {
+        "id": "7430",
+        "text": "স",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3026",
+    "question": "ডকুমেন্টের লাইন স্পেসিং এর সেট আপ Paragraph অপশনের মাঝে থাকে ?",
+    "options": [
+      {
+        "id": "7432",
+        "text": "মি",
+        "correct": false
+      },
+      {
+        "id": "7431",
+        "text": "স",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3027",
+    "question": "ওয়ান টু মেনি একটি ডাটাবেস রিলেশনের নাম ।",
+    "options": [
+      {
+        "id": "7433",
+        "text": "স",
+        "correct": true
+      },
+      {
+        "id": "7434",
+        "text": "মি",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3028",
+    "question": "একটি ভবনের সকল তলায় কম্পিউটার নেটওয়ার্ক স্থাপনের জন্য WAN নেটওয়ার্ক ব্যাবহার করা হয় ।",
+    "options": [
+      {
+        "id": "7436",
+        "text": "স",
+        "correct": false
+      },
+      {
+        "id": "7435",
+        "text": "মি",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3029",
+    "question": "Scanner একটি আউটপুট ডিভাইস।",
+    "options": [
+      {
+        "id": "7437",
+        "text": "মি",
+        "correct": true
+      },
+      {
+        "id": "7438",
+        "text": "স",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3030",
+    "question": "Kaspersky একটি ভাইরাস প্রোগ্রাম।",
+    "options": [
+      {
+        "id": "7440",
+        "text": "স",
+        "correct": false
+      },
+      {
+        "id": "7439",
+        "text": "মি",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3031",
+    "question": "Linux একটি অপারেটিং সিস্টেম।",
+    "options": [
+      {
+        "id": "7442",
+        "text": "মি",
+        "correct": false
+      },
+      {
+        "id": "7441",
+        "text": "স",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3032",
+    "question": "কোনো একটি ওয়েব সাইটের প্রথম পেইজকে Home page বলে।",
+    "options": [
+      {
+        "id": "7443",
+        "text": "স",
+        "correct": true
+      },
+      {
+        "id": "7444",
+        "text": "মি",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3033",
+    "question": "বাংরাদেশ কারিগরি শিক্ষাবোর্ডের ওয়েব সাইটের অ্যাড্রেস হচ্ছে www.bteb.gov.com",
+    "options": [
+      {
+        "id": "7445",
+        "text": "মি",
+        "correct": true
+      },
+      {
+        "id": "7446",
+        "text": "স",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3034",
+    "question": "কোনটি স্প্রেডশিট অ্যানালাইসিস সফটওয়্যার?",
+    "options": [
+      {
+        "id": "7448",
+        "text": "Ms-Excel",
+        "correct": true
+      },
+      {
+        "id": "7449",
+        "text": "Ms-Access",
+        "correct": false
+      },
+      {
+        "id": "7447",
+        "text": "MS-Word",
+        "correct": false
+      },
+      {
+        "id": "7450",
+        "text": "Ms-Powerpoint",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3035",
+    "question": "কোনটি প্রাইমারী মেমোরি ?",
+    "options": [
+      {
+        "id": "7452",
+        "text": "RAM",
+        "correct": true
+      },
+      {
+        "id": "7454",
+        "text": "HDD",
+        "correct": false
+      },
+      {
+        "id": "7451",
+        "text": "ROM",
+        "correct": false
+      },
+      {
+        "id": "7453",
+        "text": "Pen drive",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3036",
+    "question": "পেনড্রাইভ কোন ধরনের ডিভাইস ?",
+    "options": [
+      {
+        "id": "7457",
+        "text": "ইনপুট-আউটপুট",
+        "correct": false
+      },
+      {
+        "id": "7458",
+        "text": "কোনোটিই নয়",
+        "correct": true
+      },
+      {
+        "id": "7455",
+        "text": "ইনপুট",
+        "correct": false
+      },
+      {
+        "id": "7456",
+        "text": "আউটপুট",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3037",
+    "question": "www এর পূর্ণরূপ হচ্ছে-",
+    "options": [
+      {
+        "id": "7460",
+        "text": "world wide wave",
+        "correct": false
+      },
+      {
+        "id": "7462",
+        "text": "world wide web",
+        "correct": true
+      },
+      {
+        "id": "7459",
+        "text": "world wide wabe",
+        "correct": false
+      },
+      {
+        "id": "7461",
+        "text": "world wide wab",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3038",
+    "question": "কোনটি ডাটাবেস সফটওয়্যার নয় ?",
+    "options": [
+      {
+        "id": "7464",
+        "text": "SQL",
+        "correct": false
+      },
+      {
+        "id": "7466",
+        "text": "Ms-Excel",
+        "correct": true
+      },
+      {
+        "id": "7465",
+        "text": "MS-Office",
+        "correct": false
+      },
+      {
+        "id": "7463",
+        "text": "MS-Access",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3039",
+    "question": "কোনটি প্রেজেনটেশন সফটওয়্যার ?",
+    "options": [
+      {
+        "id": "7468",
+        "text": "MS-Excel",
+        "correct": false
+      },
+      {
+        "id": "7470",
+        "text": "MS-Power Point",
+        "correct": true
+      },
+      {
+        "id": "7467",
+        "text": "MS-Word",
+        "correct": false
+      },
+      {
+        "id": "7469",
+        "text": "MS-Access",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3040",
+    "question": "Paste এর শর্টকার্ট কমান্ড হচ্ছে-",
+    "options": [
+      {
+        "id": "7471",
+        "text": "Ctrl+P",
+        "correct": false
+      },
+      {
+        "id": "7472",
+        "text": "Alt+P",
+        "correct": false
+      },
+      {
+        "id": "7473",
+        "text": "Ctrl+C",
+        "correct": false
+      },
+      {
+        "id": "7474",
+        "text": "Ctrl+V",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3041",
+    "question": "কোনটি ব্রাউজার সফটওয়্যার নয় ?",
+    "options": [
+      {
+        "id": "7477",
+        "text": "SQL",
+        "correct": true
+      },
+      {
+        "id": "7475",
+        "text": "Yahoo",
+        "correct": false
+      },
+      {
+        "id": "7478",
+        "text": "Mozilla",
+        "correct": false
+      },
+      {
+        "id": "7476",
+        "text": "Google",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3042",
+    "question": "কোনটি ইনপুট ডিভাইস ?",
+    "options": [
+      {
+        "id": "7479",
+        "text": "মাউস",
+        "correct": true
+      },
+      {
+        "id": "7480",
+        "text": "প্রিন্টার",
+        "correct": false
+      },
+      {
+        "id": "7481",
+        "text": "LED Monitor",
+        "correct": false
+      },
+      {
+        "id": "7482",
+        "text": "Speaker",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3043",
+    "question": "৩৫ দশমিক সংখ্যার বাইনারি কোনটি ?",
+    "options": [
+      {
+        "id": "7486",
+        "text": "১০০১০১",
+        "correct": false
+      },
+      {
+        "id": "7485",
+        "text": "১১০০০১",
+        "correct": false
+      },
+      {
+        "id": "7483",
+        "text": "১০০০১১",
+        "correct": true
+      },
+      {
+        "id": "7484",
+        "text": "১০০১১১",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3044",
+    "question": "কোনটি ডাটাবেসের Key হিসেবে ব্যাবহৃত হয় না ?",
+    "options": [
+      {
+        "id": "7489",
+        "text": "ফরেন ‘কী’",
+        "correct": false
+      },
+      {
+        "id": "7488",
+        "text": "প্রাইমারী ‘কী’",
+        "correct": false
+      },
+      {
+        "id": "7487",
+        "text": "সোসাল ‘কী’",
+        "correct": true
+      },
+      {
+        "id": "7490",
+        "text": "ক্যানডিডেট’কী’",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3045",
+    "question": "Min( ) ফাংশন কোন কাজে ব্যাবহার করা হয় ?",
+    "options": [
+      {
+        "id": "7492",
+        "text": "অনেকগুলো ডাটা হতে বড়টি নির্ণয় করা",
+        "correct": false
+      },
+      {
+        "id": "7493",
+        "text": "অনেকগুলো ডাটা হতে ছোটটি নির্নয় করা",
+        "correct": true
+      },
+      {
+        "id": "7491",
+        "text": "ডাটা যোগ করা",
+        "correct": false
+      },
+      {
+        "id": "7494",
+        "text": "উল্লেখিত সবকয়টি",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3046",
+    "question": "How old Are you ?",
+    "options": [
+      {
+        "id": "7495",
+        "text": "I am 18 years old.",
+        "correct": true
+      },
+      {
+        "id": "7496",
+        "text": "I am 18 years older.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3047",
+    "question": "Do you know how to swim ?",
+    "options": [
+      {
+        "id": "7497",
+        "text": "Yes, I know how to swim.",
+        "correct": true
+      },
+      {
+        "id": "7498",
+        "text": "Yes, I known how to swiming.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3048",
+    "question": "Who is your best frienf ?",
+    "options": [
+      {
+        "id": "7500",
+        "text": "X were my best friend.",
+        "correct": false
+      },
+      {
+        "id": "7499",
+        "text": "X is my best friend.",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3049",
+    "question": "Where do you live ?",
+    "options": [
+      {
+        "id": "7501",
+        "text": "I live in Mirzapur .",
+        "correct": true
+      },
+      {
+        "id": "7502",
+        "text": "i living in Mirzapur.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3050",
+    "question": "Which trade do you read in ?",
+    "options": [
+      {
+        "id": "7504",
+        "text": "I am reading in Computer trade.",
+        "correct": false
+      },
+      {
+        "id": "7503",
+        "text": "I read in Computer trade.",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3051",
+    "question": "What..........you like to drink ?",
+    "options": [
+      {
+        "id": "7506",
+        "text": "are",
+        "correct": false
+      },
+      {
+        "id": "7507",
+        "text": "would",
+        "correct": false
+      },
+      {
+        "id": "7505",
+        "text": "do",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3052",
+    "question": "I gave.........a book on his birthday.",
+    "options": [
+      {
+        "id": "7508",
+        "text": "him",
+        "correct": true
+      },
+      {
+        "id": "7509",
+        "text": "his",
+        "correct": false
+      },
+      {
+        "id": "7510",
+        "text": "her",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3053",
+    "question": "How.............have you lived there?",
+    "options": [
+      {
+        "id": "7512",
+        "text": "often",
+        "correct": false
+      },
+      {
+        "id": "7513",
+        "text": "many",
+        "correct": false
+      },
+      {
+        "id": "7511",
+        "text": "long",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3054",
+    "question": "রহিমের বাবা একজন দক্ষ কারিগর।",
+    "options": [
+      {
+        "id": "7514",
+        "text": "Rahim,s father is a skilled technician.",
+        "correct": true
+      },
+      {
+        "id": "7515",
+        "text": "Rahim,s father were a skill technician.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3055",
+    "question": "এক ঘন্টা যাবৎ মুষলধারে বৃষ্টি হচ্ছে।",
+    "options": [
+      {
+        "id": "7516",
+        "text": "It has been raining cats and dogs for one hour.",
+        "correct": true
+      },
+      {
+        "id": "7517",
+        "text": "It have been raining cats and dogs for one hour.",
+        "correct": false
+      }
+    ]
+  }
+]

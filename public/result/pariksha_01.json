@@ -1,0 +1,1102 @@
+[
+  {
+    "id": "3116",
+    "question": "Application software কী ?",
+    "options": [
+      {
+        "id": "7670",
+        "text": "Operating System কে Application Software বলা হয় ।",
+        "correct": false
+      },
+      {
+        "id": "7669",
+        "text": "ব্যাবহারিক সমস্যা সমাধান বা তথ্য প্রক্রিয়াকরণের জন্য ব্যাবহৃত প্রোগ্রামকে ব্যাবহারিক প্রোগ্রাম বা অ্যাপ্লিকেশন সফটওয়্যার বলা হয় ।",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3117",
+    "question": "Mail মার্জ বলতে কী বুঝায়?",
+    "options": [
+      {
+        "id": "7672",
+        "text": "একই চিঠি ,মেইলিং লেবেল বা বিঙ্গপ্তি যদি একটি ঠিকানায়িএকটি ব্যাক্তি বা প্রতিষ্ঠানের নিকট পাঠানোর প্রয়োজন হয়,তখন উক্ত চিঠি গঠন করার পদ্ধতিকে মেইল মার্জ বলে।",
+        "correct": false
+      },
+      {
+        "id": "7671",
+        "text": "একই চিঠি ,মেইলিং লেবেল বা বিঙ্গপ্তি যদি বিভিন্ন ঠিকানায় ভিন্ন ভিন্ন ব্যাক্তি বা প্রতিষ্ঠানের নিকট পাঠানোর প্রয়োজন হয়,তখন উক্ত চিঠির সাথে ভিন্ন ভিন্ন ঠিকানাকে একত্র করে খুব অল্প সময়ে পূর্ণাঙ্গ চিঠি গঠন করার পদ্ধতিকে মেইল মার্জ বলে।",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3118",
+    "question": "ডাটাবেসের বিভিন্ন উপাদানগুলো কী কী ?",
+    "options": [
+      {
+        "id": "7674",
+        "text": "টেবিল,কলাম,পেইজ",
+        "correct": false
+      },
+      {
+        "id": "7673",
+        "text": "ডাটা, রেকর্ড,ফিল্ড",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3119",
+    "question": "Worksheet ও Workbook কী",
+    "options": [
+      {
+        "id": "7675",
+        "text": "ওয়ার্কশীটঃ সুবিশাল শিটের যে অংশ কাজ করা হয়,তাকে ওয়ার্কশিট বলে।ওয়ার্কশীটে মূলত বিভিন্ন ধরনের গাণিতিক কার্যাবলী সম্পাদন করা হয় । ওয়ার্কবুকঃ মাইক্রোসফট এক্সেলের স্প্রেডশিট বিভিন্ন তথ্য সন্নিবেশিত করে তা বিশ্লেষন বা পরিগণনা করা হয়। কাজ করার পর ভবিষৎতে ব্যাবহারের জন্য কোনো নামে ডিস্ক সংরক্ষন করা যায়। সংরক্ষিত স্প্রেডশিটকে ফাইল বা ওয়ার্কবুক বলা হয় ।",
+        "correct": true
+      },
+      {
+        "id": "7676",
+        "text": "ওয়ার্কবুক সুবিশাল শিটের যে অংশ কাজ করা হয়,তাকে ওয়ার্কবুক বলে।ওয়ার্কবুকে মূলত বিভিন্ন ধরনের গাণিতিক কার্যাবলী সম্পাদন করা হয় । ওয়ার্কশীটঃ মাইক্রোসফট এক্সেলের স্প্রেডশিট বিভিন্ন তথ্য সন্নিবেশিত করে তা বিশ্লেষন বা পরিগণনা করা হয়। কাজ করার পর ভবিষৎতে ব্যাবহারের জন্য কোনো নামে ডিস্ক সংরক্ষন করা যায়। সংরক্ষিত স্প্রেডশিটকে ফাইল বা ওয়ার্কশীট বলা হয় ।",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3120",
+    "question": "MS-Excel-এ আয়তাকার অসংখ্য ঘরগুলোকে কী বলে ?",
+    "options": [
+      {
+        "id": "7677",
+        "text": "MS-Excel-এ আয়তাকার অসংখ্য ঘরগুলোকে বলা হয় সেল।",
+        "correct": true
+      },
+      {
+        "id": "7678",
+        "text": "MS-Excel-এ আয়তাকার অসংখ্য ঘরগুলোকে বলা হয় টেবিল।",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3121",
+    "question": "কম্পিউটার পরিচালনায় windows সফটওয়্যারের প্রয়োজনীয়তা কী ?",
+    "options": [
+      {
+        "id": "7679",
+        "text": "অপারেটিং সিস্টেম সফটওয়্যারকে উইন্ডোজ সফটওয়্যার ও বলা হয় । অপারেটিং সিস্টেম কম্পিউটারের হার্ডওয়ার কে সচল করে।যদি কোনো কম্পিউটারে কোনো অপারেটিং সিস্টেম না থাকে তাহলে সেই কম্পিউটারে কাজ করা সম্ভব নয়। তাই কম্পিউটার চালাতে হলে কোন না কোন অপারেটিং সিস্টেম থাকতেই হবে।",
+        "correct": true
+      },
+      {
+        "id": "7680",
+        "text": "কম্পিউটার চালানোর জন্য অপারেটিং সিস্টেম এর প্রয়োজন পরে না,কম্পিউটারের ভেতরের হার্ডওয়ার অপারেটিং সিস্টেম ছাড়া আরও ভালোভাবে সচল থাকতে পারে।",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3122",
+    "question": "Excel-এ “=”চিন্হ কখন ব্যাবহৃত হয় ?",
+    "options": [
+      {
+        "id": "7682",
+        "text": "হিসাব করার জন্য ব্যাবহৃত হয়",
+        "correct": false
+      },
+      {
+        "id": "7681",
+        "text": "ফর্মূলা লেখার জন্য ব্যাবহৃত হয়।",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3123",
+    "question": "গ্রাফ বা চার্ট কী ?",
+    "options": [
+      {
+        "id": "7684",
+        "text": "এম এস এক্সেল এ হিসাব নিকাশ করাকে চার্ট বলে।",
+        "correct": false
+      },
+      {
+        "id": "7683",
+        "text": "গাণিতিক তথ্যসমূহের চিত্রসময় উপস্থাপনকে গ্রাফ বা চার্ট বলে।",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3124",
+    "question": "Speaker notes কী ?",
+    "options": [
+      {
+        "id": "7685",
+        "text": "স্পিকার নোট হলো পাওয়ার পয়েন্ট স্লাইডে একটি হিডেন এরিয়া। এটি উপস্থাপকের জন্য একটি রেফারেন্স হিসাবে কাজ করে।",
+        "correct": true
+      },
+      {
+        "id": "7686",
+        "text": "স্পিকার নোট হলো এমন এক প্রক্রিয়া যেটা একটি হিডেন এরিয়া।",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3125",
+    "question": "MS-Access এর কুয়েরি কেন ব্যাহার করা হয় ?",
+    "options": [
+      {
+        "id": "7688",
+        "text": "উত্তরটি সঠিক নয়",
+        "correct": false
+      },
+      {
+        "id": "7687",
+        "text": "বিপুল পরিমান তথ্য সম্বলিত ডাটাবেস থেকে প্রয়োজনীয় যে কোন তথ্য কিংবা রেকর্ডসমূহ খুব সহজে এবং অত্যন্ত দ্রুত খুজে বের করার জন্য কুয়েরি ব্যাবহার করা হয়।",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3126",
+    "question": "Yahoo messenger এর কাজ কী ?",
+    "options": [
+      {
+        "id": "7690",
+        "text": "সার্চ ইন্জিন",
+        "correct": false
+      },
+      {
+        "id": "7689",
+        "text": "Chatting করা, Text,audio,Video ইত্যাদী মেসেজ পাঠানো।",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3127",
+    "question": "হাইপার লিংক বলতে কী বোঝায় ?",
+    "options": [
+      {
+        "id": "7692",
+        "text": "একটি ওয়েব পেইজের সাথে অন্য কোন ওয়েব পেইজের সংযোগ না থাকলে তখন তাকে হাইপারলিংক বলা যায়।",
+        "correct": false
+      },
+      {
+        "id": "7691",
+        "text": "একটি ওয়েব পেইজের সাথে অপর একটি ওয়েব পেইজের সংযোগ স্থাপন করা যায়।এভাবে স্থাপিত সংযোগকে হাইপার লিংক বলা হয়।",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3128",
+    "question": "ENIAC এ পূর্ণনাম কী ?",
+    "options": [
+      {
+        "id": "7695",
+        "text": "Electrical Numerical Integrator and Calculate.",
+        "correct": false
+      },
+      {
+        "id": "7694",
+        "text": "Electric Numerical Integrator and Calculator.",
+        "correct": false
+      },
+      {
+        "id": "7693",
+        "text": "Electrical Numerical Integrator and Calculator.",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3129",
+    "question": "Page break এর কাজ হলো..............করা।",
+    "options": [
+      {
+        "id": "7696",
+        "text": "পৃষ্ঠাকে দ্বিখন্ডিত করা",
+        "correct": true
+      },
+      {
+        "id": "7697",
+        "text": "দুটি পৃষ্ঠাকে এক পৃষ্ঠায় রূপান্তর করা",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3130",
+    "question": "ইন্টারনেটে বাংলা লেখার জন্য ব্যাবহৃত হয় ।",
+    "options": [
+      {
+        "id": "7699",
+        "text": "ইউনিক",
+        "correct": false
+      },
+      {
+        "id": "7698",
+        "text": "বিজয় বাংলা,অভ্র সফটওয়্যার",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3131",
+    "question": "'OR'একটি ...........ফর্মূলা।",
+    "options": [
+      {
+        "id": "7701",
+        "text": "ইলিগ্যাল",
+        "correct": false
+      },
+      {
+        "id": "7700",
+        "text": "লজিক্যাল",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3132",
+    "question": "স্লাইড শো এর জন্য ..........ফাংশন ’কী’ চাপতে হয়।",
+    "options": [
+      {
+        "id": "7703",
+        "text": "F6",
+        "correct": false
+      },
+      {
+        "id": "7702",
+        "text": "F5",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3133",
+    "question": "ম্যাক্রো হলো ডাটাবেসের একটি শক্তিশালী.........।",
+    "options": [
+      {
+        "id": "7705",
+        "text": "উপকরন",
+        "correct": false
+      },
+      {
+        "id": "7704",
+        "text": "উপাদান",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3134",
+    "question": "Primary Key এর কাজ হলো................।",
+    "options": [
+      {
+        "id": "7706",
+        "text": "ইউনিক ’কী’ তৈরী করা।",
+        "correct": true
+      },
+      {
+        "id": "7707",
+        "text": "ইউনিএইড ‘কী’ তৈরী করা",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3135",
+    "question": "ইলেকট্রনিক মেইলকে সংক্ষেপে ............বলে।",
+    "options": [
+      {
+        "id": "7709",
+        "text": "ইলেকট্রনিক্স মেইল",
+        "correct": false
+      },
+      {
+        "id": "7708",
+        "text": "ই-মেইল",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3136",
+    "question": "উইন্ডোজ স্কিন .................করা যায়।",
+    "options": [
+      {
+        "id": "7711",
+        "text": "উল্টানো",
+        "correct": false
+      },
+      {
+        "id": "7710",
+        "text": "ছোট/বড়",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3137",
+    "question": "কম্পিউটার সংগঠনের প্রধান অংশ..........টি ।",
+    "options": [
+      {
+        "id": "7714",
+        "text": "৩",
+        "correct": false
+      },
+      {
+        "id": "7713",
+        "text": "৭",
+        "correct": false
+      },
+      {
+        "id": "7712",
+        "text": "৬",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3138",
+    "question": "Mozilla Firefox হলো এক ধরনের..............।",
+    "options": [
+      {
+        "id": "7715",
+        "text": "ওয়েব ব্রাউজার",
+        "correct": true
+      },
+      {
+        "id": "7716",
+        "text": "সার্চ ইন্জিন",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3139",
+    "question": "স্ক্যানার একপ্রকার.....................ডিভাইস।",
+    "options": [
+      {
+        "id": "7718",
+        "text": "আউটপুট",
+        "correct": false
+      },
+      {
+        "id": "7717",
+        "text": "ইনপুট",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3140",
+    "question": "undo করার জন্য সংক্ষিপ্ত Command............।",
+    "options": [
+      {
+        "id": "7719",
+        "text": "Ctrl+Z",
+        "correct": true
+      },
+      {
+        "id": "7720",
+        "text": "Ctrl+Y",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3141",
+    "question": "ভাইরাস প্রটেক্ট করার জন্য.............ব্যাবহৃত হয়।",
+    "options": [
+      {
+        "id": "7722",
+        "text": "কম্পিউটার ভাইরাস",
+        "correct": false
+      },
+      {
+        "id": "7721",
+        "text": "অ্যান্টিভাইরাস",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3142",
+    "question": "আকার ও ক্ষমতার ভিত্তিতে কম্পিউটারকে চারভাগে ভাগ করা যায়।",
+    "options": [
+      {
+        "id": "7724",
+        "text": "স",
+        "correct": false
+      },
+      {
+        "id": "7723",
+        "text": "মি",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3143",
+    "question": "Office program এর ডাটা My computer এ Save হয় ।",
+    "options": [
+      {
+        "id": "7725",
+        "text": "মি",
+        "correct": true
+      },
+      {
+        "id": "7726",
+        "text": "স",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3144",
+    "question": "অ্যাক্সেলের ওয়ার্কশিট হলো কলাম ও রো এর স্বমন্বয়ে গঠিত শিট।",
+    "options": [
+      {
+        "id": "7727",
+        "text": "স",
+        "correct": true
+      },
+      {
+        "id": "7728",
+        "text": "মি",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3145",
+    "question": "নতুন প্রেজেনটেশন তৈরীর জন্য Outline অপশনটি ব্যাবহৃত হয় ।",
+    "options": [
+      {
+        "id": "7730",
+        "text": "স",
+        "correct": false
+      },
+      {
+        "id": "7729",
+        "text": "মি",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3146",
+    "question": "Form-এর কাজ হলো রেকর্ডগুলো সাজানো।",
+    "options": [
+      {
+        "id": "7732",
+        "text": "মি",
+        "correct": false
+      },
+      {
+        "id": "7731",
+        "text": "স",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3147",
+    "question": "Website চিঠিপত্র লেখার কাজে ব্যাবহৃত হয়।",
+    "options": [
+      {
+        "id": "7734",
+        "text": "স",
+        "correct": false
+      },
+      {
+        "id": "7733",
+        "text": "মি",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3148",
+    "question": "’কী বোর্ডে’ ফাংশন কী এর সংখ্যা ১২ টি",
+    "options": [
+      {
+        "id": "7736",
+        "text": "মি",
+        "correct": false
+      },
+      {
+        "id": "7735",
+        "text": "স",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3149",
+    "question": "CD ROM-এ CD write করা যায় না।",
+    "options": [
+      {
+        "id": "7737",
+        "text": "স",
+        "correct": true
+      },
+      {
+        "id": "7738",
+        "text": "মি",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3150",
+    "question": "কম্পিউটারের প্রক্রিয়াকরণ অংশ হচ্ছে Motherboard.",
+    "options": [
+      {
+        "id": "7739",
+        "text": "মি",
+        "correct": true
+      },
+      {
+        "id": "7740",
+        "text": "স",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3151",
+    "question": "Exit কমান্ড File মেন্যুতে থাকে।",
+    "options": [
+      {
+        "id": "7742",
+        "text": "মি",
+        "correct": false
+      },
+      {
+        "id": "7741",
+        "text": "স",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3152",
+    "question": "RAM-একটি স্থায়ী মেমরি।",
+    "options": [
+      {
+        "id": "7744",
+        "text": "স",
+        "correct": false
+      },
+      {
+        "id": "7743",
+        "text": "মি",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3153",
+    "question": "Hard disk একটি Processing ডিবাইস।",
+    "options": [
+      {
+        "id": "7746",
+        "text": "স",
+        "correct": false
+      },
+      {
+        "id": "7745",
+        "text": "মি",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3154",
+    "question": "মাইক্রোপ্রসেসরের কাজ কী ?",
+    "options": [
+      {
+        "id": "7747",
+        "text": "তথ্য ইনপুট করা",
+        "correct": false
+      },
+      {
+        "id": "7749",
+        "text": "তথ্য সংরক্ষন করা",
+        "correct": false
+      },
+      {
+        "id": "7748",
+        "text": "তথ্য মুদ্রন করা",
+        "correct": false
+      },
+      {
+        "id": "7750",
+        "text": "তথ্য প্রক্রিয়াকরণ করা",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3155",
+    "question": "কোনটি Desktop icon ?",
+    "options": [
+      {
+        "id": "7754",
+        "text": "Mouse",
+        "correct": false
+      },
+      {
+        "id": "7753",
+        "text": "Operating System",
+        "correct": false
+      },
+      {
+        "id": "7752",
+        "text": "DOS",
+        "correct": false
+      },
+      {
+        "id": "7751",
+        "text": "Recycle bin",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3156",
+    "question": "এম এস ওয়ার্ড কী ধরনের সফটওয়্যার?",
+    "options": [
+      {
+        "id": "7756",
+        "text": "প্যাকেজ প্রোগ্রাম",
+        "correct": true
+      },
+      {
+        "id": "7755",
+        "text": "অপারেটিং সিস্টেম",
+        "correct": false
+      },
+      {
+        "id": "7758",
+        "text": "অনুধাবন প্রোগ্রাম",
+        "correct": false
+      },
+      {
+        "id": "7757",
+        "text": "ইউটিলিটি সফটওয়্যার",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3157",
+    "question": "Row hide ব্যাবহৃত হয়-",
+    "options": [
+      {
+        "id": "7759",
+        "text": "Column কে লুকিয়ে রাখতে",
+        "correct": false
+      },
+      {
+        "id": "7760",
+        "text": "Row কে লুকিয়ে রাখতে",
+        "correct": true
+      },
+      {
+        "id": "7762",
+        "text": "মুছে ফেলতে",
+        "correct": false
+      },
+      {
+        "id": "7761",
+        "text": "Column ও Row কে লুকিয়ে রাখতে।",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3158",
+    "question": "MS -Powerpoint -এর কয়টি মেন্যু আছে ?",
+    "options": [
+      {
+        "id": "7763",
+        "text": "৭টি",
+        "correct": false
+      },
+      {
+        "id": "7766",
+        "text": "১০টি",
+        "correct": true
+      },
+      {
+        "id": "7765",
+        "text": "৯টি",
+        "correct": false
+      },
+      {
+        "id": "7764",
+        "text": "৮টি",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3159",
+    "question": "=PMT ফর্মুরার মাধ্যমে-",
+    "options": [
+      {
+        "id": "7769",
+        "text": "পাক্ষিক কিস্তির পরিমাণ বের করা",
+        "correct": false
+      },
+      {
+        "id": "7768",
+        "text": "মাসিক কিস্তির পরিমাণ বের করা",
+        "correct": true
+      },
+      {
+        "id": "7767",
+        "text": "বাৎসরিক কিস্তির পরিমাণ বের করা",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3160",
+    "question": "(১৫)১০ সংখ্যাটির বাইনারি মান কত ?",
+    "options": [
+      {
+        "id": "7773",
+        "text": "১১১১",
+        "correct": true
+      },
+      {
+        "id": "7772",
+        "text": "১০১১",
+        "correct": false
+      },
+      {
+        "id": "7771",
+        "text": "১১০১",
+        "correct": false
+      },
+      {
+        "id": "7770",
+        "text": "১০১০",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3161",
+    "question": "বিশ্বের বড় বড় গ্রন্হাগার বিশ্ববিদ্যালয় ও গবেষনা প্রতিষ্ঠানের সাথে তথ্য আদান প্রদানের জন্য কোন পদ্ধতি ব্যাবহৃত হয়?",
+    "options": [
+      {
+        "id": "7777",
+        "text": "ফোন",
+        "correct": false
+      },
+      {
+        "id": "7776",
+        "text": "ইনটেল",
+        "correct": false
+      },
+      {
+        "id": "7775",
+        "text": "ফ্যাক্স",
+        "correct": false
+      },
+      {
+        "id": "7774",
+        "text": "ইন্টারনেট",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3162",
+    "question": "সম্পূর্ণ ডকুমেন্ট একসাথে Select করতে ’কী’বোর্ড শর্ট কমান্ড কোনটি ?",
+    "options": [
+      {
+        "id": "7778",
+        "text": "File-OK",
+        "correct": false
+      },
+      {
+        "id": "7779",
+        "text": "Alt-Ctrl-OK",
+        "correct": false
+      },
+      {
+        "id": "7780",
+        "text": "Ctrl-A",
+        "correct": true
+      },
+      {
+        "id": "7781",
+        "text": "Alt-Ctrl-Enter",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3163",
+    "question": "=Now ( )ফাংশন কী নির্দেশ করে ?",
+    "options": [
+      {
+        "id": "7782",
+        "text": "আজকের তারিখ",
+        "correct": false
+      },
+      {
+        "id": "7784",
+        "text": "আজকের তারিখ ও সময়",
+        "correct": true
+      },
+      {
+        "id": "7783",
+        "text": "আজকের সময়",
+        "correct": false
+      },
+      {
+        "id": "7785",
+        "text": "কোনোটিই নয়",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3164",
+    "question": "Kaspersky একটি -",
+    "options": [
+      {
+        "id": "7788",
+        "text": "মিডিয়া প্রেয়ার",
+        "correct": false
+      },
+      {
+        "id": "7789",
+        "text": "কোনোটিই নয়",
+        "correct": false
+      },
+      {
+        "id": "7786",
+        "text": "ভাইরাস",
+        "correct": false
+      },
+      {
+        "id": "7787",
+        "text": "অ্যান্টিভাইরাস",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3165",
+    "question": "MS Access এর ক্ষেত্রে Relation হচ্ছে-",
+    "options": [
+      {
+        "id": "7792",
+        "text": "Data",
+        "correct": false
+      },
+      {
+        "id": "7790",
+        "text": "Record",
+        "correct": false
+      },
+      {
+        "id": "7793",
+        "text": "Information",
+        "correct": false
+      },
+      {
+        "id": "7791",
+        "text": "Table",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3166",
+    "question": "Who is the Prime Minister of Bangladesh?",
+    "options": [
+      {
+        "id": "7795",
+        "text": "Khaleda Zia",
+        "correct": false
+      },
+      {
+        "id": "7794",
+        "text": "Sheikh Hasina",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3167",
+    "question": "What is the staple food of Bangladesh.",
+    "options": [
+      {
+        "id": "7796",
+        "text": "Rice",
+        "correct": true
+      },
+      {
+        "id": "7797",
+        "text": "Noodles",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3168",
+    "question": "চাঁদ পৃথিবীর চারিদিকে ঘোরে।",
+    "options": [
+      {
+        "id": "7799",
+        "text": "The earth moves round the moon.",
+        "correct": false
+      },
+      {
+        "id": "7798",
+        "text": "The moon moves round the earth.",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3169",
+    "question": "সে তিন দিন থেকে জ্বরে ভুগছে।",
+    "options": [
+      {
+        "id": "7800",
+        "text": "He has been suffering from fever for three days.",
+        "correct": true
+      },
+      {
+        "id": "7801",
+        "text": "He has been suffer from fever for three days.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3170",
+    "question": "আমি এইমাত্র এসেছি ।",
+    "options": [
+      {
+        "id": "7802",
+        "text": "I have come just now.",
+        "correct": true
+      },
+      {
+        "id": "7803",
+        "text": "I have been come just now.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3171",
+    "question": "আমার মা আমাকে খুব ভালোবাসেন।",
+    "options": [
+      {
+        "id": "7804",
+        "text": "My mother loves me very much.",
+        "correct": true
+      },
+      {
+        "id": "7805",
+        "text": "My mother loved very much.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3172",
+    "question": "তুমি কি অসুস্থ ?",
+    "options": [
+      {
+        "id": "7807",
+        "text": "Are you illness ?",
+        "correct": false
+      },
+      {
+        "id": "7806",
+        "text": "Are you ill ?",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3173",
+    "question": "Rahim is................univercity student.",
+    "options": [
+      {
+        "id": "7810",
+        "text": "the",
+        "correct": false
+      },
+      {
+        "id": "7808",
+        "text": "a",
+        "correct": true
+      },
+      {
+        "id": "7809",
+        "text": "an",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "3174",
+    "question": "It is ten o'clock.............my watch.",
+    "options": [
+      {
+        "id": "7812",
+        "text": "on",
+        "correct": false
+      },
+      {
+        "id": "7811",
+        "text": "in",
+        "correct": false
+      },
+      {
+        "id": "7813",
+        "text": "by",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "3175",
+    "question": "Parul and Bokul............friends.",
+    "options": [
+      {
+        "id": "7816",
+        "text": "are",
+        "correct": true
+      },
+      {
+        "id": "7815",
+        "text": "am",
+        "correct": false
+      },
+      {
+        "id": "7814",
+        "text": "is",
+        "correct": false
+      }
+    ]
+  }
+]
